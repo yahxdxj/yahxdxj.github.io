@@ -107,7 +107,7 @@ MacDown 能极快的将文本内容转成HTML,并展示出来.">
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"remove"},
+    sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -341,7 +341,7 @@ Header 2
 ##### Header 5
 ###### Header 6
 </code></pre><h3 id="2-4-链接-and-邮箱"><a href="#2-4-链接-and-邮箱" class="headerlink" title="2.4 链接 and 邮箱"></a>2.4 链接 and 邮箱</h3><h4 id="2-4-1内链接"><a href="#2-4-1内链接" class="headerlink" title="2.4.1内链接"></a>2.4.1内链接</h4><p>网址可用尖括号包裹使其可点击: <a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br><code>&lt;http://macdown.uranusjr.com&gt;</code> </p>
-<p>邮箱也可用尖括号包裹使其可点击: <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#x75;&#114;&#x61;&#110;&#117;&#x73;&#106;&#114;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x75;&#114;&#x61;&#110;&#117;&#x73;&#106;&#114;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
+<p>邮箱也可用尖括号包裹使其可点击: <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x75;&#x72;&#97;&#110;&#117;&#x73;&#x6a;&#114;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x75;&#x72;&#97;&#110;&#117;&#x73;&#x6a;&#114;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
 <p>也许你需要一些这样的链接文本: <a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a>  ,<br>格式为中括号加小括号:<br><code>[Macdown Website](http://macdown.uranusjr.com)</code>  </p>
 <p>这是链接&amp;邮箱示例代码,直接copy到macdown左侧中:  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">网址链接 &lt;http://macdown.uranusjr.com&gt;  </div><div class="line">邮箱链接 &lt;uranusjr@gmail.com&gt;  </div><div class="line">文本链接 [Macdown Website](http://macdown.uranusjr.com)</div><div class="line">```  </div><div class="line">#### 2.4.2 其他写法  </div><div class="line">有时链接太长,页面显得很混乱,你可以将所有链接统一放在一起定义,之后根据情况具体去调用.  </div><div class="line">链接定义:  </div><div class="line">`[arbitrary_id]: http://macdown.uranusjr.com`  </div><div class="line">`[Baidu]: http://macdown.uranusjr.com`  </div><div class="line">`[jd_id]: https://www.jd.com`   </div><div class="line">可在文章任一地方使用已经定义的链接:  </div><div class="line">[一个链接][arbitrary_id]  使用格式[][]:`[一个链接][arbitrary_id]`  </div><div class="line">[百度链接][Baidu]  使用格式[][]:`[百度链接][Baidu]`  </div><div class="line">[京东商城][jd_id]  使用格式[][]:`[京东商城][jd_id]`  </div><div class="line"></div><div class="line">[arbitrary_id]: http://macdown.uranusjr.com </div><div class="line">[Baidu]: http://www.baidu.com</div><div class="line">[jd_id]: https://www.jd.com</div><div class="line"></div><div class="line">### 2.5 图片</div><div class="line">#### 2.5.1 内链接</div><div class="line">格式:叹号+中括号+小括号 `![名称随意](图片url)` 如:  </div><div class="line">`![M12](http://macdown.uranusjr.com/static/base/img/logo-160.png)` </div><div class="line">`![M34](http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png)` </div><div class="line">![M12](http://macdown.uranusjr.com/static/base/img/logo-160.png)  </div><div class="line">![M34](http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png)</div><div class="line"></div><div class="line">#### 2.5.2 其他写法</div><div class="line">先定义  </div><div class="line">`[image-id]: http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png`  </div><div class="line">定义完,可在文章任意地方调用:  </div><div class="line">`![Alt Image Text][image-id]`</div><div class="line"></div><div class="line"></div><div class="line">### 2.6 列表</div><div class="line"></div><div class="line">* 使用列表之前先空一行</div><div class="line">* 列表的每个条目以星号打头 `*`</div><div class="line">- `-` 也可以用横杠打头</div><div class="line">	* tab键生成二级列表</div><div class="line">		1. 支持有序列表.</div><div class="line">		2. 以1,2,3打头 如: `1. `</div><div class="line">		42. 无论你使用什么数字,都是按照1234...依次排序</div><div class="line">		1. So you might want to start each line with `1.` and let me sort it out  </div><div class="line"></div><div class="line">这是列表示例代码,直接copy到macdown左侧中:  </div><div class="line"></div><div class="line">```  </div><div class="line">* 使用列表之前先空一行</div><div class="line">* 列表的每个条目以星号打头 `*`</div><div class="line">- `-` 也可以用横杠打头</div><div class="line">	* tab键生成二级列表</div><div class="line">		1. 支持有序列表.</div><div class="line">		2. 以1,2,3打头 如: `1. `</div><div class="line">		42. 无论你使用什么数字,都是按照1234...依次排序</div><div class="line">		1. So you might want to start each line with `1.` and let me sort it out</div></pre></td></tr></table></figure>
@@ -440,6 +440,97 @@ print(&apos;Then indent at least 4 spaces or 1 tab&apos;)
 
 
         </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-MacDown-和-作者"><span class="nav-number">1.</span> <span class="nav-text">一 MacDown 和 作者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-基础语法"><span class="nav-number">2.</span> <span class="nav-text">二 基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-如何换行"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 如何换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-加粗-and-斜体"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 加粗 and 斜体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-标头-like-this-one"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 标头 (like this one!)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-链接-and-邮箱"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 链接 and 邮箱</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1内链接"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1内链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-引用"><span class="nav-number">2.5.</span> <span class="nav-text">2.7 引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-内联代码"><span class="nav-number">2.6.</span> <span class="nav-text">2.8 内联代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-代码块"><span class="nav-number">2.7.</span> <span class="nav-text">2.9 代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-分割线"><span class="nav-number">2.8.</span> <span class="nav-text">2.10 分割线</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
     </main>
