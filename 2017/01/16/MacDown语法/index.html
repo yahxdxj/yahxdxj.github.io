@@ -1,0 +1,726 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+Markdown 的目标是实现「易读易写」.  
+Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。  
+Markdown 是一种书写的格式，HTML 是一种发布的格式。
+Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MacDown语法">
+<meta property="og:url" content="http://yoursite.com/2017/01/16/MacDown语法/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+Markdown 的目标是实现「易读易写」.  
+Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。  
+Markdown 是一种书写的格式，HTML 是一种发布的格式。
+Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdow">
+<meta property="og:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png">
+<meta property="og:updated_time" content="2017-01-17T06:39:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacDown语法">
+<meta name="twitter:description" content="导语
+Markdown 的目标是实现「易读易写」.  
+Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。  
+Markdown 是一种书写的格式，HTML 是一种发布的格式。
+Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdow">
+<meta name="twitter:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/16/MacDown语法/"/>
+
+
+
+
+
+  <title> MacDown语法 | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/16/MacDown语法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MacDown语法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-16T10:08:49+08:00">
+                2017-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>Markdown 的目标是实现「<strong>易读易写</strong>」.  </p>
+<p><strong>Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。</strong>  </p>
+<p><strong>Markdown 是一种书写的格式，HTML 是一种发布的格式。</strong></p>
+<p>Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p>
+<p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。<strong>Markdown 的理念是，能让文档更容易读、写和随意改。</strong></p>
+</blockquote>
+<a id="more"></a>
+<h3 id="一-Markdown基础语法"><a href="#一-Markdown基础语法" class="headerlink" title="一 Markdown基础语法"></a>一 Markdown基础语法</h3><h4 id="1-1-如何换行"><a href="#1-1-如何换行" class="headerlink" title="1.1 如何换行"></a>1.1 如何换行</h4><p>强制换行:在一行的最末敲两次空格加一次回车  </p>
+<h4 id="1-2-加粗-and-斜体"><a href="#1-2-加粗-and-斜体" class="headerlink" title="1.2 加粗 and 斜体"></a>1.2 加粗 and 斜体</h4><p><strong>加粗</strong>: 用双星号包裹<code>**Strong**</code><br><em>斜体</em>: 用单星号包裹<code>*Emphasize*</code><br>下面是加粗和斜体示例代码,直接copy到macdown左侧中:  </p>
+<pre><code>**加粗**: 用双星号包裹`**Strong**`  
+*斜体*: 用单星号包裹`*Emphasize*`
+</code></pre><h4 id="1-3-标头-like-this-one"><a href="#1-3-标头-like-this-one" class="headerlink" title="1.3 标头 (like this one!)"></a>1.3 标头 (like this one!)</h4><pre><code>Header 1
+========
+
+Header 2
+--------
+</code></pre><p>or</p>
+<pre><code># Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
+</code></pre><h4 id="1-4-链接-and-邮箱"><a href="#1-4-链接-and-邮箱" class="headerlink" title="1.4 链接 and 邮箱"></a>1.4 链接 and 邮箱</h4><h5 id="1-4-1内链接"><a href="#1-4-1内链接" class="headerlink" title="1.4.1内链接"></a>1.4.1内链接</h5><ol>
+<li><p>网址可用尖括号包裹使其可点击: <a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br>下面是网址示例代码,直接copy到macdown左侧中:<br><code>&lt;http://macdown.uranusjr.com&gt;</code> </p>
+</li>
+<li><p>邮箱也可用尖括号包裹使其可点击: <a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#117;&#x72;&#x61;&#110;&#x75;&#115;&#x6a;&#x72;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;">&#117;&#x72;&#x61;&#110;&#x75;&#115;&#x6a;&#x72;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;</a><br>下面是邮箱示例代码,直接copy到macdown左侧中:<br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
+</li>
+<li><p>也许你需要一些这样的链接文本: <a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a>  ,<br>下面是链接文本示例代码,直接copy到macdown左侧中:<br><code>[Macdown Website](http://macdown.uranusjr.com)</code>  </p>
+</li>
+</ol>
+<h5 id="1-4-2-其他写法"><a href="#1-4-2-其他写法" class="headerlink" title="1.4.2 其他写法"></a>1.4.2 其他写法</h5><p>有时链接太长,页面显得很混乱,你可以将所有链接统一放在一起定义,之后根据情况具体去调用.  </p>
+<ol>
+<li>链接定义:<br><code>[arbitrary_id]: http://macdown.uranusjr.com</code><br><code>[Baidu]: http://macdown.uranusjr.com</code><br><code>[jd_id]: https://www.jd.com</code>  </li>
+<li>可在文章任一地方使用已经定义的链接:<br><a href="http://macdown.uranusjr.com" target="_blank" rel="external">一个链接</a>  使用格式[][]:<code>[一个链接][arbitrary_id]</code><br><a href="http://www.baidu.com" target="_blank" rel="external">百度链接</a>  使用格式[][]:<code>[百度链接][Baidu]</code><br><a href="https://www.jd.com" target="_blank" rel="external">京东商城</a>  使用格式[][]:<code>[京东商城][jd_id]</code>  </li>
+</ol>
+<p>示例代码,直接copy到macdown左侧中:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[arbitrary_id]: http:<span class="comment">//macdown.uranusjr.com  </span></div><div class="line">[Baidu]: http:<span class="comment">//www.baidu.com  </span></div><div class="line">[jd_id]: https:<span class="comment">//www.jd.com  </span></div><div class="line">[一个链接][arbitrary_id]  </div><div class="line">[百度链接][Baidu]  </div><div class="line">[京东商城][jd_id]</div></pre></td></tr></table></figure></p>
+<h4 id="1-5-图片"><a href="#1-5-图片" class="headerlink" title="1.5 图片"></a>1.5 图片</h4><h5 id="1-5-1-内链接"><a href="#1-5-1-内链接" class="headerlink" title="1.5.1 内链接"></a>1.5.1 内链接</h5><p>图片的引用:叹号+中括号+小括号 <code>![名称随意](图片url)</code> 如:<br><code>![M12](http://macdown.uranusjr.com/static/base/img/logo-160.png)</code><br><code>![M34](http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png)</code><br><img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="M12"><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png" alt="M34"></p>
+<h5 id="1-5-2-其他写法"><a href="#1-5-2-其他写法" class="headerlink" title="1.5.2 其他写法"></a>1.5.2 其他写法</h5><ol>
+<li>先定义<br><code>[image-id]: http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png</code>  </li>
+<li>定义完,可在文章任意地方调用:<br><code>![Alt Image Text][image-id]</code></li>
+</ol>
+<h4 id="1-6-列表"><a href="#1-6-列表" class="headerlink" title="1.6 列表"></a>1.6 列表</h4><ul>
+<li>使用列表之前先空一行</li>
+<li>列表的每个条目以星号打头<code>*</code>  </li>
+<li><code>-</code> 也可以用横杠打头  <ul>
+<li>tab键生成二级列表<ol>
+<li>支持有序列表.</li>
+<li>以1.,2.,3.打头 如: <code>1.</code></li>
+<li>无论你使用什么数字,都是按照1234…依次排序</li>
+<li>So you might want to start each line with <code>1.</code> and let me sort it out  </li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>这是列表示例代码,直接copy到macdown左侧中:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* 使用列表之前先空一行</div><div class="line">* 列表的每个条目以星号打头 `*`</div><div class="line">- 也可以用横杠打头 `-`</div><div class="line">	* tab键生成二级列表</div><div class="line">		1. 支持有序列表.</div><div class="line">		2. 以1,2,3打头 如: `1. `</div><div class="line">		42. 无论你使用什么数字,都是按照1234...依次排序</div><div class="line">		1. So you might want to start each line with `1.` and let me sort it out</div></pre></td></tr></table></figure>
+<h4 id="1-7-引用"><a href="#1-7-引用" class="headerlink" title="1.7 引用"></a>1.7 引用</h4><blockquote>
+<p>尖括号 <code>&gt;</code> 被用来块引用.<br>从技术上讲,引用好几段内容,并不是每一行都需要以尖括号<code>&gt;</code>开始,只要段落与段落之间没有空行就行<br>尽管看上去有点丑陋.</p>
+<blockquote>
+<p>块引用可以嵌套.  </p>
+<blockquote>
+<p>多级嵌套.</p>
+</blockquote>
+</blockquote>
+<p>Most markdown syntaxes work inside block quotes.</p>
+<ul>
+<li>Lists</li>
+<li><a href="http://macdown.uranusjr.com" target="_blank" rel="external">Links</a></li>
+<li>Etc.</li>
+</ul>
+</blockquote>
+<p>这是引用示例代码,直接copy到macdown左侧中:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; 尖括号 `&gt;` 被用来块引用.  </div><div class="line">从技术上讲,引用好几段内用,并不是每一行都需要以尖括号`&gt;`开始,只要段落与段落之间没有空行就行  </div><div class="line">&gt; 尽管看上去有点丑陋.</div><div class="line">&gt; &gt; 块引用可以嵌套.  </div><div class="line">&gt; &gt; &gt; 多级嵌套.</div><div class="line">&gt;</div><div class="line">&gt; Most markdown syntaxes work inside block quotes.</div><div class="line">&gt;</div><div class="line">&gt; * Lists</div><div class="line">&gt; * [Links][arbitrary_id]</div><div class="line">&gt; * Etc.</div></pre></td></tr></table></figure>
+<h4 id="1-8-代码"><a href="#1-8-代码" class="headerlink" title="1.8 代码"></a>1.8 代码</h4><p>代码: 用单引号(键位在tab键上方)包裹<br><code>`private void initData(){}` </code><br>如果你的代码中有单引号并且需要展示,你可以使用两次单引号包裹已经存在的单引号:<br><code>``Code with `backticks` `` </code>  </p>
+<h4 id="1-9-代码块"><a href="#1-9-代码块" class="headerlink" title="1.9 代码块"></a>1.9 代码块</h4><p>显示一个代码块: 先空一行,使用tab键或者缩进四个空格,在写入代码,具体自己试验。  </p>
+<pre><code>print(&apos;This is a code block&apos;)
+print(&apos;The block must be preceded by a blank line&apos;)
+print(&apos;Then indent at least 4 spaces or 1 tab&apos;)
+print(&apos;Nesting does nothing. Your code is displayed Literally&apos;)
+</code></pre><h4 id="1-10-分割线"><a href="#1-10-分割线" class="headerlink" title="1.10 分割线"></a>1.10 分割线</h4><p>如果你输入三个星号 <code>***</code> 或者 三个横杠 <code>---</code> , 将显示为水平分割线线:  </p>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/11/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/16/Mac上搭建github博客/" rel="prev" title="Mac上搭建github博客">
+                Mac上搭建github博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Markdown基础语法"><span class="nav-number"></span> <span class="nav-text">一 Markdown基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-如何换行"><span class="nav-number">1.</span> <span class="nav-text">1.1 如何换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-加粗-and-斜体"><span class="nav-number">2.</span> <span class="nav-text">1.2 加粗 and 斜体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-标头-like-this-one"><span class="nav-number">3.</span> <span class="nav-text">1.3 标头 (like this one!)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-链接-and-邮箱"><span class="nav-number">4.</span> <span class="nav-text">1.4 链接 and 邮箱</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-1内链接"><span class="nav-number">4.1.</span> <span class="nav-text">1.4.1内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-2-其他写法"><span class="nav-number">4.2.</span> <span class="nav-text">1.4.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-图片"><span class="nav-number">5.</span> <span class="nav-text">1.5 图片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-内链接"><span class="nav-number">5.1.</span> <span class="nav-text">1.5.1 内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-2-其他写法"><span class="nav-number">5.2.</span> <span class="nav-text">1.5.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-列表"><span class="nav-number">6.</span> <span class="nav-text">1.6 列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-引用"><span class="nav-number">7.</span> <span class="nav-text">1.7 引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8-代码"><span class="nav-number">8.</span> <span class="nav-text">1.8 代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-代码块"><span class="nav-number">9.</span> <span class="nav-text">1.9 代码块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-分割线"><span class="nav-number">10.</span> <span class="nav-text">1.10 分割线</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
