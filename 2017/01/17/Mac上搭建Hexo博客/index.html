@@ -84,16 +84,26 @@
 
 
 
-<meta name="description" content="人艰不拆">
+<meta name="description" content="导语
+ 为搭建Hexo博客,踩了无数的坑,终究是搭建成功了,高兴之余记录一下.
+  之前买过香港主机,用wp建站,试过之后每隔个1,2月会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,放弃.遂转向Github,使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac上搭建Hexo博客">
 <meta property="og:url" content="http://yoursite.com/2017/01/17/Mac上搭建Hexo博客/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="人艰不拆">
-<meta property="og:updated_time" content="2017-01-17T06:59:42.000Z">
+<meta property="og:description" content="导语
+ 为搭建Hexo博客,踩了无数的坑,终究是搭建成功了,高兴之余记录一下.
+  之前买过香港主机,用wp建站,试过之后每隔个1,2月会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,放弃.遂转向Github,使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 create a new repository.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 cangku.png">
+<meta property="og:updated_time" content="2017-01-17T07:42:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac上搭建Hexo博客">
-<meta name="twitter:description" content="人艰不拆">
+<meta name="twitter:description" content="导语
+ 为搭建Hexo博客,踩了无数的坑,终究是搭建成功了,高兴之余记录一下.
+  之前买过香港主机,用wp建站,试过之后每隔个1,2月会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,放弃.遂转向Github,使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.">
+<meta name="twitter:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png">
 
 
 
@@ -315,7 +325,58 @@
       
 
       
-        
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> 为搭建Hexo博客,踩了无数的坑,终究是搭建成功了,高兴之余记录一下.</p>
+<p>  之前买过香港主机,用wp建站,试过之后每隔个1,2月会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,放弃.遂转向Github,使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.  </p>
+</blockquote>
+<a id="more"></a>  
+<blockquote>
+<p>Mac上搭建基于GitHub的Hexo博客可<strong>分5步</strong>:  </p>
+<ol>
+<li>搭建github仓库及域名解析;  </li>
+<li>Hexo关联Github;  </li>
+<li>安装主题theme;  </li>
+<li>绑定个人域名;  </li>
+<li>创建并发布博客文章;  </li>
+</ol>
+</blockquote>
+<h4 id="一-搭建github仓库及域名解析"><a href="#一-搭建github仓库及域名解析" class="headerlink" title="一 搭建github仓库及域名解析"></a>一 搭建github仓库及域名解析</h4><ol>
+<li>创建github账号<a href="https://github.com" target="_blank" rel="external">github官网</a>,一定要验证邮箱<a href="https://github.com/settings/emails" target="_blank" rel="external">验证邮箱</a><br> (这是作者新注册的github账号  用户名:<code>ceshiblog</code>  密码:<code>y**95**84</code> 邮箱:<code>134****978@qq.com</code> )  </li>
+<li>登录github,右上角点+按钮,创建仓库New repository<br> <img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png" alt="newrepository">  </li>
+<li>进入Create a new repository页面,<ul>
+<li>①输入Repository name,要注意格式:你的github用户名.github.io,比如:<code>ceshiblog.github.io</code>  </li>
+<li>②输入Description描述,比如个人博客,对于描述随意填,是可以改的  </li>
+<li>③选择public  </li>
+<li>④点击 Create repository<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 create a new repository.png" alt="newrepository">  </li>
+</ul>
+</li>
+<li>进入仓库页面 <a href="https://github.com/ceshiblog/ceshiblog.github.io" target="_blank" rel="external">作者的仓库页面</a> ,点击setting<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 cangku.png" alt="newrepository">  </li>
+<li>向下滚动,设置主题(Change theme),选择喜欢的主题,随意选个就行<br>选择一个主题并确定  </li>
+<li>仓库建好了,博客网站也基本建好 <a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>  </li>
+<li><p>绑定个人域名(关于域名的购买,自行百度,其实非常简单)  </p>
+<ul>
+<li>现在我们不想通过输入<a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>来访问个人博客网站,而是希望通过自己的域名(如:<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)来访问</li>
+<li><p>下面详细步骤  </p>
+<ul>
+<li>① 进入仓库页面的设置(Settings)选项卡(<a href="https://github.com/ceshiblog/ceshiblog.github.io" target="_blank" rel="external">作者的仓库页面</a> )  </li>
+<li>② 往下滑动,找到域名卡片(Custom domain),输入购买的域名(这是作者在阿里云买的域名ceshiblog.xyz,约¥1元/年),然后保存  </li>
+<li>③ 保存成功的显示: Custom domain “ceshiblog.xyz” saved  </li>
+<li><p>④ 到域名商那里去域名解析(域名在哪里买的就到哪里去解析,作者去的是阿里云)  </p>
+<pre><code>名词解释:
+    域名解析: 通过域名查找IP地址并访问空间的过程叫做域名解析
+     CNAME: 如果将域名指向一个域名，实现与被指向域名相同的访问效果，需要增加CNAME记录
+        @ : 将域名解析为example.com（不带www），填写@或者不填写；
+      www : 将域名解析为www.example.com，填写www；
+</code></pre></li>
+<li><p>⑤ 等待10分钟,就可以通过个人域名(<a href="http://www.ceshiblog.xyz" target="_blank" rel="external">http://www.ceshiblog.xyz</a>  或<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)访问博客网站了</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>手动clone一份代码,因为后面或许要用到<br> 打开仓库页面(<a href="https://github.com/ceshiblog/ceshiblog.github.io" target="_blank" rel="external">作者的仓库页面</a> ),<br> 点击按钮,点击download zip,将代码clone到本地电脑,保存即可. </li>
+</ol>
+
       
     </div>
 
@@ -341,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/16/Mac上搭建github博客/" rel="next" title="Mac上搭建github博客">
-                <i class="fa fa-chevron-left"></i> Mac上搭建github博客
+              <a href="/2017/01/16/MacDown语法/" rel="next" title="MacDown语法">
+                <i class="fa fa-chevron-left"></i> MacDown语法
               </a>
             
           </div>
@@ -396,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -410,7 +480,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -439,6 +509,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-搭建github仓库及域名解析"><span class="nav-number">2.</span> <span class="nav-text">一 搭建github仓库及域名解析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
