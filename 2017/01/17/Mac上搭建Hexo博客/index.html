@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 aliyun.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20locsalhost.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20hexo%20jia.png">
-<meta property="og:updated_time" content="2017-01-17T09:17:30.000Z">
+<meta property="og:updated_time" content="2017-01-17T09:34:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac上搭建Hexo博客">
 <meta name="twitter:description" content="导语
@@ -399,8 +399,9 @@
 </blockquote>
 </blockquote>
 <ol>
-<li>下载Node.js和git并安装<table><br><tr><br> <th>软件</th><br> <th>下载地址</th><br> <th>解释</th><br></tr><br><tr><br> <td>①下载Node.js</td><br> <td><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></td><br> <td>下载v6.9.2 LTS 一路安装即可</td><br></tr><br><tr><br> <td>②下载git</td><br> <td><a href="https://git-scm.com" target="_blank" rel="external">https://git-scm.com</a></td><br> <td>或到<a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a>下载</td><br></tr><br></table></li>
-<li>安装Hexo  <table><br><tr><br> <th>步骤</th><br> <th>命令</th><br> <th>解释</th><br></tr><br><tr><br> <td>①</td><br> <td><code>$ sudo npm install -g hexo</code></td><br> <td>当Node.js和Git都安装好后就可以正式安装Hexo了<br>输入管理员密码（Mac登录密码）即开始安装<br>( sudo:   linux系统管理指令<br>-g:       全局安装              ) </td><br></tr><br><tr><br> <td>①</td><br> <td><code>$ sudo npm install -g hexo-cli</code></td><br> <td>若上面命令出错的话,执行这一行命令(若正常,忽略此命令)<br>因为Hexo官网上的安装命令是$ npm install -g hexo-cli(window的命令)，<br>Mac安装时不要忘记前面加上sudo，否则会因为权限问题报错</td><br></tr><br></table></li>
+<li>下载Node.js和git并安装  <table class="table table-bordered table-striped table-condensed"><br><tr><br> <th>软件</th><br> <th>下载地址</th><br> <th>解释</th><br></tr><br><tr><br> <td>①下载Node.js</td><br> <td><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></td><br> <td>下载v6.9.2 LTS 一路安装即可</td><br></tr><br><tr><br> <td>②下载git</td><br> <td><a href="https://git-scm.com" target="_blank" rel="external">https://git-scm.com</a></td><br> <td>或到<a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a>下载</td><br></tr><br></table></li>
+<li><p>安装Hexo  </p>
+<table class="table table-bordered table-striped table-condensed"><br><tr><br> <th>步骤</th><br> <th>命令</th><br> <th>解释</th><br></tr><br><tr><br> <td>①</td><br> <td><code>$ sudo npm install -g hexo</code></td><br> <td>当Node.js和Git都安装好后就可以正式安装Hexo了<br>输入管理员密码（Mac登录密码）即开始安装<br>sudo:   linux系统管理指令<br>-g:       全局安装               </td><br></tr><br><tr><br> <td>①</td><br> <td><code>$ sudo npm install -g hexo-cli</code></td><br> <td>若上面命令出错的话,执行这一行命令(若正常,忽略此命令)<br>因为Hexo官网上的安装命令是$ npm install -g hexo-cli(window的命令)，<br>Mac安装时不要忘记前面加上sudo，否则会因为权限问题报错</td><br></tr><br></table></li>
 <li>初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令<br><table><br><tr><br> <th>步骤</th><br> <th>命令</th><br> <th>解释</th><br></tr><br><tr><br> <td>①</td><br> <td><code>$ cd work/Blog</code></td><br> <td>终端cd到一个你选定的目录,如: 进入work文件夹下Blog文件夹中</td><br></tr><br><tr><br> <td>②</td><br> <td><code>$ hexo init yassblog.xyz</code></td><br> <td>这是hexo初始化命令,<br>系统会自动初始化hexo文件夹.  文件夹名称任意(作者的是yassblog.xyz)</td><br></tr><br><tr><br> <td>③</td><br> <td><code>$ cd yassblog.xyz</code></td><br> <td>终端cd到刚生成的hexo文件夹 (yassblog.xyz)中</td><br></tr><br><tr><br> <td>④</td><br> <td><code>$ npm install</code></td><br> <td>安装npm</td><br></tr><br><tr><br> <td>⑤</td><br> <td><code>$ hexo s</code></td><br> <td>开启hexo服务器</td><br></tr><br></table><br>此时, 浏览器中打开网址<a href="http://locsalhost:4000" target="_blank" rel="external">http://locsalhost:4000</a>，能看到如下页面:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20locsalhost.png" alt="locsalhost"><br>到这里本地hexo环境基本设置好了,可以去关联github了<br>另外:按照第3步可以在本地初始化多个Hexo文件夹,如图:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20hexo%20jia.png" alt="locsalhost">  </li>
 <li>登录Github网站( <a href="https://github.com" target="_blank" rel="external">https://github.com</a> ),创建仓库(参考: github博客搭建一)</li>
 </ol>
