@@ -105,7 +105,14 @@
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 aliyun.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20locsalhost.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20hexo%20jia.png">
-<meta property="og:updated_time" content="2017-01-17T09:34:12.000Z">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 cd jia.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 config.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 config.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo g.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d error.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 github ssh.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d.png">
+<meta property="og:updated_time" content="2017-01-18T01:24:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac上搭建Hexo博客">
 <meta name="twitter:description" content="导语
@@ -341,16 +348,16 @@
 <blockquote>
 <p>Mac上搭建基于GitHub的Hexo博客可<strong>分5步</strong>:  </p>
 <ol>
-<li>搭建github仓库及域名解析;  </li>
+<li>搭建Github仓库及域名解析;  </li>
 <li>Hexo关联Github;  </li>
 <li>安装主题theme;  </li>
 <li>绑定个人域名;  </li>
 <li>创建并发布博客文章;  </li>
 </ol>
 </blockquote>
-<h4 id="一-搭建github仓库及域名解析"><a href="#一-搭建github仓库及域名解析" class="headerlink" title="一 搭建github仓库及域名解析"></a>一 搭建github仓库及域名解析</h4><ol>
-<li>创建github账号(<a href="https://github.com" target="_blank" rel="external">github官网</a>),一定要验证邮箱(<a href="https://github.com/settings/emails" target="_blank" rel="external">验证邮箱</a>)<br> (这是作者新注册的github账号  用户名:<code>ceshiblog</code>  密码:<code>y**95**84</code> 邮箱:<code>134****978@qq.com</code> )  </li>
-<li>登录github,右上角点+按钮,创建仓库New repository<br> <img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png" alt="newrepository">  </li>
+<h4 id="一-搭建Github仓库及域名解析"><a href="#一-搭建Github仓库及域名解析" class="headerlink" title="一 搭建Github仓库及域名解析"></a>一 搭建Github仓库及域名解析</h4><ol>
+<li>创建Github账号(<a href="https://github.com" target="_blank" rel="external">Github官网</a>),一定要验证邮箱(<a href="https://github.com/settings/emails" target="_blank" rel="external">验证邮箱</a>)<br> (这是作者新注册的Github账号  用户名:<code>ceshiblog</code>  密码:<code>y**95**84</code> 邮箱:<code>134****978@qq.com</code> )  </li>
+<li>登录Github,右上角点+按钮,创建仓库New repository<br> <img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png" alt="newrepository">  </li>
 <li>进入Create a new repository页面,<ul>
 <li>①输入Repository name,要注意格式:<code>你的github用户名.github.io</code>,比如:<code>ceshiblog.github.io</code>  </li>
 <li>②输入Description描述,比如个人博客,对于描述随意填,是可以改的  </li>
@@ -377,7 +384,7 @@
       www : 将域名解析为www.example.com，填写www； 
 </code></pre><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 aliyun.png" alt="newrepository"></p>
 </li>
-<li>⑤ 等待10分钟,就可以通过个人域名(<a href="http://www.ceshiblog.xyz" target="_blank" rel="external">http://www.ceshiblog.xyz</a>  或<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)访问博客网站了</li>
+<li>⑤ 等待10分钟解析完成,就可以通过个人域名(<a href="http://www.ceshiblog.xyz" target="_blank" rel="external">http://www.ceshiblog.xyz</a>  或<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)访问博客网站了</li>
 </ul>
 </li>
 </ul>
@@ -389,22 +396,191 @@
 <p>建站到这里基本完成1/5了,剩下的就是博客的内容创建发布了,对于新手来说发布博客的操作越简单越好.<br>作者觉得使用hexo写博客相对简单,请往下看</p>
 </blockquote>
 <h4 id="二-Hexo关联Github"><a href="#二-Hexo关联Github" class="headerlink" title="二 Hexo关联Github"></a>二 Hexo关联Github</h4><blockquote>
-<p>上面成功搭建Github仓库, 这一步主要是在本地Mac搭建Hexo环境并关联Github.  </p>
+<p>上面成功搭建Github仓库, 接下来这一节主要讲,在本地Mac上搭建Hexo环境,并关联Github.  </p>
 <p>Hexo 是一个快速、简洁且高效的博客框架. <a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a><br>安装Hexo必须有两个先决条件  </p>
 <blockquote>
 <ol>
-<li>Node.js</li>
-<li>git  </li>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>的安装</li>
+<li><a href="https://git-scm.com" target="_blank" rel="external">git</a>的安装  </li>
 </ol>
 </blockquote>
+</blockquote>
+<h5 id="2-1-下载Node-js和git并安装"><a href="#2-1-下载Node-js和git并安装" class="headerlink" title="2.1 下载Node.js和git并安装"></a>2.1 下载Node.js和git并安装</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">软件</th>
+<th style="text-align:left">下载地址</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Node.js</td>
+<td style="text-align:left"><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></td>
+<td style="text-align:left">下载v6.9.2 LTS 一路安装即可</td>
+</tr>
+<tr>
+<td style="text-align:left">git</td>
+<td style="text-align:left"><a href="https://git-scm.com" target="_blank" rel="external">https://git-scm.com</a></td>
+<td style="text-align:left">或到<a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a>下载安装</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2-2-安装Hexo-在mac终端命令行依次执行下面命令"><a href="#2-2-安装Hexo-在mac终端命令行依次执行下面命令" class="headerlink" title="2.2 安装Hexo,在mac终端命令行依次执行下面命令"></a>2.2 安装Hexo,在mac终端命令行依次执行下面命令</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">步骤</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">①</td>
+<td style="text-align:left"><code>$ sudo npm install -g hexo</code></td>
+<td style="text-align:left">当Node.js和Git都安装好后就可以正式安装Hexo了,需要输入管理员密码(Mac登录密码), sudo:系统管理指令, -g:全局安装</td>
+</tr>
+<tr>
+<td style="text-align:left">同①</td>
+<td style="text-align:left"><code>$ sudo npm install -g hexo-cli</code></td>
+<td style="text-align:left">若上面命令出错的话,执行这一行命令(若正常,忽略此命令), 因为Hexo官网上的安装命令是$ npm install -g hexo-cli(这是在window上执行的命令), Mac安装时不要忘记前面加上sudo(如左)，否则会因为权限问题报错</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2-3-初始化Hexo本地文件夹-在mac终端命令行依次执行下面命令"><a href="#2-3-初始化Hexo本地文件夹-在mac终端命令行依次执行下面命令" class="headerlink" title="2.3 初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令"></a>2.3 初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">步骤</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">①</td>
+<td style="text-align:left"><code>$ cd work/Blog</code></td>
+<td style="text-align:left">终端cd到一个你选定的目录</td>
+</tr>
+<tr>
+<td style="text-align:left">②</td>
+<td style="text-align:left"><code>$ hexo init yassblog.xyz</code></td>
+<td style="text-align:left">初始化hexo文件夹,文件夹名称任意(作者的是yassblog.xyz)</td>
+</tr>
+<tr>
+<td style="text-align:left">③</td>
+<td style="text-align:left"><code>$ cd yassblog.xyz</code></td>
+<td style="text-align:left">终端cd到刚生成的hexo文件夹</td>
+</tr>
+<tr>
+<td style="text-align:left">④</td>
+<td style="text-align:left"><code>$ npm install</code></td>
+<td style="text-align:left">安装npm</td>
+</tr>
+<tr>
+<td style="text-align:left">⑤</td>
+<td style="text-align:left"><code>$ hexo s</code></td>
+<td style="text-align:left">开启hexo服务器</td>
+</tr>
+</tbody>
+</table>
+<p>此时, 浏览器中打开网址<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>，能看到如下页面:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20locsalhost.png" alt="locsalhost"><br>到这里本地hexo环境基本设置好了,可以去关联Github了<br>另外:按照2.3可以在本地初始化多个Hexo文件夹,如图:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20hexo%20jia.png" alt="locsalhost">  </p>
+<h5 id="2-4-登录Github网站-https-github-com"><a href="#2-4-登录Github网站-https-github-com" class="headerlink" title="2.4 登录Github网站( https://github.com )"></a>2.4 登录Github网站( <a href="https://github.com" target="_blank" rel="external">https://github.com</a> )</h5><p>作者为了更好的演示又去github网站注册了一个账号,并创建仓库,绑定个人域名<br>(这是作者新注册的github账号  用户名:<code>yassblog</code>  密码:<code>y****</code> 邮箱:<code>108****960@qq.com</code> )</p>
+<h5 id="2-5-打开刚刚创建的本地Hexo文件夹-作者打开的的是work-Blog-yassblog-xyz"><a href="#2-5-打开刚刚创建的本地Hexo文件夹-作者打开的的是work-Blog-yassblog-xyz" class="headerlink" title="2.5 打开刚刚创建的本地Hexo文件夹(作者打开的的是work/Blog/yassblog.xyz)."></a>2.5 打开刚刚创建的本地Hexo文件夹(作者打开的的是work/Blog/yassblog.xyz).</h5><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 cd jia.png" alt="newrepository"></p>
+<h5 id="2-6-找到-config-yml文件-用sublime-Text打开-许多文本工具都能打开这个文件-也可以用命令vim打开"><a href="#2-6-找到-config-yml文件-用sublime-Text打开-许多文本工具都能打开这个文件-也可以用命令vim打开" class="headerlink" title="2.6 找到_config.yml文件,用sublime Text打开(许多文本工具都能打开这个文件,也可以用命令vim打开)"></a>2.6 找到_config.yml文件,用sublime Text打开(许多文本工具都能打开这个文件,也可以用命令vim打开)</h5><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 config.png" alt="newrepository"></p>
+<h5 id="2-7-打开后往下滑到最后，最下面3行补充修改成如下的样子-最好手敲-不要copy-因为一些空格在复制时可能会被删除而导致后面的操作报错"><a href="#2-7-打开后往下滑到最后，最下面3行补充修改成如下的样子-最好手敲-不要copy-因为一些空格在复制时可能会被删除而导致后面的操作报错" class="headerlink" title="2.7 打开后往下滑到最后，最下面3行补充修改成如下的样子:(最好手敲,不要copy,因为一些空格在复制时可能会被删除而导致后面的操作报错)"></a>2.7 打开后往下滑到最后，最下面3行补充修改成如下的样子:(最好手敲,不要copy,因为一些空格在复制时可能会被删除而导致后面的操作报错)</h5><p>注意: type: repository: branch:这三个单词冒号后面的都有空格,实际_config.yml文件中的冒号后面都有空格<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 config.png" alt="newrepository"><br>关于里面的repository后面要替换成自己的网址,去你的github仓库页面就能找到  </p>
+<h5 id="2-8-通过终端命令进入本地Hexo文件夹-作者的是-cd-work-Blog-yassblog-xyz"><a href="#2-8-通过终端命令进入本地Hexo文件夹-作者的是-cd-work-Blog-yassblog-xyz" class="headerlink" title="2.8 通过终端命令进入本地Hexo文件夹(作者的是 $ cd work/Blog/yassblog.xyz)"></a>2.8 通过终端命令进入本地Hexo文件夹(作者的是 $ cd work/Blog/yassblog.xyz)</h5><h5 id="2-9-执行生成静态页面命令-hexo-generate"><a href="#2-9-执行生成静态页面命令-hexo-generate" class="headerlink" title="2.9 执行生成静态页面命令 $ hexo generate"></a>2.9 执行生成静态页面命令 <code>$ hexo generate</code></h5><p>成功的显示界面:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo g.png" alt="newrepository">  </p>
+<pre><code>① 若报错 
+    -bash: $: command not found 
+ 应对执行
+         报错原因: 未安装Node.js 或未安装git 或未安装Hexo(参考作者上面内容 去下载安装)
+         安装完成后重新执行 $ hexo g
+②若报错 
+    ERROR Local hexo not found in ~/blog
+    ERROR Try runing: &apos;npm install hexo —save’
+ 应对执行
+         $ npm install hexo --save  
+         重新执行 $ hexo g
+</code></pre><h5 id="2-10-再执行配置命令-hexo-deploy"><a href="#2-10-再执行配置命令-hexo-deploy" class="headerlink" title="2.10 再执行配置命令 $ hexo deploy"></a>2.10 再执行配置命令 <code>$ hexo deploy</code></h5><pre><code>①若报错 
+    ERROR Deployer not found: git
+ 应对执行
+         $ npm install hexo-deployer-git --save
+         重新执行 $ hexo d
+②若报错 
+    FATAL remote: Permission to yassblog/yassblog.github.io.git denied to ywmblog.  
+应对
+         打开钥匙串访问(应用程序—&gt;实用工具—&gt;钥匙串访问)
+         左下方点击所有项目,右上方搜索 github.com  
+         右击 github.com 后面不带括号的这条 删除该条记录
+         然后重新执行 $ hexo d
+</code></pre><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d error.png" alt="newrepository"><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 github ssh.png" alt="newrepository">  </p>
+<pre><code>③接②若运行如下 
+    INFO  Deploying: git
+    INFO  Clearing .deploy_git folder...
+    INFO  Copying files from public folder...
+    On branch master
+    nothing to commit, working tree clean
+    Username for &apos;https://github.com&apos;: 
+ 应对执行
+         Username for &apos;https://github.com&apos;:xxx            #输入xxx 你的github用户名
+         Password for &apos;https://yassblog@github.com&apos;:xxxx  #输入xxxx 你的github密码 
+    回车后需等待一段时间,成功显示如下
+</code></pre><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d.png" alt="newrepository">  </p>
+<pre><code>③若报错 
+    tell me who are you
+ 应对执行
+         $ git config --global user.email “108***960@qq.com”    
+         $ git config --global user.name “yassblog”                    
+
+         其中: 108***960@qq.com  替换你的github邮箱(注意英文&quot;&quot;标点)
+               yassblog          替换你的github用户名(注意英文&quot;&quot;标点)
+         重新执行 $ hexo d
+</code></pre><h5 id="2-11-若你未关联Github，则执行-hexo-d命令时终端会提示你输入Github的用户名和密码"><a href="#2-11-若你未关联Github，则执行-hexo-d命令时终端会提示你输入Github的用户名和密码" class="headerlink" title="2.11 若你未关联Github，则执行$ hexo d命令时终端会提示你输入Github的用户名和密码"></a>2.11 若你未关联Github，则执行<code>$ hexo d</code>命令时终端会提示你输入Github的用户名和密码</h5><pre><code>Username for &apos;https://github.com&apos;:xxx              xxx是你的github用户名
+Password for &apos;https://yassblog@github.com&apos;:xxxx    xxxx是你的github密码 回车后需等待一段时间  
+</code></pre><h5 id="2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条"><a href="#2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条" class="headerlink" title="2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)"></a>2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)</h5><h5 id="2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。"><a href="#2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。" class="headerlink" title="2.13 命令$ hexo d执行成功后，浏览器中打开网址https://yassblog.github.io（将yassblog换成你的用户名) ,能看到和打开http://localhost:4000时一样的页面。"></a>2.13 命令<code>$ hexo d</code>执行成功后，浏览器中打开网址<a href="https://yassblog.github.io" target="_blank" rel="external">https://yassblog.github.io</a>（将yassblog换成你的用户名) ,能看到和打开<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>时一样的页面。</h5><blockquote>
+<p>到这里Hexo关联Github就完成了,可能有人会问我在搭建仓库时,已经关联了个人域名( yassblog.xyz ),现在输入域名为什么打不开网页了, 而只能通过<a href="https://yassblog.github.io" target="_blank" rel="external">https://yassblog.github.io</a> 来访问个人博客,请先别着急,接着往下看,后面的后面会讲到的.</p>
+</blockquote>
+<h4 id="三-安装主题theme"><a href="#三-安装主题theme" class="headerlink" title="三 安装主题theme"></a>三 安装主题theme</h4><blockquote>
+<p>上面分别完成了仓库搭建,Hexo关联Github,接下来的三,四节可跳过的,这两节主要用来美化的.</p>
+<p>关于Hexo主题 ,网上已经有很多好看且成熟的成品, 你也可以到<a href="https://hexo.io/themes/" target="_blank" rel="external">Hexo官方主题页</a>搜索.<br>作者用的是Next主题 <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">Next主题安装文档</a>.  </p>
+</blockquote>
+<p>安装后,主题效果: <a href="http://notes.iissnan.com/" target="_blank" rel="external">next作者的博客</a> , 其中有评论,有分享,有阅读统计,非常实用.  </p>
+<h4 id="四-绑定个人域名"><a href="#四-绑定个人域名" class="headerlink" title="四 绑定个人域名"></a>四 绑定个人域名</h4><blockquote>
+<p>若不想通过输入<a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>来访问个人博客网站,而是希望通过自己的域名(如:<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)来访问,作如下操作:   </p>
 </blockquote>
 <ol>
-<li>下载Node.js和git并安装  <table class="table table-bordered table-striped table-condensed"><br><tr><br> <th>软件</th><br> <th>下载地址</th><br> <th>解释</th><br></tr><br><tr><br> <td>①下载Node.js</td><br> <td><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></td><br> <td>下载v6.9.2 LTS 一路安装即可</td><br></tr><br><tr><br> <td>②下载git</td><br> <td><a href="https://git-scm.com" target="_blank" rel="external">https://git-scm.com</a></td><br> <td>或到<a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a>下载</td><br></tr><br></table></li>
-<li><p>安装Hexo  </p>
-<table class="table table-bordered table-striped table-condensed"><br><tr><br> <th>步骤</th><br> <th>命令</th><br> <th>解释</th><br></tr><br><tr><br> <td>①</td><br> <td><code>$ sudo npm install -g hexo</code></td><br> <td>当Node.js和Git都安装好后就可以正式安装Hexo了<br>输入管理员密码（Mac登录密码）即开始安装<br>sudo:   linux系统管理指令<br>-g:       全局安装               </td><br></tr><br><tr><br> <td>①</td><br> <td><code>$ sudo npm install -g hexo-cli</code></td><br> <td>若上面命令出错的话,执行这一行命令(若正常,忽略此命令)<br>因为Hexo官网上的安装命令是$ npm install -g hexo-cli(window的命令)，<br>Mac安装时不要忘记前面加上sudo，否则会因为权限问题报错</td><br></tr><br></table></li>
-<li>初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令<br><table><br><tr><br> <th>步骤</th><br> <th>命令</th><br> <th>解释</th><br></tr><br><tr><br> <td>①</td><br> <td><code>$ cd work/Blog</code></td><br> <td>终端cd到一个你选定的目录,如: 进入work文件夹下Blog文件夹中</td><br></tr><br><tr><br> <td>②</td><br> <td><code>$ hexo init yassblog.xyz</code></td><br> <td>这是hexo初始化命令,<br>系统会自动初始化hexo文件夹.  文件夹名称任意(作者的是yassblog.xyz)</td><br></tr><br><tr><br> <td>③</td><br> <td><code>$ cd yassblog.xyz</code></td><br> <td>终端cd到刚生成的hexo文件夹 (yassblog.xyz)中</td><br></tr><br><tr><br> <td>④</td><br> <td><code>$ npm install</code></td><br> <td>安装npm</td><br></tr><br><tr><br> <td>⑤</td><br> <td><code>$ hexo s</code></td><br> <td>开启hexo服务器</td><br></tr><br></table><br>此时, 浏览器中打开网址<a href="http://locsalhost:4000" target="_blank" rel="external">http://locsalhost:4000</a>，能看到如下页面:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20locsalhost.png" alt="locsalhost"><br>到这里本地hexo环境基本设置好了,可以去关联github了<br>另外:按照第3步可以在本地初始化多个Hexo文件夹,如图:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20hexo%20jia.png" alt="locsalhost">  </li>
-<li>登录Github网站( <a href="https://github.com" target="_blank" rel="external">https://github.com</a> ),创建仓库(参考: github博客搭建一)</li>
+<li>找到之前1.8保存下来的代码(详情请看最上方第一节)  </li>
+<li>复制CNME文件到<code>本地Hexo文件夹/theme/next/source</code>中  </li>
+<li><p>终端cd到本地Hexo文件夹(作者的是 <code>$ cd work/Blog/ywmblog.xyz</code>)<strong>后</strong>,依次执行下面3行命令:  </p>
+<pre><code>$ hexo clean
+$ hexo g
+$ hexo d
+</code></pre></li>
+<li>域名解析(在第一节已经做了)</li>
+<li>现在可以用个人域名访问博客了 <a href="http://ywmblog.xyz" target="_blank" rel="external">http://ywmblog.xyz</a></li>
 </ol>
+<h4 id="五-创建并发布博客文章"><a href="#五-创建并发布博客文章" class="headerlink" title="五 创建并发布博客文章"></a>五 创建并发布博客文章</h4><blockquote>
+<p>通过上面几步操作,博客网站已经搭建好了, 通过重复下面操作就可以源源不断的发布博客了</p>
+</blockquote>
+<ol>
+<li><p>打开终端,通过终端命令进入本地Hexo文件夹(作者的是 <code>$ cd work/Blog/ywmblog.xyz</code>)</p>
+</li>
+<li><p>执行如下命令新建文章：<br><code>$ hexo new &quot;Hello Hexo&quot;</code><br>文件名称为Hello Hexo.md的文件会建在目录/ywmblog.xyz/source/_posts下。此时,你可以关闭终端命令行, 用Typora软件(或者Mou或者macdown等软件)打开Hello Hexo.md进行编辑.</p>
+</li>
+<li><p>文章编辑完成保存后，打开终端,终端cd到ywmblog.xyz文件夹下，依次执行如下命令来发布：  </p>
+<pre><code>$ hexo g  
+$ hexo d  
+</code></pre></li>
+<li>至此，创建并发布一篇博客就完成了.<br>稍等会文章真正部署到远程站点上, 你就可以用个人域名(<a href="http://ywmblog.xyz" target="_blank" rel="external">http://ywmblog.xyz</a>)访问博客了 </li>
+</ol>
+<p>PS :  </p>
+<pre><code>如何全文阅读?
+    在文章的适当位置添加 &lt;!--more--&gt;
+如何代码高亮?
+     主题配置文件_config.yml中修改
+           highlight_theme: night blue
+</code></pre><h4 id="六-结束语"><a href="#六-结束语" class="headerlink" title="六 结束语"></a>六 结束语</h4><blockquote>
+<p>博客终于搭建完成了</p>
+</blockquote>
 
       
     </div>
@@ -548,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-搭建github仓库及域名解析"><span class="nav-number">2.</span> <span class="nav-text">一 搭建github仓库及域名解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Hexo关联Github"><span class="nav-number">3.</span> <span class="nav-text">二 Hexo关联Github</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-搭建Github仓库及域名解析"><span class="nav-number">2.</span> <span class="nav-text">一 搭建Github仓库及域名解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Hexo关联Github"><span class="nav-number">3.</span> <span class="nav-text">二 Hexo关联Github</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-下载Node-js和git并安装"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 下载Node.js和git并安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-安装Hexo-在mac终端命令行依次执行下面命令"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 安装Hexo,在mac终端命令行依次执行下面命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-初始化Hexo本地文件夹-在mac终端命令行依次执行下面命令"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-登录Github网站-https-github-com"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 登录Github网站( https://github.com )</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-打开刚刚创建的本地Hexo文件夹-作者打开的的是work-Blog-yassblog-xyz"><span class="nav-number">3.5.</span> <span class="nav-text">2.5 打开刚刚创建的本地Hexo文件夹(作者打开的的是work/Blog/yassblog.xyz).</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-找到-config-yml文件-用sublime-Text打开-许多文本工具都能打开这个文件-也可以用命令vim打开"><span class="nav-number">3.6.</span> <span class="nav-text">2.6 找到_config.yml文件,用sublime Text打开(许多文本工具都能打开这个文件,也可以用命令vim打开)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-7-打开后往下滑到最后，最下面3行补充修改成如下的样子-最好手敲-不要copy-因为一些空格在复制时可能会被删除而导致后面的操作报错"><span class="nav-number">3.7.</span> <span class="nav-text">2.7 打开后往下滑到最后，最下面3行补充修改成如下的样子:(最好手敲,不要copy,因为一些空格在复制时可能会被删除而导致后面的操作报错)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-8-通过终端命令进入本地Hexo文件夹-作者的是-cd-work-Blog-yassblog-xyz"><span class="nav-number">3.8.</span> <span class="nav-text">2.8 通过终端命令进入本地Hexo文件夹(作者的是 $ cd work/Blog/yassblog.xyz)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-9-执行生成静态页面命令-hexo-generate"><span class="nav-number">3.9.</span> <span class="nav-text">2.9 执行生成静态页面命令 $ hexo generate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-10-再执行配置命令-hexo-deploy"><span class="nav-number">3.10.</span> <span class="nav-text">2.10 再执行配置命令 $ hexo deploy</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-11-若你未关联Github，则执行-hexo-d命令时终端会提示你输入Github的用户名和密码"><span class="nav-number">3.11.</span> <span class="nav-text">2.11 若你未关联Github，则执行$ hexo d命令时终端会提示你输入Github的用户名和密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条"><span class="nav-number">3.12.</span> <span class="nav-text">2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。"><span class="nav-number">3.13.</span> <span class="nav-text">2.13 命令$ hexo d执行成功后，浏览器中打开网址https://yassblog.github.io（将yassblog换成你的用户名) ,能看到和打开http://localhost:4000时一样的页面。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-安装主题theme"><span class="nav-number">4.</span> <span class="nav-text">三 安装主题theme</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-绑定个人域名"><span class="nav-number">5.</span> <span class="nav-text">四 绑定个人域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-创建并发布博客文章"><span class="nav-number">6.</span> <span class="nav-text">五 创建并发布博客文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-结束语"><span class="nav-number">7.</span> <span class="nav-text">六 结束语</span></a></li></ol></div>
             
 
           </div>
