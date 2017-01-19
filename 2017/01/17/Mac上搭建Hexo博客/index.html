@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d error.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 github ssh.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d.png">
-<meta property="og:updated_time" content="2017-01-19T05:25:49.000Z">
+<meta property="og:updated_time" content="2017-01-19T05:34:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac上搭建Hexo博客">
 <meta name="twitter:description" content="导语
@@ -348,14 +348,14 @@
 <blockquote>
 <p>Mac上搭建基于GitHub的Hexo博客可<strong>分5步</strong>:  </p>
 <ol>
-<li>搭建Github仓库及域名解析;  </li>
-<li>Hexo关联Github;  </li>
-<li>安装主题theme;  </li>
-<li>绑定个人域名;  </li>
-<li>创建并发布博客文章;  </li>
+<li><a href="#yi">搭建Github仓库及域名解析;</a>  </li>
+<li><a href="#er">Hexo关联Github;</a>    </li>
+<li><a href="#san">安装主题theme;</a>    </li>
+<li><a href="#si">绑定个人域名;</a>    </li>
+<li><a href="#wu">创建并发布博客文章;</a>    </li>
 </ol>
 </blockquote>
-<h4 id="一-搭建Github仓库及域名解析"><a href="#一-搭建Github仓库及域名解析" class="headerlink" title="一 搭建Github仓库及域名解析"></a>一 搭建Github仓库及域名解析</h4><ol>
+<h4 id="一-搭建Github仓库及域名解析"><a href="#一-搭建Github仓库及域名解析" class="headerlink" title="一 搭建Github仓库及域名解析"></a><a name="yi"></a>一 搭建Github仓库及域名解析</h4><ol>
 <li>创建Github账号(<a href="https://github.com" target="_blank" rel="external">Github官网</a>),一定要验证邮箱(<a href="https://github.com/settings/emails" target="_blank" rel="external">验证邮箱</a>)<br> (这是作者新注册的Github账号  用户名:<code>ceshiblog</code>  密码:<code>y**95**84</code> 邮箱:<code>134****978@qq.com</code> )  </li>
 <li>登录Github,右上角点+按钮,创建仓库New repository<br> <img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png" alt="newrepository">  </li>
 <li>进入Create a new repository页面,<ul>
@@ -395,7 +395,7 @@
 <blockquote>
 <p>建站到这里基本完成1/5了,剩下的就是博客的内容创建发布了,对于新手来说发布博客的操作越简单越好.<br>作者觉得使用hexo写博客相对简单,请往下看</p>
 </blockquote>
-<h4 id="二-Hexo关联Github"><a href="#二-Hexo关联Github" class="headerlink" title="二 Hexo关联Github"></a>二 Hexo关联Github</h4><blockquote>
+<h4 id="二-Hexo关联Github"><a href="#二-Hexo关联Github" class="headerlink" title="二 Hexo关联Github"></a><a name="er"></a>二 Hexo关联Github</h4><blockquote>
 <p>上面成功搭建Github仓库, 接下来这一节主要讲,在本地Mac上搭建Hexo环境,并关联Github.  </p>
 <p>Hexo 是一个快速、简洁且高效的博客框架. <a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a><br>安装Hexo必须有两个先决条件  </p>
 <blockquote>
@@ -539,12 +539,12 @@ Password for &apos;https://yassblog@github.com&apos;:xxxx    xxxx是你的github
 </code></pre><h5 id="2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条"><a href="#2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条" class="headerlink" title="2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)"></a>2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)</h5><h5 id="2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。"><a href="#2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。" class="headerlink" title="2.13 命令$ hexo d执行成功后，浏览器中打开网址https://yassblog.github.io（将yassblog换成你的用户名) ,能看到和打开http://localhost:4000时一样的页面。"></a>2.13 命令<code>$ hexo d</code>执行成功后，浏览器中打开网址<a href="https://yassblog.github.io" target="_blank" rel="external">https://yassblog.github.io</a>（将yassblog换成你的用户名) ,能看到和打开<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>时一样的页面。</h5><blockquote>
 <p>到这里Hexo关联Github就完成了,可能有人会问我在搭建仓库时,已经关联了个人域名( yassblog.xyz ),现在输入域名为什么打不开网页了, 而只能通过<a href="https://yassblog.github.io" target="_blank" rel="external">https://yassblog.github.io</a> 来访问个人博客,请先别着急,接着往下看,后面的后面会讲到的.</p>
 </blockquote>
-<h4 id="三-安装主题theme"><a href="#三-安装主题theme" class="headerlink" title="三 安装主题theme"></a>三 安装主题theme</h4><blockquote>
+<h4 id="三-安装主题theme"><a href="#三-安装主题theme" class="headerlink" title="三 安装主题theme"></a><a name="san"></a>三 安装主题theme</h4><blockquote>
 <p>上面分别完成了仓库搭建,Hexo关联Github,接下来的三,四节可跳过的,这两节主要用来美化的.</p>
 <p>关于Hexo主题 ,网上已经有很多好看且成熟的成品, 你也可以到<a href="https://hexo.io/themes/" target="_blank" rel="external">Hexo官方主题页</a>搜索.<br>作者用的是Next主题 <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">Next主题安装文档</a>.  </p>
 </blockquote>
 <p>安装后,主题效果: <a href="http://notes.iissnan.com/" target="_blank" rel="external">next作者的博客</a> , 其中有评论,有分享,有阅读统计,非常实用.  </p>
-<h4 id="四-绑定个人域名"><a href="#四-绑定个人域名" class="headerlink" title="四 绑定个人域名"></a>四 绑定个人域名</h4><blockquote>
+<h4 id="四-绑定个人域名"><a href="#四-绑定个人域名" class="headerlink" title="四 绑定个人域名"></a><a name="si"></a>四 绑定个人域名</h4><blockquote>
 <p>若不想通过输入<a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>来访问个人博客网站,而是希望通过自己的域名(如:<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)来访问,作如下操作:   </p>
 </blockquote>
 <ol>
@@ -558,7 +558,7 @@ $ hexo d
 <li>域名解析(在第一节已经做了)</li>
 <li>现在可以用个人域名访问博客了 <a href="http://ywmblog.xyz" target="_blank" rel="external">http://ywmblog.xyz</a></li>
 </ol>
-<h4 id="五-创建并发布博客文章"><a href="#五-创建并发布博客文章" class="headerlink" title="五 创建并发布博客文章"></a>五 创建并发布博客文章</h4><blockquote>
+<h4 id="五-创建并发布博客文章"><a href="#五-创建并发布博客文章" class="headerlink" title="五 创建并发布博客文章"></a><a name="wu"></a>五 创建并发布博客文章</h4><blockquote>
 <p>通过上面几步操作,博客网站已经搭建好了, 通过重复下面操作就可以源源不断的发布博客了</p>
 </blockquote>
 <ol>
