@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d error.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 github ssh.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d.png">
-<meta property="og:updated_time" content="2017-02-03T02:17:54.000Z">
+<meta property="og:updated_time" content="2017-02-03T02:26:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac上搭建Hexo+Github博客">
 <meta name="twitter:description" content="导语
@@ -540,24 +540,24 @@ Password for &apos;https://yassblog@github.com&apos;:xxxx    xxxx是你的github
 </blockquote>
 <p>安装后,主题效果: <a href="http://notes.iissnan.com/" target="_blank" rel="external">next作者的博客</a> , 其中有评论,有分享,有阅读统计,非常实用.  </p>
 <h4 id="四-绑定个人域名"><a href="#四-绑定个人域名" class="headerlink" title="四 绑定个人域名"></a><a name="si"></a>四 绑定个人域名</h4><blockquote>
-<p>若不想通过输入<a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>来访问个人博客网站,而是希望通过自己的域名(如:<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)来访问,作如下操作:   </p>
+<p>若不想通过Github的二级域名<a href="https://yassblog.github.io" target="_blank" rel="external">https://yassblog.github.io</a>来访问个人博客网站,而是希望通过自己的域名(如:<a href="http://yassblog.xyz" target="_blank" rel="external">http://yassblog.xyz</a>)来访问,作如下操作:   </p>
 </blockquote>
 <ol>
 <li>找到之前1.8保存下来的代码(详情请看最上方第一节)  </li>
 <li>复制CNME文件到<code>本地Hexo文件夹/theme/next/source</code>中  </li>
-<li><p>终端cd到本地Hexo文件夹(作者的是 <code>$ cd work/Blog/ywmblog.xyz</code>)<strong>后</strong>,依次执行下面3行命令:  </p>
+<li><p>终端cd到本地Hexo文件夹(作者的是 <code>$ cd work/Blog/yassblog.xyz</code>)<strong>后</strong>,依次执行下面3行命令:  </p>
 <pre><code>$ hexo clean
 $ hexo g
 $ hexo d
 </code></pre></li>
 <li>到域名商那里,去域名解析(在第一节已经做了)</li>
-<li>现在可以用个人域名访问博客了 <a href="http://ywmblog.xyz" target="_blank" rel="external">http://ywmblog.xyz</a></li>
+<li>现在可以用个人域名访问博客了 比如作者的博客<a href="http://yassblog.com" target="_blank" rel="external">http://yassblog.com</a></li>
 </ol>
 <h4 id="五-创建并发布博客文章"><a href="#五-创建并发布博客文章" class="headerlink" title="五 创建并发布博客文章"></a><a name="wu"></a>五 创建并发布博客文章</h4><blockquote>
 <p>通过上面几步操作,博客网站已经搭建好了, 通过重复下面操作就可以源源不断的发布博客了</p>
 </blockquote>
 <ol>
-<li><p>打开终端,通过终端命令进入本地Hexo文件夹(作者的是 <code>$ cd work/Blog/ywmblog.xyz</code>)</p>
+<li><p>打开终端,通过终端命令进入本地Hexo文件夹(作者的是 <code>$ cd work/Blog/yassblog.xyz</code>)</p>
 </li>
 <li><p>执行如下命令新建文章：<br><code>$ hexo new &quot;Hello Hexo&quot;</code><br>文件名称为Hello Hexo.md的文件会建在目录/ywmblog.xyz/source/_posts下。此时,你可以关闭终端命令行, 用Typora软件(或者Mou或者macdown等软件)打开Hello Hexo.md进行编辑.</p>
 </li>
@@ -565,7 +565,7 @@ $ hexo d
 <pre><code>$ hexo g  
 $ hexo d  
 </code></pre></li>
-<li>至此，创建并发布一篇博客就完成了.<br>稍等会文章真正部署到远程站点上, 你就可以用个人域名(<a href="http://ywmblog.xyz" target="_blank" rel="external">http://ywmblog.xyz</a>)访问博客了 </li>
+<li>至此，创建并发布一篇博客就完成了.<br>稍等会文章真正部署到远程站点上, 你就可以用个人域名访问博客了 </li>
 </ol>
 <p>PS :  </p>
 <pre><code>如何全文阅读?
