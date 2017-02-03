@@ -1,0 +1,889 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+ 为搭建Hexo博客,踩了不少的坑,终究是搭建成功了,高兴之余记录一下.
+  之前买过香港主机,用wp建站,试过之后每隔个1,2月时不时会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,遂放弃.转向Github, 使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac上搭建Hexo+Github博客">
+<meta property="og:url" content="http://yoursite.com/2017/01/17/Mac上搭建Hexo+Github博客/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+ 为搭建Hexo博客,踩了不少的坑,终究是搭建成功了,高兴之余记录一下.
+  之前买过香港主机,用wp建站,试过之后每隔个1,2月时不时会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,遂放弃.转向Github, 使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 create a new repository.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 cangku.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 change theme.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 select theme.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 wancheng.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 custom domain.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 custom saved.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 aliyun.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20locsalhost.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20hexo%20jia.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 cd jia.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 config.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo g.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d error.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 github ssh.png">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d.png">
+<meta property="og:updated_time" content="2017-02-03T01:18:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac上搭建Hexo+Github博客">
+<meta name="twitter:description" content="导语
+ 为搭建Hexo博客,踩了不少的坑,终究是搭建成功了,高兴之余记录一下.
+  之前买过香港主机,用wp建站,试过之后每隔个1,2月时不时会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,遂放弃.转向Github, 使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.">
+<meta name="twitter:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/17/Mac上搭建Hexo+Github博客/"/>
+
+
+
+
+
+  <title> Mac上搭建Hexo+Github博客 | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/17/Mac上搭建Hexo+Github博客/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Mac上搭建Hexo+Github博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-17T14:59:42+08:00">
+                2017-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> 为搭建Hexo博客,踩了不少的坑,终究是搭建成功了,高兴之余记录一下.</p>
+<p>  之前买过香港主机,用wp建站,试过之后每隔个1,2月时不时会挂掉,咨询空间商告诉说主机IP受到大规模DDOS攻击,导致不能访问,问题往复几次,个人接受不了,遂放弃.转向Github, 使用Github搭建博客也有好处,最直接的一点就是免费.话不多说,开始记录.  </p>
+</blockquote>
+<a id="more"></a>  
+<p>Mac上搭建基于GitHub的Hexo博客可<strong>分5步</strong>:  </p>
+<ol>
+<li><a href="#yi">搭建Github仓库及域名解析;</a>  </li>
+<li><a href="#er">Hexo关联Github;</a>    </li>
+<li><a href="#san">安装主题theme;</a>    </li>
+<li><a href="#si">绑定个人域名;</a>    </li>
+<li><a href="#wu">创建并发布博客文章;</a>    </li>
+</ol>
+<h4 id="一-搭建Github仓库及域名解析"><a href="#一-搭建Github仓库及域名解析" class="headerlink" title="一 搭建Github仓库及域名解析"></a>一 <a name="yi"></a>搭建Github仓库及域名解析</h4><ol>
+<li>创建Github账号(<a href="https://github.com" target="_blank" rel="external">Github官网</a>),一定要验证邮箱(<a href="https://github.com/settings/emails" target="_blank" rel="external">验证邮箱</a>)<br> (这是作者新注册的Github账号  用户名:<code>ceshiblog</code>  密码:<code>y**95**84</code> 邮箱:<code>134****978@qq.com</code> )  </li>
+<li>登录Github,右上角点+按钮,创建仓库New repository<br> <img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 newrepository.png" alt="newrepository">  </li>
+<li>进入Create a new repository页面,<ul>
+<li>①输入Repository name,要注意格式:<code>你的github用户名.github.io</code>,比如:<code>ceshiblog.github.io</code>  </li>
+<li>②输入Description描述,比如个人博客,对于描述随意填,是可以改的  </li>
+<li>③选择public  </li>
+<li>④点击 Create repository<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 create a new repository.png" alt="newrepository">  </li>
+</ul>
+</li>
+<li>进入仓库页面 (<a href="https://github.com/ceshiblog/ceshiblog.github.io" target="_blank" rel="external">作者的仓库页面</a>) ,点击<strong>setting</strong><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 cangku.png" alt="newrepository">  </li>
+<li>向下滚动,设置主题(<strong>Change theme</strong>),选择喜欢的主题,随意选个就行<br> <img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 change theme.png" alt="newrepository"><br>选择一个主题并确定<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 select theme.png" alt="newrepository"></li>
+<li>仓库建好了,对应的网站也就建好了 (<a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>)<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 wancheng.png" alt="newrepository"></li>
+<li><p>绑定个人域名(关于域名的购买,自行百度,其实非常简单)(这一步可不做,就直接使用Github的二级域名就行)  </p>
+<ul>
+<li>现在我们不想通过输入<a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>来访问个人博客网站,而是希望通过自己的域名(如:<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)来访问</li>
+<li><p>下面详细步骤  </p>
+<ul>
+<li>① 进入仓库页面的设置(<strong>Settings</strong>)选项卡(<a href="https://github.com/ceshiblog/ceshiblog.github.io" target="_blank" rel="external">作者的仓库页面</a> )  </li>
+<li>② 往下滑动,找到域名卡片(<strong>Custom domain</strong>),输入购买的域名(ceshiblog.xyz是作者在阿里云买的域名,第一年¥1元,续费每年¥69元,不续费不能用),然后保存<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 custom domain.png" alt="newrepository"></li>
+<li>③ 保存成功的显示: Custom domain “ceshiblog.xyz” saved<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 custom saved.png" alt="newrepository"></li>
+<li><p>④ 到域名商那里去域名解析(域名在哪里买的就到哪里去解析,作者去的是阿里云)</p>
+<pre><code>名词解释:
+    域名解析: 通过域名查找IP地址并访问空间的过程叫做域名解析.  
+     CNAME: 如果将域名指向一个域名，实现与被指向域名相同的访问效果，需要增加CNAME记录.  
+        @ : 将域名解析为example.com（不带www），填写@或者不填写；  
+      www : 将域名解析为www.example.com，填写www； 
+</code></pre><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c1 aliyun.png" alt="newrepository"></p>
+</li>
+<li>⑤ 等待10分钟解析完成,就可以通过个人域名(<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)访问博客网站了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>此时网站已经建好,个人域名也绑定完毕,现在手动备份一份代码(若没绑定个人域名,这一步可不做)<br> 后面使用Hexo框架搭建博客时,初次部署会将个人域名覆盖掉,这里备份一下,后面重新上传就可以了<br> 打开仓库页面(<a href="https://github.com/ceshiblog/ceshiblog.github.io" target="_blank" rel="external">作者的仓库页面</a> ),<br> 点击右侧绿底<strong>Clone or download</strong>,点击<strong>download zip</strong>,将代码下载到本地电脑,保存即可.  </li>
+<li>建站整理<br> 仓库页面 : <a href="https://github.com/ceshiblog/ceshiblog.github.io" target="_blank" rel="external">https://github.com/ceshiblog/ceshiblog.github.io</a>   账号密码:github的登录账号<br> 个人博客:  <a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a> 或 <a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>  </li>
+</ol>
+<blockquote>
+<p>以上是Github仓库的搭建,接下来是Hexo框架的使用,对于新手来说发布博客的操作越简单越好.<br>而作者觉得使用hexo写博客相对简单,请往下看</p>
+</blockquote>
+<h4 id="二-Hexo关联Github"><a href="#二-Hexo关联Github" class="headerlink" title="二 Hexo关联Github"></a><a name="er"></a>二 Hexo关联Github</h4><blockquote>
+<p>上面成功搭建Github仓库, 接下来这一节主要讲: 在本地Mac上搭建Hexo环境,并关联Github.  </p>
+<p>Hexo 是一个快速、简洁且高效的博客框架. <a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a><br>安装Hexo必须有两个先决条件  </p>
+<blockquote>
+<ol>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>的安装</li>
+<li><a href="https://git-scm.com" target="_blank" rel="external">git</a>的安装  </li>
+</ol>
+</blockquote>
+</blockquote>
+<h5 id="2-1-下载Node-js和git并安装"><a href="#2-1-下载Node-js和git并安装" class="headerlink" title="2.1 下载Node.js和git并安装"></a>2.1 下载Node.js和git并安装</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">软件</th>
+<th style="text-align:left">下载地址</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Node.js</td>
+<td style="text-align:left"><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></td>
+<td style="text-align:left">下载v6.9.2 LTS 一路安装即可</td>
+</tr>
+<tr>
+<td style="text-align:left">git</td>
+<td style="text-align:left"><a href="https://git-scm.com" target="_blank" rel="external">https://git-scm.com</a></td>
+<td style="text-align:left">或到<a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网文档</a>下载安装</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2-2-安装Hexo-在mac终端命令行依次执行下面命令"><a href="#2-2-安装Hexo-在mac终端命令行依次执行下面命令" class="headerlink" title="2.2 安装Hexo,在mac终端命令行依次执行下面命令"></a>2.2 安装Hexo,在mac终端命令行依次执行下面命令</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">步骤</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">①</td>
+<td style="text-align:left"><code>$ sudo npm install -g hexo</code></td>
+<td style="text-align:left">当Node.js和Git都安装好后就可以正式安装Hexo了,需要输入管理员密码(Mac登录密码), sudo:系统管理指令, -g:全局安装</td>
+</tr>
+<tr>
+<td style="text-align:left">同①</td>
+<td style="text-align:left"><code>$ sudo npm install -g hexo-cli</code></td>
+<td style="text-align:left">若上面命令出错的话,执行这一行命令(若正常,忽略此命令), 因为Hexo官网上的安装命令是$ npm install -g hexo-cli(这是在window上执行的命令), Mac安装时不要忘记前面加上sudo(如左)，否则会因为权限问题报错</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2-3-初始化Hexo本地文件夹-在mac终端命令行依次执行下面命令"><a href="#2-3-初始化Hexo本地文件夹-在mac终端命令行依次执行下面命令" class="headerlink" title="2.3 初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令"></a>2.3 初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">步骤</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">①</td>
+<td style="text-align:left"><code>$ cd work/Blog</code></td>
+<td style="text-align:left">终端cd到一个你选定的目录</td>
+</tr>
+<tr>
+<td style="text-align:left">②</td>
+<td style="text-align:left"><code>$ hexo init yassblog.xyz</code></td>
+<td style="text-align:left">初始化hexo文件夹,文件夹名称任意(作者的是yassblog.xyz)</td>
+</tr>
+<tr>
+<td style="text-align:left">③</td>
+<td style="text-align:left"><code>$ cd yassblog.xyz</code></td>
+<td style="text-align:left">终端cd到刚生成的hexo文件夹</td>
+</tr>
+<tr>
+<td style="text-align:left">④</td>
+<td style="text-align:left"><code>$ npm install</code></td>
+<td style="text-align:left">安装npm</td>
+</tr>
+<tr>
+<td style="text-align:left">⑤</td>
+<td style="text-align:left"><code>$ hexo s</code></td>
+<td style="text-align:left">开启hexo服务器</td>
+</tr>
+</tbody>
+</table>
+<p>此时, 浏览器中打开网址<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>，能看到如下页面:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20locsalhost.png" alt="locsalhost"><br>到这里本地hexo环境基本设置好了,可以去关联Github了<br>另外:按照2.3可以在本地初始化多个Hexo文件夹,如图:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c2%20hexo%20jia.png" alt="locsalhost">  </p>
+<h5 id="2-4-登录Github网站-这一步不用做-就直接登录你Github账号就行"><a href="#2-4-登录Github网站-这一步不用做-就直接登录你Github账号就行" class="headerlink" title="2.4 登录Github网站(这一步不用做,就直接登录你Github账号就行)"></a>2.4 登录<a href="https://github.com" target="_blank" rel="external">Github网站</a>(这一步不用做,就直接登录你Github账号就行)</h5><p>作者为了更好的演示又去github网站注册了一个账号,并创建仓库,绑定个人域名<br>(这是作者新注册的github账号  用户名:<code>yassblog</code>  密码:<code>y****</code> 邮箱:<code>108****960@qq.com</code> )</p>
+<h5 id="2-5-打开刚刚创建的本地Hexo文件夹-作者打开的的是work-Blog-yassblog-xyz"><a href="#2-5-打开刚刚创建的本地Hexo文件夹-作者打开的的是work-Blog-yassblog-xyz" class="headerlink" title="2.5 打开刚刚创建的本地Hexo文件夹(作者打开的的是work/Blog/yassblog.xyz)."></a>2.5 打开刚刚创建的本地Hexo文件夹(作者打开的的是work/Blog/yassblog.xyz).</h5><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 cd jia.png" alt="newrepository"></p>
+<h5 id="2-6-找到-config-yml文件-用sublime-Text打开-许多文本工具都能打开这个文件-也可以用命令vim打开"><a href="#2-6-找到-config-yml文件-用sublime-Text打开-许多文本工具都能打开这个文件-也可以用命令vim打开" class="headerlink" title="2.6 找到_config.yml文件,用sublime Text打开(许多文本工具都能打开这个文件,也可以用命令vim打开)"></a>2.6 找到_config.yml文件,用sublime Text打开(许多文本工具都能打开这个文件,也可以用命令vim打开)</h5><h5 id="2-7-打开后往下滑到最后，最下面3行补充修改成如下的样子-最好手敲-不要copy-因为一些空格在复制时可能会被删除而导致后面的操作报错"><a href="#2-7-打开后往下滑到最后，最下面3行补充修改成如下的样子-最好手敲-不要copy-因为一些空格在复制时可能会被删除而导致后面的操作报错" class="headerlink" title="2.7 打开后往下滑到最后，最下面3行补充修改成如下的样子:(最好手敲,不要copy,因为一些空格在复制时可能会被删除而导致后面的操作报错)"></a>2.7 打开后往下滑到最后，最下面3行补充修改成如下的样子:(最好手敲,不要copy,因为一些空格在复制时可能会被删除而导致后面的操作报错)</h5><p>注意: type: repository: branch:这三个单词冒号后面的都有空格,实际_config.yml文件中的冒号后面都有空格<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 config.png" alt="newrepository"><br>关于里面的repository后面要替换成自己的网址,去你的github仓库页面就能找到  </p>
+<h5 id="2-8-通过终端命令进入本地Hexo文件夹-作者的是-cd-work-Blog-yassblog-xyz"><a href="#2-8-通过终端命令进入本地Hexo文件夹-作者的是-cd-work-Blog-yassblog-xyz" class="headerlink" title="2.8 通过终端命令进入本地Hexo文件夹(作者的是 $ cd work/Blog/yassblog.xyz)"></a>2.8 通过终端命令进入本地Hexo文件夹(作者的是 $ cd work/Blog/yassblog.xyz)</h5><h5 id="2-9-执行生成静态页面命令-hexo-generate"><a href="#2-9-执行生成静态页面命令-hexo-generate" class="headerlink" title="2.9 执行生成静态页面命令 $ hexo generate"></a>2.9 执行生成静态页面命令 <code>$ hexo generate</code></h5><p>成功的显示界面:<br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo g.png" alt="newrepository">  </p>
+<pre><code>① 若报错 
+    -bash: $: command not found 
+ 应对执行
+         报错原因: 命令打错了或未安装Node.js 或未安装git 或未安装Hexo(参考作者上面内容 去下载安装)
+         安装完成后重新执行 $ hexo g
+②若报错 
+    ERROR Local hexo not found in ~/blog
+    ERROR Try runing: &apos;npm install hexo —save’
+ 应对执行
+         $ npm install hexo --save  
+         重新执行 $ hexo g
+</code></pre><h5 id="2-10-再执行配置命令-hexo-deploy"><a href="#2-10-再执行配置命令-hexo-deploy" class="headerlink" title="2.10 再执行配置命令 $ hexo deploy"></a>2.10 再执行配置命令 <code>$ hexo deploy</code></h5><pre><code>①若报错 
+    ERROR Deployer not found: git
+ 应对执行
+         $ npm install hexo-deployer-git --save
+         重新执行 $ hexo d
+②若报错 
+    FATAL remote: Permission to yassblog/yassblog.github.io.git denied to ywmblog.  
+应对
+         打开钥匙串访问(应用程序—&gt;实用工具—&gt;钥匙串访问)
+         左下方点击所有项目,右上方搜索 github.com  
+         右击 github.com 后面不带括号的这条 删除该条记录
+         然后重新执行 $ hexo d
+</code></pre><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d error.png" alt="newrepository"><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 github ssh.png" alt="newrepository">  </p>
+<pre><code>③接②若运行如下 
+    INFO  Deploying: git
+    INFO  Clearing .deploy_git folder...
+    INFO  Copying files from public folder...
+    On branch master
+    nothing to commit, working tree clean
+    Username for &apos;https://github.com&apos;: 
+ 应对执行
+         Username for &apos;https://github.com&apos;:xxx            #输入xxx 你的github用户名
+         Password for &apos;https://yassblog@github.com&apos;:xxxx  #输入xxxx 你的github密码 
+    回车后需等待一段时间,成功显示如下
+</code></pre><p><img src="http://ojupj7fr2.bkt.clouddn.com/blog_c3 hexo d.png" alt="newrepository">  </p>
+<pre><code>③若报错 
+    Please tell me who you are
+ 应对执行
+         $ git config --global user.email “108***960@qq.com”    
+         $ git config --global user.name “yassblog”                    
+
+         其中: 108***960@qq.com  替换你的github邮箱(注意英文&quot;&quot;标点)
+               yassblog          替换你的github用户名(注意英文&quot;&quot;标点)
+         重新执行 $ hexo d
+</code></pre><h5 id="2-11-若你未关联Github，则执行-hexo-d命令时终端会提示你输入Github的用户名和密码"><a href="#2-11-若你未关联Github，则执行-hexo-d命令时终端会提示你输入Github的用户名和密码" class="headerlink" title="2.11 若你未关联Github，则执行$ hexo d命令时终端会提示你输入Github的用户名和密码"></a>2.11 若你未关联Github，则执行<code>$ hexo d</code>命令时终端会提示你输入Github的用户名和密码</h5><pre><code>Username for &apos;https://github.com&apos;:xxx              xxx是你的github用户名
+Password for &apos;https://yassblog@github.com&apos;:xxxx    xxxx是你的github密码 回车后需等待一段时间  
+</code></pre><h5 id="2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条"><a href="#2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条" class="headerlink" title="2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)"></a>2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)</h5><h5 id="2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。"><a href="#2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。" class="headerlink" title="2.13 命令$ hexo d执行成功后，浏览器中打开网址https://yassblog.github.io（将yassblog换成你的用户名) ,能看到和打开http://localhost:4000时一样的页面。"></a>2.13 命令<code>$ hexo d</code>执行成功后，浏览器中打开网址<a href="https://yassblog.github.io" target="_blank" rel="external">https://yassblog.github.io</a>（将yassblog换成你的用户名) ,能看到和打开<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>时一样的页面。</h5><blockquote>
+<p>到这里Hexo关联Github就完成了,可能有人会问我在搭建仓库时,已经关联了个人域名,现在输入个人域名为什么打不开网页了, 而只能通过<a href="https://yassblog.github.io" target="_blank" rel="external">https://yassblog.github.io</a> 来访问个人博客,请先别着急,接着往下看,后面的后面会讲到的.</p>
+</blockquote>
+<h4 id="三-安装主题theme"><a href="#三-安装主题theme" class="headerlink" title="三 安装主题theme"></a><a name="san"></a>三 安装主题theme</h4><blockquote>
+<p>上面分别完成了仓库搭建,Hexo关联Github,接下来的三,四节可跳过的,这两节主要用来美化的.</p>
+<p>关于Hexo主题 ,网上已经有很多好看且成熟的成品, 你也可以到<a href="https://hexo.io/themes/" target="_blank" rel="external">Hexo官方主题页</a>搜索.<br>作者用的是Next主题 <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">Next主题安装文档</a>.  </p>
+</blockquote>
+<p>安装后,主题效果: <a href="http://notes.iissnan.com/" target="_blank" rel="external">next作者的博客</a> , 其中有评论,有分享,有阅读统计,非常实用.  </p>
+<h4 id="四-绑定个人域名"><a href="#四-绑定个人域名" class="headerlink" title="四 绑定个人域名"></a><a name="si"></a>四 绑定个人域名</h4><blockquote>
+<p>若不想通过输入<a href="https://ceshiblog.github.io" target="_blank" rel="external">https://ceshiblog.github.io</a>来访问个人博客网站,而是希望通过自己的域名(如:<a href="http://ceshiblog.xyz" target="_blank" rel="external">http://ceshiblog.xyz</a>)来访问,作如下操作:   </p>
+</blockquote>
+<ol>
+<li>找到之前1.8保存下来的代码(详情请看最上方第一节)  </li>
+<li>复制CNME文件到<code>本地Hexo文件夹/theme/next/source</code>中  </li>
+<li><p>终端cd到本地Hexo文件夹(作者的是 <code>$ cd work/Blog/ywmblog.xyz</code>)<strong>后</strong>,依次执行下面3行命令:  </p>
+<pre><code>$ hexo clean
+$ hexo g
+$ hexo d
+</code></pre></li>
+<li>到域名商那里,去域名解析(在第一节已经做了)</li>
+<li>现在可以用个人域名访问博客了 <a href="http://ywmblog.xyz" target="_blank" rel="external">http://ywmblog.xyz</a></li>
+</ol>
+<h4 id="五-创建并发布博客文章"><a href="#五-创建并发布博客文章" class="headerlink" title="五 创建并发布博客文章"></a><a name="wu"></a>五 创建并发布博客文章</h4><blockquote>
+<p>通过上面几步操作,博客网站已经搭建好了, 通过重复下面操作就可以源源不断的发布博客了</p>
+</blockquote>
+<ol>
+<li><p>打开终端,通过终端命令进入本地Hexo文件夹(作者的是 <code>$ cd work/Blog/ywmblog.xyz</code>)</p>
+</li>
+<li><p>执行如下命令新建文章：<br><code>$ hexo new &quot;Hello Hexo&quot;</code><br>文件名称为Hello Hexo.md的文件会建在目录/ywmblog.xyz/source/_posts下。此时,你可以关闭终端命令行, 用Typora软件(或者Mou或者macdown等软件)打开Hello Hexo.md进行编辑.</p>
+</li>
+<li><p>文章编辑完成保存后，打开终端,终端cd到ywmblog.xyz文件夹下，依次执行如下命令来发布：  </p>
+<pre><code>$ hexo g  
+$ hexo d  
+</code></pre></li>
+<li>至此，创建并发布一篇博客就完成了.<br>稍等会文章真正部署到远程站点上, 你就可以用个人域名(<a href="http://ywmblog.xyz" target="_blank" rel="external">http://ywmblog.xyz</a>)访问博客了 </li>
+</ol>
+<p>PS :  </p>
+<pre><code>如何全文阅读?
+    在文章的适当位置添加 &lt;!--more--&gt;
+如何代码高亮?
+     主题配置文件_config.yml中修改
+           highlight_theme: night blue
+</code></pre><h4 id="六-结束语"><a href="#六-结束语" class="headerlink" title="六 结束语"></a>六 结束语</h4><blockquote>
+<p>博客终于搭建完成了</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/16/MacDown语法/" rel="next" title="MacDown语法">
+                <i class="fa fa-chevron-left"></i> MacDown语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/19/初探Android Studio/" rel="prev" title="初探Android Studio">
+                初探Android Studio <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-搭建Github仓库及域名解析"><span class="nav-number">2.</span> <span class="nav-text">一 搭建Github仓库及域名解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Hexo关联Github"><span class="nav-number">3.</span> <span class="nav-text">二 Hexo关联Github</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-下载Node-js和git并安装"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 下载Node.js和git并安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-安装Hexo-在mac终端命令行依次执行下面命令"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 安装Hexo,在mac终端命令行依次执行下面命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-初始化Hexo本地文件夹-在mac终端命令行依次执行下面命令"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 初始化Hexo本地文件夹,在mac终端命令行依次执行下面命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-登录Github网站-这一步不用做-就直接登录你Github账号就行"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 登录Github网站(这一步不用做,就直接登录你Github账号就行)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-打开刚刚创建的本地Hexo文件夹-作者打开的的是work-Blog-yassblog-xyz"><span class="nav-number">3.5.</span> <span class="nav-text">2.5 打开刚刚创建的本地Hexo文件夹(作者打开的的是work/Blog/yassblog.xyz).</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-找到-config-yml文件-用sublime-Text打开-许多文本工具都能打开这个文件-也可以用命令vim打开"><span class="nav-number">3.6.</span> <span class="nav-text">2.6 找到_config.yml文件,用sublime Text打开(许多文本工具都能打开这个文件,也可以用命令vim打开)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-7-打开后往下滑到最后，最下面3行补充修改成如下的样子-最好手敲-不要copy-因为一些空格在复制时可能会被删除而导致后面的操作报错"><span class="nav-number">3.7.</span> <span class="nav-text">2.7 打开后往下滑到最后，最下面3行补充修改成如下的样子:(最好手敲,不要copy,因为一些空格在复制时可能会被删除而导致后面的操作报错)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-8-通过终端命令进入本地Hexo文件夹-作者的是-cd-work-Blog-yassblog-xyz"><span class="nav-number">3.8.</span> <span class="nav-text">2.8 通过终端命令进入本地Hexo文件夹(作者的是 $ cd work/Blog/yassblog.xyz)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-9-执行生成静态页面命令-hexo-generate"><span class="nav-number">3.9.</span> <span class="nav-text">2.9 执行生成静态页面命令 $ hexo generate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-10-再执行配置命令-hexo-deploy"><span class="nav-number">3.10.</span> <span class="nav-text">2.10 再执行配置命令 $ hexo deploy</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-11-若你未关联Github，则执行-hexo-d命令时终端会提示你输入Github的用户名和密码"><span class="nav-number">3.11.</span> <span class="nav-text">2.11 若你未关联Github，则执行$ hexo d命令时终端会提示你输入Github的用户名和密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-12-还可能让你输入管理员密码-mac登录密码-输入即可-若没有要求输入密码则忽略这条"><span class="nav-number">3.12.</span> <span class="nav-text">2.12 还可能让你输入管理员密码(mac登录密码),输入即可 (若没有要求输入密码则忽略这条)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-13-命令-hexo-d执行成功后，浏览器中打开网址https-yassblog-github-io（将yassblog换成你的用户名-能看到和打开http-localhost-4000时一样的页面。"><span class="nav-number">3.13.</span> <span class="nav-text">2.13 命令$ hexo d执行成功后，浏览器中打开网址https://yassblog.github.io（将yassblog换成你的用户名) ,能看到和打开http://localhost:4000时一样的页面。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-安装主题theme"><span class="nav-number">4.</span> <span class="nav-text">三 安装主题theme</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-绑定个人域名"><span class="nav-number">5.</span> <span class="nav-text">四 绑定个人域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-创建并发布博客文章"><span class="nav-number">6.</span> <span class="nav-text">五 创建并发布博客文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-结束语"><span class="nav-number">7.</span> <span class="nav-text">六 结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
