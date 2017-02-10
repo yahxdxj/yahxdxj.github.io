@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="导语
  初探Activity,将一些易忘的点记录下来 开发工具: Android Studio">
-<meta property="og:updated_time" content="2017-01-29T12:39:58.000Z">
+<meta property="og:updated_time" content="2017-02-10T02:28:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初探Activity">
 <meta name="twitter:description" content="导语
@@ -414,13 +414,46 @@
 });
 </code></pre>
 <p>通过上面代码中 Intent 构造可看出,是在 FirstActivity 这个 Activity 的基础上打开 SecondActivity.<br>第一个参数是上下文,第二个参数是目标Activity.</p>
-<h5 id="2-2-隐式-Intent-启动-Activity"><a href="#2-2-隐式-Intent-启动-Activity" class="headerlink" title="2.2 隐式 Intent 启动 Activity"></a>2.2 隐式 Intent 启动 Activity</h5><p>想要隐式启动某个Activity,<br>首先,需要在清单文件中对这个Activity添加响应声明,即在<code>&lt;activity&gt;</code> 标签下配置<code>&lt;intent-filter&gt;</code>的内容 </p>
+<h5 id="2-2-隐式-Intent-启动-Activity"><a href="#2-2-隐式-Intent-启动-Activity" class="headerlink" title="2.2 隐式 Intent 启动 Activity"></a>2.2 隐式 Intent 启动 Activity</h5><p>想要隐式启动某个Activity,<br>首先,需要在清单文件中对这个Activity添加响应声明,即在<code>&lt;activity&gt;</code> 标签下配置<code>&lt;intent-filter&gt;</code>的内容   </p>
+<ul>
+<li><strong>action</strong> activity对应的动作。 可以用任意一个字符串描述（最好，顾名思义）</li>
+<li><strong>category</strong> 额外的类别参数。  指定工作的设备（车载电脑，机顶盒，默认的手机） 通常指定的参数<code>android.intent.category.DEFAULT</code></li>
+<li><strong>data</strong>  指定数据和数据的类型  <ul>
+<li>scheme 数据前缀</li>
+<li>host 主机名</li>
+<li>port 端口号</li>
+<li>path 路径 记得在前面加上 /</li>
+<li>mimeType 数据类型 从tomcat里面查找常见的数据类型</li>
+</ul>
+</li>
+</ul>
 <pre><code class="java">&lt;activity android:name=".SecondActivity"&gt;
             &lt;intent-filter&gt;
                 &lt;action android:name="com.yassblog.activitytest.ACTION_START"/&gt;
                 &lt;category android:name="android.intent.category.DEFAULT"/&gt;
             &lt;/intent-filter&gt;
-&lt;/activity&gt;
+&lt;/activity&gt;  
+&lt;activity android:name="com.yassblog.CeshiActivity" &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="com.yassblog.a1" /&gt;
+
+                &lt;data android:scheme="youyiyi1" /&gt;
+
+                &lt;action android:name="com.yassblog.a3" /&gt;
+
+                &lt;data android:scheme="youyiyi3" /&gt;
+                &lt;data android:mimeType="text/name" /&gt;
+
+                &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+            &lt;/intent-filter&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="com.yassblog.a2" /&gt;
+
+                &lt;data android:scheme="youyiyi2" /&gt;
+
+                &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
 </code></pre>
 <p>接着,修改按钮点击事件,隐式启动新的Activity  </p>
 <pre><code class="java">button4.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
@@ -430,8 +463,31 @@
                 Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.yassblog.activitytest.ACTION_START"</span>);
                 startActivity(intent);
             }
-});
+});  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">click41</span><span class="params">(View v)</span></span>{
+        Intent intent = <span class="keyword">new</span> Intent();
+        intent.setAction(<span class="string">"com.yassblog.a1"</span>);
+        <span class="comment">//匹配mimetype</span>
+        <span class="comment">//intent.setType("text/name");</span>
+        <span class="comment">//匹配scheme，注意setData()会将上面的setType清除</span>
+        <span class="comment">//intent.setData(Uri.parse("youyiyi3:xiaoming"));</span>
+        <span class="comment">//匹配scheme和mimetype</span>
+        intent.setDataAndType(Uri.parse(<span class="string">"youyiyi3:xiaoming"</span>), <span class="string">"text/name"</span>);
+        <span class="comment">//如果没有指定category，则自动添加以下代码</span>
+        <span class="comment">//intent.addCategory(Intent.CATEGORY_DEFAULT);</span>
+        startActivity(intent);
+    }  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">click42</span><span class="params">(View v)</span> </span>{
+        Intent intent = <span class="keyword">new</span> Intent();
+        <span class="comment">// 匹配动作</span>
+        intent.setAction(<span class="string">"com.yassblog.a2"</span>);
+        <span class="comment">// 匹配scheme</span>
+        intent.setData(Uri.parse(<span class="string">"youyiyi2:xiaoming"</span>));
+
+        startActivity(intent);
+    }
 </code></pre>
+<p>注意:<br>设置参数时setType()会清除setData()，而setData()会清除setType(), 两者不能共存，所以通过<code>setDataAndType(Uri.parse(&quot;youyiyi3:xiaoming&quot;), &quot;text/name&quot;)</code>; 一并将两者全部设置了.<br>intent-filter节点及其子节点都可以同时定义多个，隐式启动时只需与任意一个匹配即可  </p>
 <p>下面是对隐式 Intent 启动 Activity的解释:<br>我们通过将一系列更为抽象的 action 和 category 等信息封装到 Intent 中,然后交由系统去分析这个 Intent ,并帮我们找出合适的 Activity 去启动的方式,称为隐式 Intent 启动.  </p>
 <p>从上面代码可以看到,我们使用了 Intent的另一种构造函数,<br>通过直接将 action 的字符串传了进来,表明我们想要启动能够响应 com.yassblog.activitytest.ACTION_START 的 Activity. 那前面不是说要 action 和 category 同时匹配上才能响应吗? 这里怎么没看到有指定 category 呢? 这是因为 android.intent.category.DEFAULT  是一种默认的 category,在调用 startActivity() 方法时已经自动将这个 category 封装到 Intent 中了,所以这个Intent 既有 action 也有 category .  当我们在FirstActivity 的界面点击按钮,就成功启动 SecondActivity 了.  </p>
 <p>每个Intent中只能指定一个 action ,但是却能指定多个 category.比如下面的例子,<br>1 先在清单文件中添加category  </p>
