@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="人艰不拆">
+<meta name="description" content="##通信技术:
+
+1G    模拟制式    只能进行语音通话.
+2G    GSM, CDMA    收发短信和邮件.
+2.5G    GPRS, EDGE    访问wap网络数据.(图片, 壁纸, 文字信息)
+3G    WCDMA(联通), CDMA2000(电信), TD-SCDMA(移动) 发微博, 查看高清图片, 小电影.
+3.5G    HSDPA, HSDPA+
+4G    TD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="01 布局文件">
 <meta property="og:url" content="http://yoursite.com/2017/02/13/01-布局文件/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="人艰不拆">
-<meta property="og:updated_time" content="2017-02-13T01:47:20.000Z">
+<meta property="og:description" content="##通信技术:
+
+1G    模拟制式    只能进行语音通话.
+2G    GSM, CDMA    收发短信和邮件.
+2.5G    GPRS, EDGE    访问wap网络数据.(图片, 壁纸, 文字信息)
+3G    WCDMA(联通), CDMA2000(电信), TD-SCDMA(移动) 发微博, 查看高清图片, 小电影.
+3.5G    HSDPA, HSDPA+
+4G    TD">
+<meta property="og:updated_time" content="2017-02-13T02:01:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01 布局文件">
-<meta name="twitter:description" content="人艰不拆">
+<meta name="twitter:description" content="##通信技术:
+
+1G    模拟制式    只能进行语音通话.
+2G    GSM, CDMA    收发短信和邮件.
+2.5G    GPRS, EDGE    访问wap网络数据.(图片, 壁纸, 文字信息)
+3G    WCDMA(联通), CDMA2000(电信), TD-SCDMA(移动) 发微博, 查看高清图片, 小电影.
+3.5G    HSDPA, HSDPA+
+4G    TD">
 
 
 
@@ -315,7 +336,502 @@
       
 
       
-        
+        <p>##通信技术:</p>
+<ul>
+<li>1G    模拟制式    只能进行语音通话.</li>
+<li>2G    GSM, CDMA    收发短信和邮件.</li>
+<li>2.5G    GPRS, EDGE    访问wap网络数据.(图片, 壁纸, 文字信息)</li>
+<li>3G    WCDMA(联通), CDMA2000(电信), TD-SCDMA(移动) 发微博, 查看高清图片, 小电影.</li>
+<li>3.5G    HSDPA, HSDPA+</li>
+<li>4G    TD-LTE        下载速度: 50Mb/s  = 6MB/s    上传速度: 10Mb/s = 1.2MB/s</li>
+<li>100Mb/s    !=     100MB/s</li>
+<li>bit</li>
+<li>1 Byte  = 8bit</li>
+<li><p>100Mb/s  = 12.5MB/s<br>##虚拟机的区别:</p>
+</li>
+<li><p>JVM: .java –&gt; javac –&gt; .class –&gt; jar –&gt; .jar</p>
+</li>
+<li><p>架构: 堆栈 (栈：吃进去吐出来)</p>
+</li>
+<li><p>DVM: .java –&gt; javac –&gt; .class –&gt; dx.bat –&gt; .dex</p>
+</li>
+<li>架构: 寄存器(cpu上一块高速的缓存)</li>
+</ul>
+<p>##Android开发环境搭建</p>
+<ul>
+<li>Eclipse + ADT 开发工具</li>
+<li>SDK 开发工具包</li>
+<li>SDK Manager 开发包管理器</li>
+</ul>
+<h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><p><strong>1 Eclipse + ADT(Android Developer Tools)</strong> 开发工具</p>
+<ul>
+<li>Eclipse + ADT 插件</li>
+</ul>
+<p><strong>2 Android Studio</strong>  开发工具</p>
+<p><strong>3 Android SDK (软件开发环境, Android调试工具, 模拟等)</strong>    </p>
+<ul>
+<li>Android SDK </li>
+<li>Android Platform-tools</li>
+<li>最新的Android 开发平台 platforms</li>
+<li>最新的模拟器镜像</li>
+</ul>
+<h2 id="SDK目录"><a href="#SDK目录" class="headerlink" title="SDK目录"></a>SDK目录</h2><ul>
+<li>add-ons (额外开发资料, google地图资源)</li>
+<li>build-tools : 编译工具目录</li>
+<li>docs : 离线版开发文档</li>
+<li>extras : 向下兼容的jar包, intel工具</li>
+<li>platforms : Android开发版本平台jar包</li>
+<li>platform-tools : 平台开发工具(adb)</li>
+<li>sources : 开发平台源码</li>
+<li>system-images : 模拟器镜像文件</li>
+<li>tools : 开发者常用工具</li>
+</ul>
+<p>##Android项目工程目录结构:</p>
+<ul>
+<li>src: 存放java代码</li>
+<li>gen: 存放自动生成文件的. R.java 存放res文件夹下对应资源的id</li>
+<li>project.properties: 指定当前工程采用的开发工具包的版本</li>
+<li>libs: 当前工程所依赖的jar包.</li>
+<li>assets: 放置一些程序所需要的媒体文件.</li>
+<li>bin: 工程的编译目录. 存放一些编译时产生的临时文件和当前工程的.apk文件.</li>
+<li>res(resources): 资源文件.<ul>
+<li>drawable: 存放程序所用的图片.</li>
+<li>layout: 存放android的布局文件.</li>
+<li>menu: 存放android的OptionsMenu菜单的布局.</li>
+<li>values (应用程序所需要的数据. 会在R文件中生成id)<ul>
+<li>strings.xml 存放android字符串.</li>
+<li>dimens.xml 存放屏幕适配所用到的尺寸.</li>
+<li>style.xml 存放android下显示的样式.</li>
+</ul>
+</li>
+<li>values-sw600dp 7寸平板所对应的值</li>
+<li>values-sw720dp-land 10寸平板所对应的值</li>
+<li>values-v11 指定3.0版本以上的手机显示的样式.</li>
+<li>values-v14 指定4.0版本以上的手机显示的样式.</li>
+</ul>
+</li>
+<li>AndroidManifest.xml: android应用程序的入口文件. 声明了android里边的组件. 和相关配置信息.</li>
+<li>proguard-project.txt: 加密当前程序所使用.</li>
+</ul>
+<p>##打包安装过程(Run as Android Application ) :</p>
+<ul>
+<li>1.生成apk文件.<ul>
+<li>1). 生成.dex文件.</li>
+<li>2). 资源索引表的生成resources.arsc.</li>
+<li>3). 准备未编译文件.</li>
+<li>4). 清单文件AndroidMenifest.xml文件转换成二进制.</li>
+<li>5). 使用debug.keystore对整个应用程序进行打包签名.</li>
+</ul>
+</li>
+<li>2.加载apk文件到模拟器中.<ul>
+<li>把apk文件加载到/data/local/tmp/xxx.apk</li>
+</ul>
+</li>
+<li>3.安装应用程序.<ul>
+<li>1). 把/data/local/tmp/xxx.apk文件, 剪切/data/app/包名-1.apk</li>
+<li>2). 在/data/data/文件夹下以包名创建一个文件夹, 用于存储当前程序的数据.</li>
+<li>3). 在packages.xml和packages.list文件中分别添加一条记录.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Android-屏幕分辨率"><a href="#Android-屏幕分辨率" class="headerlink" title="Android 屏幕分辨率"></a>Android 屏幕分辨率</h2><ul>
+<li><p>VGA  640*480 标准大小</p>
+</li>
+<li><p>QVGA 320*240    四分之一</p>
+</li>
+<li><p>HVGA 480*320     一半大小</p>
+</li>
+<li><p>WVGA 800*480</p>
+</li>
+<li><p>FWVGA 854*480</p>
+</li>
+<li><p>WSVGA 1024*600</p>
+</li>
+</ul>
+<h2 id="开发工具-1"><a href="#开发工具-1" class="headerlink" title="开发工具"></a>开发工具</h2><h3 id="配置adb环境"><a href="#配置adb环境" class="headerlink" title="配置adb环境"></a>配置adb环境</h3><ul>
+<li>需要配置路径</li>
+<li>ANDROID_SDK_HOME</li>
+<li>指定一个非中文, 并且没有空格的文件夹</li>
+<li>D:\android\develop\adt-bundle-windows-x86_32_20131019\adt-bundle-windows-x86-20131019\sdk\platform-tools</li>
+<li>D:\android\develop\adt-bundle-windows-x86_32_20131019\adt-bundle-windows-x86-20131019\sdk\platform-tools</li>
+<li>配置path</li>
+<li>%ANDROID_SDK_HOME%;%JAVA_HOME%\bin;SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\SinoVoice\jTTS 5.0 Desktop\Bin</li>
+</ul>
+<h3 id="adb命令"><a href="#adb命令" class="headerlink" title="adb命令"></a>adb命令</h3><p>ADB (Android debug bridge) Android调试桥</p>
+<ul>
+<li>adb devices 查看当前已连接的设备</li>
+<li>adb start-server 开启 adb 服务</li>
+<li>adb kill-server 杀死 adb 服务</li>
+<li>adb shell    进入Android控制台(执行Linux命令)exit退出</li>
+<li>adb logcat 打印日志信息</li>
+<li>adb install xxx.apk : 安装应用</li>
+<li>adb uninstall 包名  : 根据包名卸载应用</li>
+<li>adb push hiahia.txt /sdcard/hiahia.txt : 上传文件</li>
+<li>adb pull /sdcard/hiahia.txt . : 下拉文件</li>
+<li><p>adb -s emulator-5554 :指定设备</p>
+</li>
+<li><p>adb可能因为360, 金山卫士, 腾讯QQ影响无法使用</p>
+</li>
+<li>端口5037被占用</li>
+<li>netstat -ano | find “5037” 查看谁占用端口</li>
+<li>杀掉进程kill pid</li>
+</ul>
+<h2 id="如何在手机上运行Android项目"><a href="#如何在手机上运行Android项目" class="headerlink" title="如何在手机上运行Android项目"></a>如何在手机上运行Android项目</h2><ol>
+<li>买根数据线</li>
+<li>插上电脑</li>
+<li>装驱动(驱动精灵,驱动人生,应用宝,360手机卫士)</li>
+<li>开启usb调试模式</li>
+</ol>
+<h2 id="R文件报错处理"><a href="#R文件报错处理" class="headerlink" title="R文件报错处理:"></a>R文件报错处理:</h2><ol>
+<li>不能以关键字命名</li>
+<li>资源不能以数字开头</li>
+<li>布局文件内部有错误, 有小红叉</li>
+</ol>
+<h2 id="点击事件的4种写法"><a href="#点击事件的4种写法" class="headerlink" title="点击事件的4种写法"></a>点击事件的4种写法</h2><ol>
+<li>定义一个内部类实现OnClickListener接口</li>
+<li>使用匿名内部类对象实现</li>
+<li>使用当前类,继承接口</li>
+<li>定义xml属性<ul>
+<li>定义xml的属性android:onClick=”call”</li>
+<li>在代码里写方法 public void call(View view){}</li>
+</ul>
+</li>
+</ol>
+<h2 id="短信发送器"><a href="#短信发送器" class="headerlink" title="短信发送器"></a>短信发送器</h2><ol>
+<li>拿到联系人电话号码</li>
+<li>群发短信</li>
+</ol>
+<h2 id="写一个Android项目"><a href="#写一个Android项目" class="headerlink" title="写一个Android项目"></a>写一个Android项目</h2><ol>
+<li>创建一个Android Project</li>
+<li>写UI界面布局.</li>
+<li>根据业务逻辑写Java代码.</li>
+</ol>
+<h2 id="Android常见布局"><a href="#Android常见布局" class="headerlink" title="Android常见布局**"></a>Android常见布局<em>**</em></h2><ul>
+<li>LinearLayout  RelativeLayout  FrameLayout  AbsoluteLayout  TableLayout <ul>
+<li>LinearLayout    线性布局<ul>
+<li>控件一个接一个排列<ul>
+<li>属性参数</li>
+<li>android:orientation=”vertical”垂直排列</li>
+<li>android:layout_width=”match_parent” 填充父窗体</li>
+<li>android:layout_height=”wrap_content”包裹内容</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>orientation 属性是<strong>指定线性布局的排列方向</strong>: <ul>
+<li>horizontal 水平</li>
+<li>vertical 垂直</li>
+</ul>
+</li>
+<li>gravity属性是<strong>指定当前控件内容显示位置</strong>: <ul>
+<li>left 左边</li>
+<li>right 右边</li>
+<li>top 上边</li>
+<li>bottom 底边</li>
+</ul>
+</li>
+<li>layout_gravity属性是<strong>指定当前控件在父元素的位置</strong>: <ul>
+<li>left 左边</li>
+<li>right 右边</li>
+<li>top 上边</li>
+<li>bottom 底边</li>
+</ul>
+</li>
+<li>layout_weightSum(权重)属性是<strong>把线性布局中剩余空间分成N份</strong>.</li>
+<li>layout_weight (权重)属性是<strong>指定当前控件在父元素(线性布局)中占N份</strong>.</li>
+<li>visibility属性是<strong>控制布局是否显示</strong>: <ul>
+<li>visible 显示</li>
+<li>invisible 不显示但占空间</li>
+<li>gone 隐藏</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot; &gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Button&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Button&quot; /&gt;
+
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:orientation=&quot;vertical&quot; 
+        &gt;
+
+        &lt;Button
+            android:layout_weight=&quot;1&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;0dp&quot;
+            android:text=&quot;Button&quot; /&gt;
+
+        &lt;Button
+            android:layout_weight=&quot;2&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;0dp&quot;
+            android:text=&quot;Button&quot; /&gt;
+
+        &lt;Button
+            android:layout_weight=&quot;1&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;0dp&quot;
+            android:visibility=&quot;gone&quot;
+            android:text=&quot;Button&quot; /&gt; &lt;/LinearLayout&gt; &lt;/LinearLayout&gt;
+</code></pre><hr>
+<ul>
+<li>RelativeLayout    相对布局<ul>
+<li>控件之间以相对位置排列</li>
+<li>android:layout_toRightOf        在指定控件的右边</li>
+<li>android:layout_toLeftOf        在指定控件的左边</li>
+<li>android:layout_above        在指定控件的上边</li>
+<li>android:layout_below        在指定控件的下边</li>
+<li>android:layout_alignBaseline        跟指定控件水平对齐</li>
+<li>android:layout_alignLeft        跟指定控件左对齐</li>
+<li>android:layout_alignRight        跟指定控件右对齐</li>
+<li>android:layout_alignTop        跟指定控件顶部对齐</li>
+<li>android:layout_alignBottom        跟指定控件底部对齐</li>
+<li>android:layout_alignParentLeft    是否跟父布局左对齐</li>
+<li>android:layout_alignParentTop    是否跟父布局顶部对齐</li>
+<li>android:layout_alignParentRight    是否跟父布局右对齐</li>
+<li>android:layout_alignParentBottom    是否跟父布局底部对齐</li>
+<li>android:layout_centerVertical    在父布局中垂直居中</li>
+<li>android:layout_centerHorizontal    在父布局中水平居中</li>
+<li>android:layout_centerInParent    在父布局中居中</li>
+<li>android:layout_marginRight 距离指定父控件的外边距</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;horizontal&quot; &gt;
+
+    &lt;RelativeLayout
+    android:layout_width=&quot;0dip&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:layout_weight=&quot;1&quot; &gt;
+
+    &lt;Button
+        android:id=&quot;@+id/bt_center&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_centerInParent=&quot;true&quot;
+        android:text=&quot;o&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignTop=&quot;@id/bt_center&quot;
+        android:layout_toLeftOf=&quot;@id/bt_center&quot;
+        android:text=&quot;←&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_above=&quot;@+id/bt_center&quot;
+        android:layout_alignLeft=&quot;@id/bt_center&quot;
+        android:text=&quot;↑&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignTop=&quot;@id/bt_center&quot;
+        android:layout_toRightOf=&quot;@id/bt_center&quot;
+        android:text=&quot;→&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignLeft=&quot;@id/bt_center&quot;
+        android:layout_below=&quot;@id/bt_center&quot;
+        android:text=&quot;↓&quot; /&gt;
+    &lt;/RelativeLayout&gt;
+
+    &lt;RelativeLayout
+    android:layout_width=&quot;0dip&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:layout_weight=&quot;1&quot; &gt;
+
+    &lt;Button
+        android:id=&quot;@+id/bt_a&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignParentRight=&quot;true&quot;
+        android:layout_centerVertical=&quot;true&quot;
+        android:text=&quot;A&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignBaseline=&quot;@id/bt_a&quot;
+        android:layout_toLeftOf=&quot;@+id/bt_a&quot;
+        android:text=&quot;B&quot; /&gt;
+&lt;/RelativeLayout&gt; &lt;/LinearLayout&gt;
+</code></pre><ul>
+<li>FrameLayout    帧布局<ul>
+<li>一层盖一层</li>
+<li>帧布局每次添加的控件都显示在最上面，最后显示在界面上的是最后添加的一个控件</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot; &gt;
+
+&lt;TextView
+    android:layout_width=&quot;200dp&quot;
+    android:layout_height=&quot;200dp&quot;
+    android:background=&quot;#FF0000&quot; /&gt;
+
+&lt;TextView
+    android:layout_width=&quot;150dp&quot;
+    android:layout_height=&quot;150dp&quot;
+    android:background=&quot;#00FF00&quot; /&gt;
+
+&lt;TextView
+    android:layout_width=&quot;100dp&quot;
+    android:layout_height=&quot;100dp&quot;
+    android:background=&quot;#0000FF&quot; /&gt;
+
+&lt;TextView
+    android:layout_width=&quot;50dp&quot;
+    android:layout_height=&quot;50dp&quot;
+    android:background=&quot;#000000&quot; /&gt;
+
+&lt;TextView
+    android:layout_width=&quot;20dp&quot;
+    android:layout_height=&quot;20dp&quot;
+    android:background=&quot;#FFFFFF&quot; /&gt;    &lt;/FrameLayout&gt;
+</code></pre><ul>
+<li>AbsoluteLayout    绝对布局<ul>
+<li>通过x, y指定绝对位置. </li>
+<li>android:layout_x    指定控件在父布局的x轴坐标</li>
+<li>android:layout_y    指定控件在父布局的y轴坐标</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>&lt;AbsoluteLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot; &gt;
+
+&lt;Button
+    android:id=&quot;@+id/button1&quot;
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:layout_x=&quot;100dp&quot;
+    android:layout_y=&quot;100dp&quot;
+    android:text=&quot;Button&quot; /&gt;
+&lt;/AbsoluteLayout&gt;
+</code></pre><ul>
+<li><p>TableLayout        表格布局</p>
+<ul>
+<li>类似Html表格</li>
+<li>android:shrinkColumns        收缩列</li>
+<li>android:stretchColumns        拉伸列</li>
+<li>android:collapseColumns        隐藏列</li>
+<li>android:layout_column        指定列(作用在列的身上)</li>
+<li><p>android:layout_span            合并列(作用在列的身上)</p>
+</li>
+<li><p>TableRow单元行里的单元格的宽度小于默认的宽度时就不起作用,其默认是fill_parent，高度可以自定义大小</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>&lt;TableLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot; &gt;
+
+&lt;TableRow android:layout_height=&quot;wrap_content&quot; &gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;1行0列&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;1行1列&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;1行2列&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;1行3列&quot; /&gt;
+&lt;/TableRow&gt;
+
+&lt;TableRow android:layout_height=&quot;wrap_content&quot; &gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;2行0列&quot; /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_span=&quot;3&quot;
+        android:text=&quot;2行1列&quot; /&gt;
+&lt;/TableRow&gt;
+&lt;/TableLayout&gt;
+</code></pre><h2 id="Android的颜色模式"><a href="#Android的颜色模式" class="headerlink" title="Android的颜色模式"></a>Android的颜色模式</h2><p>RGB (Red, Green, Blue) #FF0000</p>
+<p>##今天控件</p>
+<ul>
+<li>显示文本的控件  TextView</li>
+<li>输入框控件      EditText</li>
+<li>按钮控件     Button</li>
+</ul>
+<p>##Android中的显示单位</p>
+<ul>
+<li><p>px (pixels)像素 </p>
+<ul>
+<li>一般HVGA代表320x480像素。该单位不常用. 机顶盒开发可能用.</li>
+</ul>
+</li>
+<li><p>dip或dp (device independent pixels)设备独立像素</p>
+<ul>
+<li>这个和设备硬件有关，一般为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。</li>
+</ul>
+</li>
+<li><p>sp (scaled pixels — best for text size)比例像素</p>
+<ul>
+<li>主要处理字体的大小，可以根据用户系统的字体自适应。</li>
+</ul>
+</li>
+<li><p>除了上面三个显示单位，下面还有几个不太常用：</p>
+<ul>
+<li>in (inches)英寸<ul>
+<li>mm (millimeters)毫米  </li>
+</ul>
+</li>
+<li>pt (points)点，1/72英寸</li>
+</ul>
+</li>
+<li><p>为了适应不同分辨率，不同的像素密度，推荐使用dip ，文字使用sp。</p>
+</li>
+</ul>
+
       
     </div>
 
@@ -406,8 +922,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -456,6 +981,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发工具"><span class="nav-number">1.</span> <span class="nav-text">开发工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK目录"><span class="nav-number">2.</span> <span class="nav-text">SDK目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-屏幕分辨率"><span class="nav-number">3.</span> <span class="nav-text">Android 屏幕分辨率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发工具-1"><span class="nav-number">4.</span> <span class="nav-text">开发工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置adb环境"><span class="nav-number">4.1.</span> <span class="nav-text">配置adb环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adb命令"><span class="nav-number">4.2.</span> <span class="nav-text">adb命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在手机上运行Android项目"><span class="nav-number">5.</span> <span class="nav-text">如何在手机上运行Android项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R文件报错处理"><span class="nav-number">6.</span> <span class="nav-text">R文件报错处理:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击事件的4种写法"><span class="nav-number">7.</span> <span class="nav-text">点击事件的4种写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#短信发送器"><span class="nav-number">8.</span> <span class="nav-text">短信发送器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写一个Android项目"><span class="nav-number">9.</span> <span class="nav-text">写一个Android项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android常见布局"><span class="nav-number">10.</span> <span class="nav-text">Android常见布局**</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android的颜色模式"><span class="nav-number">11.</span> <span class="nav-text">Android的颜色模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
