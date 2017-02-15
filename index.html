@@ -1502,7 +1502,996 @@
       
         
           
-            
+            <h1 id="一、数据库"><a href="#一、数据库" class="headerlink" title="一、数据库"></a>一、数据库</h1><p>.mdf .access(微软)  .db(Android)</p>
+<p>##1.1 一般数据库sql语句(如：MySQL)</p>
+<ul>
+<li><p>数据库创建</p>
+<pre><code>create table person ( 
+   _id integer primary key autoincrement, 
+   name varchar(20),
+   age integer
+);
+</code></pre></li>
+<li><p>插入一条数据</p>
+<pre><code>insert into person (name, age) values (&apos;lisi&apos;, 23);
+</code></pre></li>
+<li><p>删除一条数据</p>
+<pre><code>delete from person where name = &apos;lisi&apos;;
+</code></pre></li>
+<li><p>修改一条数据</p>
+</li>
+</ul>
+<pre><code>update person set age = 18 where name = &apos;zhangsan&apos;;
+</code></pre><ul>
+<li>查询一条数据</li>
+</ul>
+<pre><code>select * from person where name = &apos;zhangsan&apos;;
+</code></pre><ul>
+<li><p>查询多条数据</p>
+<pre><code>select * from person;
+</code></pre></li>
+</ul>
+<p>##1.2 语言的发展:<br>机器语言 -&gt; 汇编语言 -&gt; c语言 -&gt; c++ -&gt; java(c+++) -&gt; c#(c++++) -&gt; 自然语言</p>
+<p>##1.3  android下数据库:sqlite创建的步骤</p>
+<ul>
+<li>1.类继承SQLiteOpenHelper（数据创建的帮助类，oncreate,onUpgrade)</li>
+<li><p>2.重写oncreate()方法 ，数据库<em>第一次</em>被创建的时候调用的方法。适合数据库表结构的初始化.</p>
+<pre><code>create table info (_id integer primary key autoincrement, name varchar(20), phone varchar(20))
+</code></pre></li>
+<li><p>3.重写onUpgrade()，数据库被更新的时候调用的方法.数据库的版本号增加的时候调用。</p>
+</li>
+<li>4.添加helper类的构造方法。 指定数据库的名称，版本号，游标工厂默认null</li>
+</ul>
+<p>注意<br>    情况一: 用户第一次安装应用,只会走oncreate()方法,不走onUpgrade()方法,所以开发者需将所有的表创建都要放在oncreate()中,此时会记录当前数据库版本号(也就是最新的数据库版本号)<br>    情况二: 用户在第一次安装完成后,版本升级不会走oncreate()方法,去走onUpgrade()方法,并根据数据库版本号对数据库进行增删改查<br>import android.content.Context;<br>import android.database.sqlite.SQLiteDatabase;<br>import android.database.sqlite.SQLiteDatabase.CursorFactory;<br>import android.database.sqlite.SQLiteOpenHelper;<br>public class PersonSQLiteOpenHelper extends SQLiteOpenHelper {</p>
+<pre><code>/**
+ * 把已知的固定值写好(数据库名称,版本号), 外边只传一个Context进来就可以初始化该帮助类了
+ * @param context
+ */
+public PersonSQLiteOpenHelper(Context context){
+    // 转调4个参数的构造函数
+    this(context, &quot;itheima58.db&quot;, null, 3);
+}
+/**
+ * 创建一个数据库帮助类, 去创建\ 打开\ 管理 数据库.
+ * @param context 上下文.
+ * @param name 设置数据库名称
+ * @param factory  CursorFactory 定义一个结果集, 游标工厂. 
+ *                     Cursor 游标(结果集, 保存了对数据库的引用, 指针)
+ *                     设置为null表示使用系统默认游标工厂
+ * @param version 数据库的版本, 从1开始 &gt;= 1  
+ */
+public PersonSQLiteOpenHelper(Context context, String name,
+        CursorFactory factory, int version) {
+    super(context, name, factory, version);
+}
+/**
+ * 当数据库第一次被创建时调用, 这里进行表结构的创建和初始化.
+ */
+@Override
+public void onCreate(SQLiteDatabase db) {
+    System.out.println(&quot;PersonSQLiteOpenHelper: onCreate&quot;);
+
+    // 执行创建语句, 创建person表
+    db.execSQL(&quot;create table person(_id integer primary key autoincrement, name varchar(20),age integer)&quot;);
+}
+/**
+ * 数据库升级时调用, 在这里做表结构的更新,删除等操作.
+ */
+@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    System.out.println(&quot;PersonSQLiteOpenHelper: onUpgrade &quot; + &quot;旧版本号: &quot; + oldVersion + &quot; 新版本号: &quot; + newVersion);
+
+    if(oldVersion == 2 &amp;&amp; newVersion == 3){
+        // 版本从2升级到3, 给person表添加一个balance余额字段
+        db.execSQL(&quot;alter table person add column balance integer&quot;);
+    }    
+}
+</code></pre><p>}</p>
+<p>##1.4数据库文件创建的位置</p>
+<ul>
+<li>数据库路径:<ul>
+<li>/data/data/包名/databases/itheima58.db</li>
+<li>数据库在创建的时候不指定里面的内容，默认创建只有一张表 metadata保存系统语言环境。</li>
+</ul>
+</li>
+<li>DAO (Databses Access Object)</li>
+</ul>
+<p>##1.5 android下数据库增删改查</p>
+<ul>
+<li>自己写sql语句查询<ul>
+<li>void - db.execSQL（） 增删改</li>
+<li>cursor - db.rawQuery()  查询</li>
+<li>灵活, 级联查询, 执行效率高</li>
+</ul>
+</li>
+<li>系统API查询 (重要)<ul>
+<li>方便, 不易出错, 效率稍低</li>
+</ul>
+</li>
+</ul>
+<p>##1.6 两种增删改查方法的优缺点</p>
+<ul>
+<li>自己写sql语句  <ul>
+<li>灵活</li>
+<li>资源占用小</li>
+<li>可以实现表的级联查询</li>
+</ul>
+</li>
+<li>google的现成API<ul>
+<li>方便</li>
+<li>资源开销比较大</li>
+<li>有返回值</li>
+</ul>
+</li>
+</ul>
+<p>##1.7 注意：</p>
+<pre><code>- 操作数据库 一定要记得把数据库给关闭掉。 
+- cursor 用完后，也记得关闭`
+</code></pre><ul>
+<li>getReadableDatabase（）</li>
+<li>getWriteableDatabase（）返回的是同一个数据库的实例，</li>
+<li>区别就是数据库返回的时候是否加锁。</li>
+</ul>
+<p>##1.8 SQL 语句的注入问题及解决</p>
+<blockquote>
+<p>String name = “lisi or 1 = 1”<br>delete from person where name = lisi or 1 = 1;<br>如何防止, 绑定参数防止注入, 利用占位符号 ?</p>
+</blockquote>
+<p>##1.9 cmd命令行查看数据库流程:sqlite3</p>
+<pre><code>- adb shell 进入控制台
+- # cd /data/data/com.itheima.aqlitedb/datebases 进入数据库文件夹
+- # ls  展示数据库文件夹中的文件
+- # sqlite3 itheima58.db  查看itheima58.db数据库,进入sqlite&gt;模式
+- sqlite&gt; .table 查看所有表
+- sqlite&gt; select * from person; 查看person表的所有记录
+- sqlite&gt; .mode column 设置以列的形式格式化展示
+- sqlite&gt; select * from person; 查看person表的所有记录
+- sqlite&gt; .exit 退出 
+</code></pre><blockquote>
+<p>sqlite3 itheima58.db  查看itheima58.db数据库,进入sqlite&gt;模式<br>.table 查看所有表<br>.mode column 设置以列的形式格式化展示<br>.exit 退出  </p>
+</blockquote>
+<p>##1.10 如果出现中文乱码 需要修改cmd的编码集 65001 utf-8</p>
+<blockquote>
+<p>chcp 65001  更改cmd窗口的编码，默认是gb2312 </p>
+</blockquote>
+<p>##1.11 自己写sql语句 </p>
+<ul>
+<li>void - db.execSQL（） 增删改</li>
+<li>cursor - db.rawQuery()  查询</li>
+</ul>
+<p>-下面缩写的示例都是定义在dao(数据访问层)中，想用那个功能直接调用————–</p>
+<ul>
+<li><p>插入一条数据, 指定名称和年龄</p>
+<pre><code>public void insert(String name, int age) {
+    // 获取可写数据库
+    SQLiteDatabase db = helper.getWritableDatabase();
+    db.execSQL(&quot;insert into person (name, age) values (?, ?)&quot;, new Object[]{name, age});
+
+}
+</code></pre></li>
+<li><p>根据指定名称删除一条数据</p>
+<p>  public void delete(String name) {</p>
+<pre><code>SQLiteDatabase db = helper.getWritableDatabase();
+db.execSQL(&quot;delete from person where name = ?&quot;, new Object[]{name});
+</code></pre><p>  }</p>
+</li>
+<li><p>修改一条数据, 修改指定人的年龄</p>
+<p>  public void update(String name, int age) {</p>
+<pre><code>SQLiteDatabase db = helper.getWritableDatabase();
+db.execSQL(&quot;update person set age = ? where name = ?&quot;, new Object[]{age, name});
+</code></pre><p>  }</p>
+</li>
+<li><p>查询一条数据</p>
+<p>  public void querySingleRecord(String nameArg) {</p>
+<pre><code>SQLiteDatabase db = helper.getReadableDatabase();
+
+// ------------------------------------------------- 重点 ↓
+
+// 游标, 对数据库的引用
+Cursor cursor = db.rawQuery(&quot;select * from person where name = ?&quot;, new String[]{nameArg});
+
+if(cursor != null &amp;&amp; cursor.moveToFirst()){ // 是否能移动到第一个
+    int _id = cursor.getInt(0);
+    String name = cursor.getString(1);
+    int age = cursor.getInt(2);
+    System.out.println(&quot;_id: &quot; + _id + &quot; name: &quot; + name + &quot; age: &quot; + age);
+}
+// 关闭应用
+cursor.close();
+
+// ------------------------------------------------- 以上 ↑
+
+}
+</code></pre></li>
+<li><p>查询所有数据</p>
+<p>  public List<person> queryAll() {</person></p>
+<pre><code>SQLiteDatabase db = helper.getReadableDatabase();
+Cursor cursor = db.rawQuery(&quot;select * from person&quot;, null);
+
+ArrayList&lt;Person&gt; persons = new ArrayList&lt;Person&gt;();
+
+if(cursor != null &amp;&amp; cursor.getCount() &gt; 0){
+    // 循环遍历
+
+    // 获取列数
+    int columnCount = cursor.getColumnCount();
+    System.out.println(&quot;columnCount: &quot; + columnCount);
+
+    while(cursor.moveToNext()){ // 直到下一个没有数据, 返回false
+
+        // cursor.getColumnIndex(&quot;_id&quot;)// 根据列名获取列的索引
+
+        int _id = cursor.getInt(cursor.getColumnIndex(&quot;_id&quot;));
+        String name = cursor.getString(cursor.getColumnIndex(&quot;name&quot;));
+        int age = cursor.getInt(cursor.getColumnIndex(&quot;age&quot;));
+        Person person = new Person(_id, name, age);
+        System.out.println(person.toString());
+        persons.add(person);
+    }
+}
+cursor.close();
+
+return persons;
+}
+</code></pre></li>
+</ul>
+<p>##1.12 google的现成API操作数据库</p>
+<ul>
+<li><p>插入一条数据 测试用例注意配置</p>
+<ul>
+<li>db.insert(“person”, “name”, values);</li>
+</ul>
+</li>
+</ul>
+<pre><code>public class PersonDao3 {//dao封装插入功能
+    // 通过构造函数 创建数据库 
+    private PersonSQLiteOpenHelper helper;
+    public PersonDao3(Context context){
+        helper = new PersonSQLiteOpenHelper(context);
+    }
+    /**
+     * 插入一条记录，指定姓名和年龄
+     * @param name
+     * @param age
+     */
+    public void insert(String name,int age){
+        // 获取可写数据库
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(&quot;name&quot;, name);
+        values.put(&quot;age&quot;,age);
+
+        // nullColumnHack 第二个参数 任意指定表的一个列名, 用来插入一条内容是空的数据
+        //若第二个参数填为null，当插入一条内容是空的数据时，会报错
+        db.insert(&quot;person&quot;, &quot;name&quot;, values);
+        db.close();
+    }
+}
+
+//测试用例-注意继承AndroidTestCase-----------------
+public class TestCase3 extends AndroidTestCase{
+    public void testInsert(){
+        PersonDao3 dao = new PersonDao3(getContext());
+        dao.insert(&quot;zhangsan&quot;, 24);
+    }
+}
+</code></pre><ul>
+<li><p>删除一条数据</p>
+<ul>
+<li><p>db.delete(“person”, “name = ?”, new String[]{name});</p>
+<p>  /**</p>
+<ul>
+<li>根据name字段删除一条记录</li>
+<li><p>@param name<br>*/<br>public void delete(String name){<br> //获取可写的数据库<br> SQLiteDatabase db = helper.getWritableDatabase();<br> //根据name字段删除一条记录<br> db.delete(“person”, “name=?”, new String[]{name});<br> db.close();<br>}</p>
+<p>//测试Android系统API对数据库的删除功能<br>public void testDelete(){<br> PersonDao3 dao = new PersonDao3(getContext());<br> dao.delete(“zhangsan”);<br>}</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改一条数据</p>
+<blockquote>
+<p>db.update(“person”, values ,”name = ?”, new String[]{name});<br>(参数1：要修改的表，参数2：要修改的值，参数3：判断条件，参数4：条件的参数)</p>
+</blockquote>
+</li>
+</ul>
+<pre><code>/**
+ * 修改功能：根据表的name字段修改age字段
+ * @param name
+ * @param age
+ */
+public void updata(String name,int age){
+    //获取可写的数据库
+    SQLiteDatabase db = helper.getWritableDatabase();
+    ContentValues values = new ContentValues();
+    //若修改一条记录中多个字段，则对应字段名，传入对应参数
+    values.put(&quot;age&quot;,age);
+    db.update(&quot;person&quot;, values, &quot;name=?&quot;, new String[]{name});
+    db.close();
+}
+
+//测试Android系统API对数据库的修改功能
+public void testUpdata(){
+    PersonDao3 dao = new PersonDao3(getContext());
+    dao.updata(&quot;zhangsan1&quot;,32);
+}
+</code></pre><ul>
+<li><p>查询一条数据</p>
+<pre><code>Cursor cursor = db.query(&quot;person&quot;,      // 指定表名
+    null,             // 指定要获取的列 , null 所有列
+    &quot;name = ?&quot;,     // 选择条件
+    new String[]{nameArg}, // 条件的参数
+    null,         // 分组
+    null,         // 分组
+    null);        // 排序
+</code></pre></li>
+</ul>
+<pre><code>public void querySingleRecord(String nameArg){
+    //获取可读的数据库
+    SQLiteDatabase db = helper.getReadableDatabase();
+    Cursor cursor = db.query(&quot;person&quot;,   //指定要查询的表明
+            null,//指定要查询的列，null指查询所有字段
+            &quot;name=?&quot;,//判断的条件
+            new String[]{nameArg}, //条件的参数
+            null, //分组
+            null, //分组
+            null //排序
+            );
+    if (cursor!=null&amp;&amp;cursor.moveToFirst()) {// 是否能移动到第一个
+        int _id = cursor.getInt(0);
+        String name = cursor.getString(1);
+        int age = cursor.getInt(2);
+        System.out.println(&quot;_id: &quot; + _id + &quot; name: &quot; + name + &quot; age: &quot; + age);
+
+    } 
+    //关闭应用
+    cursor.close();
+    db.close();
+}
+
+//测试Android系统API对数据库的查询单一记录功能
+public void testQuerySingleRecord(){
+    PersonDao3 dao = new PersonDao3(getContext());
+    dao.querySingleRecord(&quot;zhangsan1&quot;);
+}
+</code></pre><ul>
+<li><p>查询多条数据</p>
+<pre><code>Cursor cursor = db.query(&quot;person&quot;, null, null, null, null, null, 
+    &quot;_id desc&quot; // 按照_id倒叙排列
+);
+
+/**
+ * 查询所有数据
+ */
+public List&lt;Person&gt; queryAll(){
+    //获取可读的数据库
+    SQLiteDatabase db = helper.getReadableDatabase();
+    //查询person表，返回游标
+    Cursor cursor = db.query(&quot;person&quot;, null, null, null, null, null, null);
+    //创建List集合
+    ArrayList&lt;Person&gt; persons = new ArrayList&lt;Person&gt;();
+
+    if (cursor!=null&amp;&amp;cursor.getCount()&gt;0) {
+        while (cursor.moveToNext()) {//直到下一个没有数据, 返回false
+
+            int _id = cursor.getInt(cursor.getColumnIndex(&quot;_id&quot;));
+            String name = cursor.getString(cursor.getColumnIndex(&quot;name&quot;));
+            int age = cursor.getInt(cursor.getColumnIndex(&quot;age&quot;));
+            Person p = new Person(_id, name, age);
+            persons.add(p);
+        }
+    }
+    //关闭资源
+    cursor.close();
+    db.close();
+    return persons;
+}
+
+//测试Android系统API对数据库的查询所有功能
+public void testQueryAll(){
+    PersonDao3 dao = new PersonDao3(getContext());
+    List&lt;Person&gt; persons = dao.queryAll();
+}
+</code></pre></li>
+</ul>
+<h2 id="数据库的事务"><a href="#数据库的事务" class="headerlink" title="数据库的事务"></a>数据库的事务</h2><ul>
+<li>Transaction</li>
+<li><ol>
+<li>安全, 转账安全!!!</li>
+</ol>
+</li>
+<li><ol>
+<li>效率, 速度快!!!</li>
+</ol>
+</li>
+</ul>
+<p>流程:</p>
+<pre><code>// 1. 开启事务
+db.beginTransaction();
+
+try {
+    ...
+    处理业务逻辑
+    ... 
+    // 2. 设置回滚点/成功点 , (要么全成功, 要么全失败) 可以设置多个
+    db.setTransactionSuccessful();
+
+} catch (SQLException e) {
+    e.printStackTrace();
+} finally {
+    // 3. 结束事务
+    db.endTransaction();
+}
+</code></pre><hr>
+<pre><code>/**
+ * 转账安全
+ */
+public void testTransaction(){
+    PersonSQLiteOpenHelper helper = new PersonSQLiteOpenHelper(getContext());
+    SQLiteDatabase db = helper.getWritableDatabase();
+
+    // 转账1000
+    // xiaozhang  10000 
+    // 从xiaozhang账户转1000到xiaosan账户
+    // ------------------------------------------------- 重点 ↓
+
+    // 1. 开启事务
+    db.beginTransaction();
+
+    try {
+        db.execSQL(&quot;update person set balance = balance - 1000 where name = &apos;xiaozhang&apos;&quot;);
+
+        // int result = 10 / 0;
+
+        // xiaosan 0
+        db.execSQL(&quot;update person set balance = balance + 1000 where name = &apos;xiaosan&apos;&quot;);
+
+        // 2. 设置回滚点/成功点 , (要么全成功, 要么全失败) 可以设置多个
+        db.setTransactionSuccessful();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // 3. 结束事务
+        db.endTransaction();
+    }
+    // ------------------------------------------------- 以上 ↑
+}
+</code></pre><hr>
+<pre><code>/**
+ * 提高效率
+ */
+public void testTransaction1(){
+
+    PersonSQLiteOpenHelper helper = new PersonSQLiteOpenHelper(getContext());
+    SQLiteDatabase db = helper.getWritableDatabase();
+
+    // ------------------------------------------------- 重点 ↓
+
+    // 1. 开启事务
+    db.beginTransaction();
+    long start = System.currentTimeMillis();
+    try {
+
+        for (int i = 0; i &lt; 50; i++) {
+            db.execSQL(&quot;insert into person (name, age, balance) values (&apos;wang&quot;+i+&quot;&apos;, &quot;+i+&quot;, 100&quot;+i+&quot;)&quot;);
+        }
+
+        // 2. 设置回滚点/成功点 , (要么全成功, 要么全失败) 可以设置多个
+        db.setTransactionSuccessful();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // 3. 结束事务
+        db.endTransaction();
+
+        long duration = System.currentTimeMillis() - start;
+        System.out.println(&quot;插入10000条数据, 消耗时长: &quot; + duration);
+        //不开启事务: 插入10000条数据, 消耗时长: 22198
+         //开启事务: 插入10000条数据, 消耗时长: 3655
+    }
+
+    // ------------------------------------------------- 以上 ↑
+}
+</code></pre><p>#二、数据库的内容同步显示到界面（ListView),重点。</p>
+<p>##2.1、listview工作的原理</p>
+<ul>
+<li>mvc 设计模式。<ul>
+<li>model      数据模型   Person</li>
+<li>view       视图       ListView</li>
+<li>controller 控制器     Adapter 数据适配器, 将数据集合以特定的方式组织到界面上</li>
+</ul>
+</li>
+</ul>
+<p>##2.2、Listview 使用步骤</p>
+<ul>
+<li>写ui界面 xml文件 ListView</li>
+<li>寻找listview </li>
+<li>实现listview的数据适配器 adapter</li>
+<li>给listview设置adapter</li>
+</ul>
+<p>##2.3、扩展内容(非常不重要)： ScrollView 滚动视图/滚动界面 </p>
+<pre><code>- (ScrollView写在布局文件中，滚动视图标签中写入线性布局标签，使整个视图可滚动)
+
+        // 1. 查找布局控件
+        LinearLayout ll_content = (LinearLayout) findViewById(R.id.ll_content);
+
+        // 2. 准备数据
+        PersonDAO3 dao = new PersonDAO3(this);
+        List&lt;Person&gt; persons = dao.queryAll();
+
+        // 3. 用代码new出来的控件，给界面添加TextView
+        for (int i = 0; i &lt; persons.size(); i++) {
+            TextView textView = new TextView(this);
+            textView.setText(persons.get(i).toString());
+            textView.setTextSize(18);
+
+            // 每次都要创建TextView  OOM
+            ll_content.addView(textView);
+        }
+</code></pre><p>##2.4、开发的时候如何自定义数据适配器将数据库的内容同步显示到界面，实现复杂的ui界面。</p>
+<ul>
+<li>1.定义listview布局 写ui界面 xml文件 ListView</li>
+<li>2.查找listview</li>
+<li>3.自定义一个复杂BaseAdapter，把listview数据适配器adapater需要的数据准备好<pre><code>- getCount（）；返回有多少个条目 List.SIZE()  
+ - getView（）；返回某个位置的View对象（返回每个条目的view对象）
+     - int position 条目的位置
+     - View convertView 优化用的
+     - ViewGroup parent ==listview item的父容器，其实就是listview
+</code></pre>  定义一个xml文件<pre><code>View view = View.inflate(MainActivity.this, R.layout.rl_item, null);
+</code></pre>  修改view对象里面子孩子显示的内容<pre><code>view.findViewById();
+</code></pre></li>
+<li>4.把数据适配器设置给listview</li>
+</ul>
+<p>##2.5、ListView  列表视图/列表界面 (写在布局文件中)此视图控件通过id获取</p>
+<pre><code>- 一旦定义ListView布局，就会出现一屏幕的视图条目，
+- 根据每一个视图条目的字体大小不同和手机屏幕大小不同，一屏幕显示的条目个数也不相同，
+- 在界面展示时, 一屏幕能放下几条数据, 生成几个View条目
+- 在ListView布局下，屏幕能够自行上下滚动，但显示在屏幕上的条目数不变
+- 视图条目的位置从零开始
+- (如果一屏幕只显示6个视图条目，那么视图条目位置就是从0到5)
+- 随着屏幕的上下移动，所显示的条目会变成位置是1到6的条目，2到7的条目
+- 屏幕上的每一个条目，都会调用BaseAdapter实现类中的getView()方法。（自己理解的）
+- 这是ListView自己完成的功能，
+- 而我们要做的就是将每个视图条目都赋上我们从数据库取出来的内容，简单讲就是重写getView()方法。
+
+- 给ListView列表视图设置数据适配器, ListView列表视图此时要向Adapter索取数据，并展示在界面上
+</code></pre><p>-2.4示例——————————-</p>
+<pre><code>// 1. 查找ListView控件
+ListView lv_content = (ListView) findViewById(R.id.lv_content);
+
+// 2. 准备数据
+PersonDAO3 dao = new PersonDAO3(this);
+persons = dao.queryAll();//返回的是从数据库取出的一个List集合
+
+System.out.println(&quot;persons: &quot; + persons.size());
+
+// 3. 给ListView设置数据适配器, ListView此时要向Adapter索取数据
+lv_content.setAdapter(new MyAdapter());
+
+//自定义一个复杂BaseAdapter
+class MyAdapter extends BaseAdapter {
+    /**
+     * 返回有多少个条目
+     */
+    @Override
+    public int getCount() {
+        // 返回ListView总共要显示的个数
+        return persons.size();
+    }
+
+    /**
+     * 返回每个位置的条目(返回每个条目的view对象)
+     * 一旦ListView设置了Adapter, 就会从这个方法索要View
+     * int position 集合的每个位置
+     */
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        System.out.println(&quot;第&quot; + position + &quot;位置第一次初始化, 新建了一个TextView&quot;);
+
+        // position, 条目的位置，要数据View的位置(位置从零开始)
+        TextView textView = new TextView(MainActivity.this);
+        // 设置文本内容
+        textView.setText(persons.get(position).toString());
+        // 设置字体大小
+        textView.setTextSize(16);
+
+        return textView;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+}
+</code></pre><p>##2.6、SimpleAdapter 简单数据适配器</p>
+<ul>
+<li>SimpleAdapter适配器 : 显示图片, 文本信息</li>
+<li><p>//3. 给ListView设置数据适配器, ListView此时要向Adapter索取数据</p>
+<pre><code>lv_content.setAdapter(new SimpleAdapter(context, data, resource, from, to));
+</code></pre></li>
+<li><p>SimpleAdapter适配器四个参数</p>
+<ul>
+<li>context参数    上下文</li>
+<li>data参数    <ul>
+<li>List<map<string,object>&gt; data = new ArrayList<map<string,object>&gt;();</map<string,object></map<string,object></li>
+<li>一个Map相当于一个条目，通过向Map中put键值对<string,object>，使此条目好看</string,object></li>
+</ul>
+</li>
+<li>resource参数      布局资源的id 线性布局横向布置，ImageView+TextView</li>
+<li>from参数  new String[]{“图标”，”文本”} 数组里面就是Map集合的key值；</li>
+<li>to参数   new int[]{}  数组里面就是对应布局里面的ImageView的id和TextView的id</li>
+<li>另外:from数组的每个值绑定to数组每个值，一一对应</li>
+</ul>
+</li>
+</ul>
+<p>-2.6示例——————————</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    // 设置界面布局
+    setContentView(R.layout.activity_main);
+
+    // 1. 查找控件
+    ListView lv_content = (ListView) findViewById(R.id.lv_content);
+
+    // 2. 准备数据
+
+    List&lt;Map&lt;String, Object&gt;&gt; data = new ArrayList&lt;Map&lt;String, Object&gt;&gt;();
+
+    // 填充数据
+    data = fillData();
+
+    // 3. 给ListView设置数据适配器, ListView此时要向Adapter索取数据
+    lv_content.setAdapter(new SimpleAdapter(this, // 上下文
+            data,   // 封装了数据的集合
+            R.layout.item_listview, 
+            new String[]{&quot;图片内容&quot;, &quot;文本内容&quot;}, 
+            new int[]{R.id.iv_header, R.id.tv_name}));
+
+}
+
+private List&lt;Map&lt;String, Object&gt;&gt; fillData() {
+    ArrayList&lt;Map&lt;String, Object&gt;&gt; arrays = new ArrayList&lt;Map&lt;String, Object&gt;&gt;();
+
+    Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+    map.put(&quot;图片内容&quot;, R.drawable.f000);
+    map.put(&quot;文本内容&quot;, &quot;大笑&quot;);
+    arrays.add(map);
+
+    map = new HashMap&lt;String, Object&gt;();
+    map.put(&quot;图片内容&quot;, R.drawable.f001);
+    map.put(&quot;文本内容&quot;, &quot;调皮&quot;);
+    arrays.add(map);
+
+    map = new HashMap&lt;String, Object&gt;();
+    map.put(&quot;图片内容&quot;, R.drawable.f002);
+    map.put(&quot;文本内容&quot;, &quot;冷汗&quot;);
+    arrays.add(map);
+
+    map = new HashMap&lt;String, Object&gt;();
+    map.put(&quot;图片内容&quot;, R.drawable.f003);
+    map.put(&quot;文本内容&quot;, &quot;偷笑&quot;);
+    arrays.add(map);
+
+    map = new HashMap&lt;String, Object&gt;();
+    map.put(&quot;图片内容&quot;, R.drawable.f004);
+    map.put(&quot;文本内容&quot;, &quot;拜拜&quot;);
+    arrays.add(map);
+
+    return arrays;
+}
+还有两个layout布局文件没粘过来
+1.activity_main.xml中定义ListView布局
+2.item_listview.xml中定义LinearLayout布局，横向设置，添加ImageView，TextView视图
+</code></pre><p>##2.7、ArrayAdapter 数组适配器</p>
+<ul>
+<li><p>ArrayAdapter : 只能设置文字</p>
+<pre><code>//第一个参数 this 上下文
+//第二个参数 layout布局 在tv_item.xml中定义textview
+//第三个 string数组
+lv.setAdapter(new ArrayAdapter&lt;String&gt;(this, R.layout.tv_item, new String[]{&quot;功能1&quot;,&quot;功能2&quot;,&quot;功能3&quot;,&quot;功能4&quot;}));
+</code></pre></li>
+</ul>
+<p>##2.8 如何将Xml数据(Layout布局文件)转换成View对象?   </p>
+<ul>
+<li>LayoutInflater (填充器, 打气筒)</li>
+<li>LayoutInflater 打气筒, 将一个xml的布局文件填充成一个View对象, 以便添加到其他View容器中. </li>
+</ul>
+<p>-示例：将Xml数据(Layout布局文件)转换成View对象———————–</p>
+<pre><code>public class MainActivity extends Activity {
+
+List&lt;Person&gt; persons;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    // 设置界面布局
+    setContentView(R.layout.activity_main);
+
+    // 1. 查找控件
+    ListView lv_content = (ListView) findViewById(R.id.lv_content);
+
+    // 2. 准备数据
+    PersonDAO3 dao = new PersonDAO3(this);
+    persons = dao.queryAll();
+
+    System.out.println(&quot;persons: &quot; + persons.size());
+
+    // 3. 给ListView设置数据适配器, ListView此时要向Adapter索取数据
+    lv_content.setAdapter(new MyAdapter());
+
+}
+
+class MyAdapter extends BaseAdapter {
+
+    @Override
+    public int getCount() {
+        // 返回ListView总共要显示的个数
+        return persons.size();
+    }
+
+    /**
+     * 一旦ListView设置了Adapter, 就会从这个方法索要View
+     */
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        // ------------------------------------------------- 重点 ↓
+
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        // LayoutInflater 打气筒, 将一个xml的布局文件填充成一个View对象, 以便添加到其他View容器中. 
+
+        // root 你想把这个View填充完之后, 添加到哪个ViewGroup(View容器, LinearLayout, RelativeLayout).
+        // root就是这个容器
+
+        //LinearLayout是View的子类
+        LinearLayout layout = null;
+        if(convertView != null){
+            layout = (LinearLayout) convertView;
+        }else {
+            layout = (LinearLayout) inflater.inflate(R.layout.item_listview, null);
+        }
+
+        // ------------------------------------------------- 以上 ↑
+
+        // 找到里边的控件
+
+        // 设置数据
+        ImageView iv_header = (ImageView) MainActivity.this.findViewById(R.id.iv_header);
+        TextView tv_name = (TextView) layout.findViewById(R.id.tv_name);
+        TextView tv_age = (TextView) layout.findViewById(R.id.tv_age);
+        TextView tv_balance = (TextView) layout.findViewById(R.id.tv_balance);
+
+        Person person = persons.get(position);
+        tv_name.setText(person.getName());
+        tv_age.setText(person.getAge() + &quot;&quot;);
+        tv_balance.setText(person.getBalance() + &quot;&quot;);
+
+        return layout;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+}
+}
+还有两个layout布局文件没粘过来
+1.activity_main.xml中定义ListView布局
+2.item_listview.xml中定义LinearLayout布局，横向设置，添加ImageView+LinearLayout，LinearLayout中又添加3个TextView
+</code></pre><ul>
+<li>BaseAdapter : 最重要的Adapter!!!!!!!!!!!!!!!!!!!!</li>
+</ul>
+<h2 id="Android-对话框"><a href="#Android-对话框" class="headerlink" title="Android 对话框"></a>Android 对话框</h2><ul>
+<li>通过Builder实现通知对话框，列表对话框，单选对话框</li>
+<li><p>通知对话框</p>
+<pre><code>/**
+ * 显示通知对话框 示例：通过一个按钮点击，弹出通知对话框
+ * @param view
+ */
+public void showNotifyDialog(View view){
+
+    Builder builder = new AlertDialog.Builder(this);
+    // 设置图标
+    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    // 设置标题
+    builder.setTitle(&quot;提醒:&quot;);
+    // 设置提醒内容
+    builder.setMessage(&quot;当前是移动网络数据, 建议在wifi下观看, 是否继续(土豪随意)&quot;);
+
+    builder.setPositiveButton(&quot;确认&quot;, new OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Toast.makeText(MainActivity.this, &quot;确认&quot;, 0).show();
+
+        }
+    });
+    builder.setNegativeButton(&quot;取消&quot;, new OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Toast.makeText(MainActivity.this, &quot;取消&quot;, 0).show();
+        }
+    });
+
+    builder.setCancelable(false); // 是否可以通过返回键 关闭
+
+    // 直接show();
+    builder.show();
+</code></pre><p>  }</p>
+</li>
+<li><p>列表对话框</p>
+<pre><code>/**
+ * 显示列表对话框
+ * @param view
+ */
+public void showListDialog(View view){
+
+    Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(&quot;选择语言&quot;);
+    String[] strs = new String[]{&quot;java&quot;, &quot;c++&quot;, &quot;c&quot; , &quot;php&quot;, &quot;c#&quot;, &quot;c&quot; , &quot;php&quot;, &quot;c#&quot;};
+    builder.setItems(strs, new OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            //点击之后自动跳回上一页,然后执行下面代码,参数2:表示点击了哪一个
+            System.out.println(&quot;which: &quot; + which);
+        }
+    });
+
+    builder.show();
+
+}
+</code></pre></li>
+<li><p>单选对话框</p>
+<pre><code>/**
+ *  显示单选框
+ *  setSingleChoiceItems()
+ *  参数1:字符串数组,要选择的选项
+ *  参数2:默认选择
+ *  参数3:点击监听
+ * @param view
+ */
+public void showSingleDialog(View view){
+
+    Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(&quot;选择性别:&quot;);
+
+    final String[] items = new String[]{&quot;男&quot;, &quot;女&quot;, &quot;中性&quot;, &quot;以前男的女的&quot;, &quot;以前是女的男的&quot;};
+
+    builder.setSingleChoiceItems(items, -1, new OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            System.out.println(&quot;which: &quot; + which);
+
+        }
+    });
+
+    builder.setPositiveButton(&quot;确认&quot;, null);
+    builder.show();
+
+}
+</code></pre></li>
+<li><p>多选对话框</p>
+<pre><code>public void showMultiDialog(View view){
+
+    Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(&quot;选择兴趣爱好:&quot;);
+
+    final String[] items = new String[]{&quot;抽烟&quot;, &quot;喝酒&quot;, &quot;烫头&quot;, &quot;编程&quot;, &quot;泡妞&quot;};
+    final boolean[] checkedItems = new boolean[]{true, false, true ,false, false};
+
+    builder.setMultiChoiceItems(items,checkedItems , new OnMultiChoiceClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+            System.out.println(&quot;which: &quot; + which + &quot; isChecked: &quot; + isChecked);            
+            checkedItems[which] = isChecked;
+        }
+    });
+    builder.setPositiveButton(&quot;确认&quot;, null);
+
+    builder.show();
+}    
+</code></pre></li>
+</ul>
+<p>ProgressDialog</p>
+<ul>
+<li><p>进度对话框</p>
+<p>  public void showProgressDialog(View view){</p>
+<pre><code>// 显示一个加载的对话框
+//ProgressDialog.show(this, &quot;提示: &quot;, &quot;正在加载中,请稍后...&quot;);
+
+final ProgressDialog progressDialog = new ProgressDialog(this);
+progressDialog.setTitle(&quot;提示: &quot;);
+progressDialog.setMessage(&quot;正在加载中...&quot;);
+// 设置样式为 横向 的
+progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
+progressDialog.setMax(100);
+
+// 显示的时候, 会把进度归零
+progressDialog.show();
+
+new Thread(){
+    public void run() {
+
+        while(true){
+
+            SystemClock.sleep(50);
+            //progressDialog.setProgress(i);
+            progressDialog.incrementProgressBy(1);
+
+            if(progressDialog.getProgress() &gt;= progressDialog.getMax()){
+                progressDialog.dismiss();
+                break;
+            }
+        }
+    };
+}.start();
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p>##样式和主题</p>
+<ul>
+<li>样式设置<ul>
+<li>res/values/styles.xml中将样式抽取出来</li>
+<li>就是在styles.xml文件中将view的一些属性抽取出来定义在styles属性中，之后只要调用就行了</li>
+</ul>
+</li>
+</ul>
+<p>-样式示例：————————————————–</p>
+<pre><code> &lt;style name=&quot;text_style&quot;&gt;
+    &lt;item name=&quot;android:layout_width&quot;&gt;wrap_content&lt;/item&gt;
+    &lt;item name=&quot;android:layout_height&quot;&gt;wrap_content&lt;/item&gt;
+    &lt;item name=&quot;android:layout_margin&quot;&gt;20dp&lt;/item&gt;
+    &lt;item name=&quot;android:background&quot;&gt;#660000FF&lt;/item&gt;
+    &lt;item name=&quot;android:padding&quot;&gt;15dp&lt;/item&gt;
+    &lt;item name=&quot;android:textColor&quot;&gt;#FFFFFF&lt;/item&gt;
+    &lt;item name=&quot;android:textSize&quot;&gt;20sp&lt;/item&gt;
+&lt;/style&gt;
+
+&lt;style name=&quot;text_style_red&quot; parent=&quot;text_style&quot;&gt;
+    &lt;item name=&quot;android:background&quot;&gt;#66FF0000&lt;/item&gt;
+&lt;/style&gt;
+</code></pre><p>-样式调用示例：———————————</p>
+<pre><code>  &lt;TextView
+    style=&quot;@style/text_style&quot;
+    android:text=&quot;功能1&quot; /&gt;
+
+&lt;TextView
+    style=&quot;@style/text_style_red&quot;
+    android:text=&quot;功能2&quot; /&gt;
+
+&lt;TextView
+    style=&quot;@style/text_style_red&quot;
+    android:text=&quot;功能3&quot; /&gt;
+
+&lt;TextView
+    style=&quot;@style/text_style&quot;
+    android:text=&quot;功能4&quot; /&gt;
+</code></pre><ul>
+<li>主题设置</li>
+<li>在AndroidManifest.xml中设置</li>
+<li>在application标签下的Android:theme=””修改值，可改变主题</li>
+</ul>
+
           
         
       
