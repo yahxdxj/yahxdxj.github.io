@@ -1620,7 +1620,455 @@
       
         
           
-            
+            <p>#Android 数据存储</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<li><p>黑盒测试</p>
+<ul>
+<li>测试人员不知道源代码</li>
+</ul>
+</li>
+<li><p>白盒测试</p>
+<ul>
+<li>测试人员知道源代码, 写测试用例</li>
+</ul>
+</li>
+</ul>
+<h3 id="按测试粒度-精细度-区分"><a href="#按测试粒度-精细度-区分" class="headerlink" title="按测试粒度(精细度)区分"></a>按测试粒度(精细度)区分</h3><ul>
+<li>方法测试 (function test)</li>
+<li>集成测试 (integration test)</li>
+<li>系统测试 (system test)</li>
+</ul>
+<h2 id="单元测试框架-Junit"><a href="#单元测试框架-Junit" class="headerlink" title="单元测试框架(Junit)"></a>单元测试框架(Junit)</h2><p>Android的代码只能运行在手机中的Dalvik虚拟机里, 在PC机的JVM下会报错异常. 写测试用例, 通过将测试代码上传到Android手机或模拟器中运行.</p>
+<h2 id="Android下单元测试的流程"><a href="#Android下单元测试的流程" class="headerlink" title="Android下单元测试的流程"></a>Android下单元测试的流程</h2><p><img src="day02_01.jpg" alt="文件权限"></p>
+<ol>
+<li><p>写业务逻辑类，里面有待测试的方法</p>
+<pre><code>public class CalcService {
+
+    public int sum(int a,int b){
+        return a+b;
+    }
+}
+</code></pre></li>
+<li>写测试用例类, 一个类继承AndroidTestCase</li>
+<li><p>写测试方法public void testAdd() throws Exception{}</p>
+<pre><code>public class TestCalcService extends AndroidTestCase{
+
+    public void testSum(){
+        CalcService cs = new CalcService();
+        int result = cs.sum(12, 3);
+        //断言 判断结果是否与预期一致，如果不一致，抛出异常
+        assertEquals(15, result);
+
+    }
+}
+</code></pre></li>
+<li>单元测试需要配置清单文件？？？？？？    <ul>
+<li>在AndroidManifest.xml文件中配置</li>
+<li>1 指定测试用的指令集 在manifest的子节点，包名指向MainActivity.java所在的包名</li>
+<li>2 指定测试用的库 在application节点下</li>
+</ul>
+</li>
+</ol>
+<hr>
+<pre><code>&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.itheima.junit&quot;
+    android:versionCode=&quot;1&quot;
+    android:versionName=&quot;1.0&quot; &gt;
+
+    &lt;!--    1. 指定测试用的指令集 在manifest的子节点 --&gt;
+    &lt;instrumentation
+        android:name=&quot;android.test.InstrumentationTestRunner&quot;
+        android:targetPackage=&quot;com.itheima.junit&quot; &gt;
+    &lt;/instrumentation&gt;
+
+    &lt;application
+        android:icon=&quot;@drawable/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;&gt;
+
+            &lt;!--   2. 指定测试用的库 在application节点下--&gt;
+            &lt;uses-library android:name=&quot;android.test.runner&quot;/&gt;
+
+    &lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre><ol>
+<li>选中测试方法, 右键 Run as -&gt; Android JUnit Test</li>
+</ol>
+<h2 id="Android-下的logcat"><a href="#Android-下的logcat" class="headerlink" title="Android 下的logcat"></a>Android 下的logcat</h2><ul>
+<li>Log.v : verbose 提示  黑色</li>
+<li>Log.d : debug 调试  蓝色</li>
+<li>Log.i : info 提醒  绿色</li>
+<li>Log.w : warn 警告  橙色</li>
+<li>Log.e : error 错误  红色</li>
+</ul>
+<h2 id="保存数据到SD卡-mnt-sdcard-info-txt"><a href="#保存数据到SD卡-mnt-sdcard-info-txt" class="headerlink" title="保存数据到SD卡 /mnt/sdcard/info.txt"></a>保存数据到SD卡 /mnt/sdcard/info.txt</h2><ul>
+<li>获取外置sd卡目录: Environment.getExternalStorageDirectory()</li>
+<li>获取挂载状态: Environment.getExternalStorageState()</li>
+<li><p>获取sd卡剩余空间:Environment.getExternalStorageDirectory().getUsableSpace();</p>
+</li>
+<li><p>示例</p>
+</li>
+</ul>
+<hr>
+<pre><code>public void login(View view) {
+    // 点击事件
+    // 1. 获取用户名密码
+    String qq = et_qq.getText().toString().trim();
+    String pwd = et_pwd.getText().toString().trim();
+
+    try {
+        // 检查数据, 如果有一个是空字符串, 则弹出吐司提醒？？？？？
+        if (TextUtils.isEmpty(qq) || TextUtils.isEmpty(pwd)) {
+            // 吐司(面包), 在界面上显示一个提示, 一定记住要调用show()方法.
+
+            // Context上下文
+            Toast.makeText(this, &quot;用户名或密码不能为空&quot;, Toast.LENGTH_SHORT).show();
+        } else {
+            // System.out.println(&quot;qq: &quot; + qq + &quot; pwd: &quot; + pwd);
+            // 检查是否勾选了
+            boolean isChecked = cb_remember.isChecked();
+            if (isChecked) {
+                // 要记住密码
+                Log.d(TAG, &quot;勾选了记住密码&quot;);
+                // 保存当前用户名密码 到sdcard
+                // File file = new File(&quot;/mnt/sdcard/info.txt&quot;);
+                // /storage/sdcard0
+                // /mnt/storage
+                // 获取外置sd卡挂载状态？？？？？
+                String state = Environment.getExternalStorageState();
+                if (Environment.MEDIA_MOUNTED.equals(state)) {
+                    // sd卡已挂载,可以写入
+
+                    // 获取sd卡剩余空间
+                    long usableSpace = Environment
+                            .getExternalStorageDirectory().getUsableSpace();
+                    System.out.println(&quot;usableSpace: &quot; + usableSpace);
+
+                    // 获取外置SD卡的目录？？？？
+                    File path = Environment.getExternalStorageDirectory();
+                    FileOutputStream fos = new FileOutputStream(new File(
+                            path, &quot;info.txt&quot;));
+                    String str = qq + &quot;##&quot; + pwd;
+                    fos.write(str.getBytes());
+                    fos.close();
+
+                    System.out.println(&quot;---------------------------&quot; + str);
+                } else {
+                    // sd未挂载
+                    Toast.makeText(this, &quot;保存失败, 请检查sd卡&quot;, Toast.LENGTH_SHORT)
+                            .show();
+                }
+            } else {
+                // 不记住密码
+                Log.d(TAG, &quot;不记住密码&quot;);
+            }
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+</code></pre><h2 id="从SD卡读取数据-并显示到控件上"><a href="#从SD卡读取数据-并显示到控件上" class="headerlink" title="从SD卡读取数据 并显示到控件上"></a>从SD卡读取数据 并显示到控件上</h2><pre><code>// 读取之前的数据,并显示到控件上
+try {
+    // 得到输入流, 读取数据
+    File path = Environment.getExternalStorageDirectory();
+    FileInputStream fis = new FileInputStream(
+            new File(path, &quot;info.txt&quot;));
+    //读取的是字符流
+    BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+    // 读取一行
+    String line = br.readLine();
+    // aaa##123
+    String qq = line.split(&quot;##&quot;)[0];
+    String pwd = line.split(&quot;##&quot;)[1];
+    et_qq.setText(qq);
+    et_pwd.setText(pwd);
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
+</code></pre><h2 id="保存数据到内部存储设备-data-data-包名"><a href="#保存数据到内部存储设备-data-data-包名" class="headerlink" title="保存数据到内部存储设备 /data/data/包名/"></a>保存数据到内部存储设备 /data/data/包名/</h2><ul>
+<li>应用私有文件夹, 默认情况下, 其他应用无法访问. 保证其数据安全</li>
+<li>Context.getFilesDir() == /data/data/包名/files 用户文件目录</li>
+<li>Context.getCacheDir() == /data/data/包名/cache 缓存目录</li>
+</ul>
+<p>示例：</p>
+<pre><code>public void login(View v) {
+// 点击事件
+// 1. 获取用户名密码
+String qq = et_qq.getText().toString().trim();
+String pwd = et_pwd.getText().toString().trim();
+try {
+    // 检查数据, 如果有一个是空字符串, 则弹出吐司提醒
+    if (TextUtils.isEmpty(qq) || TextUtils.isEmpty(pwd)) {
+        // 吐司(面包), 在界面上显示一个提示, 一定记住要调用show()方法.
+        // Context上下文
+        Toast.makeText(this, &quot;用户名或密码不能为空&quot;, Toast.LENGTH_SHORT).show();
+    } else {
+        // System.out.println(&quot;qq: &quot; + qq + &quot; pwd: &quot; + pwd);
+        // 检查是否勾选了
+        boolean isChecked = cb_remember.isChecked();
+        if (isChecked) {
+            // 要记住密码
+            // 保存当前用户名密码 到sdcard
+            // 获取外置sd卡挂载状态
+            String state = Environment.getExternalStorageState();
+            if (Environment.MEDIA_MOUNTED.equals(state)) {
+                // sd卡已挂载,可以写入
+                // 获取sd卡剩余空间
+                long usableSpace = Environment
+                        .getExternalStorageDirectory().getUsableSpace();
+                System.out.println(&quot;usableSpace: &quot; + usableSpace);
+                // 获取外置SD卡的目录
+                File path = Environment.getExternalStorageDirectory();
+                FileOutputStream fos = new FileOutputStream(new File(
+                        path, &quot;info.txt&quot;));
+                String str = qq + &quot;##&quot; + pwd;
+                fos.write(str.getBytes());
+                fos.close();
+
+                System.out.println(&quot;---------------------------&quot; + str);
+            } else {
+                // sd未挂载
+                Toast.makeText(this, &quot;保存失败, 请检查sd卡&quot;, Toast.LENGTH_SHORT)
+                        .show();
+            }
+        } else {
+            // 不记住密码
+            Log.d(TAG, &quot;不记住密码&quot;);
+        }
+    }
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
+}
+</code></pre><h2 id="Android权限机制"><a href="#Android权限机制" class="headerlink" title="Android权限机制"></a>Android权限机制</h2><ul>
+<li>MODE_PRIVATE 私有文件</li>
+<li>MODE_WORLD_READABLE 全局可读文件</li>
+<li>MODE_WORLD_WRITEABLE 全局可写文件</li>
+<li>MODE_WORLD_READABLE + MODE_WORLD_WRITEABLE 全局可读可写</li>
+</ul>
+<p>file_mode.png</p>
+<p><img src="file_mode.png" alt="文件权限"></p>
+<h2 id="重点-Android下-xml数据解析"><a href="#重点-Android下-xml数据解析" class="headerlink" title="(重点)Android下,xml数据解析"></a>(重点)Android下,xml数据解析</h2><ul>
+<li>a. 创建xml解析器</li>
+<li><pre><code>XmlPullParser parser = Xml.newPullParser();
+</code></pre></li>
+<li><p>b. 初始化xml解析器, 指定解析哪个流, 以什么编码解析</p>
+<pre><code>parser.setInput(is, &quot;utf-8&quot;);
+</code></pre></li>
+<li><p>c. 解析xml数据</p>
+<pre><code>while(type != XmlPullParser.END_DOCUMENT){ // 直到文档的结束
+    // 读取数据
+    ...
+    type = parser.next(); // 到下一个
+}
+</code></pre></li>
+<li><p>d. 扫尾工作</p>
+<ul>
+<li>关闭数据流</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>// 读取之前的数据,并显示到控件上
+try {
+    // 得到输入流, 读取数据
+    File cache = getCacheDir();
+    FileInputStream fis = new FileInputStream(new File(cache,
+            &quot;user.xml&quot;));
+    // a. 创建xml解析器
+    XmlPullParser pullParse = Xml.newPullParser();
+    // b. 初始化xml解析器, 指定解析哪个流, 以什么编码解析
+    pullParse.setInput(fis, &quot;UTF-8&quot;);
+    // c. 解析xml数据
+    int type = pullParse.getEventType();// xml标签节点类型 头标签返回类型是0 根结束标签是1
+    while (type != XmlPullParser.END_DOCUMENT) {// 循环的结束条件
+        if (type == XmlPullParser.START_TAG) {
+            if (&quot;qq&quot;.equals(pullParse.getName())) {
+                String qq = pullParse.nextText();
+                et_qq.setText(qq);
+            } else if (&quot;pwd&quot;.equals(pullParse.getName())) {
+                String pwd = pullParse.nextText();
+                et_pwd.setText(pwd);
+            }
+        }
+        // 循环 下一个
+        type = pullParse.next();
+    }
+    // d 关闭数据流
+    fis.close();
+
+} catch (Exception e) {
+    e.printStackTrace();
+    System.out.println(&quot;解析异常!&quot;);
+}
+</code></pre><h2 id="Android下-xml的生成-序列化-（将JavaBean信息存放到xml中）"><a href="#Android下-xml的生成-序列化-（将JavaBean信息存放到xml中）" class="headerlink" title="Android下,xml的生成 (序列化) （将JavaBean信息存放到xml中）"></a>Android下,xml的生成 (序列化) （将JavaBean信息存放到xml中）</h2><p>a. 创建Xml序列化器</p>
+<pre><code>XmlSerializer serializer = Xml.newSerializer();
+</code></pre><p>b. 初始化xml序列化器, 设置输出流, 指定编码集</p>
+<pre><code>serializer.setOutput(fos, &quot;utf-8&quot;);
+</code></pre><p>c. 写xml数据<br>        // 文档的开头<br>        serializer.startDocument(“utf-8”, true);<br>        serializer.startTag(null, “info”);</p>
+<pre><code>serializer.startTag(null, &quot;qq&quot;);
+serializer.text(qq);
+serializer.endTag(null, &quot;qq&quot;);
+
+serializer.startTag(null, &quot;pwd&quot;);
+serializer.text(pwd);
+serializer.endTag(null, &quot;pwd&quot;);
+
+serializer.endTag(null, &quot;info&quot;);
+     // 文档的结束
+serializer.endDocument();
+</code></pre><p>d. fos.close();</p>
+<p>示例：</p>
+<pre><code>public void login(View v) {
+    // 1. 获取用户名密码
+    String qq = et_qq.getText().toString().trim();
+    String pwd = et_pwd.getText().toString().trim();
+
+    try {
+        // 检查数据, 如果有一个是空字符串, 则弹出吐司提醒
+        if (TextUtils.isEmpty(qq) || TextUtils.isEmpty(pwd)) {
+            // 吐司(面包), 在界面上显示一个提示, 一定记住要调用show()方法.
+            // Context上下文
+            Toast.makeText(this, &quot;用户名或密码不能为空&quot;, Toast.LENGTH_SHORT).show();
+        } else {
+            // 检查是否勾选了
+            boolean isChecked = cb_remember.isChecked();
+            if (isChecked) {
+                // 要记住密码
+                // 获取临时缓存目录cache
+                File cacheDir = this.getCacheDir();
+                FileOutputStream fos = new FileOutputStream(new File(
+                        cacheDir, &quot;user.xml&quot;));
+                // a. 创建Xml序列化器
+                XmlSerializer serializer = Xml.newSerializer();
+                // b. 初始化xml序列化器, 设置输出流, 指定编码集
+                serializer.setOutput(fos, &quot;utf-8&quot;);
+                // c. 写xml数据
+                // 文档的开头
+                serializer.startDocument(&quot;utf-8&quot;, true);
+                serializer.startTag(null, &quot;info&quot;);
+
+                serializer.startTag(null, &quot;qq&quot;);
+                serializer.text(qq);
+                serializer.endTag(null, &quot;qq&quot;);
+
+                serializer.startTag(null, &quot;pwd&quot;);
+                serializer.text(pwd);
+                serializer.endTag(null, &quot;pwd&quot;);
+
+                serializer.endTag(null, &quot;info&quot;);
+                // 文档的结束
+                serializer.endDocument();
+
+                Toast.makeText(this, &quot;保存成功&quot;, 0).show();
+
+            } else {
+                // 不记住密码
+                Log.d(TAG, &quot;不记住密码&quot;);
+            }
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+}
+</code></pre><ul>
+<li>OutOfMemory (OOM) 内存溢出</li>
+</ul>
+<h2 id="SharedPreference"><a href="#SharedPreference" class="headerlink" title="SharedPreference"></a>SharedPreference</h2><ul>
+<li>保存位置: /data/data/包名/shared_prefs/xxx.xml</li>
+</ul>
+<ol>
+<li><p>初始化SharedPreferences  arg0:文件名  arg1:权限</p>
+<pre><code>SharedPreferences sp = this.getSharedPreferences(&quot;config&quot;, MODE_PRIVATE);
+</code></pre></li>
+<li><p>通过SharedPreferences获取编辑器</p>
+<pre><code>Editor editor = sp.edit();
+</code></pre></li>
+<li><p>写入数据</p>
+<pre><code>editor.putString(&quot;qq&quot;, qq);
+editor.putString(&quot;pwd&quot;, pwd);
+editor.putBoolean(&quot;isChecked&quot;, isChecked);
+</code></pre></li>
+<li><p>提交数据</p>
+<pre><code>editor.commit();
+</code></pre></li>
+</ol>
+<p>-示例—————————</p>
+<pre><code>//点击事件
+public void login(View v){
+    // 点击事件
+    // 1. 获取用户名密码
+    String qq = et_qq.getText().toString().trim();
+    String pwd = et_pwd.getText().toString().trim();
+
+    //2 用户名密码是否为空
+    if (TextUtils.isEmpty(qq)||TextUtils.isEmpty(pwd)) {
+        //用户名或密码为空 吐司
+        Toast.makeText(this, &quot;用户名或密码不能为空&quot;, 0).show();
+    } else {
+        //用户名和密码都不为空
+        //判断是否记住密码
+        boolean isCheck = cb_remember.isChecked();
+        if (isCheck) {
+            //记住用户名密码，将其保存在内部存储设备
+            //初始化SharedPreferences
+            SharedPreferences sp = this.getSharedPreferences(&quot;user&quot;,MODE_PRIVATE );
+            // 2. 通过SharedPreferences获取编辑器
+             Editor edit = sp.edit();
+            // 3. 写入数据
+             edit.putString(&quot;qq&quot;, qq);
+             edit.putString(&quot;pwd&quot;, pwd);
+             edit.putBoolean(&quot;isCheck&quot;, isCheck);
+            // 4. 提交数据
+            edit.commit();
+            Toast.makeText(this,&quot;保存成功&quot;, 0).show();
+        } else {
+            //不记住用户名密码
+            Toast.makeText(this,&quot;没保存登录成功&quot;, 0).show();
+        }
+    }
+}
+</code></pre><h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><pre><code>// 1. 初始化SharedPreferences
+SharedPreferences sp = this.getSharedPreferences(&quot;config&quot;, MODE_PRIVATE);
+
+// 2. 读取数据, 设置数据
+String qq = sp.getString(&quot;qq&quot;, &quot;&quot;);
+boolean isChecked = sp.getBoolean(&quot;isChecked&quot;, false);
+</code></pre><p>-示例——————————-</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    // 查找用户名输入框
+    et_qq = (EditText) findViewById(R.id.et_qq);
+    // 查找密码输入框
+    et_pwd = (EditText) findViewById(R.id.et_pwd);
+    // 查找CheckBox
+    cb_remember = (CheckBox) findViewById(R.id.cb_remember);
+
+    //回显用户名密码，显示在控件上
+    //1 初始化SharedPreferences
+    SharedPreferences sp = this.getSharedPreferences(&quot;user&quot;,MODE_PRIVATE );
+    //2 读取数据，设置数据
+    String qq = sp.getString(&quot;qq&quot;, &quot;&quot;);
+    et_qq.setText(qq);
+
+    String pwd = sp.getString(&quot;pwd&quot;, &quot;&quot;);
+    et_pwd.setText(pwd);
+
+    boolean isCheck = sp.getBoolean(&quot;isCheck&quot;,false);
+    cb_remember.setChecked(isCheck);
+}
+</code></pre><ul>
+<li><h1 id="超级管理员用户"><a href="#超级管理员用户" class="headerlink" title="超级管理员用户"></a>超级管理员用户</h1></li>
+<li>$ 普通用户</li>
+</ul>
+<p>836959067</p>
+
           
         
       
