@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,16 +84,52 @@
 
 
 
-<meta name="description" content="人艰不拆">
+<meta name="description" content="#服务两种启动方式
+
+startService 开始服务
+开始服务，会使进程变成为服务进程
+直接开启服务，服务一旦启动跟调用者（开启者没有任何关系）
+启动服务的activity和服务不再有一毛钱关系
+调用者activity退出了，服务还是继续运行活的好好的。
+调用者activity，没法访问服务里面的方法。
+
+
+bindService 绑定服务
+绑定服务不会使进程变成服务进程
+绑定开启服务，服务和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="08 服务 Service">
 <meta property="og:url" content="http://yoursite.com/2017/02/13/08-服务-Service/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="人艰不拆">
-<meta property="og:updated_time" content="2017-02-13T01:48:47.000Z">
+<meta property="og:description" content="#服务两种启动方式
+
+startService 开始服务
+开始服务，会使进程变成为服务进程
+直接开启服务，服务一旦启动跟调用者（开启者没有任何关系）
+启动服务的activity和服务不再有一毛钱关系
+调用者activity退出了，服务还是继续运行活的好好的。
+调用者activity，没法访问服务里面的方法。
+
+
+bindService 绑定服务
+绑定服务不会使进程变成服务进程
+绑定开启服务，服务和">
+<meta property="og:updated_time" content="2017-02-15T05:53:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="08 服务 Service">
-<meta name="twitter:description" content="人艰不拆">
+<meta name="twitter:description" content="#服务两种启动方式
+
+startService 开始服务
+开始服务，会使进程变成为服务进程
+直接开启服务，服务一旦启动跟调用者（开启者没有任何关系）
+启动服务的activity和服务不再有一毛钱关系
+调用者activity退出了，服务还是继续运行活的好好的。
+调用者activity，没法访问服务里面的方法。
+
+
+bindService 绑定服务
+绑定服务不会使进程变成服务进程
+绑定开启服务，服务和">
 
 
 
@@ -101,7 +137,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
@@ -315,7 +351,369 @@
       
 
       
-        
+        <p>#服务两种启动方式</p>
+<ul>
+<li>startService 开始服务<ul>
+<li>开始服务，会使进程变成为服务进程</li>
+<li>直接开启服务，服务一旦启动跟调用者（开启者没有任何关系）</li>
+<li>启动服务的activity和服务不再有一毛钱关系</li>
+<li>调用者activity退出了，服务还是继续运行活的好好的。</li>
+<li>调用者activity，没法访问服务里面的方法。</li>
+</ul>
+</li>
+<li>bindService 绑定服务<ul>
+<li>绑定服务不会使进程变成服务进程</li>
+<li>绑定开启服务，服务和开启者（调用者）有密切的关系。</li>
+<li>绑定服务，是activity与服务建立连接，如果activity销毁了，服务也会被解绑并销毁，但是如果服务被销毁，activity不会被销毁</li>
+<li>不求同时生，但求同时死。只要activity挂了，服务跟着挂了。</li>
+<li>调用者activity，可以调用服务里面的方法。</li>
+</ul>
+</li>
+</ul>
+<p>###绑定服务的生命周期  </p>
+<ul>
+<li>绑定服务和解绑服务的生命周期方法：onCreate-&gt;onBind-&gt;onUnbind-&gt;onDestroy</li>
+<li>不会调用onstart()方法 和 onstartCommand()方法。</li>
+</ul>
+<p>###绑定方式开启服务，调用服务方法的流程 （重要）eg:day08音乐播放器</p>
+<ol>
+<li>使用bindService绑定服务的方式开启服务。  <ul>
+<li>bindService(intent, new MyConn(), Context.BIND_AUTO_CREATE);   </li>
+<li>参数1：绑定的意图，绑定那个服务</li>
+<li>参数2:ServiceConnection对象，通讯频道(中间人的联系渠道，能找到中间人)</li>
+<li>参数3：绑定方式，自动创建服务(绑定时，如果该服务不存在，自动创建该服务)</li>
+</ul>
+</li>
+</ol>
+<p>public class MainActivity extends Activity {<br>                PublicBusiness zms;//定义接口：抽取服务中的方法<br>                Intent intent;//定义意图：绑定那个服务<br>                private MyConnection conn;//定义通讯频道（UI页面与服务的连接对象），可通过通讯频道获取中间人<br>                @Override<br>                protected void onCreate(Bundle savedInstanceState) {<br>                    super.onCreate(savedInstanceState);<br>                    setContentView(R.layout.activity_main);<br>                    intent = new Intent(this, BaoService.class);<br>                    conn = new MyConnection();<br>                      //绑定服务<br>                    bindService(intent, conn, BIND_AUTO_CREATE);<br>                }<br>            }</p>
+<ol>
+<li>创建一个MyConnection类 实现服务与activity的通讯频道(UI页面和服务中间人的联系渠道)能找到中间人。返回的中间人转成接口对象类型<blockquote>
+<p>为什么要设置中间人？<br>因为UI界面要操作服务里的方法，服务对象去调方法，而服务对象不能被new出来，所以需要在服务中创建中间人内部类，通过中间人对象调用自己类中方法，来调用服务里的方法，而服务又将中间人返给UI界面，这样UI界面就能通过中间人来操作服务里的方法了</p>
+</blockquote>
+</li>
+</ol>
+<p>Activity中<br> class MyConnection implements ServiceConnection{<br>      //服务连接建立时，此方法调用。绑定服务，其实就是连接到服务，得到中间人。onBind有返回值才会调用<br>      @Override<br>      public void onServiceConnected(ComponentName name, IBinder service) {<br>      zms = (PublicBusiness) service;<br>      }</p>
+<pre><code>//失去服务连接时调用。当服务突然异常终止的时候
+@Override
+public void onServiceDisconnected(ComponentName name) {
+
+}
+</code></pre><p> }</p>
+<ol>
+<li>服务成功绑定的时候 会执行onBinde方法，返回中间人，<ul>
+<li>中间人中定义了许多方法，可以通过这些方法去调用服务里的方法。</li>
+<li>我们只需要在UI界面Activity中得到中间人，并调用中间人的方法，就间接调用了服务的方法         </li>
+</ul>
+</li>
+</ol>
+<p>public class BaoService extends Service {</p>
+<pre><code>    //服务成功绑定的时候 会执行onBinde方法，返回中间人
+    @Override
+    public IBinder onBind(Intent intent) {
+        return new ZhongMiShu();
+    }
+
+    //定义中间人的类，将其私有，只对其他应用提供接口里的方法，通过onBinde方法返回中间人
+    private class ZhongMiShu extends Binder implements PublicBusiness{
+
+        //内部人员实现接口的方法帮助我们去调用服务的方法。
+        @Override
+        public void qianXian(){
+            //调用服务里的方法
+            banZheng();
+        }
+        //这些方法外部不能调用，因为ZhongMiShu中间人类是私有的。
+        public void playMajiang(){
+            System.out.println(&quot;一起打麻将&quot;);
+        }
+
+        //这些方法外部不能调用，因为ZhongMiShu中间人类是私有的。
+        public void xisangna(){
+            System.out.println(&quot;一起洗桑拿&quot;);
+        }
+    }
+}
+</code></pre><ol>
+<li>在调用者UI界面 activity代码里面通过中间人调用服务的方法。<ul>
+<li>中间人调用在自己类中定义的方法，再通过自己的方法去调用服务里的方法</li>
+</ul>
+</li>
+</ol>
+<p>Activity中<br> //PublicBusiness zms;//Activity中获取接口：接口中抽取中间人对外提供的方法<br> //服务连接建立时，此方法调用。绑定服务，其实就是连接到服务，得到中间人。<br> //点击事件：调用中间人实现接口的方法，<br>  public void click(View v){<br>       zms.qianXian();<br>  }</p>
+<ol>
+<li>解除绑定服务 unbindService(conn)。</li>
+</ol>
+<p> //点击事件：解除服务<br>        public void unbind(View v){<br>            //解绑服务<br>            unbindService(conn);<br>        }</p>
+<p>####抽取接口，隐藏私有方法。（这种方式经典，封装的思想，隐藏内部，暴露接口） </p>
+<blockquote>
+<p>参考视频</p>
+</blockquote>
+<hr>
+<p>#找领导办证</p>
+<ul>
+<li>把服务看成一个领导，服务中有一个banZheng方法，如何才能访问？</li>
+<li>绑定服务时，会触发服务的onBind方法，此方法会返回一个Ibinder的对象给MainActivity，通过这个对象访问服务中的方法</li>
+<li>绑定服务</li>
+</ul>
+<p> Intent intent = new Intent(this, BanZhengService.class);<br> bindService(intent, conn, BIND_AUTO_CREATE);</p>
+<ul>
+<li>绑定服务时要求传入一个ServiceConnection实现类的对象</li>
+<li>定义这个实现类</li>
+</ul>
+<p>class MyServiceconn implements ServiceConnection{<br>        @Override<br>        public void onServiceConnected(ComponentName name, IBinder service) {<br>            zjr = (PublicBusiness) service;<br>        }<br>        @Override<br>        public void onServiceDisconnected(ComponentName name) {<br>        }<br>    }</p>
+<ul>
+<li><p>创建实现类对象<br>conn = new MyServiceconn();</p>
+</li>
+<li><p>在服务中定义一个类实现Ibinder接口，以在onBind方法中返回</p>
+</li>
+</ul>
+<p>服务中 创建中间人对象,需继承Binder(另外将中间人要实现的方法进行抽取成接口PublicBusiness)<br> class ZhongJianRen extends Binder implements PublicBusiness{<br>        public void QianXian(){<br>            //访问服务中的banZheng方法<br>            BanZheng();<br>        }<br>        public void daMaJiang(){</p>
+<pre><code>    }
+}
+</code></pre><ul>
+<li>把QianXian方法抽取到接口PublicBusiness中定义</li>
+</ul>
+<hr>
+<p>#两种启动方法混合使用</p>
+<ul>
+<li>用服务实现音乐播放时，因为音乐播放必须运行在服务进程中，可是音乐服务中的方法，需要被前台Activity所调用，所以需要混合启动音乐服务</li>
+<li>先start，再bind，销毁时先unbind，在stop</li>
+</ul>
+<hr>
+<p>##使用服务注册广播接收者</p>
+<ul>
+<li>Android四大组件都要在清单文件中注册</li>
+<li>广播接收者可以使用清单文件注册<ul>
+<li>一旦应用部署，广播接收者就生效了，直到用户手动停止应用或者应用被删除</li>
+</ul>
+</li>
+<li>广播接收者可以使用代码注册<ul>
+<li>需要广播接收者运行时，使用代码注册，不需要时，可以使用代码解除注册</li>
+</ul>
+</li>
+<li>电量改变、屏幕开关，必须使用代码注册</li>
+</ul>
+<p>1定义java类继承BroadcastReceiver(重写onReceive方法)<br>public class ScreenReceiver extends BroadcastReceiver {<br>    @Override<br>    public void onReceive(Context context, Intent intent) {<br>        String action = intent.getAction();<br>        if(Intent.ACTION_SCREEN_OFF.equals(action)){<br>//            Toast.makeText(context, “关闭”, 0).show();<br>            System.out.println(“关闭”);<br>        }<br>        else if(Intent.ACTION_SCREEN_ON.equals(action)){<br>//            Toast.makeText(context, “开启”, 0).show();<br>            System.out.println(“开启”);<br>        }<br>    }<br>}<br>2 服务注册广播接收者(使用代码注册接收什么样的广播:屏幕开关广播)<br>        /**</p>
+<pre><code> * 此RegisterService服务用于屏幕开关广播接收者的注册
+ * @author Administrator
+ *
+ */
+public class RegisterService extends Service {
+
+    private ScreenReceiver receiver;//定义屏幕开关广播接收者对象
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //创建广播接收者对象
+        receiver = new ScreenReceiver();
+        //通过IntentFilter对象指定广播接收者接收什么类型的广播
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+
+        //注册广播接收者
+        registerReceiver(receiver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //解除注册
+        unregisterReceiver(receiver);
+    }
+}
+</code></pre><ul>
+<li><p>解除注册广播接收者<br>unregisterReceiver(receiver);</p>
+</li>
+<li><p>解除注册之后，广播接收者将失去作用</p>
+</li>
+</ul>
+<p>3 只需要在UI界面，开启此RegisterService服务，就表示屏幕开关广播接收者在清单中进行了配置<br>//点击事件：开启服务<br>public void click1(View v){<br>      intent = new Intent(this, RegisterService.class);<br>      startService(intent);<br>}</p>
+<ul>
+<li>4在UI界面，停止了此RegisterService服务，就表示不在接收屏幕开关时系统发出的广播<br>//点击事件：停止RegisterService服务<br>public void click2(View v){<pre><code>//1.创建意图
+Intent intent = new Intent(this,RegisterService.class);
+//2.停止服务
+stopService(intent);
+</code></pre>}</li>
+</ul>
+<p>##本地服务：服务和启动它的组件在同一个进程</p>
+<p>##远程服务：服务和启动它的组件不在同一个进程</p>
+<ul>
+<li><p>1、服务和启动它的组件不在同一个进程时，远程服务要先在清单中进行配置配置，类似隐式启动Activity，在清单文件中配置Service标签时，必须配置intent-filter子节点，并指定action子节点</p>
+<pre><code>&lt;service android:name=&quot;com.itheima.baopay.PayService&quot;&gt;
+    &lt;intent-filter &gt;
+        &lt;action android:name=&quot;com.itheima.baopay&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/service&gt;
+</code></pre></li>
+<li>2、服务和启动它的组件不在同一个进程时，调用者Activity界面启动远程服务时只能隐式启动，同样绑定远程服务，需要隐式绑定远程服务，绑定时第二个参数直接new,得到的接口对象需要用 pb = Stub.asInterface(service)转换类型。</li>
+<li><p>2.1、隐式启动远程服务</p>
+<pre><code>//点击事件：启动远程服务
+public void click1(View v)
+{
+    //隐式启动远程服务
+    Intent intent = new Intent();
+    intent.setAction(&quot;com.itheima.service&quot;);
+    startService(intent);
+}
+</code></pre></li>
+<li><p>2.2、隐式绑定远程服务（绑定服务，就为了操作服务中的方法）隐式绑定远程服务的第二个参数最好直接new MyConnection(),不要创建通讯频道对象传入对象。</p>
+<pre><code>//点击事件：绑定远程服务
+public void click2(View v)
+{
+    Intent intent = new Intent();
+    intent.setAction(&quot;com.itheima.service&quot;);
+    bindService(intent, new MyConnection(), BIND_AUTO_CREATE);
+}
+// 创建一个MyConnection类,能找到中间人
+class MyConnection implements ServiceConnection{
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        // 强转成publicbusiness
+        pb = Stub.asInterface(service);
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+
+    }
+}
+</code></pre></li>
+<li>2.3 注意：<ul>
+<li>服务和启动它的组件不在同一个进程时，UI界面获取的中间人，与服务返回的中间人不一致。</li>
+<li>需要新技术让UI界面获取的中间人，和服务返回的中间人一致。用到AIDL。</li>
+</ul>
+</li>
+<li><p>3 使用得到的接口对象调用服务内部方法</p>
+<pre><code>//点击事件：调用远程服务的方法
+public void click(View v){
+    try {
+        pb.banzheng();
+    } catch (RemoteException e) {
+        e.printStackTrace();
+    }
+}
+</code></pre><p>#AIDL</p>
+</li>
+<li>Android interface definition language</li>
+<li>安卓接口定义语言</li>
+<li>作用：跨进程通信</li>
+<li>应用场景：远程服务中的中间人对象，其他应用是拿不到的，那么在通过绑定服务获取中间人对象时，就无法强制转换，使用aidl，就可以在其他应用中拿到中间人类所实现的接口<br>###AIDL实现步骤<br>#####对远程服务项目的操作</li>
+</ul>
+<ol>
+<li>把接口的后缀名改成aidl</li>
+<li>把aidl中的public删掉</li>
+<li>让中间人类直接继承stub<br>#####对访问者项目的操作</li>
+<li>把远程服务项目的aidl复制到本项目中</li>
+<li>aidl文件所在的包，必须与远程服务项目中aidl所在的包一致</li>
+<li><p>使用stub的asInterface方法强转中间人对象</p>
+<pre><code>// 创建一个MyConnection类,能找到中间人
+class MyConnection implements ServiceConnection{
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        // 强转成publicbusiness
+        pb = Stub.asInterface(service);
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+
+    }
+}
+</code></pre><p>###远程服务步骤示例<br> /**</p>
+<ul>
+<li>创建远程MyService服务：用于提供办证服务</li>
+<li>1、先创建一个PublicBusiness接口，封装MyService服务能够对外提供的内部方法。</li>
+<li>2、在MyService服务中创建中间人类继承Binder类实现PublicBusiness接口</li>
+<li>3、中间人实现接口里的方法去调用MyService服务里的方法。</li>
+<li>4、将中间人返回调用者Activity。</li>
+<li><p>5、在清单中注册该MyService服务</p>
+</li>
+<li><ol>
+<li>把接口的后缀名改成aidl</li>
+</ol>
+</li>
+<li><ol>
+<li>把aidl中的public删掉</li>
+</ol>
+</li>
+<li><ol>
+<li>让中间人类直接继承stub</li>
+</ol>
+</li>
+<li><p>@author Administrator<br><em>
+</em>/<br>###启动远程服务步骤示例<br>/**</p>
+<ul>
+<li>此Activity用于调用远程服务里的方法</li>
+<li>1、绑定远程服务(隐式启动远程服务),绑定时第二个参数直接new,</li>
+<li>2、创建通信渠道类，得到中间人.得到的接口对象需要用 pb = Stub.asInterface(service)转换类型。</li>
+<li>3、通过中间人调用远程服务的方法</li>
+<li>@author Administrator<br><em>
+</em>/</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>##支付宝远程服务</p>
+<ol>
+<li>定义支付宝的服务，在服务中定义pay方法</li>
+<li>定义中间人对象，把pay方法抽取成接口</li>
+<li>把抽取出来的接口后缀名改成aidl</li>
+<li>中间人对象直接继承Stub对象</li>
+<li>注册这个支付宝服务，定义它的intent-Filter</li>
+</ol>
+<p>##需要支付的应用</p>
+<ol>
+<li>把刚才定义好的aidl文件拷贝过来，注意aidl文件所在的包名必须跟原包名一致</li>
+<li>远程绑定支付宝的服务，通过onServiceConnected方法我们可以拿到中间人对象</li>
+<li>把中间人对象通过Stub.asInterface方法强转成定义了pay方法的接口</li>
+<li>调用中间人的pay方法</li>
+</ol>
+<p>##五种前台进程</p>
+<ol>
+<li>此进程activity执行了onresume方法，获得焦点</li>
+<li>此进程拥有一个跟正在与用户交互的activity绑定的服务</li>
+<li>此进程拥有一个服务执行了startForeground()方法？？？？</li>
+<li>此进程拥有一个正在执行onCreate()、onStart()或者onDestroy()方法中的任意一个的服务</li>
+<li>此进程拥有一个正在执行onReceive方法的广播接收者？？？？</li>
+</ol>
+<p>##两种可见进程</p>
+<ol>
+<li>activity执行了onPause方法，失去焦点，但是可见</li>
+<li>拥有一个跟可见或前台activity绑定的服务</li>
+</ol>
+<p>#国际化 I18N</p>
+<ul>
+<li>Android国际化还是比较方便，一般情况下写代码是不允许直接把文本直接写在代码里，都要使用Strings。       </li>
+<li>代码的提示文本也需要放在资源文件目录下       </li>
+<li>string.xml 放在对应的文件夹   <ul>
+<li>values-en-rGB<ul>
+<li>string.xml</li>
+</ul>
+</li>
+<li>values-en-rUS      <ul>
+<li>string.xml   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>drawable   放在对应的文件夹 <ul>
+<li>rawable-en-rGB</li>
+<li>drawable-en-rUS   </li>
+</ul>
+</li>
+<li>文件夹的名称 参考  IE      </li>
+</ul>
+
       
     </div>
 
@@ -486,7 +884,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
