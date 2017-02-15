@@ -439,47 +439,14 @@
 
       
         
-          
-            <p>1 为什么要使用版本控制软件<br>2 虚拟机的创建<br>3 常见版本控制软件<br>五种：<br>1.CVS<br>2.SVN<br>3.ClearCase<br>4.VSS<br>5.GIT<br>公司常用的是SVN，GIT<br>4 SVN服务器端的搭建<br>Svn（Subversion）是近年来崛起的版本管理工具，在当前的开源项目里(J2EE)，几乎95%以上的项目都用到了 SVN。<br>1.SVN服务器的下载<br>官网：<a href="http://www.visualsvn.com/server/" target="_blank" rel="external">http://www.visualsvn.com/server/</a><br>VisualSVN是一款图形化svn服务器。<br>VisualSVN-Server-2.7.3.msi（安装在服务器端）<br>2.根据文档(VisualSVN-Server.doc)将SVN服务器安装在服务器上。<br>VisualSVN是一款图形化svn服务器。<br>VisualSVN-Server-2.7.3.msi（安装在服务器端）<br>3.检测SVN服务器成功安装在服务器上<br>在服务器浏览器访问<a href="https://127.0.0.1,出现欢迎界面表示成功" target="_blank" rel="external">https://127.0.0.1,出现欢迎界面表示成功</a><br>4.在服务器端通过开始，找到VisualSVN Server Manager按钮打开SVN<br>Repository 大仓库，在大仓库中创建小仓库用于管理不同模块的代码，大小仓库按照文件树形式储存数据－-包括文件和目录，任意数量的客户端可以连接到SVN，读写这些文件。<br>5 SVN客户端的搭建<br>TortoiseSVN 是svn版本控制系统的一个免费开源客户端，可以使你避免使用枯燥而且不方便的命令行。它完全嵌入 Windows Explorer（Windows资源管理器），SVN的客户端工具，和资源管理器完美集成，使用时只需在正常的窗口里点击右键操作就可以了。<br>1.SVN客户端的下载<br><a href="http://tortoisesvn.net/downloads" target="_blank" rel="external">http://tortoisesvn.net/downloads</a><br>2.根据文档(运行TortoiseSVN.docx)将SVN客户端在程序员端安装<br>32位-TortoiseSVN-1.8.8.25755-win32-svn-1.8.10.msi<br>3.检测SVN客户端成功安装在程序员电脑上<br>鼠标右击出现有SVN Checkout和TortoiseSVN两个选项<br>4.SVN客户端的搭建完成<br>6 SVN的使用<br>6.1 SVN客户端：单用户版本控制</p>
-<p>在服务器上创建仓库和用户<br>右键Repository–&gt;第一个选项创建小仓库<br>程序员客户端下载仓库用Checkout的步骤<br>步骤：<br>1.新建一个空文件夹； 比如：E:\Proj_trunk<br>2.在此目录中点击右键-&gt; SVN Checkout…<br>3.第一个框：指定服务端仓库的路径，直接copy<br>第二个框：指定本地(工作副本)仓库的路径<br>Checkout选项作用：将版本库中的内容检出到本地工作副本<br>本地仓库中.SVN不能删<br>在下载的仓库文件夹中写代码<br>add代码文件<br>新java类对于服务端并不识别，要先计划加入svn管理用add<br>选中文件/文件夹（在新文件/文件夹所在父文件夹点击右键），<br>在菜单中选择“添加Add”命令。不需要受SVN控制的文件请取消打钩。<br>commit，把代码文件提交至服务器<br>对工作副本进行编辑后提交到SVN<br>在右键菜单中点击SVN Commit<br>提交前写好信息，点击确定<br>update：下载服务器的代码文件<br>作用：更新工作副本使其成为版本库中的最新版本<br>SVN将显示出更新的文件和更新的次数<br>update：对工作副本右键，点击更新<br>Show log (显示日志)<br>工作副本右键–&gt;显示日志<br>日志信息主要记录的是每次的修改内容。建议把一些重要数据、关键操作写到日志信息中。<br>注：修改人和提交时间由软件自动记录，无需人工写入日志信息<br>如何得到历史版本<br>工作副本右键–&gt;显示日志–&gt;选择所需的版本号–&gt;保存版本至<br>6.2 SVN服务端版本库的备份和还原</p>
-<p>备份：服务器端各个小仓库是保存在C:\Repositories中，把小仓库模块复制粘贴到任意地方(云盘，另一台电脑，其他存储设备等)保存起来（要定期备份）；<br>还原：在新电脑服务器SVN界面中的右击Repositories–&gt;所有任务–&gt;import Existing Repository…找到备份的小仓库添加就行了<br>6.3 多用户权限控制</p>
-<p>当进行提交文件操作的时候您将看到权限提示信息，类似用户登录界面<br>输入您的用户名和密码<br>保存权限设置，可以避免将来重复输入用户名和密码<br>6.4 多用户版本控制</p>
-<p>文件锁</p>
-<p>如果你给一个文件设置了svn:needs-lock属性，Subversion会让此文件只读，直到你获得文件锁。只读文件具有(灰色对勾)这个重载图标来表示你必须在编辑之前先得到一个锁。<br>被锁住的文件不能修改<br>申请文件锁后方能修改和提交<br>提交后自动释放文件锁<br>提交时如果没有申请到锁，会自动申请，若锁已被其他程序员申请，则自动申请失败<br>6.5 多用户冲突合并</p>
-<p>多个程序员同时处理同一个代码文件<br>客户端版本比服务器低，不能提交，需要先update，再commit<br>1.什么是冲突?</p>
-<p>团队协同工作时，当多位团队成员同时修改同一个文件，造成本地文件与SVN系统中的文件版本不一致，而导致文件无法提交的情况</p>
-<p>2.冲突产生的原因</p>
-<p>当团队协同工作的时候，多位团队成员同时操作一个文件。团队成员A操作完成后，将该文件提交到SVN上。此时，其他团队成员的本地文件与SVN上的文件版本不一致。当团队成员B操作完成并对文件进行提交操作时，就会产生冲突。</p>
-<p>3.产生冲突会有提示页面</p>
-<p>4.遇到冲突时，需要update该文件。</p>
-<p>我们将看到三个带问号的文件<br>　filename.mine<br>　filename.rOLDREV<br>　filename.rNEWREV</p>
-<p>5.面对文件冲突，我们可以选择以下两种方式解决冲突</p>
-<p>①使用工具解决冲突<br>②用revert放弃所做的修改</p>
-<p>5.1.使用工具解决冲突</p>
-<p>①右键三角黄色叹号的文件–&gt;TortoiseSVN–&gt;编辑冲突<br>②对比两个版本的文件，解决冲突<br>③工具中会列出两个版本冲突的部分，并让我们选择使用哪个版本的内容</p>
-<p>5.2.用revert放弃所做的修改</p>
-<p>①右键三角黄色叹号的文件–&gt;TortoiseSVN–&gt;选择SVN还原（revert） 放弃自己所做的修改</p>
-<p>5.3解决冲突后</p>
-<p>①通过上面2种所说的方法，解决冲突后要，右键三角黄色叹号的文件–&gt;TortoiseSVN–&gt;选择已解决的（resolved）<br>②解决后，带问号的三个文件将自动删除<br>③最后选择commit提交到SVN</p>
-<p>6.关于冲突的建议</p>
-<p>①修改文件之前，先进行一次update操作<br>②修改完成后，及时commit，不要在本地停留过长时间<br>③在多位团队成员协作时，尽量修改自己撰写的部分，尽量不要修改不属于自己撰写的部分<br>④出现冲突很正常，可以通过前面的方法解决，不要相互覆盖</p>
-<p>6.6 SVN提交代码的规范</p>
-<p>先更新，再提交<br>多提交<br>不要提交不能通过编译的代码<br>每次提交必须书写明晰的标注<br>提交时注意不要提交本地自动生成的文件<br>不要提交自己不明白的代码<br>慎用锁定功能</p>
-<p>6.7 采用svn管理android项目</p>
-<p>？？？</p>
-<p>6.8 常见ignore文件类型</p>
-<p>例如eclipse中的，Windows生成的缩略图Thumbs.db，项目编译生成的临时文件.obj, .class等等。<br>Add to Ignore List （忽略文件）<br>SVN不再理会该文件，该文件删除或者修改的动作，都不会上传至服务器<br>添加忽略文件<br>右键一个单独的未进入版本控制文件–&gt;TortoiseSVN –&gt;(加入忽略列表)Add to Ignore List，会出现一个子菜单允许你仅选择该文件，或者所有具有相同后缀的文件。<br>删除忽略文件：<br>如果你想从忽略列表中移除一个或多个条目，右击这些条目，选择TortoiseSVN → 从忽略列表删除。<br>已进入版本控制的文件或目录不能够忽略<br>6.9 项目版本管理实战</p>
-<p>？？？</p>
-<p>7svn获取开源代码(google开源代码平台)<br>1.百度搜索关于gifview的源代码<br>gifview site:code.google.com<br>2.找到很多网站地址选择其一，跳转到<a href="https://code.google.com/p/gifview/" target="_blank" rel="external">https://code.google.com/p/gifview/</a><br>3.一般从<a href="http://code.google.com获取源代码地址都是固定的" target="_blank" rel="external">http://code.google.com获取源代码地址都是固定的</a> p是Project的缩写，gifview是作者给自己项目起的名称<br>4.找到Source中的svn checkout地址<a href="https://gifview.googlecode.com/svn/trunk/gifview-read-only" target="_blank" rel="external">https://gifview.googlecode.com/svn/trunk/gifview-read-only</a><br>5.在本地下载仓库得到源代码,注意去空格，如果还不能下载，把最后面gifview-read-only去掉，用<a href="https://gifview.googlecode.com/svn/trunk/下载就可以了" target="_blank" rel="external">https://gifview.googlecode.com/svn/trunk/下载就可以了</a><br>上面第4步发现有的作者没有提供仓库下载源代码选项，可以类推获取地址<br>比如你搜droidwall site:code.google.com,可能会选一个地址为<a href="https://code.google.com/p/droidwall/的网址进去" target="_blank" rel="external">https://code.google.com/p/droidwall/的网址进去</a><br>所以svn checkout地址可能为<a href="https://droidwall.googlecode.com/svn/trunk/" target="_blank" rel="external">https://droidwall.googlecode.com/svn/trunk/</a><br>若不成功进入 右键TortoiseSVN–&gt;Repo-browser进入仓库浏览<a href="https://droidwall.googlecode.com/svn/" target="_blank" rel="external">https://droidwall.googlecode.com/svn/</a><br>或者用IE去观察仓库目录结构<a href="https://droidwall.googlecode.com/svn/" target="_blank" rel="external">https://droidwall.googlecode.com/svn/</a><br>通过观察发现源码放在droidwall.googlecode.com/svn/tags下有很多不同版本，<br>所以在本地下载源码svn checkout地址<a href="https://droidwall.googlecode.com/svn//tags/v1.3.1下载不同版本" target="_blank" rel="external">https://droidwall.googlecode.com/svn//tags/v1.3.1下载不同版本</a><br>图标<br>绿色对勾：SVN状态正常，文件或文件夹与服务器版本一致<br>蓝色问号：该文件svn不知道怎么处理<br>蓝色加号：该文件被计划加入svn管理<br>红色叹号：该文件与服务器版本不一致<br>三角黄色叹号：该文件中出现代码冲突<br>灰色对勾：该文件被添加了文件锁<br>锁头:已经申请到该文件的文件锁<br>红叉：计划从SVN中删除该文件<br>GIT<br>集中式服务器：一个服务器带若干个终端，所有逻辑运算的业务都在服务器进行<br>分布式服务器：一个公共服务器带若干个终端，每个终端都包含一个完整的服务器数据的拷贝，也就是说每个终端既是客户端，也是服务器<br>Git版本控制软件一般在同一台电脑上既要安装服务端又要安装客户端</p>
-<p>GIT版本控制软件服务端安装(也安装在客户端，电脑本身既是客户端又是服务端)</p>
-<p>Git-1.9.4-preview20140611.exe(一个红色的logo)<br>安装：<br>一直下一步下一步<br>安装成功：<br>右键出现Git选项<br>此软件需要命令行操作<br>GIT版本控制软件客户端安装(也安装在服务端，电脑本身既是客户端又是服务端)</p>
-<p>TortoiseGit-1.8.9.0-32bit.msi<br>安装：<br>一直下一步（其中有一个不要puTTy,要第二个）下一步<br>注意：老师提供的xp系统需要更新windowsInstaller服务才能继续安装<br>WindowsXP-KB942288-v3-x86.exe安装后重启电脑<br>安装成功：<br>右键出现Git图形化选项<br>GIT版本控制软件的使用</p>
-<p>1.单用户本地Git仓库创建和使用</p>
-<p>桌面新建文件夹，在文件夹中右键Get Creat repasitory here 后这个文件夹就变成仓库，文件夹会变绿色对勾（若不变，重启explorer）<br>因为本地电脑既是客户端又是服务端，创建仓库直接就是绿色对勾<br>在本地仓库文件夹中写代码<br>add –&gt;commit 本地提交本地服务器 （可能需要用户名，邮箱，因为是本地两者都任意填）<br>2.多用户远程Git仓库创建和使用</p>
-<p>github网站一般作为公共服务端</p>
-<p>注册github帐号并登陆(此账号作为主开发者，可以push代码，其他程序员只能pull代码)<br>push：上传代码到服务端仓库，相当于commit<br>pull：更新服务端仓库代码到本地，相当于update<br>主开发者在github创建仓库上传源码，<br>1.set up Git(在自己电脑安装 Git-1.9.4-preview20140611.exe和TortoiseGit-1.8.9.0-32bit.msi)<br>2.点击网页创建仓库按钮去创建仓库(创建在github网站中央服务器)并上传项目源码。<br>仓库名，描述，仓库公共，许可证开源免费<br>3.世界各地不同程序员想参与项目开发，通过在网页clone选项获取url<br>4.程序员在本地仓库文件夹中，右键git clone下载仓库代码，才能参与开发<br>5.当程序员开发项目完成后，想push到服务器上，必须要github主开发者的账号密码，如果没有主开发者账号密码，只能commit程序员本地服务器上<br>没有push权限的程序员可以通过创建补丁发送给主开发者，然后由主开发者push到仓库<br>创建补丁步骤<br>1.先commit到本地服务器<br>2.右键整个项目文件夹–&gt;TortoiseGit–&gt;Creat Patch Serial…,去创建补丁<br>3.通过邮件将创建的补丁发给主开发者，主开发者通过补丁就清晰知道项目在什么地方被修改了</p>
-
-          
+          <h4 id="1-为什么要使用版本控制软件"><a href="#1-为什么要使用版本控制软件" class="headerlink" title="1 为什么要使用版本控制软件"></a>1 为什么要使用版本控制软件</h4><h4 id="2-虚拟机的创建"><a href="#2-虚拟机的创建" class="headerlink" title="2 虚拟机的创建"></a>2 虚拟机的创建</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/13/12-版本控制软件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
