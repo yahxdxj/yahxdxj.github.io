@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="导语
  布局文件 开发工具: eclipse">
-<meta property="og:updated_time" content="2017-02-15T09:01:03.000Z">
+<meta property="og:updated_time" content="2017-02-24T05:58:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01 布局文件">
 <meta name="twitter:description" content="导语
@@ -334,51 +334,39 @@
 <a id="more"></a>  
 <p>本节共有<strong>7</strong>点内容:  </p>
 <ol>
-<li><a href="#yi">通信技术的发展历程</a>;   </li>
 <li><a href="#er">Android开发环境搭建</a>;   </li>
 <li><a href="#san">配置adb环境</a>;  </li>
 <li><a href="#si">Android常见布局</a>;  </li>
 <li><a href="#wu">Android的颜色模式</a>;  </li>
 <li><a href="#liu">Android中的显示单位</a>;  </li>
 </ol>
-<h2 id="通信技术的发展历程"><a href="#通信技术的发展历程" class="headerlink" title="通信技术的发展历程:"></a><a name="yi"></a>通信技术的发展历程:</h2><ul>
-<li>1G    模拟制式    只能进行语音通话.</li>
-<li>2G    GSM, CDMA    收发短信和邮件.</li>
-<li>2.5G    GPRS, EDGE    访问wap网络数据.(图片, 壁纸, 文字信息)</li>
-<li>3G    WCDMA(联通), CDMA2000(电信), TD-SCDMA(移动) 发微博, 查看高清图片, 小电影.</li>
-<li>3.5G    HSDPA, HSDPA+</li>
-<li>4G    TD-LTE        下载速度: 50Mb/s  = 6MB/s    上传速度: 10Mb/s = 1.2MB/s</li>
-<li>100Mb/s    !=     100MB/s</li>
-<li>bit</li>
-<li>1 Byte  = 8bit</li>
-<li>100Mb/s  = 12.5MB/s  </li>
-</ul>
-<h2 id="虚拟机的区别"><a href="#虚拟机的区别" class="headerlink" title="虚拟机的区别:"></a>虚拟机的区别:</h2><ul>
-<li>JVM: .java –&gt; javac –&gt; .class –&gt; jar –&gt; .jar</li>
-<li><p>架构: 堆栈 (栈：吃进去吐出来)</p>
-</li>
-<li><p>DVM: .java –&gt; javac –&gt; .class –&gt; dx.bat –&gt; .dex</p>
-</li>
-<li>架构: 寄存器(cpu上一块高速的缓存)  </li>
-</ul>
-<h2 id="Android开发环境搭建"><a href="#Android开发环境搭建" class="headerlink" title="Android开发环境搭建"></a><a name="er"></a>Android开发环境搭建</h2><ul>
-<li>Eclipse + ADT 开发工具</li>
-<li>SDK 开发工具包</li>
+<h2 id="一-Android开发环境搭建"><a href="#一-Android开发环境搭建" class="headerlink" title="一 Android开发环境搭建"></a><a name="er"></a>一 Android开发环境搭建</h2><ul>
+<li>Eclipse + ADT 开发工具  </li>
+<li>SDK 开发工具包  </li>
 <li>SDK Manager 开发包管理器  </li>
 </ul>
-<h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><p><strong>1 Eclipse + ADT(Android Developer Tools)</strong> 开发工具</p>
+<h3 id="1-1下载开发工具"><a href="#1-1下载开发工具" class="headerlink" title="1.1下载开发工具"></a>1.1下载开发工具</h3><p><strong>1 Eclipse + ADT(Android Developer Tools)</strong> 开发工具</p>
 <ul>
-<li>Eclipse + ADT 插件</li>
+<li>ADT Bundle </li>
+<li>ADT Bundle包含了Eclipse、ADT插件和SDK Tools，是已经集成好的IDE，只需安装好Jdk即可开始开发，推荐初学者下载ADT Bundle，不用再折腾开发环境。</li>
+<li>下载地址: <a href="http://www.androiddevtools.cn" target="_blank" rel="external">http://www.androiddevtools.cn</a>  </li>
 </ul>
-<p><strong>2 Android Studio</strong>  开发工具</p>
+<p><strong>2 Android Studio</strong>  开发工具  </p>
+<ul>
+<li>Android Studio是谷歌官方推荐的开发工具,越用越好用</li>
+<li>下载地址: <a href="http://www.androiddevtools.cn" target="_blank" rel="external">http://www.androiddevtools.cn</a>  </li>
+</ul>
 <p><strong>3 Android SDK (软件开发环境, Android调试工具, 模拟等)</strong>    </p>
 <ul>
+<li>默认<em>Eclipse+ADT工具</em> 或者 <em>Android Studio工具</em>都自带最新Android SDK.</li>
+<li>开发者也可自行下载各个版本的SDK.</li>
 <li>Android SDK </li>
-<li>Android Platform-tools</li>
-<li>最新的Android 开发平台 platforms</li>
-<li>最新的模拟器镜像  </li>
+<li>Android Platform-tools  </li>
+<li>最新的Android 开发平台 platforms  </li>
+<li>最新的模拟器镜像    </li>
 </ul>
-<h2 id="SDK目录"><a href="#SDK目录" class="headerlink" title="SDK目录"></a>SDK目录</h2><ul>
+<p><strong>4 SDK目录</strong>  </p>
+<ul>
 <li>add-ons (额外开发资料, google地图资源)</li>
 <li>build-tools : 编译工具目录</li>
 <li>docs : 离线版开发文档</li>
@@ -388,6 +376,34 @@
 <li>sources : 开发平台源码</li>
 <li>system-images : 模拟器镜像文件</li>
 <li>tools : 开发者常用工具  </li>
+</ul>
+<h3 id="1-2开发环境搭建"><a href="#1-2开发环境搭建" class="headerlink" title="1.2开发环境搭建"></a>1.2开发环境搭建</h3><h3 id="配置adb环境"><a href="#配置adb环境" class="headerlink" title="配置adb环境"></a><a name="san"></a>配置adb环境</h3><ul>
+<li>需要配置路径</li>
+<li>ANDROID_SDK_HOME</li>
+<li>指定一个非中文, 并且没有空格的文件夹</li>
+<li>D:\android\develop\adt-bundle-windows-x86_32_20131019\adt-bundle-windows-x86-20131019\sdk\platform-tools</li>
+<li>D:\android\develop\adt-bundle-windows-x86_32_20131019\adt-bundle-windows-x86-20131019\sdk\platform-tools</li>
+<li>配置path</li>
+<li>%ANDROID_SDK_HOME%;%JAVA_HOME%\bin;SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\SinoVoice\jTTS 5.0 Desktop\Bin  </li>
+</ul>
+<h3 id="adb命令"><a href="#adb命令" class="headerlink" title="adb命令"></a>adb命令</h3><p>ADB (Android debug bridge) Android调试桥</p>
+<ul>
+<li>adb devices 查看当前已连接的设备</li>
+<li>adb start-server 开启 adb 服务</li>
+<li>adb kill-server 杀死 adb 服务</li>
+<li>adb shell    进入Android控制台(执行Linux命令)exit退出</li>
+<li>adb logcat 打印日志信息</li>
+<li>adb install xxx.apk : 安装应用</li>
+<li>adb uninstall 包名  : 根据包名卸载应用</li>
+<li>adb push hiahia.txt /sdcard/hiahia.txt : 上传文件</li>
+<li>adb pull /sdcard/hiahia.txt . : 下拉文件</li>
+<li><p>adb -s emulator-5554 :指定设备</p>
+</li>
+<li><p>adb可能因为360, 金山卫士, 腾讯QQ影响无法使用</p>
+</li>
+<li>端口5037被占用</li>
+<li>netstat -ano | find “5037” 查看谁占用端口</li>
+<li>杀掉进程kill pid  </li>
 </ul>
 <h2 id="Android项目工程目录结构"><a href="#Android项目工程目录结构" class="headerlink" title="Android项目工程目录结构:"></a>Android项目工程目录结构:</h2><ul>
 <li>src: 存放java代码</li>
@@ -434,48 +450,6 @@
 <li>3). 在packages.xml和packages.list文件中分别添加一条记录.  </li>
 </ul>
 </li>
-</ul>
-<h2 id="Android-屏幕分辨率"><a href="#Android-屏幕分辨率" class="headerlink" title="Android 屏幕分辨率"></a>Android 屏幕分辨率</h2><ul>
-<li><p>VGA  640*480 标准大小</p>
-</li>
-<li><p>QVGA 320*240    四分之一</p>
-</li>
-<li><p>HVGA 480*320     一半大小</p>
-</li>
-<li><p>WVGA 800*480</p>
-</li>
-<li><p>FWVGA 854*480</p>
-</li>
-<li><p>WSVGA 1024*600  </p>
-</li>
-</ul>
-<h2 id="开发工具-1"><a href="#开发工具-1" class="headerlink" title="开发工具"></a>开发工具</h2><h3 id="配置adb环境"><a href="#配置adb环境" class="headerlink" title="配置adb环境"></a><a name="san"></a>配置adb环境</h3><ul>
-<li>需要配置路径</li>
-<li>ANDROID_SDK_HOME</li>
-<li>指定一个非中文, 并且没有空格的文件夹</li>
-<li>D:\android\develop\adt-bundle-windows-x86_32_20131019\adt-bundle-windows-x86-20131019\sdk\platform-tools</li>
-<li>D:\android\develop\adt-bundle-windows-x86_32_20131019\adt-bundle-windows-x86-20131019\sdk\platform-tools</li>
-<li>配置path</li>
-<li>%ANDROID_SDK_HOME%;%JAVA_HOME%\bin;SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\SinoVoice\jTTS 5.0 Desktop\Bin  </li>
-</ul>
-<h3 id="adb命令"><a href="#adb命令" class="headerlink" title="adb命令"></a>adb命令</h3><p>ADB (Android debug bridge) Android调试桥</p>
-<ul>
-<li>adb devices 查看当前已连接的设备</li>
-<li>adb start-server 开启 adb 服务</li>
-<li>adb kill-server 杀死 adb 服务</li>
-<li>adb shell    进入Android控制台(执行Linux命令)exit退出</li>
-<li>adb logcat 打印日志信息</li>
-<li>adb install xxx.apk : 安装应用</li>
-<li>adb uninstall 包名  : 根据包名卸载应用</li>
-<li>adb push hiahia.txt /sdcard/hiahia.txt : 上传文件</li>
-<li>adb pull /sdcard/hiahia.txt . : 下拉文件</li>
-<li><p>adb -s emulator-5554 :指定设备</p>
-</li>
-<li><p>adb可能因为360, 金山卫士, 腾讯QQ影响无法使用</p>
-</li>
-<li>端口5037被占用</li>
-<li>netstat -ano | find “5037” 查看谁占用端口</li>
-<li>杀掉进程kill pid  </li>
 </ul>
 <h2 id="如何在手机上运行Android项目"><a href="#如何在手机上运行Android项目" class="headerlink" title="如何在手机上运行Android项目"></a>如何在手机上运行Android项目</h2><ol>
 <li>买根数据线</li>
@@ -549,47 +523,6 @@
 </ul>
 </li>
 </ul>
-<hr>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:orientation=&quot;vertical&quot; &gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;Button&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;Button&quot; /&gt;
-
-    &lt;LinearLayout
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:orientation=&quot;vertical&quot; 
-        &gt;
-
-        &lt;Button
-            android:layout_weight=&quot;1&quot;
-            android:layout_width=&quot;wrap_content&quot;
-            android:layout_height=&quot;0dp&quot;
-            android:text=&quot;Button&quot; /&gt;
-
-        &lt;Button
-            android:layout_weight=&quot;2&quot;
-            android:layout_width=&quot;wrap_content&quot;
-            android:layout_height=&quot;0dp&quot;
-            android:text=&quot;Button&quot; /&gt;
-
-        &lt;Button
-            android:layout_weight=&quot;1&quot;
-            android:layout_width=&quot;wrap_content&quot;
-            android:layout_height=&quot;0dp&quot;
-            android:visibility=&quot;gone&quot;
-            android:text=&quot;Button&quot; /&gt; &lt;/LinearLayout&gt; &lt;/LinearLayout&gt;
-</code></pre><hr>
 <ul>
 <li>RelativeLayout    相对布局<ul>
 <li>控件之间以相对位置排列</li>
@@ -613,110 +546,14 @@
 </ul>
 </li>
 </ul>
-<hr>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:orientation=&quot;horizontal&quot; &gt;
-
-    &lt;RelativeLayout
-    android:layout_width=&quot;0dip&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:layout_weight=&quot;1&quot; &gt;
-
-    &lt;Button
-        android:id=&quot;@+id/bt_center&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_centerInParent=&quot;true&quot;
-        android:text=&quot;o&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_alignTop=&quot;@id/bt_center&quot;
-        android:layout_toLeftOf=&quot;@id/bt_center&quot;
-        android:text=&quot;←&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_above=&quot;@+id/bt_center&quot;
-        android:layout_alignLeft=&quot;@id/bt_center&quot;
-        android:text=&quot;↑&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_alignTop=&quot;@id/bt_center&quot;
-        android:layout_toRightOf=&quot;@id/bt_center&quot;
-        android:text=&quot;→&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_alignLeft=&quot;@id/bt_center&quot;
-        android:layout_below=&quot;@id/bt_center&quot;
-        android:text=&quot;↓&quot; /&gt;
-    &lt;/RelativeLayout&gt;
-
-    &lt;RelativeLayout
-    android:layout_width=&quot;0dip&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:layout_weight=&quot;1&quot; &gt;
-
-    &lt;Button
-        android:id=&quot;@+id/bt_a&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_alignParentRight=&quot;true&quot;
-        android:layout_centerVertical=&quot;true&quot;
-        android:text=&quot;A&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_alignBaseline=&quot;@id/bt_a&quot;
-        android:layout_toLeftOf=&quot;@+id/bt_a&quot;
-        android:text=&quot;B&quot; /&gt;
-&lt;/RelativeLayout&gt; &lt;/LinearLayout&gt;
-</code></pre><ul>
+<ul>
 <li>FrameLayout    帧布局<ul>
 <li>一层盖一层</li>
 <li>帧布局每次添加的控件都显示在最上面，最后显示在界面上的是最后添加的一个控件</li>
 </ul>
 </li>
 </ul>
-<hr>
-<pre><code>&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:layout_width=&quot;match_parent&quot;
-android:layout_height=&quot;match_parent&quot; &gt;
-
-&lt;TextView
-    android:layout_width=&quot;200dp&quot;
-    android:layout_height=&quot;200dp&quot;
-    android:background=&quot;#FF0000&quot; /&gt;
-
-&lt;TextView
-    android:layout_width=&quot;150dp&quot;
-    android:layout_height=&quot;150dp&quot;
-    android:background=&quot;#00FF00&quot; /&gt;
-
-&lt;TextView
-    android:layout_width=&quot;100dp&quot;
-    android:layout_height=&quot;100dp&quot;
-    android:background=&quot;#0000FF&quot; /&gt;
-
-&lt;TextView
-    android:layout_width=&quot;50dp&quot;
-    android:layout_height=&quot;50dp&quot;
-    android:background=&quot;#000000&quot; /&gt;
-
-&lt;TextView
-    android:layout_width=&quot;20dp&quot;
-    android:layout_height=&quot;20dp&quot;
-    android:background=&quot;#FFFFFF&quot; /&gt;    &lt;/FrameLayout&gt;
-</code></pre><ul>
+<ul>
 <li>AbsoluteLayout    绝对布局<ul>
 <li>通过x, y指定绝对位置. </li>
 <li>android:layout_x    指定控件在父布局的x轴坐标</li>
@@ -724,20 +561,7 @@ android:layout_height=&quot;match_parent&quot; &gt;
 </ul>
 </li>
 </ul>
-<hr>
-<pre><code>&lt;AbsoluteLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:layout_width=&quot;match_parent&quot;
-android:layout_height=&quot;match_parent&quot; &gt;
-
-&lt;Button
-    android:id=&quot;@+id/button1&quot;
-    android:layout_width=&quot;wrap_content&quot;
-    android:layout_height=&quot;wrap_content&quot;
-    android:layout_x=&quot;100dp&quot;
-    android:layout_y=&quot;100dp&quot;
-    android:text=&quot;Button&quot; /&gt;
-&lt;/AbsoluteLayout&gt;
-</code></pre><ul>
+<ul>
 <li><p>TableLayout        表格布局</p>
 <ul>
 <li>类似Html表格</li>
@@ -752,49 +576,7 @@ android:layout_height=&quot;match_parent&quot; &gt;
 </ul>
 </li>
 </ul>
-<hr>
-<pre><code>&lt;TableLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:layout_width=&quot;match_parent&quot;
-android:layout_height=&quot;match_parent&quot; &gt;
-
-&lt;TableRow android:layout_height=&quot;wrap_content&quot; &gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;1行0列&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;1行1列&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;1行2列&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;1行3列&quot; /&gt;
-&lt;/TableRow&gt;
-
-&lt;TableRow android:layout_height=&quot;wrap_content&quot; &gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;2行0列&quot; /&gt;
-
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_span=&quot;3&quot;
-        android:text=&quot;2行1列&quot; /&gt;
-&lt;/TableRow&gt;
-&lt;/TableLayout&gt;
-</code></pre><h2 id="Android的颜色模式"><a href="#Android的颜色模式" class="headerlink" title="Android的颜色模式"></a><a name="wu"></a>Android的颜色模式</h2><p>RGB (Red, Green, Blue) #FF0000</p>
+<h2 id="Android的颜色模式"><a href="#Android的颜色模式" class="headerlink" title="Android的颜色模式"></a><a name="wu"></a>Android的颜色模式</h2><p>RGB (Red, Green, Blue) #FF0000</p>
 <h2 id="今天控件"><a href="#今天控件" class="headerlink" title="今天控件"></a>今天控件</h2><ul>
 <li>显示文本的控件  TextView</li>
 <li>输入框控件      EditText</li>
@@ -992,7 +774,7 @@ android:layout_height=&quot;match_parent&quot; &gt;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通信技术的发展历程"><span class="nav-number"></span> <span class="nav-text">通信技术的发展历程:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机的区别"><span class="nav-number"></span> <span class="nav-text">虚拟机的区别:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android开发环境搭建"><span class="nav-number"></span> <span class="nav-text">Android开发环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发工具"><span class="nav-number"></span> <span class="nav-text">开发工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK目录"><span class="nav-number"></span> <span class="nav-text">SDK目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android项目工程目录结构"><span class="nav-number"></span> <span class="nav-text">Android项目工程目录结构:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包安装过程-Run-as-Android-Application"><span class="nav-number"></span> <span class="nav-text">打包安装过程(Run as Android Application ) :</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-屏幕分辨率"><span class="nav-number"></span> <span class="nav-text">Android 屏幕分辨率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发工具-1"><span class="nav-number"></span> <span class="nav-text">开发工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置adb环境"><span class="nav-number"></span> <span class="nav-text">配置adb环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adb命令"><span class="nav-number"></span> <span class="nav-text">adb命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在手机上运行Android项目"><span class="nav-number"></span> <span class="nav-text">如何在手机上运行Android项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R文件报错处理"><span class="nav-number"></span> <span class="nav-text">R文件报错处理:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击事件的4种写法"><span class="nav-number"></span> <span class="nav-text">点击事件的4种写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#短信发送器"><span class="nav-number"></span> <span class="nav-text">短信发送器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写一个Android项目"><span class="nav-number"></span> <span class="nav-text">写一个Android项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android常见布局"><span class="nav-number"></span> <span class="nav-text">Android常见布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android的颜色模式"><span class="nav-number"></span> <span class="nav-text">Android的颜色模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今天控件"><span class="nav-number"></span> <span class="nav-text">今天控件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中的显示单位"><span class="nav-number"></span> <span class="nav-text">Android中的显示单位</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一-Android开发环境搭建"><span class="nav-number"></span> <span class="nav-text">一 Android开发环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1下载开发工具"><span class="nav-number"></span> <span class="nav-text">1.1下载开发工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2开发环境搭建"><span class="nav-number"></span> <span class="nav-text">1.2开发环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置adb环境"><span class="nav-number"></span> <span class="nav-text">配置adb环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adb命令"><span class="nav-number"></span> <span class="nav-text">adb命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android项目工程目录结构"><span class="nav-number"></span> <span class="nav-text">Android项目工程目录结构:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包安装过程-Run-as-Android-Application"><span class="nav-number"></span> <span class="nav-text">打包安装过程(Run as Android Application ) :</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在手机上运行Android项目"><span class="nav-number"></span> <span class="nav-text">如何在手机上运行Android项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R文件报错处理"><span class="nav-number"></span> <span class="nav-text">R文件报错处理:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击事件的4种写法"><span class="nav-number"></span> <span class="nav-text">点击事件的4种写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#短信发送器"><span class="nav-number"></span> <span class="nav-text">短信发送器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写一个Android项目"><span class="nav-number"></span> <span class="nav-text">写一个Android项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android常见布局"><span class="nav-number"></span> <span class="nav-text">Android常见布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android的颜色模式"><span class="nav-number"></span> <span class="nav-text">Android的颜色模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今天控件"><span class="nav-number"></span> <span class="nav-text">今天控件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中的显示单位"><span class="nav-number"></span> <span class="nav-text">Android中的显示单位</span></a></div>
             
 
           </div>
