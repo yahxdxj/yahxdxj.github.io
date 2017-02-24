@@ -100,7 +100,7 @@ Markdown 是一种书写的格式，HTML 是一种发布的格式。
 Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdo">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
-<meta property="og:updated_time" content="2017-02-13T01:37:21.000Z">
+<meta property="og:updated_time" content="2017-02-24T15:13:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacDown语法">
 <meta name="twitter:description" content="导语
@@ -354,7 +354,7 @@ Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdow
 <ol>
 <li><a href="#1">如何换行</a>  </li>
 <li><a href="#2">加粗 斜体</a>    </li>
-<li><a href="#3">标头</a>    </li>
+<li><a href="#3">标题</a>    </li>
 <li><a href="#4">链接 邮箱</a>    </li>
 <li><a href="#5">图片</a>  </li>
 <li><a href="#6">列表</a>  </li>
@@ -371,22 +371,17 @@ Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdow
 <h4 id="1-2-加粗-and-斜体"><a href="#1-2-加粗-and-斜体" class="headerlink" title="1.2 加粗 and 斜体"></a><a name="2"></a>1.2 加粗 and 斜体</h4><p><strong>加粗</strong>: 用双星号包裹<code>**Strong**</code><br><em>斜体</em>: 用单星号包裹<code>*Emphasize*</code><br>下面是加粗和斜体示例代码,直接copy到macdown左侧中:  </p>
 <pre><code>**加粗**: 用双星号包裹`**Strong**`  
 *斜体*: 用单星号包裹`*Emphasize*`
-</code></pre><h4 id="1-3-标头-like-this-one"><a href="#1-3-标头-like-this-one" class="headerlink" title="1.3 标头 (like this one!)"></a><a name="3"></a>1.3 标头 (like this one!)</h4><pre><code>Header 1
-========
-
-Header 2
---------
-</code></pre><p>or</p>
-<pre><code># Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-###### Header 6
+</code></pre><h4 id="1-3-标题-就像本行"><a href="#1-3-标题-就像本行" class="headerlink" title="1.3 标题 (就像本行)"></a><a name="3"></a>1.3 标题 (就像本行)</h4><p>一个#字体最大, 6个#字体最小</p>
+<pre><code># 标题 1
+## 标题 2
+### 标题 3
+#### 标题 4
+##### 标题 5
+###### 标题 6
 </code></pre><h4 id="1-4-链接-and-邮箱"><a href="#1-4-链接-and-邮箱" class="headerlink" title="1.4 链接 and 邮箱"></a><a name="4"></a>1.4 链接 and 邮箱</h4><h5 id="1-4-1内链接"><a href="#1-4-1内链接" class="headerlink" title="1.4.1内链接"></a>1.4.1内链接</h5><ol>
 <li><p>网址可用尖括号包裹使其可点击: <a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br>下面是网址示例代码,直接copy到macdown左侧中:<br><code>&lt;http://macdown.uranusjr.com&gt;</code> </p>
 </li>
-<li><p>邮箱也可用尖括号包裹使其可点击: <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x75;&#x72;&#97;&#110;&#117;&#115;&#106;&#x72;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x75;&#x72;&#97;&#110;&#117;&#115;&#106;&#x72;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a><br>下面是邮箱示例代码,直接copy到macdown左侧中:<br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
+<li><p>邮箱也可用尖括号包裹使其可点击: <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x75;&#x72;&#x61;&#110;&#x75;&#115;&#x6a;&#x72;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#x75;&#x72;&#x61;&#110;&#x75;&#115;&#x6a;&#x72;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a><br>下面是邮箱示例代码,直接copy到macdown左侧中:<br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
 </li>
 <li><p>也许你需要一些这样的链接文本: <a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a>  ,<br>下面是链接文本示例代码,直接copy到macdown左侧中:<br><code>[Macdown Website](http://macdown.uranusjr.com)</code>  </p>
 </li>
@@ -669,7 +664,7 @@ print(&apos;Nesting does nothing. Your code is displayed Literally&apos;)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Markdown基础语法"><span class="nav-number"></span> <span class="nav-text">一 Markdown基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-如何换行"><span class="nav-number">1.</span> <span class="nav-text">1.1 如何换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-加粗-and-斜体"><span class="nav-number">2.</span> <span class="nav-text">1.2 加粗 and 斜体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-标头-like-this-one"><span class="nav-number">3.</span> <span class="nav-text">1.3 标头 (like this one!)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-链接-and-邮箱"><span class="nav-number">4.</span> <span class="nav-text">1.4 链接 and 邮箱</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-1内链接"><span class="nav-number">4.1.</span> <span class="nav-text">1.4.1内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-2-其他写法"><span class="nav-number">4.2.</span> <span class="nav-text">1.4.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-图片"><span class="nav-number">5.</span> <span class="nav-text">1.5 图片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-内链接"><span class="nav-number">5.1.</span> <span class="nav-text">1.5.1 内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-2-其他写法"><span class="nav-number">5.2.</span> <span class="nav-text">1.5.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-列表"><span class="nav-number">6.</span> <span class="nav-text">1.6 列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-引用"><span class="nav-number">7.</span> <span class="nav-text">1.7 引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8-代码"><span class="nav-number">8.</span> <span class="nav-text">1.8 代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-代码块"><span class="nav-number">9.</span> <span class="nav-text">1.9 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-用3个单引号包裹"><span class="nav-number">9.0.1.</span> <span class="nav-text">1. 用3个单引号包裹</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-先空一行-使用tab键或者缩进四个空格-在写入代码-具体自己试验。"><span class="nav-number">9.0.2.</span> <span class="nav-text">2. 先空一行,使用tab键或者缩进四个空格,在写入代码,具体自己试验。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-表格"><span class="nav-number">10.</span> <span class="nav-text">1.10 表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-11-本页跳转"><span class="nav-number">11.</span> <span class="nav-text">1.11 本页跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-12-反斜杠"><span class="nav-number">12.</span> <span class="nav-text">1.12 反斜杠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-13-分割线"><span class="nav-number">13.</span> <span class="nav-text">1.13 分割线</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Markdown基础语法"><span class="nav-number"></span> <span class="nav-text">一 Markdown基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-如何换行"><span class="nav-number">1.</span> <span class="nav-text">1.1 如何换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-加粗-and-斜体"><span class="nav-number">2.</span> <span class="nav-text">1.2 加粗 and 斜体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-标题-就像本行"><span class="nav-number">3.</span> <span class="nav-text">1.3 标题 (就像本行)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-链接-and-邮箱"><span class="nav-number">4.</span> <span class="nav-text">1.4 链接 and 邮箱</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-1内链接"><span class="nav-number">4.1.</span> <span class="nav-text">1.4.1内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-2-其他写法"><span class="nav-number">4.2.</span> <span class="nav-text">1.4.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-图片"><span class="nav-number">5.</span> <span class="nav-text">1.5 图片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-内链接"><span class="nav-number">5.1.</span> <span class="nav-text">1.5.1 内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-2-其他写法"><span class="nav-number">5.2.</span> <span class="nav-text">1.5.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-列表"><span class="nav-number">6.</span> <span class="nav-text">1.6 列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-引用"><span class="nav-number">7.</span> <span class="nav-text">1.7 引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8-代码"><span class="nav-number">8.</span> <span class="nav-text">1.8 代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-代码块"><span class="nav-number">9.</span> <span class="nav-text">1.9 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-用3个单引号包裹"><span class="nav-number">9.0.1.</span> <span class="nav-text">1. 用3个单引号包裹</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-先空一行-使用tab键或者缩进四个空格-在写入代码-具体自己试验。"><span class="nav-number">9.0.2.</span> <span class="nav-text">2. 先空一行,使用tab键或者缩进四个空格,在写入代码,具体自己试验。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-表格"><span class="nav-number">10.</span> <span class="nav-text">1.10 表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-11-本页跳转"><span class="nav-number">11.</span> <span class="nav-text">1.11 本页跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-12-反斜杠"><span class="nav-number">12.</span> <span class="nav-text">1.12 反斜杠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-13-分割线"><span class="nav-number">13.</span> <span class="nav-text">1.13 分割线</span></a></li></ol></div>
             
 
           </div>
