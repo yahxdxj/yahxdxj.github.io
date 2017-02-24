@@ -100,7 +100,7 @@ Markdown 是一种书写的格式，HTML 是一种发布的格式。
 Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdo">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
-<meta property="og:updated_time" content="2017-02-24T15:13:50.000Z">
+<meta property="og:updated_time" content="2017-02-24T15:37:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacDown语法">
 <meta name="twitter:description" content="导语
@@ -357,18 +357,18 @@ Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdow
 <li><a href="#3">标题</a>    </li>
 <li><a href="#4">链接 邮箱</a>    </li>
 <li><a href="#5">图片</a>  </li>
-<li><a href="#6">列表</a>  </li>
+<li><a href="#6">分类</a>  </li>
 <li><a href="#7">引用</a>    </li>
 <li><a href="#8">代码</a>    </li>
 <li><a href="#9">代码块</a>    </li>
 <li><a href="#10">表格</a>  </li>
-<li><a href="#11">本页跳转</a>  </li>
+<li><a href="#11">本页跳转 如:回到顶部</a>  </li>
 <li><a href="#12">反斜杠</a>    </li>
 <li><a href="#13">分割线</a>    </li>
 </ol>
 </blockquote>
 <h3 id="一-Markdown基础语法"><a href="#一-Markdown基础语法" class="headerlink" title="一 Markdown基础语法"></a>一 Markdown<a href="http://www.appinn.com/markdown/" target="_blank" rel="external">基础语法</a></h3><h4 id="1-1-如何换行"><a href="#1-1-如何换行" class="headerlink" title="1.1 如何换行"></a><a name="1"></a>1.1 如何换行</h4><p>强制换行:在一行的最末敲两次空格加一次回车  </p>
-<h4 id="1-2-加粗-and-斜体"><a href="#1-2-加粗-and-斜体" class="headerlink" title="1.2 加粗 and 斜体"></a><a name="2"></a>1.2 加粗 and 斜体</h4><p><strong>加粗</strong>: 用双星号包裹<code>**Strong**</code><br><em>斜体</em>: 用单星号包裹<code>*Emphasize*</code><br>下面是加粗和斜体示例代码,直接copy到macdown左侧中:  </p>
+<h4 id="1-2-加粗-and-斜体"><a href="#1-2-加粗-and-斜体" class="headerlink" title="1.2 加粗 and 斜体"></a><a name="2"></a>1.2 加粗 and 斜体</h4><p><strong>加粗</strong>: 用双星号包裹<code>**Strong**</code><br><em>斜体</em>: 用单星号包裹<code>*Emphasize*</code><br>加粗和斜体示例代码:  </p>
 <pre><code>**加粗**: 用双星号包裹`**Strong**`  
 *斜体*: 用单星号包裹`*Emphasize*`
 </code></pre><h4 id="1-3-标题-就像本行"><a href="#1-3-标题-就像本行" class="headerlink" title="1.3 标题 (就像本行)"></a><a name="3"></a>1.3 标题 (就像本行)</h4><p>一个#字体最大, 6个#字体最小</p>
@@ -378,25 +378,10 @@ Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdow
 #### 标题 4
 ##### 标题 5
 ###### 标题 6
-</code></pre><h4 id="1-4-链接-and-邮箱"><a href="#1-4-链接-and-邮箱" class="headerlink" title="1.4 链接 and 邮箱"></a><a name="4"></a>1.4 链接 and 邮箱</h4><h5 id="1-4-1内链接"><a href="#1-4-1内链接" class="headerlink" title="1.4.1内链接"></a>1.4.1内链接</h5><ol>
-<li><p>网址可用尖括号包裹使其可点击: <a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br>下面是网址示例代码,直接copy到macdown左侧中:<br><code>&lt;http://macdown.uranusjr.com&gt;</code> </p>
-</li>
-<li><p>邮箱也可用尖括号包裹使其可点击: <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x75;&#x72;&#x61;&#110;&#x75;&#115;&#x6a;&#x72;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#x75;&#x72;&#x61;&#110;&#x75;&#115;&#x6a;&#x72;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a><br>下面是邮箱示例代码,直接copy到macdown左侧中:<br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
-</li>
-<li><p>也许你需要一些这样的链接文本: <a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a>  ,<br>下面是链接文本示例代码,直接copy到macdown左侧中:<br><code>[Macdown Website](http://macdown.uranusjr.com)</code>  </p>
-</li>
-</ol>
-<h5 id="1-4-2-其他写法"><a href="#1-4-2-其他写法" class="headerlink" title="1.4.2 其他写法"></a>1.4.2 其他写法</h5><p>有时链接太长,页面显得很混乱,你可以将所有链接统一放在一起定义,之后根据情况具体去调用.  </p>
-<ol>
-<li>链接定义:<br><code>[arbitrary_id]: http://macdown.uranusjr.com</code><br><code>[Baidu]: http://macdown.uranusjr.com</code><br><code>[jd_id]: https://www.jd.com</code>  </li>
-<li>可在文章任一地方使用已经定义的链接:<br><a href="http://macdown.uranusjr.com" target="_blank" rel="external">一个链接</a>  使用格式[][]:<code>[一个链接][arbitrary_id]</code><br><a href="http://www.baidu.com" target="_blank" rel="external">百度链接</a>  使用格式[][]:<code>[百度链接][Baidu]</code><br><a href="https://www.jd.com" target="_blank" rel="external">京东商城</a>  使用格式[][]:<code>[京东商城][jd_id]</code>  </li>
-</ol>
-<p>示例代码,直接copy到macdown左侧中:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[arbitrary_id]: http:<span class="comment">//macdown.uranusjr.com  </span></div><div class="line">[Baidu]: http:<span class="comment">//www.baidu.com  </span></div><div class="line">[jd_id]: https:<span class="comment">//www.jd.com  </span></div><div class="line">[一个链接][arbitrary_id]  </div><div class="line">[百度链接][Baidu]  </div><div class="line">[京东商城][jd_id]</div></pre></td></tr></table></figure></p>
-<h4 id="1-5-图片"><a href="#1-5-图片" class="headerlink" title="1.5 图片"></a><a name="5"></a>1.5 图片</h4><h5 id="1-5-1-内链接"><a href="#1-5-1-内链接" class="headerlink" title="1.5.1 内链接"></a>1.5.1 内链接</h5><p>图片的引用:叹号+中括号+小括号 <code>![名称随意](图片url)</code> 如:<br><code>![M12](http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png)</code><br><code>![M34](http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png)</code><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png" alt="M12"><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png" alt="M34"></p>
-<h5 id="1-5-2-其他写法"><a href="#1-5-2-其他写法" class="headerlink" title="1.5.2 其他写法"></a>1.5.2 其他写法</h5><ol>
-<li>先定义<br><code>[image-id]: http://ojupj7fr2.bkt.clouddn.com/blog_touxiang.png</code>  </li>
-<li>定义完,可在文章任意地方调用:<br><code>![Alt Image Text][image-id]</code></li>
-</ol>
+</code></pre><h4 id="1-4-链接-and-邮箱"><a href="#1-4-链接-and-邮箱" class="headerlink" title="1.4 链接 and 邮箱"></a><a name="4"></a>1.4 链接 and 邮箱</h4><p>写法一:<br>网址和邮箱 可用尖括号包裹使其可点击:<br><a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br><a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#117;&#114;&#97;&#110;&#117;&#x73;&#106;&#x72;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#117;&#114;&#97;&#110;&#117;&#x73;&#106;&#x72;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a><br>写法一示例代码:<br><code>&lt;http://macdown.uranusjr.com&gt;</code><br><code>&lt;uranusjr@gmail.com&gt;</code>      </p>
+<p>写法二:<br>也许你需要一些这样的链接文本:<br><a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a><br>写法二示例代码<br><code>[Macdown Website](http://macdown.uranusjr.com)</code>    </p>
+<h4 id="1-5-图片"><a href="#1-5-图片" class="headerlink" title="1.5 图片"></a><a name="5"></a>1.5 图片</h4><p>图片的引用:叹号+中括号+小括号<br><code>![名称随意](图片url)</code> 如:<br><code>![M12](http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png)</code><br><code>![M34](http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png)</code><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png" alt="M12"><br><img src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png" alt="M34"></p>
+<p>在这里图片引用用到了<a href="http://www.baidu.com/s?tn=baidu&amp;ie=utf-8&amp;wd=%E5%9B%BE%E5%BA%8A" target="_blank" rel="external">图床</a>,具体自己百度</p>
 <h4 id="1-6-列表"><a href="#1-6-列表" class="headerlink" title="1.6 列表"></a><a name="6"></a>1.6 列表</h4><ul>
 <li>使用列表之前先空一行</li>
 <li>列表的每个条目以星号打头<code>*</code>  </li>
@@ -411,7 +396,7 @@ Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdow
 </ul>
 </li>
 </ul>
-<p>这是列表示例代码,直接copy到macdown左侧中:  </p>
+<p>列表示例代码:  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* 使用列表之前先空一行</div><div class="line">* 列表的每个条目以星号打头 `*`</div><div class="line">- 也可以用横杠打头 `-`</div><div class="line">	* tab键生成二级列表,具体自己试验下</div><div class="line">		1. 支持有序列表.</div><div class="line">		2. 以1,2,3打头 如: `1. `</div><div class="line">		42. 无论你使用什么数字,都是按照1234...依次排序</div><div class="line">		1. So you might want to start each line with `1.` and let me sort it out</div></pre></td></tr></table></figure>
 <h4 id="1-7-引用"><a href="#1-7-引用" class="headerlink" title="1.7 引用"></a><a name="7"></a>1.7 引用</h4><blockquote>
 <p>尖括号 <code>&gt;</code> 被用来引用.<br>从技术上讲,引用好几段内容时,并不是每一行都需要以尖括号<code>&gt;</code>开始,只要段落与段落之间没有空行就行<br>尽管看上去有点丑陋.</p>
@@ -424,34 +409,30 @@ Markdown 的格式语法只涵盖纯文本可以涵盖的范围。不在 Markdow
 <p>许多markdown 语法都可以在引用中使用.</p>
 <ul>
 <li>Lists</li>
-<li><a href="http://macdown.uranusjr.com" target="_blank" rel="external">Links</a></li>
+<li><a href="https://www.jd.com" target="_blank" rel="external">京东</a></li>
 <li>Etc.</li>
 </ul>
 </blockquote>
-<p>这是引用示例代码,直接copy到macdown左侧中:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; 尖括号 `&gt;` 被用来块引用.  </div><div class="line">从技术上讲,引用好几段内用,并不是每一行都需要以尖括号`&gt;`开始,只要段落与段落之间没有空行就行  </div><div class="line">&gt; 尽管看上去有点丑陋.</div><div class="line">&gt; &gt; 块引用可以嵌套.  </div><div class="line">&gt; &gt; &gt; 多级嵌套.</div><div class="line">&gt;</div><div class="line">&gt; Most markdown syntaxes work inside block quotes.</div><div class="line">&gt;</div><div class="line">&gt; * Lists</div><div class="line">&gt; * [Links][arbitrary_id]</div><div class="line">&gt; * Etc.</div></pre></td></tr></table></figure>
-<h4 id="1-8-代码"><a href="#1-8-代码" class="headerlink" title="1.8 代码"></a><a name="8"></a>1.8 代码</h4><p>代码: 用单引号(该键位在tab键上方)包裹<br><code>`private void initData(){}` </code><br>如果你的代码中有单引号并且需要展示,你可以使用两次单引号包裹已经存在的单引号:<br><code>``Code with `backticks` `` </code>  </p>
-<h4 id="1-9-代码块"><a href="#1-9-代码块" class="headerlink" title="1.9 代码块"></a><a name="9"></a>1.9 代码块</h4><p>显示一个代码块有两种方式:  </p>
-<h6 id="1-用3个单引号包裹"><a href="#1-用3个单引号包裹" class="headerlink" title="1. 用3个单引号包裹"></a>1. 用3个单引号包裹</h6><p><code>```This is a code block``` </code>  </p>
+<p>引用示例代码:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; 尖括号 `&gt;` 被用来块引用.  </div><div class="line">从技术上讲,引用好几段内用,并不是每一行都需要以尖括号`&gt;`开始,只要段落与段落之间没有空行就行  </div><div class="line">&gt; 尽管看上去有点丑陋.</div><div class="line">&gt; &gt; 块引用可以嵌套.  </div><div class="line">&gt; &gt; &gt; 多级嵌套.</div><div class="line">&gt;</div><div class="line">&gt; Most markdown syntaxes work inside block quotes.</div><div class="line">&gt;</div><div class="line">&gt; * Lists</div><div class="line">&gt; * [京东](https://www.jd.com)</div><div class="line">&gt; * Etc.</div></pre></td></tr></table></figure>
+<h4 id="1-8-代码"><a href="#1-8-代码" class="headerlink" title="1.8 代码"></a><a name="8"></a>1.8 代码</h4><p>代码:   用单引号(该键位在tab键上方)包裹<br><code>private void initData(){}</code><br>代码示例代码<br><code>`private void initData(){}` </code>    </p>
+<p>如果你的代码中有单引号并且需要展示,你可以使用两次单引号包裹已经存在的单引号:<br><code>Code with `backticks` </code><br>有单引号代码示例代码<br><figure class="highlight plain"><figcaption><span>``Code with `backticks` `` ````  </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">#### &lt;a name=&quot;9&quot;&gt;&lt;/a&gt;1.9 代码块  </div><div class="line">显示一个代码块有两种方式:  </div><div class="line">###### 1. 用3个单引号(该键位在tab键上方)包裹  </div><div class="line">```This is a code block</div></pre></td></tr></table></figure></p>
 <h6 id="2-先空一行-使用tab键或者缩进四个空格-在写入代码-具体自己试验。"><a href="#2-先空一行-使用tab键或者缩进四个空格-在写入代码-具体自己试验。" class="headerlink" title="2. 先空一行,使用tab键或者缩进四个空格,在写入代码,具体自己试验。"></a>2. 先空一行,使用tab键或者缩进四个空格,在写入代码,具体自己试验。</h6><pre><code>print(&apos;This is a code block&apos;)
 print(&apos;The block must be preceded by a blank line&apos;)
 print(&apos;Then indent at least 4 spaces or 1 tab&apos;)
 print(&apos;Nesting does nothing. Your code is displayed Literally&apos;)
-</code></pre><h4 id="1-10-表格"><a href="#1-10-表格" class="headerlink" title="1.10 表格"></a><a name="10"></a>1.10 表格</h4><blockquote>
-<p>表格的格式有点复杂.</p>
-</blockquote>
+</code></pre><h4 id="1-10-表格"><a href="#1-10-表格" class="headerlink" title="1.10 表格"></a><a name="10"></a>1.10 表格</h4><p>表格示例代码:  </p>
 <pre><code>| 链接 | 结果 | 原因 |
 |:-----|:---:|----------:|
 |文本内容| **`是`** |同协议同域名同端口|
 |文本内容| **`是`** |同协议同域名同端口|
 |文本内容| **`是`** |同协议同域名同端口|
-</code></pre><blockquote>
+</code></pre><p>代码解释:   </p>
 <ol>
 <li>使用表格之前, 需先空一行, 切记表格要与上面的文本内容空一行, 否则解析不出来</li>
 <li>上面第一行是表格的表头。第二行的冒号位置决定表格内文本的对齐方式。有水平居中、水平靠左对齐、水平靠右对齐三种.  </li>
 <li>每列的宽度是根据对应列里最长的文本来决定的  </li>
 </ol>
-</blockquote>
 <p>输出结果：</p>
 <table>
 <thead>
@@ -488,8 +469,9 @@ print(&apos;Nesting does nothing. Your code is displayed Literally&apos;)
 </code></pre><p>比如: <a href="#daoyu"><strong>回到导语</strong></a>  </p>
 </li>
 </ol>
-<h4 id="1-12-反斜杠"><a href="#1-12-反斜杠" class="headerlink" title="1.12 反斜杠"></a><a name="12"></a>1.12 反斜杠</h4><p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：  </p>
+<h4 id="1-12-反斜杠"><a href="#1-12-反斜杠" class="headerlink" title="1.12 反斜杠"></a><a name="12"></a>1.12 反斜杠</h4><p>某些普通符号直接写在Markdown中是不显示的,<br>但可以通过在这些符号前面加上反斜杠来帮助它们显示： </p>
 <p>\   反斜线<br>`   反引号<br>*   星号<br>_   底线<br>{}  花括号<br>[]  方括号<br>()  括弧<br>#   井字号<br>+   加号<br>-   减号<br>.   英文句点<br>!   惊叹号  </p>
+<p>反斜杠示例代码</p>
 <pre><code>\\   反斜线
 \`   反引号
 \*   星号
@@ -664,7 +646,7 @@ print(&apos;Nesting does nothing. Your code is displayed Literally&apos;)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Markdown基础语法"><span class="nav-number"></span> <span class="nav-text">一 Markdown基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-如何换行"><span class="nav-number">1.</span> <span class="nav-text">1.1 如何换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-加粗-and-斜体"><span class="nav-number">2.</span> <span class="nav-text">1.2 加粗 and 斜体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-标题-就像本行"><span class="nav-number">3.</span> <span class="nav-text">1.3 标题 (就像本行)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-链接-and-邮箱"><span class="nav-number">4.</span> <span class="nav-text">1.4 链接 and 邮箱</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-1内链接"><span class="nav-number">4.1.</span> <span class="nav-text">1.4.1内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-2-其他写法"><span class="nav-number">4.2.</span> <span class="nav-text">1.4.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-图片"><span class="nav-number">5.</span> <span class="nav-text">1.5 图片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-内链接"><span class="nav-number">5.1.</span> <span class="nav-text">1.5.1 内链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-2-其他写法"><span class="nav-number">5.2.</span> <span class="nav-text">1.5.2 其他写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-列表"><span class="nav-number">6.</span> <span class="nav-text">1.6 列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-引用"><span class="nav-number">7.</span> <span class="nav-text">1.7 引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8-代码"><span class="nav-number">8.</span> <span class="nav-text">1.8 代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-代码块"><span class="nav-number">9.</span> <span class="nav-text">1.9 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-用3个单引号包裹"><span class="nav-number">9.0.1.</span> <span class="nav-text">1. 用3个单引号包裹</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-先空一行-使用tab键或者缩进四个空格-在写入代码-具体自己试验。"><span class="nav-number">9.0.2.</span> <span class="nav-text">2. 先空一行,使用tab键或者缩进四个空格,在写入代码,具体自己试验。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-表格"><span class="nav-number">10.</span> <span class="nav-text">1.10 表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-11-本页跳转"><span class="nav-number">11.</span> <span class="nav-text">1.11 本页跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-12-反斜杠"><span class="nav-number">12.</span> <span class="nav-text">1.12 反斜杠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-13-分割线"><span class="nav-number">13.</span> <span class="nav-text">1.13 分割线</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Markdown基础语法"><span class="nav-number"></span> <span class="nav-text">一 Markdown基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-如何换行"><span class="nav-number">1.</span> <span class="nav-text">1.1 如何换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-加粗-and-斜体"><span class="nav-number">2.</span> <span class="nav-text">1.2 加粗 and 斜体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-标题-就像本行"><span class="nav-number">3.</span> <span class="nav-text">1.3 标题 (就像本行)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-链接-and-邮箱"><span class="nav-number">4.</span> <span class="nav-text">1.4 链接 and 邮箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-图片"><span class="nav-number">5.</span> <span class="nav-text">1.5 图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-列表"><span class="nav-number">6.</span> <span class="nav-text">1.6 列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-引用"><span class="nav-number">7.</span> <span class="nav-text">1.7 引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8-代码"><span class="nav-number">8.</span> <span class="nav-text">1.8 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-先空一行-使用tab键或者缩进四个空格-在写入代码-具体自己试验。"><span class="nav-number">8.0.1.</span> <span class="nav-text">2. 先空一行,使用tab键或者缩进四个空格,在写入代码,具体自己试验。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-表格"><span class="nav-number">9.</span> <span class="nav-text">1.10 表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-11-本页跳转"><span class="nav-number">10.</span> <span class="nav-text">1.11 本页跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-12-反斜杠"><span class="nav-number">11.</span> <span class="nav-text">1.12 反斜杠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-13-分割线"><span class="nav-number">12.</span> <span class="nav-text">1.13 分割线</span></a></li></ol></div>
             
 
           </div>
