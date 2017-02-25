@@ -1,0 +1,1346 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+ Fragment介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android基础--Fragment 动画">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/Android基础--Fragment 动画/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+ Fragment介绍">
+<meta property="og:updated_time" content="2017-02-25T03:28:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android基础--Fragment 动画">
+<meta name="twitter:description" content="导语
+ Fragment介绍">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/Android基础--Fragment 动画/"/>
+
+
+
+
+
+  <title> Android基础--Fragment 动画 | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/13/Android基础--Fragment 动画/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android基础--Fragment 动画
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T09:46:29+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/13/Android基础--Fragment 动画/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/Android基础--Fragment 动画/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> Fragment介绍  </p>
+</blockquote>
+<a id="more"></a>
+<h1 id="一、Fragment"><a href="#一、Fragment" class="headerlink" title="一、Fragment"></a>一、Fragment</h1><h3 id="1、为什么要使用fragment-Android-3-0-API-11-开始"><a href="#1、为什么要使用fragment-Android-3-0-API-11-开始" class="headerlink" title="1、为什么要使用fragment(Android 3.0 API 11 开始)"></a>1、为什么要使用fragment(Android 3.0 API 11 开始)</h3><ul>
+<li>适配大屏幕</li>
+<li>用途：在一个Activity里切换界面，切换界面时只切换Fragment里面的内容<br>###2、如何使用fragment</li>
+<li>fragment 理解成迷你activity，依托于activity存活，如果activity挂了，fragment也挂了。<ol>
+<li>写一个类继承 Fragment </li>
+<li>重写onCreateView()方法，返回当前fragement显示的view对象。</li>
+</ol>
+</li>
+</ul>
+<pre><code>        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            //返回一个view对象
+        }
+3. 在activity获取Fragment01对象
+
+          Fragment01 fg1 = new Fragment01();
+3.1. 在activity获取到碎片管理器 FragmentManager
+
+        FragmentManager fm = getFragmentManager();
+4. 如果要更新界面要保证同时成功或者同时失败，开启事务
+
+        FragmentTransaction ft = fm.beginTransaction();
+5. 替换activity界面某个容器里面显示的内容（fragment）
+
+        ft.replace(R.id.container, new Fragment03());
+        ft.add();
+        ft.remove();
+6. 如果要更新界面要保证同时成功或者同时失败，提交事务
+
+        ft.commit();
+</code></pre><p>####2.1使用fragment细节</p>
+<ul>
+<li><p>写一个类继承 Fragment，并定义一个布局文件作为Fragment的显示内容(先要定义一个布局文件)</p>
+<pre><code>public class Fragment01 extends Fragment {
+
+    //与ListAdapter中的getView方法类似
+    //此方法返回的View对象就是Fragment显示的内容
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+
+        //用布局文件填充成一个View对象，返回出去，那么就显示在Fragment上了
+        View view = inflater.inflate(R.layout.fragment01, null);
+
+        return view ;
+    }
+}
+</code></pre></li>
+<li><p>把Fragment显示至指定ViewGroup中</p>
+<pre><code>//把fragment显示至界面
+//new出fragment对象
+Fragment01 fg = new Fragment01();
+FragmentManager fm = getFragmentManager();
+//开启事务
+FragmentTransaction ft = fm.beginTransaction();
+//把fragment对象显示到指定资源id的组件里面
+ft.replace(R.id.fl, fg);
+ft.commit();
+</code></pre><p>####2.2使用fragment示例</p>
+<p>  //Activity界面显示fragment01<br>  public void click1(View v){</p>
+<pre><code>//1 获取Fragment01对象，//Fragment01对象的onCreateView返回一个view对象
+  Fragment01 fg1 = new Fragment01();
+  //2.获取fragment管理器
+  FragmentManager fm = getFragmentManager();
+  //3.开启事务
+  FragmentTransaction ft = fm.beginTransaction();
+  //4.把fg1设置显示在帧布局中
+  ft.replace(R.id.fl, fg1);
+  //5.提交事务
+  ft.commit();
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p>###3、生命周期</p>
+<ul>
+<li>生命周期方法跟Activity一致，可以理解把其为就是一个Activity</li>
+<li>fragment切换时会销毁旧的，再创建新的</li>
+<li>fragment切换时旧fragment对象会销毁，新的fragment对象会被创建</li>
+<li><p>完整生命周期</p>
+<pre><code>oncreate--&gt;oncreateView--&gt;onstart--&gt;onresume--&gt;onpause---&gt;onstop---ondestroy
+</code></pre></li>
+<li><p>可视生命周期</p>
+<pre><code>onstart--&gt;onresume--&gt;onpause---&gt;onstop
+</code></pre></li>
+<li><p>前台生命周期</p>
+<pre><code>onresume--&gt;onpause
+</code></pre></li>
+</ul>
+<p>###4、低版本兼容</p>
+<ul>
+<li>在support-v4.jar包中有相关api，也就是说fragment可以在低版本模拟器运行</li>
+<li>使用 support-v4.jar包。包含有新版本sdk的API。<ol>
+<li>替换所有的导包 android.app.<em> —&gt; android.support.v4.app.</em>;</li>
+<li>继承activity的时候 换成 FragmentActivity </li>
+<li>getFragmentManager() —&gt;getSupportFragmentManager();</li>
+</ol>
+</li>
+<li>在实际开发当中，基本上使用的都是v4包里面的fragement</li>
+</ul>
+<p>–示例–</p>
+<pre><code>import android.os.Bundle;
+
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.LinearLayout;
+
+public class MainActivity extends FragmentActivity {
+
+    private Fragment01 fg1;
+    private LinearLayout ll;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ll = (LinearLayout) findViewById(R.id.ll);
+        //1 获取Fragment01对象
+          fg1 = new Fragment01();
+          //2.获取fragment管理器
+          FragmentManager fm = getSupportFragmentManager();
+          //3.开启事务
+          FragmentTransaction ft = fm.beginTransaction();
+          //4.把fg1设置显示在帧布局中
+          ft.replace(R.id.fl, fg1);
+          //5.提交事务
+          ft.commit();
+
+          //
+          fg1.setLinearLayout(ll);
+    }
+
+    //显示fragment01  
+    public void click1(View v){
+        //1 获取Fragment01对象
+          //Fragment01 fg1 = new Fragment01();
+          //2.获取fragment管理器
+          FragmentManager fm = getSupportFragmentManager();
+          //3.开启事务
+          FragmentTransaction ft = fm.beginTransaction();
+          //4.把fg1设置显示在帧布局中
+          ft.replace(R.id.fl, fg1);
+          //5.提交事务
+          ft.commit();
+    }
+    //显示fragment02
+    public void click2(View v){
+        //1 获取Fragment01对象
+          Fragment02 fg2 = new Fragment02();
+          //2.获取fragment管理器
+          FragmentManager fm = getSupportFragmentManager();
+          //3.开启事务
+          FragmentTransaction ft = fm.beginTransaction();
+          //4.把fg1设置显示在帧布局中
+          ft.replace(R.id.fl, fg2);
+          //5.提交事务
+          ft.commit();
+    }
+    //显示fragment03
+    public void click3(View v){
+        //1 获取Fragment01对象
+          Fragment03 fg3 = new Fragment03();
+          //2.获取fragment管理器
+          FragmentManager fm = getSupportFragmentManager();
+          //3.开启事务
+          FragmentTransaction ft = fm.beginTransaction();
+          //4.把fg1设置显示在帧布局中
+          ft.replace(R.id.fl, fg3);
+          //5.提交事务
+          ft.commit();
+    }
+}
+</code></pre><p>###5、activity与fragement的数据传递</p>
+<h4 id="5-1-从activity——-gt-Fragment数据传递"><a href="#5-1-从activity——-gt-Fragment数据传递" class="headerlink" title="5.1 从activity——-&gt;Fragment数据传递"></a>5.1 从activity——-&gt;Fragment数据传递</h4><ul>
+<li><p>1 获取activity中EditView中的数据，通过Fragment对象调用方法传递数据</p>
+<pre><code>public void click4(View v){
+
+    //获取用户输入的数据
+    EditText et_main = (EditText) findViewById(R.id.et_main);
+    String text = et_main.getText().toString();
+    //获取Fragment02对象
+    Fragment02 fg2= new Fragment02();
+    //调用Fragment02对象的setText()方法，将数据作为参数传递
+    fg2.setText(text);
+}
+</code></pre></li>
+<li><p>2 在Fragment中，获取方法传递过来的数据，并对数据进行操作</p>
+<pre><code>public void setText(String text) {
+    //获取传递过来的数据，并对数据进行操作
+    //获取输入控件
+    EditText tv_fragment2= (EditText) view.findViewById(R.id.tv_fragment2);
+    //给输入控件设置数据，显示在桌面
+    tv_fragment2.setText(text);
+}
+</code></pre><h4 id="5-1-从Fragment——-gt-activity数据传递"><a href="#5-1-从Fragment——-gt-activity数据传递" class="headerlink" title="5.1 从Fragment——-&gt;activity数据传递"></a>5.1 从Fragment——-&gt;activity数据传递</h4></li>
+<li><p>1 在Fragment的java类中获取用户输入的数据，调用activity对象方法，传递数据</p>
+<pre><code>//获取按钮控件
+Button bt_fragment03 = (Button) view.findViewById(R.id.bt_fragment03);
+
+//设置按钮点击事件，发送用户输入数据到activity
+bt_fragment03.setOnClickListener(new OnClickListener() {
+
+    @Override
+    public void onClick(View v) {
+
+        //查找EditText控件，得到用户输入数据
+        EditText et = (EditText) view.findViewById(R.id.et);
+        String text = et.getText().toString();
+
+        //获取Activity对象，调用其.setText()方法，传递数据（作为参数传递）
+        ((MainActivity)getActivity()).setText(text);
+    }
+});
+</code></pre></li>
+<li><p>2 在Activity中，获取方法传递过来的数据，并对数据进行操作</p>
+<pre><code>public void setText(String text) {
+
+    //查找EditText控件
+    EditText et_main = (EditText) findViewById(R.id.et_main);
+    //操作数据，将数据显示在桌面上
+    et_main.setText(text);
+}
+</code></pre></li>
+</ul>
+<hr>
+<p>#动画</p>
+<p>###帧动画 FrameAnimation</p>
+<blockquote>
+<p>一张张图片不断的切换，形成动画效果</p>
+<ul>
+<li>1 在drawable-hdpi中添加一张张图片</li>
+<li>2 在drawable目录下定义xml文件，子节点为animation-list，在这里定义要显示的图片和每张图片的显示时长</li>
+<li>2.1 android:oneshot=”false” true表示一次，false表示重复多次</li>
+</ul>
+</blockquote>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;animation-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:oneshot=&quot;false&quot;
+    &gt;
+    &lt;item android:drawable=&quot;@drawable/g1&quot; android:duration=&quot;200&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g2&quot; android:duration=&quot;200&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g3&quot; android:duration=&quot;200&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g4&quot; android:duration=&quot;200&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g5&quot; android:duration=&quot;200&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g6&quot; android:duration=&quot;400&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g7&quot; android:duration=&quot;400&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g8&quot; android:duration=&quot;400&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g9&quot; android:duration=&quot;200&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g10&quot; android:duration=&quot;200&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/g11&quot; android:duration=&quot;200&quot; /&gt;
+&lt;/animation-list&gt;
+</code></pre><ul>
+<li><p>3 在屏幕上播放帧动画（先要在布局文件中设置ImageView），根据Drawable Animation文档写</p>
+<pre><code>public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+    ImageView iv = (ImageView) findViewById(R.id.iv);
+    //设置imageview的背景图//把动画文件设置为imageView的背景
+    iv.setBackgroundResource(R.drawable.frameanimation);
+    AnimationDrawable ad = (AnimationDrawable)iv.getBackground();
+    //开始播放帧动画
+    ad.start();
+
+    }
+}
+</code></pre></li>
+</ul>
+<p>###补间动画(TweenAnimation)，实现ImageView(图片控件)的位移、旋转、缩放、透明</p>
+<ul>
+<li>原形态变成新形态时为了过渡变形过程，生成的动画就叫补间动画，不携带属性</li>
+<li>位移、旋转、缩放、透明<br>#####ImageView(图片控件)的位移：</li>
+<li>关于位移动画对象TranslateAnimation构造方法参数的详解</li>
+<li><p>构造方法1：</p>
+<pre><code>TranslateAnimation ta = new TranslateAnimation(10, 100, 20, 170);
+</code></pre><ul>
+<li>10：动画的x轴开始位置<ul>
+<li>iv的x坐标+10</li>
+</ul>
+</li>
+<li>100：动画的x轴结束位置<ul>
+<li>iv的x坐标+100</li>
+</ul>
+</li>
+<li>20：动画的y轴开始位置<ul>
+<li>iv的y坐标 + 20</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>构造方法2.1:</p>
+<pre><code>TranslateAnimation ta = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 3, 
+        Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0);
+</code></pre><ul>
+<li>0.5f:动画的x轴开始位置<ul>
+<li>iv的x坐标 + 0.5 * iv宽度</li>
+</ul>
+</li>
+<li>3：动画的x轴结束位置<ul>
+<li>iv的x坐标 + 3 * iv的宽度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>构造方法2.2:</p>
+<pre><code>TranslateAnimation ta = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, -0.5f, Animation.RELATIVE_TO_PARENT, 0.5f, 
+        Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0);
+</code></pre><ul>
+<li>-0.5f:动画的x轴开始位置<ul>
+<li>iv的x坐标 - 0.5 * 父元素的宽度</li>
+</ul>
+</li>
+<li>0.5f：动画的x轴结束位置<ul>
+<li>iv的x坐标 + 0.5 * 父元素的宽度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>加深理解：对于上面的参数内容再解释一遍</p>
+</li>
+<li>构造1：</li>
+<li>参数10指的是X的起点坐标，但不是指屏幕x坐标为10的位置，而是imageview的 真实X + 10</li>
+<li><p>参数150指的是X的终点坐标，它的值是imageview的 真实X + 150</p>
+<pre><code>//创建为位移动画对象，设置动画的初始位置和结束位置
+TranslateAnimation ta = new TranslateAnimation(10, 150, 20, 140);
+</code></pre></li>
+<li>构造2：</li>
+<li>x坐标的起点位置，如果相对于自己，传0.5f，那么起点坐标就是 真实X + 0.5 * iv宽度</li>
+<li>x坐标的终点位置，如果传入2，那么终点坐标就是 真实X + 2 * iv的宽度</li>
+<li>y坐标的起点位置，如果传入0.5f，那么起点坐标就是 真实Y + 0.5 * iv高度</li>
+<li><p>y坐标的终点位置，如果传入2，那么终点坐标就是 真实Y + 2 * iv高度</p>
+<pre><code>TranslateAnimation ta = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 2, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 2);
+</code></pre></li>
+<li><p>动画播放相关的设置</p>
+<pre><code>//设置动画持续时间
+ta.setDuration(2000);
+//动画重复播放的次数
+ta.setRepeatCount(1);
+//动画重复播放的模式
+ta.setRepeatMode(Animation.REVERSE);
+//动画播放完毕后，组件停留在动画结束的位置上
+ta.setFillAfter(true);
+
+anim.setInterpolator(new LinearInterpolator());// 匀速运动
+anim.setRepeatCount(Animation.INFINITE);// 无限循环
+//播放动画
+iv.startAnimation(ta);
+</code></pre></li>
+<li><p>ImageView位移示例</p>
+<pre><code>//Activity点击事件：位移补间动画
+public void translate(View v){
+    //创建位移动画对象，填入数据（两种构造，参数不同）
+    //TranslateAnimation ta = new TranslateAnimation(10, 100, 20, 170);
+
+    ta = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, -0.5f, Animation.RELATIVE_TO_PARENT, 0.4f, 
+            Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0);
+    //动画持续时间
+    ta.setDuration(2000);
+    //设置播放重复次数
+    //ta.setRepeatCount(1);
+    //设置重复的模式
+    //ta.setRepeatMode(Animation.REVERSE);
+    //填充动画结束时的位置
+    ta.setFillAfter(true);
+    //播放动画
+    iv.startAnimation(ta);
+}
+</code></pre><p>#####ImageView(图片控件)缩放：</p>
+</li>
+<li>关于缩放动画对象ScaleAnimation构造方法参数的详解</li>
+<li><p>构造方法1：</p>
+<pre><code>ScaleAnimation sa = new ScaleAnimation(0.5f, 2, 1, 3);
+</code></pre><ul>
+<li>0.5f：动画开始时的组件宽度<ul>
+<li>0.5 * iv的宽度</li>
+</ul>
+</li>
+<li>2：动画结束时的组件宽度<ul>
+<li>2 * iv的宽度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>构造方法2：</p>
+<pre><code>ScaleAnimation sa = new ScaleAnimation(0.5f, 2, 2, 0.5f, iv.getWidth() / 2, iv.getHeight() / 2);
+</code></pre><ul>
+<li>iv.getWidth() / 2：缩放点的x坐标<ul>
+<li>iv的x坐标 + iv.getWidth() / 2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>构造方法3：</p>
+<pre><code>ScaleAnimation sa = new ScaleAnimation(0.5f, 2, 2, 0.5f, 
+        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+</code></pre><ul>
+<li>Animation.RELATIVE_TO_SELF, 0.5f：缩放点的x坐标<ul>
+<li>iv的x坐标 + 0.5 * iv的宽度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>构造方法1：</p>
+</li>
+<li>参数0.1f表示动画的起始宽度是真实宽度的0.1倍</li>
+<li>参数4表示动画的结束宽度是真实宽度的4倍</li>
+<li><p>缩放的中心点在iv左上角</p>
+<pre><code>ScaleAnimation sa = new ScaleAnimation(0.1f, 4, 0.1f, 4);
+</code></pre></li>
+<li>构造方法3：</li>
+<li>参数0.1f和4意义与上面相同</li>
+<li>改变缩放的中心点：传入的两个0.5f，类型都是相对于自己，这两个参数改变了缩放的中心点</li>
+<li>中心点x坐标 = 真实X + 0.5 * iv宽度</li>
+<li><p>中心点Y坐标 = 真实Y + 0.5 * iv高度</p>
+<pre><code>ScaleAnimation sa = new ScaleAnimation(0.1f, 4, 0.1f, 4, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+</code></pre></li>
+<li><p>缩放示例</p>
+<pre><code>//Activity点击事件：缩放补间动画
+public void scale(View v){
+    //ScaleAnimation sa = new ScaleAnimation(0.5f, 2, 1, 3);
+    //ScaleAnimation sa = new ScaleAnimation(0.5f, 2, 2, 0.5f, iv.getWidth() / 2, iv.getHeight() / 2);
+
+    sa = new ScaleAnimation(0.5f, 2, 2, 0.5f, 
+            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    sa.setDuration(2000);
+    //设置播放重复次数
+    sa.setRepeatCount(1);
+    //设置重复的模式
+    sa.setRepeatMode(Animation.REVERSE);
+    //填充动画结束时的位置
+    sa.setFillAfter(true);
+    //播放动画
+    iv.startAnimation(sa);
+}
+</code></pre><p>#####ImageView(图片控件)透明：</p>
+</li>
+<li><p>0为完全透明，1为完全不透明。(0, 0.5f)表示有完全透明转为1/2透明</p>
+<pre><code>AlphaAnimation aa = new AlphaAnimation(0, 0.5f);
+</code></pre></li>
+<li><p>ImageView(图片控件)透明示例</p>
+<pre><code>//Activity点击事件：透明补间动画
+public void alpha(View v){
+    aa = new AlphaAnimation(0.1f, 0.9f);
+    aa.setDuration(2000);
+    //设置播放重复次数
+    aa.setRepeatCount(1);
+    //填充动画结束时的位置
+    aa.setFillAfter(true);
+    iv.startAnimation(aa);
+}
+</code></pre></li>
+</ul>
+<p>#####ImageView(图片控件)旋转：</p>
+<ul>
+<li>关于旋转动画对象RotateAnimation构造方法参数的详解</li>
+<li><p>构造方法2：</p>
+<pre><code>RotateAnimation ra = new RotateAnimation(10, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+</code></pre><ul>
+<li>10:动画开始时的角度</li>
+<li>360：动画结束时的角度</li>
+</ul>
+</li>
+<li><p>构造方法1：</p>
+</li>
+<li>20表示动画开始时的iv的角度(20是相对于最初iv的角度)</li>
+<li>360表示动画结束时iv的角度(360是相对于最最最初iv的角度)</li>
+<li>默认旋转的圆心在iv左上角</li>
+<li><p>如下</p>
+<pre><code>RotateAnimation ra = new RotateAnimation(20, 360);
+</code></pre></li>
+<li>构造方法2：</li>
+<li>20,360的意义和上面一样</li>
+<li>指定圆心坐标，相对于自己，值传入0.5，那么圆心的x坐标：真实X + iv宽度 * 0.5</li>
+<li>圆心的Y坐标：真实Y + iv高度 * 0.5</li>
+<li><p>如下：</p>
+<pre><code>RotateAnimation ra = new RotateAnimation(20, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+</code></pre></li>
+<li><p>ImageView(图片控件)旋转示例：</p>
+<pre><code>//Activity点击事件：旋转补间动画
+public void rotate(View v){
+    //RotateAnimation ra = new RotateAnimation(10, 180);
+    //RotateAnimation ra = new RotateAnimation(10, 360, iv.getWidth() / 2, iv.getHeight() / 2);
+    //旋转动画对象RotateAnimation
+    ra = new RotateAnimation(10, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    ra.setDuration(2000);
+    //设置播放重复次数
+    ra.setRepeatCount(1);
+    //设置重复的模式
+    ra.setRepeatMode(2);
+    ra.setFillAfter(true);
+    iv.startAnimation(ra);
+}
+</code></pre><p>#####所有动画一起飞</p>
+<pre><code>//Activity点击事件：补间动画一起飞    
+public void fly(View v){
+    //创建动画集合
+    AnimationSet as = new AnimationSet(false);//true:共用同一个插补器,false:各用个的插补器
+    //添加动画至集合
+    as.addAnimation(ta);
+    as.addAnimation(sa);
+    as.addAnimation(aa);
+    as.addAnimation(ra);
+
+    //播放动画集合中所有动画
+    iv.startAnimation(as);
+}
+</code></pre></li>
+</ul>
+<hr>
+<p>#属性动画PropertyAnimation</p>
+<ul>
+<li>补间动画，只是一个动画效果，组件其实还在原来的位置上，xy没有改变</li>
+<li>属性动画改变组件对象的属性值<br>###位移：</li>
+<li>改变x或者y坐标属性</li>
+<li>第一个参数target指定要显示动画的组件</li>
+<li>第二个参数propertyName指定要改变组件的哪个属性</li>
+<li>第三个参数values是可变参数，就是赋予属性的新的值</li>
+<li>传入0，代表x起始坐标：当前x + 0</li>
+<li><p>传入100，代表x终点坐标：当前x + 100</p>
+<pre><code>//具有get、set方法的成员变量就称为属性
+ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;translationX&quot;, 0, 100) ;
+</code></pre></li>
+<li><p>位移示例</p>
+<pre><code>//Activity点击事件：位移属性动画
+public void translate(View v){
+    //创建属性动画师
+    //arg0:要修改的对象
+    //arg1:要修改对象的哪个属性
+    //arg2:可变参数 要把属性改成什么值
+    ObjectAnimator oa = ObjectAnimator.ofFloat(iv, &quot;translationX&quot;, 0, 50, -50, 100);
+    oa.setDuration(2000);
+    //设置播放重复次数
+    //oa.setRepeatCount(1);
+    //设置重复的模式（参数可以用1默认，2倒放模式表示）
+    //oa.setRepeatMode(ObjectAnimator.REVERSE);
+    oa.start();
+}
+</code></pre><p>###缩放：</p>
+</li>
+<li>改变scaleX或scaleY的属性</li>
+<li>scaleX：水平缩放比例</li>
+<li><p>scaleY：竖直缩放比例</p>
+</li>
+<li><p>第三个参数指定缩放的比例</p>
+</li>
+<li>0.1是从原本高度的十分之一开始</li>
+<li><p>2是到原本高度的2倍结束</p>
+<pre><code>ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;scaleY&quot;, 0.1f, 2);
+</code></pre></li>
+<li><p>缩放示例</p>
+<pre><code>//Activity点击事件：缩放属性动画
+public void scale(View v){
+    //创建属性动画师
+    //arg0:要修改的对象
+    //arg1:要修改对象的哪个属性
+    //arg2:可变参数 要把属性改成什么值
+    ObjectAnimator oa = ObjectAnimator.ofFloat(iv, &quot;scaleX&quot;, 0.5f, 1, 0.3f, 2);
+    oa.setDuration(2000);
+    oa.start();
+}
+</code></pre><p>###透明：</p>
+</li>
+<li><p>透明度，0是完全透明，1是完全不透明</p>
+<pre><code>ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;alpha&quot;, 0.1f, 1);
+</code></pre></li>
+<li><p>透明示例</p>
+<pre><code>//Activity点击事件：透明属性动画
+public void alpha(View v){
+    ObjectAnimator oa = ObjectAnimator.ofFloat(iv, &quot;alpha&quot;, 0, 0.8f, 0.2f, 1);
+    oa.setDuration(2000);
+    oa.start();
+}
+</code></pre><p>###旋转</p>
+</li>
+<li>Rotation：以组件中心为旋转点旋转</li>
+<li>RotationX：以x轴为轴心翻转</li>
+<li><p>RotationY：以Y轴为轴心翻转</p>
+</li>
+<li><p>rotation指定是顺时针旋转</p>
+</li>
+<li>20是起始角度</li>
+<li><p>270是结束角度</p>
+<pre><code>ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;rotation&quot;, 20, 270);
+</code></pre></li>
+<li>属性指定为rotationX是竖直翻转</li>
+<li><p>属性指定为rotationY是水平翻转</p>
+<pre><code>ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;rotationY&quot;, 20, 180);
+</code></pre></li>
+<li><p>旋转示例</p>
+<pre><code>//Activity点击事件：旋转属性动画
+public void rotate(View v){
+    ObjectAnimator oa = ObjectAnimator.ofFloat(iv, &quot;rotation&quot;, 0, 180, 90, 270);
+    //ObjectAnimator oa = ObjectAnimator.ofFloat(iv, &quot;rotationX&quot;, 0, 180, 90, 360);
+    //ObjectAnimator oa = ObjectAnimator.ofFloat(iv, &quot;rotationY&quot;, 0, 180, 90, 360);
+    oa.setDuration(2000);
+    oa.start();
+}
+</code></pre></li>
+</ul>
+<p>###可变参数</p>
+<ul>
+<li><p>第三个参数可变参数可以传入多个参数，可以实现往回位移（旋转、缩放、透明）</p>
+<pre><code>ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;translationX&quot;, 0, 70, 30, 100) ;
+</code></pre></li>
+</ul>
+<p>###所有动画一起飞</p>
+<pre><code>//创建动画师集合
+AnimatorSet set = new AnimatorSet();
+//设置要播放动画的组件//设置改变哪个对象的属性
+set.setTarget(iv);
+//设置所有动画有先后顺序的播放
+//set.playSequentially(oa, oa2, oa3, oa4);
+//设置所有动画一起播放
+set.playTogether(oa, oa2, oa3, oa4);
+
+//开始动画播放
+set.start();
+</code></pre><ul>
+<li><p>一起飞示例</p>
+<pre><code>//Activity点击事件：属性动画一起飞
+public void fly(View v){
+    //创建动画师集合
+    AnimatorSet as = new AnimatorSet();
+
+    //(设置要播放动画的组件)设置改变哪个对象的属性
+    as.setTarget(iv);
+
+    //设置组件要播放什么动画
+    ObjectAnimator oa1 = ObjectAnimator.ofFloat(iv, &quot;translationX&quot;, 0, 50, -50, 100);
+    oa1.setDuration(2000);
+    oa1.setRepeatCount(1);
+    oa1.setRepeatMode(ObjectAnimator.REVERSE);
+
+    ObjectAnimator oa2 = ObjectAnimator.ofFloat(iv, &quot;scaleX&quot;, 0.5f, 1, 0.3f, 2);
+    oa2.setDuration(2000);
+    oa2.setRepeatCount(1);
+
+    ObjectAnimator oa3 = ObjectAnimator.ofFloat(iv, &quot;alpha&quot;, 0, 0.8f, 0.2f, 1);
+    oa3.setDuration(2000);
+    oa3.setRepeatCount(1);
+    oa3.setRepeatMode(ObjectAnimator.RESTART);
+
+    ObjectAnimator oa4 = ObjectAnimator.ofFloat(iv, &quot;rotation&quot;, 0, 180, 90, 270);
+    oa4.setDuration(2000);
+    oa4.setRepeatCount(1);
+    oa4.setDuration(2000);
+
+    //把要播放的动画对象添加至此方法中，然后所有动画会顺序播放
+    //as.playSequentially(oa1, oa2, oa3, oa4);
+    //所有动画一起播放
+    as.playTogether(oa1, oa2, oa3, oa4);
+    //开始动画播放
+    as.start();
+}
+</code></pre></li>
+</ul>
+<p>###可以使用xml文件定义</p>
+<ul>
+<li>1 在animator文件夹下定义.xml文件<blockquote>
+<p>/res/animator/objectanimator.xml    </p>
+</blockquote>
+</li>
+<li><p>根节点为objectAnimator</p>
+<p> &lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
+ <objectanimator xmlns:android="http://schemas.android.com/apk/res/android" android:propertyname="translationY" android:duration="2000" android:valuefrom="0" android:valueto="100" android:repeatcount="1" android:repeatmode="reverse"><br> </objectanimator>
+</li>
+<li><p>2 Activity界面点击按钮 实现xml中的动画效果</p>
+<pre><code>public void xml(View v){
+    //加载xml属性动画文件
+    Animator at = AnimatorInflater.loadAnimator(this, R.animator.objectanimator);
+    at.setTarget(iv);
+    at.start();
+}
+</code></pre></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android基础/" rel="tag"># Android基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/13/Android基础--内容提供者ContentProvider/" rel="next" title="Android基础--内容提供者ContentProvider">
+                <i class="fa fa-chevron-left"></i> Android基础--内容提供者ContentProvider
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/13/Android基础--版本控制软件/" rel="prev" title="Android基础--版本控制软件">
+                Android基础--版本控制软件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/13/Android基础--Fragment 动画/"
+           data-title="Android基础--Fragment 动画" data-url="http://yoursite.com/2017/02/13/Android基础--Fragment 动画/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Fragment"><span class="nav-number"></span> <span class="nav-text">一、Fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、为什么要使用fragment-Android-3-0-API-11-开始"><span class="nav-number"></span> <span class="nav-text">1、为什么要使用fragment(Android 3.0 API 11 开始)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-从activity——-gt-Fragment数据传递"><span class="nav-number">1.</span> <span class="nav-text">5.1 从activity——->Fragment数据传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-从Fragment——-gt-activity数据传递"><span class="nav-number">2.</span> <span class="nav-text">5.1 从Fragment——->activity数据传递</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yassblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

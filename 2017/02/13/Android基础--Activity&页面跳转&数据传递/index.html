@@ -1,0 +1,1312 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+ Activity&amp;amp;页面跳转&amp;amp;数据传递 介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android基础--Activity&页面跳转&数据传递">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/Android基础--Activity&页面跳转&数据传递/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+ Activity&amp;amp;页面跳转&amp;amp;数据传递 介绍">
+<meta property="og:updated_time" content="2017-02-25T03:26:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android基础--Activity&页面跳转&数据传递">
+<meta name="twitter:description" content="导语
+ Activity&amp;amp;页面跳转&amp;amp;数据传递 介绍">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/Android基础--Activity&页面跳转&数据传递/"/>
+
+
+
+
+
+  <title> Android基础--Activity&页面跳转&数据传递 | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/13/Android基础--Activity&页面跳转&数据传递/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android基础--Activity&页面跳转&数据传递
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T09:44:43+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/13/Android基础--Activity&页面跳转&数据传递/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/Android基础--Activity&页面跳转&数据传递/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> Activity&amp;页面跳转&amp;数据传递 介绍  </p>
+</blockquote>
+<a id="more"></a> 
+<h1 id="一、创建第二个Activity"><a href="#一、创建第二个Activity" class="headerlink" title="一、创建第二个Activity"></a>一、创建第二个Activity</h1><ul>
+<li>1.自定义类继承Activity （一个新的页面） 给其创建布局文件 </li>
+<li><p>2.需要在清单文件中为其配置一个activity标签</p>
+<pre><code>&lt;activity 
+        android:name=&quot;包名.类名&quot;&gt;
+&lt;/activity&gt;
+</code></pre><ul>
+<li>注意：</li>
+<li>1.在清单中进行如下配置，会在桌面出现两个图标，名字一样的快捷方式,</li>
+<li><p>因为主页面，已经在activity标签配置了Activite入口，新页面又配置了Activity入口</p>
+<pre><code>&lt;activity
+    android:name=&quot;com.itheima.secondactivity.MainActivity&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+
+&lt;activity 
+    android:name=&quot;.SecondActivity&quot;&gt;
+     &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre></li>
+<li><p>2.在清单中进行如下配置后，会在桌面出现两个不同图标，不同名字的启动快捷方式</p>
+</li>
+<li><p>分别对应打开主页面和新建页面</p>
+<pre><code>&lt;activity
+    android:icon=&quot;@drawable/photo1&quot;
+    android:label=&quot;启动第一个&quot;
+    android:name=&quot;com.itheima.secondactivity.MainActivity&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+
+&lt;activity 
+    android:icon=&quot;@drawable/photo2&quot;
+    android:label=&quot;启动第二个&quot;
+    android:name=&quot;.SecondActivity&quot;&gt;
+     &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre></li>
+</ul>
+</li>
+<li><p>activity标签中如果带有以下的<intent-filter>子节点，则会在系统中多创建一个快捷图标,就是新页面activity的启动图标</intent-filter></p>
+<pre><code>&lt;intent-filter&gt;
+    &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+    &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+&lt;/intent-filter&gt;
+</code></pre></li>
+<li>一个应用程序可以在桌面创建多个快捷图标。</li>
+<li><p>activity的名称、图标可以和应用程序的名称、图标不相同</p>
+<pre><code>android:icon=&quot;@drawable/ic_launcher&quot;
+android:label=&quot;@string/app_name&quot;
+</code></pre></li>
+</ul>
+<p>###一个应用程序可以创建多个入口的activity，快捷图标 ，对应打开不同的页面</p>
+<p>###只要配置了以下<intent-filter>就会在桌面上创建一个新的快捷图标。</intent-filter></p>
+<pre><code>&lt;intent-filter&gt;
+     &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+      &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+ &lt;/intent-filter&gt;`
+</code></pre><h2 id="注意一个新页面，可以配置多个，用于其他页面进行匹配，使能够让其他页面跳转过来"><a href="#注意一个新页面，可以配置多个，用于其他页面进行匹配，使能够让其他页面跳转过来" class="headerlink" title="###注意一个新页面，可以配置多个，用于其他页面进行匹配，使能够让其他页面跳转过来"></a>###注意一个新页面，可以配置多个<intent-filter>，用于其他页面进行匹配，使能够让其他页面跳转过来</intent-filter></h2><p>#二、Activity的跳转</p>
+<p>##2.1如何实现页面跳转</p>
+<ul>
+<li><p>Activity的跳转需要创建Intent对象，通过设置intent对象的参数指定要跳转Activity</p>
+<pre><code>public void click2(View v){
+    //显式意图
+    Intent intent = new Intent();
+    //指定目标Activity的字节码
+    intent.setClass(this, SecondActivity.class);
+
+    //显式跳转
+    startActivity(intent);
+}
+</code></pre></li>
+</ul>
+<p>##Activity跳转分类</p>
+<ul>
+<li>通过对Intent对象的参数设置不同，跳转方式也不同<ul>
+<li>显式意图：通过设置Activity的包名和类名实现跳转，称为显式意图</li>
+<li>隐式意图：通过指定动作实现跳转，称为隐式意图</li>
+</ul>
+</li>
+</ul>
+<p>###显式意图：直接指定要激活的activity。<em>效率高</em>。直接指定。</p>
+<ul>
+<li><p>跳转至同一项目下的另一个Activity，直接指定该Activity的字节码即可</p>
+<pre><code>public void click2(View v){
+    //显式意图
+    Intent intent = new Intent();
+    //指定目标Activity的字节码
+    intent.setClass(this, SecondActivity.class);
+
+    //显式跳转
+    startActivity(intent);
+}
+</code></pre></li>
+<li><p>跳转至其他应用中的Activity，需要指定该应用的包名和该Activity的类名</p>
+<pre><code>public void click3(View v){
+    //显式意图
+    Intent intent = new Intent();
+    //启动系统自带的拨号器应用
+    //arg0：目标Activity所在的项目的应用包名
+    //arg1：目标Activity的包名和类名
+    intent.setClassName(&quot;com.android.dialer&quot;, &quot;com.android.dialer.DialtactsActivity&quot;);
+    //显式跳转
+    startActivity(intent);
+}
+</code></pre></li>
+</ul>
+<p>###隐式意图：（动作，数据，category）开启新的activity。</p>
+<ul>
+<li><p>1.隐式意图跳转至指定Activity</p>
+<ul>
+<li><p>实际上系统的拨号器已经在自己的清单文件中进行了配置，使得此拨号器页面能够实现隐式启动，那么如何配置呢？</p>
+<pre><code>public void click4(View v){
+    Intent intent = new Intent();
+    //启动系统自带的拨号器应用
+    intent.setAction(Intent.ACTION_DIAL);
+    startActivity(intent);
+}
+</code></pre></li>
+</ul>
+</li>
+<li>2.要让一个Activity可以被隐式启动，需要在清单文件的activity节点中设置intent-filter子节点<ul>
+<li>action 指定动作（可以自定义，可以使用系统自带的）name可以写任意自定义，一般比照谷歌的写法</li>
+<li>data   指定数据（操作什么内容）</li>
+<li>category 类别 （默认类别，机顶盒，车载电脑）</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;intent-filter &gt;
+     &lt;action android:name=&quot;com.itheima.second&quot;/&gt;
+     &lt;data 
+         android:scheme=&quot;asd&quot; 
+         android:mimeType=&quot;aa/bb&quot;/&gt;
+     &lt;category android:name=&quot;android.intent.category.DEFAULT&quot;/&gt;
+ &lt;/intent-filter&gt;
+</code></pre><p>##activity隐式启动在清单文件中的配置</p>
+<ul>
+<li><strong>action</strong> activity对应的动作。 可以用任意一个字符串描述（最好，顾名思义）</li>
+<li><strong>category</strong> 额外的类别参数。  指定工作的设备（车载电脑，机顶盒，默认的手机） 通常指定的参数<code>android.intent.category.DEFAULT</code></li>
+<li><strong>data</strong>  指定数据和数据的类型  <ul>
+<li>scheme 数据前缀</li>
+<li>host 主机名</li>
+<li>port 端口号</li>
+<li>path 路径 记得在前面加上 /</li>
+<li>mimeType 数据类型 从tomcat里面查找常见的数据类型</li>
+</ul>
+</li>
+<li>隐式启动页面，该页面的配置示例</li>
+</ul>
+<pre><code>&lt;activity 
+        android:name=&quot;com.itheima.activityjump.SecondActivity&quot;&gt;
+        &lt;intent-filter &gt;
+            &lt;action android:name=&quot;com.itheima.a1&quot;/&gt;
+            &lt;data android:scheme=&quot;youyiyi1&quot;/&gt;
+            &lt;action android:name=&quot;com.itheima.a3&quot;/&gt;
+            &lt;data android:scheme=&quot;youyiyi3&quot;/&gt;
+            &lt;data android:mimeType=&quot;text/name&quot;/&gt;
+
+            &lt;category android:name=&quot;android.intent.category.DEFAULT&quot;/&gt;
+        &lt;/intent-filter&gt;
+
+        &lt;intent-filter &gt;
+            &lt;action android:name=&quot;com.itheima.a2&quot;/&gt;
+            &lt;data android:scheme=&quot;youyiyi2&quot;/&gt;
+
+            &lt;category android:name=&quot;android.intent.category.DEFAULT&quot;/&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+</code></pre><ul>
+<li>3.隐式意图启动Activity，需要为intent设置以上三个属性，且值必须与该Activity在清单文件中对三个属性的定义匹配</li>
+<li>4.隐式意图启动Activity时要注意：<ul>
+<li>设置参数时setType()会清除setData()，而setData()会清除setType(), 两者不能共存，</li>
+<li>所以通过setDataAndType(Uri.parse(“youyiyi3:xiaoming”), “text/name”);</li>
+<li>一并将两者全部设置了</li>
+</ul>
+</li>
+<li><ul>
+<li><p>页面一跳转到页面二示例（如：隐式跳转上面配置的页面）</p>
+<p> public void click5(View v){</p>
+<pre><code>Intent intent = new Intent();
+intent.setAction(&quot;com.itheima.a1&quot;);
+//匹配mimetype
+</code></pre><p>  //        intent.setType(“text/name”);</p>
+<pre><code>//匹配scheme，注意setData()会将上面的setType清除
+</code></pre><p>  //        intent.setData(Uri.parse(“youyiyi3:xiaoming”));</p>
+<pre><code>//匹配scheme和mimetype
+intent.setDataAndType(Uri.parse(&quot;youyiyi3:xiaoming&quot;), &quot;text/name&quot;);
+
+//如果没有指定category，则自动添加以下代码
+</code></pre><p>  //        intent.addCategory(Intent.CATEGORY_DEFAULT);</p>
+<pre><code>    startActivity(intent);
+}
+</code></pre></li>
+<li><p>页面一跳转到页面二示例二（如：隐式跳转上面配置的页面）</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>public void click5(View v){
+     Intent intent = new Intent();
+     //匹配动作
+     intent.setAction(&quot;com.itheima.a2&quot;);
+     //匹配scheme
+     intent.setData(Uri.parse(&quot;youyiyi2:xiaoming&quot;));
+
+     startActivity(intent);
+ }
+</code></pre><ul>
+<li>5.intent-filter节点及其子节点都可以同时定义多个，隐式启动时只需与任意一个匹配即可</li>
+</ul>
+<p>#####在新页面获取通过setData传递的数据</p>
+<ul>
+<li>获取启动此Activity的intent对象 ，通过intent得到数据<br>  Intent intent = getIntent();<br>  Uri uri = intent.getData();     </li>
+</ul>
+<pre><code> //第二个Activity获取传进过来的数据
+ public class SecondActivity extends Activity {
+
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          //指定Activity显示哪一个布局文件
+          setContentView(R.layout.activity_second);
+
+          //获取传递过来的数据
+          //获取启动此Activity的intent对象
+          Intent intent = getIntent();
+          Uri uri = intent.getData();
+          System.out.println(uri);
+     }
+}
+</code></pre><p>###显式意图和隐式意图的应用场景</p>
+<ul>
+<li>显式意图用于启动同一应用中的Activity，直接指定包名类名。效率高。</li>
+<li>隐式意图用于启动不同应用中的Activity，通过action和data指定。</li>
+<li>另外对于隐式意图：<ul>
+<li>如果系统中存在多个Activity的intent-filter同时与你的intent匹配，那么系统会显示一个对话框，列出所有匹配的Activity，由用户选择启动哪一个</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>#Activity跳转时的数据传递</p>
+<ul>
+<li>Activity通过Intent启动时，可以通过Intent对象携带数据到目标Activity</li>
+<li>8大基本类型数据 以及数据的数组都是可以通过intnet传递<ul>
+<li>intent.putExtra(name,values)</li>
+</ul>
+</li>
+<li>对象也可以通过intent传递。<ul>
+<li>要求对象一定是实现Serializable接口的 可序列化的对象。</li>
+<li>要求对象一定是实现Parcelable 接口  </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>方式一：直接将数据封装到intent中</p>
+<pre><code>public void click(View v){
+    EditText et_malename = (EditText) findViewById(R.id.et_malename);
+    EditText et_femalename = (EditText) findViewById(R.id.et_femalename);
+
+    String maleName = et_malename.getText().toString();
+    String femaleName = et_femalename.getText().toString();
+
+    Intent intent = new Intent(this, SecondActivity.class);
+
+    //把数据封装至intent中
+    intent.putExtra(&quot;maleName&quot;, maleName);
+    intent.putExtra(&quot;femaleName&quot;, femaleName);
+
+    startActivity(intent);
+}
+</code></pre></li>
+<li><p>方式二：先把数据封装至bundle中，再把bundle封装至intent中</p>
+<pre><code> public void click(View v){
+        EditText et_malename = (EditText) findViewById(R.id.et_malename);
+        EditText et_femalename = (EditText) findViewById(R.id.et_femalename);
+
+        String maleName = et_malename.getText().toString();
+        String femaleName = et_femalename.getText().toString();
+
+        Intent intent = new Intent(this, SecondActivity.class);
+
+        //把数据封装至bundle中
+        Bundle bundle = new Bundle();
+        bundle.putString(&quot;maleName&quot;, maleName);
+        bundle.putString(&quot;femaleName&quot;, femaleName);
+
+        //把bundle封装至intent中
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
+}
+</code></pre></li>
+</ul>
+<ul>
+<li><p>在目标Activity中取出数据(理解：在新页面，获取传递过来的数据)</p>
+<pre><code>Intent intent = getIntent();
+String maleName = intent.getStringExtra(&quot;maleName&quot;);
+String femaleName = intent.getStringExtra(&quot;femaleName&quot;);
+@Override
+     protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          //指定Activity显示哪一个布局文件
+          setContentView(R.layout.activity_second);
+
+          Intent intent = getIntent();
+          //直接获取封装在intent中的数据
+          //String maleName = intent.getStringExtra(&quot;maleName&quot;);
+          //String femaleName = intent.getStringExtra(&quot;femaleName&quot;);
+
+          //先通过intent获取Bundle对象
+          Bundle bundle = intent.getExtras();
+          //再通过Bundle对象，获取数据
+          String maleName = bundle.getString(&quot;maleName&quot;);
+          String femaleName = (String) bundle.get(&quot;femaleName&quot;);
+
+          Random rd = new Random();
+          int yinyuan = rd.nextInt(11) + 90;
+
+          ((TextView)findViewById(R.id.tv)).setText(maleName + &quot;与&quot; + femaleName + &quot;的缘分为&quot; + yinyuan + &quot;，实乃天作之合&quot;);
+     }
+</code></pre></li>
+</ul>
+<hr>
+<p>#Activity生命周期</p>
+<ul>
+<li>void onCreate()<ul>
+<li>Activity已经被创建完毕，</li>
+<li>activity被创建的时候调用。 适合做界面的初始化操作。</li>
+</ul>
+</li>
+<li>void onStart()<ul>
+<li>Activity已经显示在屏幕，但没有得到焦点，</li>
+<li>activity界面用户可见。  适合更新界面。 继续播放视频</li>
+</ul>
+</li>
+<li>void onResume()<ul>
+<li>Activity得到焦点，可以与用户交互</li>
+<li>获取焦点 按钮可以被点击</li>
+</ul>
+</li>
+<li>void onPause()<ul>
+<li>Activity失去焦点，无法再与用户交互，但依然可见</li>
+<li>失去焦点 按钮可以看到，但是不可以被点击。<em>游戏使用</em></li>
+</ul>
+</li>
+<li>void onStop()<ul>
+<li>Activity不可见，进入后台</li>
+<li>activity界面用户不可见。 界面不可见适合清理操作。暂停视频。<em>视频播放器</em></li>
+</ul>
+</li>
+<li>void onDestroy()<ul>
+<li>Activity被销毁，</li>
+<li>activity被销毁的时候调用。 适合做扫尾的操作。数据保存的操作。<em>短信内容的保存</em></li>
+</ul>
+</li>
+<li>void onRestart()<ul>
+<li>Activity从不可见变成可见时会执行此方法</li>
+</ul>
+</li>
+<li>Activity生命周期使用场景<ul>
+<li>Activity创建时需要初始化资源，销毁时需要释放资源；或者播放器应用，在界面进入后台时需要自动暂停</li>
+</ul>
+</li>
+</ul>
+<p>###完整生命周期（entire lifetime）<br>onCreate–&gt;onStart–&gt;onResume–&gt;onPause–&gt;onStop–&gt;onDestory</p>
+<p>###可视生命周期（visible lifetime）<br>onStart–&gt;onResume–&gt;onPause–&gt;onStop</p>
+<p>###前台生命周期（foreground lifetime）<br>onResume–&gt;onPause</p>
+<ul>
+<li>opRestart()  </li>
+<li>在onPause(),onStop()时进程被杀死了,下面不会执行</li>
+</ul>
+<hr>
+<p>#Activity的四种启动模式</p>
+<p>##任务栈</p>
+<ul>
+<li>什么是任务栈？<ul>
+<li>记录当前用户操作的行为的一种数据结构.(后进先出的数据结构）</li>
+<li>最近打开的界面，先被关闭。</li>
+<li>参考发送邮件的步骤 理解任务栈的概念。</li>
+<li>每个应用会有一个Activity任务栈，存放已启动的Activity。一个应用程序默认是只有一个任务栈，特殊情况下singleinstance会有多个任务栈</li>
+</ul>
+</li>
+</ul>
+<p>##进程<br>android系统 ，应用程序退出和进程退出是两个不同的概念。<br>android系统为了让应用程序可以被快速的开启。所有的应用程序退出后，进程是不会退出的。’<br>只有系统的内存空间严重不足的时候，才会把进程给回收。<br>点击图标–&gt;linux创建进程–&gt;dalvik虚拟机–&gt;读取清单文件，加载activity。<br>android理解应用程序退出： 任务栈清空了。</p>
+<p>##线程<br>进程是操作系统分配内存空间的单位，每个进程的内存空间都是独立的。<br>线程是运行在进程里面。线程cpu执行的最小单位。如果进程挂了，线程也挂了。</p>
+<p>##应用程序 application<br>android应用程序每个应用程序都是运行在自己的sandbox（沙箱）。<br>理解成一组activity，service，content priovder broadcastreceiver的组合。</p>
+<p>##Activity的四种启动模式，修改任务栈的排列情况</p>
+<ul>
+<li><p>1、standard 标准启动模式。一个activity默认就是标准的启动模式。</p>
+<ul>
+<li>开启新的activity(可以开启自身)，activity就会被创建出来，加入到任务栈的栈顶。<br>适用于绝大多数的应用场景。</li>
+<li>不用在清单中进行配置</li>
+</ul>
+</li>
+<li><p>2、singleTop 单一顶部启动模式。 </p>
+<ul>
+<li>如果任务栈的栈顶存在这个要开启的activity，不会重新的创建activity，而是复用已经存在的activity。保证栈顶如果存在，不会重复创建。</li>
+<li>在同一个任务栈里面可以有多个实例存在。</li>
+<li>应用场景：浏览器的书签(浏览器添加到书签)singletop</li>
+<li><p>清单配置</p>
+<pre><code>&lt;activity 
+    android:launchMode=&quot;singleTop&quot;
+    android:name=&quot;.SecondActivity&quot;&gt;
+&lt;/activity&gt;
+</code></pre></li>
+</ul>
+</li>
+<li><p>3、singeTask 单一任务栈启动模式。，在当前任务栈里面只能有一个实例存在。</p>
+<ul>
+<li>当开启activity的时候，就去检查在任务栈里面是否有实例已经存在，如果有实例存在就复用这个已经存在的activity，并且把这个activity上面的所有的别的activity都清空，复用这个已经存在的activity。</li>
+<li>保证整个任务栈里面只有一个实例存在</li>
+<li>应用场景：浏览器的activity</li>
+<li><p>清单配置</p>
+<pre><code>&lt;activity 
+    android:launchMode=&quot;singeTask&quot;
+    android:name=&quot;.SecondActivity&quot;&gt;
+&lt;/activity&gt;
+</code></pre></li>
+<li><p>如果一个activity的创建需要占用大量的系统资源（cpu，内存）一般配置这个activity为singletask的启动模式。webkit内核 c代码</p>
+<p>在什么时候使用singletask模式。<br>BrowserActivity 浏览器 开销(内存占用，cpu占用)非常大，singletask。保证在一个任务栈里面只有一个实例存在。<br>webkit 内核 页面。<br>很多东西需要初始化<br>html解析器<br>html渲染器<br>css 渲染器<br>javascript 执行引擎     </p>
+<blockquote>
+<p>如果一个activity的资源开销非常大，建议使用singletask的启动模式。<br>浏览器的activity使用的就是singletask的启动模式。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>4、singleInstance 单一实例启动模式。非常特殊， activity会运行在自己的任务栈里面，并且这个任务栈里面只有一个实例存在</p>
+<ul>
+<li>类似于java中的单例模式，单态模式。在整个android手机操作系统里面只有一个activity的实例存在。</li>
+<li>singleinstance启动模式的activity会运行在自己<strong><em>单独</em></strong>的任务栈里面</li>
+<li>如果你要保证一个activity在整个手机操作系统里面只有一个实例存在，使用singleInstance</li>
+<li>应用场景： 电话拨打界面</li>
+<li>InCallScreen 通话的activity配置模式是singleinstance的。在整个手机操作系统里面只有他一个实例存在。</li>
+<li><p>清单配置</p>
+<pre><code>&lt;activity 
+    android:launchMode=&quot;singleInstance&quot;
+    android:name=&quot;.SecondActivity&quot;&gt;
+&lt;/activity&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p>##任务栈的细节</p>
+<ul>
+<li>每个应用程序运行，系统都会分配一个新的任务栈。</li>
+<li>问题：问系统里面有多少个任务栈存在？</li>
+<li>有多少个应用程序正在运行（activity没有都被销y毁，回桌面），就有几个任务栈。<br>应该是就至少有几个</li>
+<li><p>如果一个应用里面有一个singleinstance呢???</p>
+</li>
+<li><p>任务栈的id是一个int类型的整数，自增长的id。不关机的话由getTaskId()得到的进程id会不断增加</p>
+</li>
+<li>一启动,会给launcher,systemui两个任务栈</li>
+<li>当只启动后台服务,没有启动画面,是不会分配任务栈的</li>
+</ul>
+<hr>
+<p>##横竖屏切换的生命周期</p>
+<ul>
+<li>默认情况下 ，横竖屏切换， 销毁当前的activity，重新创建一个新的activity</li>
+<li><p>快捷键ctrl+F11</p>
+</li>
+<li><p>在一些特殊的应用程序常见下，比如游戏，不希望横竖屏切换activity被销毁重新创建</p>
+</li>
+<li>需求：禁用掉横竖屏切换的生命周期</li>
+<li><p>横竖屏写死</p>
+<pre><code>android:screenOrientation=&quot;landscape&quot; 横屏
+android:screenOrientation=&quot;portrait&quot; 竖屏
+</code></pre></li>
+<li><p>让系统的环境 不再去敏感横竖屏的切换。</p>
+<pre><code>android:configChanges=&quot;orientation|screenSize|keyboardHidden&quot;
+</code></pre></li>
+<li><p>写死横竖屏示例：</p>
+<pre><code>&lt;activity
+    android:screenOrientation=&quot;portrait&quot;
+    android:configChanges=&quot;orientation|screenSize|keyboardHidden&quot;
+    android:name=&quot;com.itheima.lifecycle.MainActivity&quot;
+    &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;    
+</code></pre></li>
+</ul>
+<hr>
+<p>#掌握开启activity获取返回值</p>
+<p>###从A界面打开B界面， B界面关闭的时候，返回一个数据给A界面<br>步骤：</p>
+<ul>
+<li><p>1, 用新方法startActivityForResult(intent, 0)替代startActivity(intent)去<br>启动目标activity并且获取返回值，</p>
+<ul>
+<li>在主页面用这个方法启动的目标Activity，当目标Activity销毁时，会触发主页面onActivityResult方法</li>
+<li><p>startActivityForResult()方法：</p>
+<ul>
+<li>参数1：意图（启动新界面） </li>
+<li>参数2：请求码（用来在触发启动onActivityResult方法时，做匹配用）</li>
+</ul>
+<p>startActivityForResult(intent, 0);</p>
+<p>public void click1(View v){<br>  Intent intent = new Intent(this, ContactActivity.class);<br>  //startActivity(intent);</p>
+<p>  //用这个方法启动的Activity，当销毁时，会触发onActivityResult方法<br>  startActivityForResult(intent, 10);<br>}</p>
+</li>
+</ul>
+</li>
+<li><p>2.在新开启的界面里面实现设置数据的逻辑</p>
+<ul>
+<li><p>setResult()方法</p>
+<ul>
+<li>参数1：结果码 返回给父页面，做匹配用</li>
+<li><p>参数2：要返回的数据，放在意图中</p>
+<p>Intent data = new Intent();<br>data.putExtra(“phone”, phone);<br>//设置一个结果数据，数据会返回给调用者<br>setResult(0, data);<br>finish();//关闭掉当前的activity，才会返回数据</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>-示例–当点击目标Activity中的ListView中任何一条目，触发设置数据的逻辑，销毁目标Activity</p>
+<pre><code>    public class ContactActivity extends Activity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_contact);
+
+            final String[] names = new String[]{
+                &quot;白九日&quot;,
+                &quot;莎九日&quot;,
+                &quot;包九日&quot;,
+            };
+
+            ListView lv = (ListView) findViewById(R.id.lv);
+            lv.setAdapter(new ArrayAdapter&lt;String&gt;(this, R.layout.item_listview, 
+                    R.id.tv_name, names));
+
+            //给listview的条目设置点击侦听
+            lv.setOnItemClickListener(new OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView&lt;?&gt; parent, View view,
+                        int position, long id) {
+                    Intent data = new Intent();
+                    data.putExtra(&quot;name&quot;, names[position]);
+
+                    //当此Activity销毁时，data就会被传递给上一个Activity
+                    setResult(100, data);
+                    //销毁当前Activity
+                    finish();
+                }
+            });
+        }
+
+}
+</code></pre><p>-示例2–</p>
+<pre><code>public class MyActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
+        //指定Activity显示哪一个布局文件
+        setContentView(R.layout.activity_my);
+        //
+        final TextView tv_wife_name = (TextView) findViewById(R.id.tv_wife_name);
+        final TextView tv_wife_action = (TextView) findViewById(R.id.tv_wife_action);
+
+        tv_wife_name.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent data = new Intent();
+                data.putExtra(&quot;name&quot;, tv_wife_name.getText());
+                setResult(300, data);
+                finish();
+            }
+        });
+
+        tv_wife_action.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent data = new Intent();
+                data.putExtra(&quot;body&quot;, tv_wife_action.getText());
+                setResult(400, data);
+                finish();
+            }
+        });
+    }
+}
+</code></pre><ul>
+<li>3.在开启者activity里面实现方法（在主界面实现onActivityResult）</li>
+<li><p>onActivityResult()方法：</p>
+<ul>
+<li>参数1：requestCode 请求码 区分请求来自于哪个按钮。    </li>
+<li>参数2：resultCode  结果码 区分请求来自于哪个结果。</li>
+<li><p>参数3：data参数就是返回的结果数据。从里面把数据取出来。 </p>
+<pre><code>onActivityResult(int requestCode, int resultCode, Intent data) 
+</code></pre><p>  通过data获取返回的数据</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    //通过请求码来判断数据来自哪个Activity
+    if(requestCode == 10){
+
+        String name = data.getStringExtra(&quot;name&quot;);
+        EditText et = (EditText) findViewById(R.id.et_name);
+        et.setText(name);
+    }
+    else if(requestCode == 20){
+
+        String name = data.getStringExtra(&quot;sms&quot;);
+        EditText et = (EditText) findViewById(R.id.et_body);
+        et.setText(name);
+    }
+    else if(requestCode == 30){
+        //通过结果码判断数据属于什么类型
+        if(resultCode == 300){
+            String name = data.getStringExtra(&quot;name&quot;);
+            EditText et = (EditText) findViewById(R.id.et_name);
+            et.setText(name);
+        }
+        else if(resultCode == 400){
+            String name = data.getStringExtra(&quot;body&quot;);
+            EditText et = (EditText) findViewById(R.id.et_body);
+            et.setText(name);
+        }
+    }
+}
+</code></pre><ul>
+<li>4.根据请求码和结果码确定业务逻辑</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android基础/" rel="tag"># Android基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/13/Android基础--多线程断点续传下载/" rel="next" title="Android基础--多线程断点续传下载">
+                <i class="fa fa-chevron-left"></i> Android基础--多线程断点续传下载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/13/Android基础--广播 BroadcastReceiver/" rel="prev" title="Android基础--广播 BroadcastReceiver">
+                Android基础--广播 BroadcastReceiver <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/13/Android基础--Activity&页面跳转&数据传递/"
+           data-title="Android基础--Activity&页面跳转&数据传递" data-url="http://yoursite.com/2017/02/13/Android基础--Activity&页面跳转&数据传递/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、创建第二个Activity"><span class="nav-number"></span> <span class="nav-text">一、创建第二个Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意一个新页面，可以配置多个，用于其他页面进行匹配，使能够让其他页面跳转过来"><span class="nav-number"></span> <span class="nav-text">###注意一个新页面，可以配置多个，用于其他页面进行匹配，使能够让其他页面跳转过来</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yassblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
