@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SQL基础," />
 
 
 
@@ -84,18 +84,22 @@
 
 
 
-<meta name="description" content="问题: 打包报错">
+<meta name="description" content="/基本查询所有字段语句/SELECT * FROM student;SELECT s_number,s_name,s_age,s_gender FROM student;  
+/指定查询numer和name字段的记录/SELECT s_number,s_name FROM student;
+/查询student表的s_age&amp;gt;=25的所有记录/SELECT * FROM student WH">
 <meta property="og:type" content="article">
-<meta property="og:title" content="eclipse打包APK时String.xml报错的问题">
-<meta property="og:url" content="http://yoursite.com/2017/02/27/eclipse打包APK时String-xml报错的问题/index.html">
+<meta property="og:title" content="简单的SQL语句">
+<meta property="og:url" content="http://yoursite.com/2017/02/27/简单的SQL语句/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="问题: 打包报错">
-<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/dabaoapkbaocuo.png">
-<meta property="og:updated_time" content="2017-02-27T03:52:24.000Z">
+<meta property="og:description" content="/基本查询所有字段语句/SELECT * FROM student;SELECT s_number,s_name,s_age,s_gender FROM student;  
+/指定查询numer和name字段的记录/SELECT s_number,s_name FROM student;
+/查询student表的s_age&amp;gt;=25的所有记录/SELECT * FROM student WH">
+<meta property="og:updated_time" content="2017-02-27T04:51:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="eclipse打包APK时String.xml报错的问题">
-<meta name="twitter:description" content="问题: 打包报错">
-<meta name="twitter:image" content="http://ojupj7fr2.bkt.clouddn.com/dabaoapkbaocuo.png">
+<meta name="twitter:title" content="简单的SQL语句">
+<meta name="twitter:description" content="/基本查询所有字段语句/SELECT * FROM student;SELECT s_number,s_name,s_age,s_gender FROM student;  
+/指定查询numer和name字段的记录/SELECT s_number,s_name FROM student;
+/查询student表的s_age&amp;gt;=25的所有记录/SELECT * FROM student WH">
 
 
 
@@ -123,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/27/eclipse打包APK时String-xml报错的问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/27/简单的SQL语句/"/>
 
 
 
 
 
-  <title> eclipse打包APK时String.xml报错的问题 | 个人博客 </title>
+  <title> 简单的SQL语句 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +246,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/eclipse打包APK时String-xml报错的问题/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/简单的SQL语句/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -266,7 +270,7 @@
             
             
               
-                eclipse打包APK时String.xml报错的问题
+                简单的SQL语句
               
             
           </h1>
@@ -281,7 +285,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T11:47:56+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T12:45:29+08:00">
                 2017-02-27
               </time>
             
@@ -300,8 +304,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/27/eclipse打包APK时String-xml报错的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/eclipse打包APK时String-xml报错的问题/" itemprop="commentCount"></span>
+                <a href="/2017/02/27/简单的SQL语句/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/简单的SQL语句/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -327,12 +331,47 @@
       
 
       
-        <blockquote>
-<p>问题: 打包报错</p>
-</blockquote>
-<a id="more"></a>
-<p>问题:<br>Export aborted because fatal lint errors were found.These are listed in the Problems view.Either fix these before running Export again,or turn off “Run full error check when exporting app” in the Android &gt; Lint Error checking preference page.  </p>
-<p>解决:<br><img src="http://ojupj7fr2.bkt.clouddn.com/dabaoapkbaocuo.png" alt="M12"></p>
+        <p>/<em>基本查询所有字段语句</em>/<br>SELECT * FROM student;<br>SELECT s_number,s_name,s_age,s_gender FROM student;  </p>
+<p>/<em>指定查询numer和name字段的记录</em>/<br>SELECT s_number,s_name FROM student;</p>
+<p>/<em>查询student表的s_age&gt;=25的所有记录</em>/<br>SELECT * FROM student WHERE s_age&gt;=25;  </p>
+<p>/<em>BETWEEN AND:s_age大于等于25并且小于等于75的记录</em>/<br>SELECT <em> FROM student WHERE s_age BETWEEN 25 AND 75;<br>SELECT </em> FROM student WHERE s_age&gt;=25 AND s_age&lt;=75;  </p>
+<p>/<em>IS NULL</em>/<br>SELECT * FROM student WHERE s_age IS NULL;  </p>
+<p>/<em>查询s_age的值不为NULL的记录</em>/<br>SELECT * FROM student WHERE s_age IS NOT NULL;  </p>
+<p>/<em>s_age的值为25、35、45的记录(一句SQL)</em>/<br>SELECT * FROM student WHERE s_age IN(25,35,45);  </p>
+<p>/<em>实际应用是混合使用</em>/<br>SELECT * FROM student WHERE s_age&gt;25 AND   (s_gender=’male’ OR s_number IN());  </p>
+<p>/<em>查询s_name的值是以’z’开始的记录</em>/<br>SELECT <em> FROM student WHERE s_name LIKE ‘z%’;<br>/</em>查询s_name的值是以’n’结束的记录<em>/<br>SELECT </em> FROM student WHERE s_name LIKE ‘%n’;<br>/<em>查询s_name的值是包含’a’的记录</em>/<br>SELECT <em> FROM student WHERE s_name LIKE ‘%a%’;<br>/</em>查询s_name的值是以’z’开始的7个字符的记录<em>/<br>SELECT </em> FROM student WHERE s_name LIKE ‘z<strong>__</strong>‘;  </p>
+<p>/<em>当查询字段值具有重复值,需要去重</em>/<br>SELECT DISTINCT s_gender FROM student;  </p>
+<p>SELECT DISTINCT s_gender,s_name FROM student;  </p>
+<p>SELECT losal+hisal AS he FROM salarygrade;  </p>
+<p>/<em>排序查询</em>/<br>SELECT * FROM student ORDER BY s_age DESC;  </p>
+<p>/<em>查询s_age的值大于25的记录,并且按照s_age由小到大排序</em>/<br>SELECT * FROM student WHERE s_age&gt;25 ORDER BY s_age;  </p>
+<p>/<em>查询losal列的所有值之和</em>/<br>SELECT SUM(losal) FROM salarygrade;  </p>
+<p>/<em>查询salarygrade表的所有记录总数</em>/<br>SELECT COUNT(*) FROM salarygrade;  </p>
+<p>/<em>查询losal的最大值</em>/<br>SELECT MAX(losal) FROM salarygrade;  </p>
+<p>SELECT MIN(losal) FROM salarygrade;  </p>
+<p>SELECT AVG(losal) FROM salarygrade;  </p>
+<p>/<em>下面的写法逻辑错误</em>/<br>SELECT SUM(losal),hisal FROM salarygrade;  </p>
+<p>/<em>分组查询语句</em>/<br>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender ORDER BY s_age;  </p>
+<p>/<em>使用聚合函数作为查询条件</em>/<br>SELECT * FROM student HAVING MAX(s_age)&gt;25;  </p>
+<p>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender HAVING MAX(s_age)&gt;25 ORDER BY s_age;  </p>
+<p>/<em>多表查询</em>/<br>SELECT <em> FROM emp;<br>SELECT </em> FROM dept;  </p>
+<p>/<em>查询员工表,要求显示部门名称</em>/<br>SELECT emp.<em>,dept.dname FROM emp LEFT JOIN dept ON emp.deptno=dept.deptno;<br>/</em>以上写法简写方式<em>/<br>SELECT emp.</em>,dept.dname FROM emp,dept WHERE emp.deptno=dept.deptno;  </p>
+<p>/<em><br>三张表连接查询<br>select </em> from 表名1<br>left join 表名2 on 表名1.字段名=表名2.字段名<br>left join 表名3 on 表名2.字段名=表名2.字段名;<br>*/  </p>
+<p>/<em>内连接查询</em>/<br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan FROM emp AS e1<br>INNER JOIN emp AS e2 ON e1.mgr=e2.empno;<br>/<em>以上写法简写方式</em>/<br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan<br>FROM emp AS e1,emp AS e2<br>WHERE e1.mgr=e2.empno;  </p>
+<hr>
+<p>/<em>向student表插入一条学生记录</em>/<br>SELECT * FROM student;  </p>
+<p>/<em>插入所有字段值</em>/<br>INSERT INTO student VALUES(‘s_1020’,’ZhangWuJi’,’180’,’male’);  </p>
+<p>/<em>插入指定字段:s_number,s_name</em>/<br>INSERT INTO student(s_number,s_name) VALUES(‘s_1021’,’ZhouZhiRuo’);  </p>
+<p>/<em>如果表字段s_gender默认不允许为空的,插入时怎么办?</em>/  </p>
+<p>/<em>修改s_name值为’ZhangWuJi’的年龄为800</em>/<br>UPDATE student SET s_age=800;  </p>
+<p>/<em>删除s_name值为’ZhangWuJi’</em>/<br>DELETE FROM student WHERE s_name=’ZhangWuJi’;  </p>
+<hr>
+<p>/<em>创建数据库为day0233</em>/<br>CREATE DATABASE IF NOT EXISTS day0322;  </p>
+<p>/<em><br>   创建一个用户表<br>   名称、年龄、性别、工作等
+</em>/<br>CREATE TABLE myuser(<br>    username  VARCHAR(50),<br>    age       INT,<br>    sex       VARCHAR(50),<br>    job       VARCHAR(50)<br>);  </p>
+<p>/<em>查看所有数据库</em>/<br>SHOW DATABASES;  </p>
+<p>/<em>查看表结构</em>/<br>DESC myuser;<br>/<em>查看建表语句</em>/<br>SHOW CREATE TABLE myuser;  </p>
+<p>/<em>删除表</em>/<br>DROP TABLE myuser;  </p>
 
       
     </div>
@@ -354,13 +393,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/SQL基础/" rel="tag"># SQL基础</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/25/将网易云音乐歌单转成QQ音乐歌单/" rel="next" title="将网易云音乐歌单转成QQ音乐歌单">
-                <i class="fa fa-chevron-left"></i> 将网易云音乐歌单转成QQ音乐歌单
+              <a href="/2017/02/27/eclipse打包APK时String-xml报错的问题/" rel="next" title="eclipse打包APK时String.xml报错的问题">
+                <i class="fa fa-chevron-left"></i> eclipse打包APK时String.xml报错的问题
               </a>
             
           </div>
@@ -368,10 +413,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/27/简单的SQL语句/" rel="prev" title="简单的SQL语句">
-                简单的SQL语句 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -397,8 +438,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/27/eclipse打包APK时String-xml报错的问题/"
-           data-title="eclipse打包APK时String.xml报错的问题" data-url="http://yoursite.com/2017/02/27/eclipse打包APK时String-xml报错的问题/">
+      <div class="ds-thread" data-thread-key="2017/02/27/简单的SQL语句/"
+           data-title="简单的SQL语句" data-url="http://yoursite.com/2017/02/27/简单的SQL语句/">
       </div>
     
   </div>
