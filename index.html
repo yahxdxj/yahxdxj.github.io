@@ -330,50 +330,16 @@
 
       
         
-          
-            <p>/<em>基本查询所有字段语句</em>/<br>SELECT * FROM student;<br>SELECT s_number,s_name,s_age,s_gender FROM student;  </p>
-<p>/<em>指定查询numer和name字段的记录</em>/<br>SELECT s_number,s_name FROM student;</p>
-<p>/<em>查询student表的s_age&gt;=25的所有记录</em>/<br>SELECT * FROM student WHERE s_age&gt;=25;  </p>
-<p>/<em>BETWEEN AND:s_age大于等于25并且小于等于75的记录</em>/<br>SELECT <em> FROM student WHERE s_age BETWEEN 25 AND 75;<br>SELECT </em> FROM student WHERE s_age&gt;=25 AND s_age&lt;=75;  </p>
-<p>/<em>IS NULL</em>/<br>SELECT * FROM student WHERE s_age IS NULL;  </p>
-<p>/<em>查询s_age的值不为NULL的记录</em>/<br>SELECT * FROM student WHERE s_age IS NOT NULL;  </p>
-<p>/<em>s_age的值为25、35、45的记录(一句SQL)</em>/<br>SELECT * FROM student WHERE s_age IN(25,35,45);  </p>
-<p>/<em>实际应用是混合使用</em>/<br>SELECT * FROM student WHERE s_age&gt;25 AND   (s_gender=’male’ OR s_number IN());  </p>
-<p>/<em>查询s_name的值是以’z’开始的记录</em>/<br>SELECT <em> FROM student WHERE s_name LIKE ‘z%’;<br>/</em>查询s_name的值是以’n’结束的记录<em>/<br>SELECT </em> FROM student WHERE s_name LIKE ‘%n’;<br>/<em>查询s_name的值是包含’a’的记录</em>/<br>SELECT <em> FROM student WHERE s_name LIKE ‘%a%’;<br>/</em>查询s_name的值是以’z’开始的7个字符的记录<em>/<br>SELECT </em> FROM student WHERE s_name LIKE ‘z<strong>__</strong>‘;  </p>
-<p>/<em>当查询字段值具有重复值,需要去重</em>/<br>SELECT DISTINCT s_gender FROM student;  </p>
-<p>SELECT DISTINCT s_gender,s_name FROM student;  </p>
-<p>SELECT losal+hisal AS he FROM salarygrade;  </p>
-<p>/<em>排序查询</em>/<br>SELECT * FROM student ORDER BY s_age DESC;  </p>
-<p>/<em>查询s_age的值大于25的记录,并且按照s_age由小到大排序</em>/<br>SELECT * FROM student WHERE s_age&gt;25 ORDER BY s_age;  </p>
-<p>/<em>查询losal列的所有值之和</em>/<br>SELECT SUM(losal) FROM salarygrade;  </p>
-<p>/<em>查询salarygrade表的所有记录总数</em>/<br>SELECT COUNT(*) FROM salarygrade;  </p>
-<p>/<em>查询losal的最大值</em>/<br>SELECT MAX(losal) FROM salarygrade;  </p>
-<p>SELECT MIN(losal) FROM salarygrade;  </p>
-<p>SELECT AVG(losal) FROM salarygrade;  </p>
-<p>/<em>下面的写法逻辑错误</em>/<br>SELECT SUM(losal),hisal FROM salarygrade;  </p>
-<p>/<em>分组查询语句</em>/<br>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender ORDER BY s_age;  </p>
-<p>/<em>使用聚合函数作为查询条件</em>/<br>SELECT * FROM student HAVING MAX(s_age)&gt;25;  </p>
-<p>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender HAVING MAX(s_age)&gt;25 ORDER BY s_age;  </p>
-<p>/<em>多表查询</em>/<br>SELECT <em> FROM emp;<br>SELECT </em> FROM dept;  </p>
-<p>/<em>查询员工表,要求显示部门名称</em>/<br>SELECT emp.<em>,dept.dname FROM emp LEFT JOIN dept ON emp.deptno=dept.deptno;<br>/</em>以上写法简写方式<em>/<br>SELECT emp.</em>,dept.dname FROM emp,dept WHERE emp.deptno=dept.deptno;  </p>
-<p>/<em><br>三张表连接查询<br>select </em> from 表名1<br>left join 表名2 on 表名1.字段名=表名2.字段名<br>left join 表名3 on 表名2.字段名=表名2.字段名;<br>*/  </p>
-<p>/<em>内连接查询</em>/<br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan FROM emp AS e1<br>INNER JOIN emp AS e2 ON e1.mgr=e2.empno;<br>/<em>以上写法简写方式</em>/<br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan<br>FROM emp AS e1,emp AS e2<br>WHERE e1.mgr=e2.empno;  </p>
-<hr>
-<p>/<em>向student表插入一条学生记录</em>/<br>SELECT * FROM student;  </p>
-<p>/<em>插入所有字段值</em>/<br>INSERT INTO student VALUES(‘s_1020’,’ZhangWuJi’,’180’,’male’);  </p>
-<p>/<em>插入指定字段:s_number,s_name</em>/<br>INSERT INTO student(s_number,s_name) VALUES(‘s_1021’,’ZhouZhiRuo’);  </p>
-<p>/<em>如果表字段s_gender默认不允许为空的,插入时怎么办?</em>/  </p>
-<p>/<em>修改s_name值为’ZhangWuJi’的年龄为800</em>/<br>UPDATE student SET s_age=800;  </p>
-<p>/<em>删除s_name值为’ZhangWuJi’</em>/<br>DELETE FROM student WHERE s_name=’ZhangWuJi’;  </p>
-<hr>
-<p>/<em>创建数据库为day0233</em>/<br>CREATE DATABASE IF NOT EXISTS day0322;  </p>
-<p>/<em><br>   创建一个用户表<br>   名称、年龄、性别、工作等
-</em>/<br>CREATE TABLE myuser(<br>    username  VARCHAR(50),<br>    age       INT,<br>    sex       VARCHAR(50),<br>    job       VARCHAR(50)<br>);  </p>
-<p>/<em>查看所有数据库</em>/<br>SHOW DATABASES;  </p>
-<p>/<em>查看表结构</em>/<br>DESC myuser;<br>/<em>查看建表语句</em>/<br>SHOW CREATE TABLE myuser;  </p>
-<p>/<em>删除表</em>/<br>DROP TABLE myuser;  </p>
-
-          
+          <blockquote>
+<p>简单的SQL语句  </p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/27/简单的SQL语句/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
