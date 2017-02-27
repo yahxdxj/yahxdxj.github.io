@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="导语
  Fragment介绍 动画介绍">
-<meta property="og:updated_time" content="2017-02-25T04:11:47.000Z">
+<meta property="og:updated_time" content="2017-02-25T04:27:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android基础--Fragment+动画">
 <meta name="twitter:description" content="导语
@@ -337,37 +337,21 @@
 <li>用途：在一个Activity里切换界面，切换界面时只切换Fragment里面的内容  </li>
 </ul>
 <h3 id="2、如何使用fragment"><a href="#2、如何使用fragment" class="headerlink" title="2、如何使用fragment"></a>2、如何使用fragment</h3><ul>
-<li><p>fragment 理解成迷你activity，依托于activity存活，如果activity挂了，fragment也挂了。  </p>
-<h4 id="1-写一个类继承-Fragment"><a href="#1-写一个类继承-Fragment" class="headerlink" title="1. 写一个类继承 Fragment"></a>1. 写一个类继承 Fragment</h4><h4 id="2-重写onCreateView-方法，返回当前fragement显示的view对象。"><a href="#2-重写onCreateView-方法，返回当前fragement显示的view对象。" class="headerlink" title="2. 重写onCreateView()方法，返回当前fragement显示的view对象。"></a>2. 重写onCreateView()方法，返回当前fragement显示的view对象。</h4></li>
+<li>fragment 理解成迷你activity，依托于activity存活，如果activity挂了，fragment也挂了。  </li>
 </ul>
-<pre><code>        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            //返回一个view对象
-        }  
-
-
-#### 3. 在activity获取Fragment01对象
-
-          Fragment01 fg1 = new Fragment01();  
-
-#### 3.1. 在activity获取到碎片管理器 FragmentManager
-
-        FragmentManager fm = getFragmentManager();
-#### 4. 如果要更新界面要保证同时成功或者同时失败，开启事务
-
-        FragmentTransaction ft = fm.beginTransaction();  
-
-#### 5. 替换activity界面某个容器里面显示的内容（fragment）
-
-        ft.replace(R.id.container, new Fragment03());
-        ft.add();
-        ft.remove();  
-
-#### 6. 如果要更新界面要保证同时成功或者同时失败，提交事务
-
-        ft.commit();  
-</code></pre><h4 id="2-1使用fragment细节"><a href="#2-1使用fragment细节" class="headerlink" title="2.1使用fragment细节"></a>2.1使用fragment细节</h4><h5 id="写一个类继承-Fragment，并定义一个布局文件作为Fragment的显示内容-先要定义一个布局文件"><a href="#写一个类继承-Fragment，并定义一个布局文件作为Fragment的显示内容-先要定义一个布局文件" class="headerlink" title="写一个类继承 Fragment，并定义一个布局文件作为Fragment的显示内容(先要定义一个布局文件)"></a>写一个类继承 Fragment，并定义一个布局文件作为Fragment的显示内容(先要定义一个布局文件)</h5><pre><code>public class Fragment01 extends Fragment {
+<h5 id="2-1-写一个类继承-Fragment"><a href="#2-1-写一个类继承-Fragment" class="headerlink" title="2.1. 写一个类继承 Fragment"></a>2.1. 写一个类继承 Fragment</h5><h5 id="2-2-重写onCreateView-方法，返回当前fragement显示的view对象。"><a href="#2-2-重写onCreateView-方法，返回当前fragement显示的view对象。" class="headerlink" title="2.2. 重写onCreateView()方法，返回当前fragement显示的view对象。"></a>2.2. 重写onCreateView()方法，返回当前fragement显示的view对象。</h5><pre><code>@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
+    //返回一个view对象
+}  
+</code></pre><h5 id="2-3-在activity获取Fragment01对象"><a href="#2-3-在activity获取Fragment01对象" class="headerlink" title="2.3. 在activity获取Fragment01对象"></a>2.3. 在activity获取Fragment01对象</h5><pre><code>Fragment01 fg1 = new Fragment01();  
+</code></pre><h5 id="2-3-1-在activity获取到碎片管理器-FragmentManager"><a href="#2-3-1-在activity获取到碎片管理器-FragmentManager" class="headerlink" title="2.3.1. 在activity获取到碎片管理器 FragmentManager"></a>2.3.1. 在activity获取到碎片管理器 FragmentManager</h5><pre><code>FragmentManager fm = getFragmentManager();
+</code></pre><h5 id="2-4-如果要更新界面要保证同时成功或者同时失败，开启事务"><a href="#2-4-如果要更新界面要保证同时成功或者同时失败，开启事务" class="headerlink" title="2.4. 如果要更新界面要保证同时成功或者同时失败，开启事务"></a>2.4. 如果要更新界面要保证同时成功或者同时失败，开启事务</h5><pre><code>FragmentTransaction ft = fm.beginTransaction();  
+</code></pre><h5 id="2-5-替换activity界面某个容器里面显示的内容（fragment）"><a href="#2-5-替换activity界面某个容器里面显示的内容（fragment）" class="headerlink" title="2.5. 替换activity界面某个容器里面显示的内容（fragment）"></a>2.5. 替换activity界面某个容器里面显示的内容（fragment）</h5><pre><code>ft.replace(R.id.container, new Fragment03());
+ft.add();
+ft.remove();  
+</code></pre><h5 id="2-6-如果要更新界面要保证同时成功或者同时失败，提交事务"><a href="#2-6-如果要更新界面要保证同时成功或者同时失败，提交事务" class="headerlink" title="2.6. 如果要更新界面要保证同时成功或者同时失败，提交事务"></a>2.6. 如果要更新界面要保证同时成功或者同时失败，提交事务</h5><pre><code>ft.commit();  
+</code></pre><h3 id="3、使用fragment细节"><a href="#3、使用fragment细节" class="headerlink" title="3、使用fragment细节"></a>3、使用fragment细节</h3><h5 id="写一个类继承-Fragment，并定义一个布局文件作为Fragment的显示内容-先要定义一个布局文件"><a href="#写一个类继承-Fragment，并定义一个布局文件作为Fragment的显示内容-先要定义一个布局文件" class="headerlink" title="写一个类继承 Fragment，并定义一个布局文件作为Fragment的显示内容(先要定义一个布局文件)"></a>写一个类继承 Fragment，并定义一个布局文件作为Fragment的显示内容(先要定义一个布局文件)</h5><pre><code>public class Fragment01 extends Fragment {
 
     //与ListAdapter中的getView方法类似
     //此方法返回的View对象就是Fragment显示的内容
@@ -390,8 +374,7 @@ FragmentTransaction ft = fm.beginTransaction();
 //把fragment对象显示到指定资源id的组件里面
 ft.replace(R.id.fl, fg);
 ft.commit();  
-</code></pre><p>####2.2使用fragment示例</p>
-<pre><code>//Activity界面显示fragment01  
+</code></pre><h4 id="3-2使用fragment示例"><a href="#3-2使用fragment示例" class="headerlink" title="3.2使用fragment示例"></a>3.2使用fragment示例</h4><pre><code>//Activity界面显示fragment01  
 public void click1(View v){
     //1 获取Fragment01对象，//Fragment01对象的onCreateView返回一个view对象
       Fragment01 fg1 = new Fragment01();
@@ -404,7 +387,7 @@ public void click1(View v){
       //5.提交事务
       ft.commit();
 }
-</code></pre><h3 id="3、生命周期"><a href="#3、生命周期" class="headerlink" title="3、生命周期"></a>3、生命周期</h3><ul>
+</code></pre><h3 id="4、生命周期"><a href="#4、生命周期" class="headerlink" title="4、生命周期"></a>4、生命周期</h3><ul>
 <li>生命周期方法跟Activity一致，可以理解把其为就是一个Activity</li>
 <li>fragment切换时会销毁旧的，再创建新的</li>
 <li>fragment切换时旧fragment对象会销毁，新的fragment对象会被创建</li>
@@ -418,7 +401,7 @@ public void click1(View v){
 <pre><code>onresume--&gt;onpause
 </code></pre></li>
 </ul>
-<h3 id="4、低版本兼容"><a href="#4、低版本兼容" class="headerlink" title="4、低版本兼容"></a>4、低版本兼容</h3><ul>
+<h3 id="5、低版本兼容"><a href="#5、低版本兼容" class="headerlink" title="5、低版本兼容"></a>5、低版本兼容</h3><ul>
 <li>在support-v4.jar包中有相关api，也就是说fragment可以在低版本模拟器运行  </li>
 <li>使用 support-v4.jar包。包含有新版本sdk的AP 。<ol>
 <li>替换所有的导包 android.app.<em> —&gt; android.support.v4.app.</em>;</li>
@@ -502,7 +485,7 @@ public class MainActivity extends FragmentActivity {
           ft.commit();
     }
 }
-</code></pre><h3 id="5、activity与fragement的数据传递"><a href="#5、activity与fragement的数据传递" class="headerlink" title="5、activity与fragement的数据传递"></a>5、activity与fragement的数据传递</h3><h4 id="5-1-从activity——-gt-Fragment数据传递"><a href="#5-1-从activity——-gt-Fragment数据传递" class="headerlink" title="5.1 从activity——-&gt;Fragment数据传递"></a>5.1 从activity——-&gt;Fragment数据传递</h4><ul>
+</code></pre><h3 id="6、activity与fragement的数据传递"><a href="#6、activity与fragement的数据传递" class="headerlink" title="6、activity与fragement的数据传递"></a>6、activity与fragement的数据传递</h3><h4 id="6-1-从activity——-gt-Fragment数据传递"><a href="#6-1-从activity——-gt-Fragment数据传递" class="headerlink" title="6.1 从activity——-&gt;Fragment数据传递"></a>6.1 从activity——-&gt;Fragment数据传递</h4><ul>
 <li><p>1 获取activity中EditView中的数据，通过Fragment对象调用方法传递数据</p>
 <pre><code>public void click4(View v){
 
@@ -525,7 +508,7 @@ public class MainActivity extends FragmentActivity {
 }  
 </code></pre></li>
 </ul>
-<h4 id="5-1-从Fragment——-gt-activity数据传递"><a href="#5-1-从Fragment——-gt-activity数据传递" class="headerlink" title="5.1 从Fragment——-&gt;activity数据传递"></a>5.1 从Fragment——-&gt;activity数据传递</h4><ul>
+<h4 id="6-2-从Fragment——-gt-activity数据传递"><a href="#6-2-从Fragment——-gt-activity数据传递" class="headerlink" title="6.2 从Fragment——-&gt;activity数据传递"></a>6.2 从Fragment——-&gt;activity数据传递</h4><ul>
 <li><p>1 在Fragment的java类中获取用户输入的数据，调用activity对象方法，传递数据</p>
 <pre><code>//获取按钮控件
 Button bt_fragment03 = (Button) view.findViewById(R.id.bt_fragment03);
@@ -587,7 +570,9 @@ bt_fragment03.setOnClickListener(new OnClickListener() {
 </ul>
 <h3 id="2-2-补间动画-TweenAnimation-，实现ImageView-图片控件-的位移、旋转、缩放、透明"><a href="#2-2-补间动画-TweenAnimation-，实现ImageView-图片控件-的位移、旋转、缩放、透明" class="headerlink" title="2.2 补间动画(TweenAnimation)，实现ImageView(图片控件)的位移、旋转、缩放、透明"></a>2.2 补间动画(TweenAnimation)，实现ImageView(图片控件)的位移、旋转、缩放、透明</h3><ul>
 <li>原形态变成新形态时为了过渡变形过程，生成的动画就叫补间动画，不携带属性</li>
-<li>位移、旋转、缩放、透明<h4 id="ImageView-图片控件-的位移："><a href="#ImageView-图片控件-的位移：" class="headerlink" title="ImageView(图片控件)的位移："></a>ImageView(图片控件)的位移：</h4></li>
+<li>位移、旋转、缩放、透明  </li>
+</ul>
+<h4 id="ImageView-图片控件-的位移："><a href="#ImageView-图片控件-的位移：" class="headerlink" title="ImageView(图片控件)的位移："></a>ImageView(图片控件)的位移：</h4><ul>
 <li>关于位移动画对象TranslateAnimation构造方法参数的详解  </li>
 </ul>
 <h5 id="构造方法1："><a href="#构造方法1：" class="headerlink" title="构造方法1："></a>构造方法1：</h5><pre><code>    TranslateAnimation ta = new TranslateAnimation(10, 100, 20, 170);  
@@ -772,11 +757,11 @@ public void fly(View v){
     iv.startAnimation(as);
 }
 </code></pre><hr>
-<h2 id="三-属性动画PropertyAnimation"><a href="#三-属性动画PropertyAnimation" class="headerlink" title="三 属性动画PropertyAnimation"></a>三 属性动画PropertyAnimation</h2><ul>
+<h3 id="2-3-属性动画PropertyAnimation"><a href="#2-3-属性动画PropertyAnimation" class="headerlink" title="2.3 属性动画PropertyAnimation"></a>2.3 属性动画PropertyAnimation</h3><ul>
 <li>补间动画，只是一个动画效果，组件其实还在原来的位置上，xy没有改变</li>
 <li>属性动画改变组件对象的属性值  </li>
 </ul>
-<h3 id="3-1-位移："><a href="#3-1-位移：" class="headerlink" title="3.1 位移："></a>3.1 位移：</h3><ul>
+<h4 id="3-1-位移："><a href="#3-1-位移：" class="headerlink" title="3.1 位移："></a>3.1 位移：</h4><ul>
 <li>改变x或者y坐标属性</li>
 <li>第一个参数target指定要显示动画的组件</li>
 <li>第二个参数propertyName指定要改变组件的哪个属性</li>
@@ -803,7 +788,7 @@ public void translate(View v){
 }  
 </code></pre></li>
 </ul>
-<h3 id="3-2-缩放："><a href="#3-2-缩放：" class="headerlink" title="3.2 缩放："></a>3.2 缩放：</h3><ul>
+<h4 id="3-2-缩放："><a href="#3-2-缩放：" class="headerlink" title="3.2 缩放："></a>3.2 缩放：</h4><ul>
 <li>改变scaleX或scaleY的属性</li>
 <li>scaleX：水平缩放比例</li>
 <li><p>scaleY：竖直缩放比例</p>
@@ -827,7 +812,7 @@ public void scale(View v){
 }  
 </code></pre></li>
 </ul>
-<h3 id="3-3-透明："><a href="#3-3-透明：" class="headerlink" title="3.3 透明："></a>3.3 透明：</h3><ul>
+<h4 id="3-3-透明："><a href="#3-3-透明：" class="headerlink" title="3.3 透明："></a>3.3 透明：</h4><ul>
 <li><p>透明度，0是完全透明，1是完全不透明</p>
 <pre><code>ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;alpha&quot;, 0.1f, 1);
 </code></pre></li>
@@ -840,7 +825,7 @@ public void alpha(View v){
 }  
 </code></pre></li>
 </ul>
-<h3 id="3-4-旋转"><a href="#3-4-旋转" class="headerlink" title="3.4 旋转"></a>3.4 旋转</h3><ul>
+<h4 id="3-4-旋转"><a href="#3-4-旋转" class="headerlink" title="3.4 旋转"></a>3.4 旋转</h4><ul>
 <li>Rotation：以组件中心为旋转点旋转</li>
 <li>RotationX：以x轴为轴心翻转</li>
 <li><p>RotationY：以Y轴为轴心翻转</p>
@@ -866,12 +851,12 @@ public void rotate(View v){
 }
 </code></pre></li>
 </ul>
-<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><ul>
+<h4 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h4><ul>
 <li><p>第三个参数可变参数可以传入多个参数，可以实现往回位移（旋转、缩放、透明）</p>
 <pre><code>ObjectAnimator oa = ObjectAnimator.ofFloat(bt, &quot;translationX&quot;, 0, 70, 30, 100) ;
 </code></pre></li>
 </ul>
-<h3 id="所有动画一起飞-1"><a href="#所有动画一起飞-1" class="headerlink" title="所有动画一起飞"></a>所有动画一起飞</h3><pre><code>//创建动画师集合
+<h4 id="所有动画一起飞-1"><a href="#所有动画一起飞-1" class="headerlink" title="所有动画一起飞"></a>所有动画一起飞</h4><pre><code>//创建动画师集合
 AnimatorSet set = new AnimatorSet();
 //设置要播放动画的组件//设置改变哪个对象的属性
 set.setTarget(iv);
@@ -921,7 +906,7 @@ public void fly(View v){
 }
 </code></pre></li>
 </ul>
-<h3 id="可以使用xml文件定义"><a href="#可以使用xml文件定义" class="headerlink" title="可以使用xml文件定义"></a>可以使用xml文件定义</h3><ul>
+<h3 id="2-4-可以使用xml文件定义"><a href="#2-4-可以使用xml文件定义" class="headerlink" title="2.4 可以使用xml文件定义"></a>2.4 可以使用xml文件定义</h3><ul>
 <li><p>1 在animator文件夹下定义.xml文件  </p>
 <blockquote>
 <p>/res/animator/objectanimator.xml      </p>
@@ -1068,7 +1053,7 @@ public void fly(View v){
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1114,7 +1099,7 @@ public void fly(View v){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Fragment"><span class="nav-number"></span> <span class="nav-text">一、Fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、为什么要使用fragment-Android-3-0-API-2011-开始"><span class="nav-number"></span> <span class="nav-text">1、为什么要使用fragment(Android 3.0 API 2011 开始)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、如何使用fragment"><span class="nav-number"></span> <span class="nav-text">2、如何使用fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-写一个类继承-Fragment"><span class="nav-number">1.</span> <span class="nav-text">1. 写一个类继承 Fragment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-重写onCreateView-方法，返回当前fragement显示的view对象。"><span class="nav-number">2.</span> <span class="nav-text">2. 重写onCreateView()方法，返回当前fragement显示的view对象。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1使用fragment细节"><span class="nav-number">3.</span> <span class="nav-text">2.1使用fragment细节</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#写一个类继承-Fragment，并定义一个布局文件作为Fragment的显示内容-先要定义一个布局文件"><span class="nav-number">3.1.</span> <span class="nav-text">写一个类继承 Fragment，并定义一个布局文件作为Fragment的显示内容(先要定义一个布局文件)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#把Fragment显示至指定ViewGroup中"><span class="nav-number">3.2.</span> <span class="nav-text">把Fragment显示至指定ViewGroup中</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、生命周期"><span class="nav-number"></span> <span class="nav-text">3、生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、低版本兼容"><span class="nav-number"></span> <span class="nav-text">4、低版本兼容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、activity与fragement的数据传递"><span class="nav-number"></span> <span class="nav-text">5、activity与fragement的数据传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-从activity——-gt-Fragment数据传递"><span class="nav-number">1.</span> <span class="nav-text">5.1 从activity——->Fragment数据传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-从Fragment——-gt-activity数据传递"><span class="nav-number">2.</span> <span class="nav-text">5.1 从Fragment——->activity数据传递</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-动画"><span class="nav-number"></span> <span class="nav-text">二 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-帧动画-FrameAnimation"><span class="nav-number"></span> <span class="nav-text">2.1 帧动画 FrameAnimation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-补间动画-TweenAnimation-，实现ImageView-图片控件-的位移、旋转、缩放、透明"><span class="nav-number"></span> <span class="nav-text">2.2 补间动画(TweenAnimation)，实现ImageView(图片控件)的位移、旋转、缩放、透明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-的位移："><span class="nav-number">1.</span> <span class="nav-text">ImageView(图片控件)的位移：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法1："><span class="nav-number">1.1.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2-1"><span class="nav-number">1.2.</span> <span class="nav-text">构造方法2.1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2-2"><span class="nav-number">1.3.</span> <span class="nav-text">构造方法2.2:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#加深理解：对于上面的参数内容再解释一遍"><span class="nav-number">1.4.</span> <span class="nav-text">加深理解：对于上面的参数内容再解释一遍</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#构造1："><span class="nav-number">1.4.1.</span> <span class="nav-text">构造1：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#构造2："><span class="nav-number">1.4.2.</span> <span class="nav-text">构造2：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-缩放："><span class="nav-number">2.</span> <span class="nav-text">ImageView(图片控件)缩放：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法1：-1"><span class="nav-number">2.1.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2："><span class="nav-number">2.2.</span> <span class="nav-text">构造方法2：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法3："><span class="nav-number">2.3.</span> <span class="nav-text">构造方法3：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解释"><span class="nav-number">2.4.</span> <span class="nav-text">解释</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#构造方法1：-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#构造方法3：-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">构造方法3：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缩放示例"><span class="nav-number">2.5.</span> <span class="nav-text">缩放示例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-透明："><span class="nav-number">3.</span> <span class="nav-text">ImageView(图片控件)透明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-旋转："><span class="nav-number">4.</span> <span class="nav-text">ImageView(图片控件)旋转：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2：-1"><span class="nav-number">4.1.</span> <span class="nav-text">构造方法2：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法1：-3"><span class="nav-number">4.2.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2：-2"><span class="nav-number">4.3.</span> <span class="nav-text">构造方法2：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所有动画一起飞"><span class="nav-number">5.</span> <span class="nav-text">所有动画一起飞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-属性动画PropertyAnimation"><span class="nav-number"></span> <span class="nav-text">三 属性动画PropertyAnimation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-位移："><span class="nav-number"></span> <span class="nav-text">3.1 位移：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-缩放："><span class="nav-number"></span> <span class="nav-text">3.2 缩放：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-透明："><span class="nav-number"></span> <span class="nav-text">3.3 透明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-旋转"><span class="nav-number"></span> <span class="nav-text">3.4 旋转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变参数"><span class="nav-number"></span> <span class="nav-text">可变参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有动画一起飞-1"><span class="nav-number"></span> <span class="nav-text">所有动画一起飞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以使用xml文件定义"><span class="nav-number"></span> <span class="nav-text">可以使用xml文件定义</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Fragment"><span class="nav-number"></span> <span class="nav-text">一、Fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、为什么要使用fragment-Android-3-0-API-2011-开始"><span class="nav-number"></span> <span class="nav-text">1、为什么要使用fragment(Android 3.0 API 2011 开始)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、如何使用fragment"><span class="nav-number"></span> <span class="nav-text">2、如何使用fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-写一个类继承-Fragment"><span class="nav-number">0.1.</span> <span class="nav-text">2.1. 写一个类继承 Fragment</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-重写onCreateView-方法，返回当前fragement显示的view对象。"><span class="nav-number">0.2.</span> <span class="nav-text">2.2. 重写onCreateView()方法，返回当前fragement显示的view对象。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-在activity获取Fragment01对象"><span class="nav-number">0.3.</span> <span class="nav-text">2.3. 在activity获取Fragment01对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-1-在activity获取到碎片管理器-FragmentManager"><span class="nav-number">0.4.</span> <span class="nav-text">2.3.1. 在activity获取到碎片管理器 FragmentManager</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-如果要更新界面要保证同时成功或者同时失败，开启事务"><span class="nav-number">0.5.</span> <span class="nav-text">2.4. 如果要更新界面要保证同时成功或者同时失败，开启事务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-替换activity界面某个容器里面显示的内容（fragment）"><span class="nav-number">0.6.</span> <span class="nav-text">2.5. 替换activity界面某个容器里面显示的内容（fragment）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-如果要更新界面要保证同时成功或者同时失败，提交事务"><span class="nav-number">0.7.</span> <span class="nav-text">2.6. 如果要更新界面要保证同时成功或者同时失败，提交事务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、使用fragment细节"><span class="nav-number"></span> <span class="nav-text">3、使用fragment细节</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#写一个类继承-Fragment，并定义一个布局文件作为Fragment的显示内容-先要定义一个布局文件"><span class="nav-number">0.1.</span> <span class="nav-text">写一个类继承 Fragment，并定义一个布局文件作为Fragment的显示内容(先要定义一个布局文件)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#把Fragment显示至指定ViewGroup中"><span class="nav-number">0.2.</span> <span class="nav-text">把Fragment显示至指定ViewGroup中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2使用fragment示例"><span class="nav-number">1.</span> <span class="nav-text">3.2使用fragment示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、生命周期"><span class="nav-number"></span> <span class="nav-text">4、生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、低版本兼容"><span class="nav-number"></span> <span class="nav-text">5、低版本兼容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、activity与fragement的数据传递"><span class="nav-number"></span> <span class="nav-text">6、activity与fragement的数据传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-从activity——-gt-Fragment数据传递"><span class="nav-number">1.</span> <span class="nav-text">6.1 从activity——->Fragment数据传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-从Fragment——-gt-activity数据传递"><span class="nav-number">2.</span> <span class="nav-text">6.2 从Fragment——->activity数据传递</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-动画"><span class="nav-number"></span> <span class="nav-text">二 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-帧动画-FrameAnimation"><span class="nav-number"></span> <span class="nav-text">2.1 帧动画 FrameAnimation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-补间动画-TweenAnimation-，实现ImageView-图片控件-的位移、旋转、缩放、透明"><span class="nav-number"></span> <span class="nav-text">2.2 补间动画(TweenAnimation)，实现ImageView(图片控件)的位移、旋转、缩放、透明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-的位移："><span class="nav-number">1.</span> <span class="nav-text">ImageView(图片控件)的位移：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法1："><span class="nav-number">1.1.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2-1"><span class="nav-number">1.2.</span> <span class="nav-text">构造方法2.1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2-2"><span class="nav-number">1.3.</span> <span class="nav-text">构造方法2.2:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#加深理解：对于上面的参数内容再解释一遍"><span class="nav-number">1.4.</span> <span class="nav-text">加深理解：对于上面的参数内容再解释一遍</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#构造1："><span class="nav-number">1.4.1.</span> <span class="nav-text">构造1：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#构造2："><span class="nav-number">1.4.2.</span> <span class="nav-text">构造2：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-缩放："><span class="nav-number">2.</span> <span class="nav-text">ImageView(图片控件)缩放：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法1：-1"><span class="nav-number">2.1.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2："><span class="nav-number">2.2.</span> <span class="nav-text">构造方法2：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法3："><span class="nav-number">2.3.</span> <span class="nav-text">构造方法3：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解释"><span class="nav-number">2.4.</span> <span class="nav-text">解释</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#构造方法1：-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#构造方法3：-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">构造方法3：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缩放示例"><span class="nav-number">2.5.</span> <span class="nav-text">缩放示例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-透明："><span class="nav-number">3.</span> <span class="nav-text">ImageView(图片控件)透明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageView-图片控件-旋转："><span class="nav-number">4.</span> <span class="nav-text">ImageView(图片控件)旋转：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2：-1"><span class="nav-number">4.1.</span> <span class="nav-text">构造方法2：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法1：-3"><span class="nav-number">4.2.</span> <span class="nav-text">构造方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法2：-2"><span class="nav-number">4.3.</span> <span class="nav-text">构造方法2：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所有动画一起飞"><span class="nav-number">5.</span> <span class="nav-text">所有动画一起飞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-属性动画PropertyAnimation"><span class="nav-number"></span> <span class="nav-text">2.3 属性动画PropertyAnimation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-位移："><span class="nav-number">1.</span> <span class="nav-text">3.1 位移：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-缩放："><span class="nav-number">2.</span> <span class="nav-text">3.2 缩放：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-透明："><span class="nav-number">3.</span> <span class="nav-text">3.3 透明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-旋转"><span class="nav-number">4.</span> <span class="nav-text">3.4 旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变参数"><span class="nav-number">5.</span> <span class="nav-text">可变参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所有动画一起飞-1"><span class="nav-number">6.</span> <span class="nav-text">所有动画一起飞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-可以使用xml文件定义"><span class="nav-number"></span> <span class="nav-text">2.4 可以使用xml文件定义</span></a></div>
             
 
           </div>
