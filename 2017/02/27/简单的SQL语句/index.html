@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/27/简单的SQL语句/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="简单的SQL语句">
-<meta property="og:updated_time" content="2017-02-27T04:55:26.000Z">
+<meta property="og:updated_time" content="2017-02-27T05:37:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的SQL语句">
 <meta name="twitter:description" content="简单的SQL语句">
@@ -329,38 +329,40 @@
 <p>简单的SQL语句  </p>
 </blockquote>
 <a id="more"></a>
-<p><strong>基本查询所有字段语句</strong><br>SELECT ** FROM student;<br>SELECT s_number,s_name,s_age,s_gender FROM student;  </p>
+<p><strong>基本查询所有字段语句</strong><br>SELECT * FROM student;<br>SELECT s_number,s_name,s_age,s_gender FROM student;  </p>
 <p><strong>指定查询numer和name字段的记录</strong><br>SELECT s_number,s_name FROM student;</p>
-<p><strong>查询student表的s_age&gt;=25的所有记录</strong><br>SELECT ** FROM student WHERE s_age&gt;=25;  </p>
-<p><strong>BETWEEN AND: s_age大于等于25并且小于等于75的记录</strong><br>SELECT <strong> FROM student WHERE s_age BETWEEN 25 AND 75;<br>SELECT </strong> FROM student WHERE s_age&gt;=25 AND s_age&lt;=75;  </p>
-<p><strong>IS NULL</strong><br>SELECT ** FROM student WHERE s_age IS NULL;  </p>
-<p><strong>查询s_age的值不为NULL的记录</strong><br>SELECT ** FROM student WHERE s_age IS NOT NULL;  </p>
-<p><strong>s_age的值为25、35、45的记录(一句SQL)</strong><br>SELECT ** FROM student WHERE s_age IN(25,35,45);  </p>
-<p><strong>实际应用是混合使用</strong><br>SELECT ** FROM student WHERE s_age&gt;25 AND   (s_gender=’male’ OR s_number IN());  </p>
-<p><strong>查询s_name的值是以’z’开始的记录</strong><br>SELECT <strong> FROM student WHERE s_name LIKE ‘z%’;  
-</strong>查询s_name的值是以’n’结束的记录<strong><br>SELECT </strong> FROM student WHERE s_name LIKE ‘%n’;<br><strong>查询s_name的值是包含’a’的记录</strong><br>SELECT <strong> FROM student WHERE s_name LIKE ‘%a%’;  
-</strong>查询s_name的值是以’z’开始的7个字符的记录<strong><br>SELECT </strong> FROM student WHERE s_name LIKE ‘z<strong>__</strong>‘;  </p>
+<p><strong>查询student表的s_age&gt;=25的所有记录</strong><br>SELECT * FROM student WHERE s_age&gt;=25;  </p>
+<p><strong>BETWEEN AND: s_age大于等于25并且小于等于75的记录</strong><br>SELECT <em> FROM student WHERE s_age BETWEEN 25 AND 75;<br>SELECT </em> FROM student WHERE s_age&gt;=25 AND s_age&lt;=75;  </p>
+<p><strong>IS NULL</strong><br>SELECT * FROM student WHERE s_age IS NULL;  </p>
+<p><strong>查询s_age的值不为NULL的记录</strong><br>SELECT * FROM student WHERE s_age IS NOT NULL;  </p>
+<p><strong>s_age的值为25、35、45的记录(一句SQL)</strong><br>SELECT * FROM student WHERE s_age IN(25,35,45);  </p>
+<p><strong>实际应用是混合使用</strong><br>SELECT * FROM student WHERE s_age&gt;25 AND   (s_gender=’male’ OR s_number IN());  </p>
+<p><strong>查询s_name的值是以’z’开始的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘z%’;   </p>
+<p><strong>查询s_name的值是以’n’结束的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘%n’;  </p>
+<p><strong>查询s_name的值是包含’a’的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘%a%’;  </p>
+<p><strong>查询s_name的值是以’z’开始的7个字符的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘z<strong>__</strong>‘;  </p>
 <p><strong>当查询字段值具有重复值,需要去重</strong><br>SELECT DISTINCT s_gender FROM student;  </p>
 <p>SELECT DISTINCT s_gender,s_name FROM student;  </p>
 <p>SELECT losal+hisal AS he FROM salarygrade;  </p>
-<p><strong>排序查询</strong><br>SELECT ** FROM student ORDER BY s_age DESC;  </p>
-<p><strong>查询s_age的值大于25的记录,并且按照s_age由小到大排序</strong><br>SELECT ** FROM student WHERE s_age&gt;25 ORDER BY s_age;  </p>
+<p><strong>排序查询</strong><br>SELECT * FROM student ORDER BY s_age DESC;  </p>
+<p><strong>查询s_age的值大于25的记录,并且按照s_age由小到大排序</strong><br>SELECT * FROM student WHERE s_age&gt;25 ORDER BY s_age;  </p>
 <p><strong>查询losal列的所有值之和</strong><br>SELECT SUM(losal) FROM salarygrade;  </p>
-<p><strong>查询salarygrade表的所有记录总数</strong><br>SELECT COUNT(**) FROM salarygrade;  </p>
+<p><strong>查询salarygrade表的所有记录总数</strong><br>SELECT COUNT(*) FROM salarygrade;  </p>
 <p><strong>查询losal的最大值</strong><br>SELECT MAX(losal) FROM salarygrade;  </p>
 <p>SELECT MIN(losal) FROM salarygrade;  </p>
 <p>SELECT AVG(losal) FROM salarygrade;  </p>
 <p><strong>下面的写法逻辑错误</strong><br>SELECT SUM(losal),hisal FROM salarygrade;  </p>
-<p><strong>分组查询语句</strong><br>SELECT ** FROM student WHERE s_age&gt;25 GROUP BY s_gender ORDER BY s_age;  </p>
-<p><strong>使用聚合函数作为查询条件</strong><br>SELECT ** FROM student HAVING MAX(s_age)&gt;25;  </p>
-<p>SELECT ** FROM student WHERE s_age&gt;25 GROUP BY s_gender HAVING MAX(s_age)&gt;25 ORDER BY s_age;  </p>
-<p><strong>多表查询</strong><br>SELECT <strong> FROM emp;<br>SELECT </strong> FROM dept;  </p>
-<p><strong>查询员工表,要求显示部门名称</strong><br>SELECT emp.<strong>,dept.dname FROM emp LEFT JOIN dept ON emp.deptno=dept.deptno;  
-</strong>以上写法简写方式<strong><br>SELECT emp.</strong>,dept.dname FROM emp,dept WHERE emp.deptno=dept.deptno;  </p>
-<p><strong><br>三张表连接查询<br>select </strong> from 表名1<br>left join 表名2 on 表名1.字段名=表名2.字段名<br>left join 表名3 on 表名2.字段名=表名2.字段名;<br>**  </p>
-<p><strong>内连接查询</strong><br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan FROM emp AS e1<br>INNER JOIN emp AS e2 ON e1.mgr=e2.empno;<br><strong>以上写法简写方式</strong><br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan<br>FROM emp AS e1,emp AS e2<br>WHERE e1.mgr=e2.empno;  </p>
+<p><strong>分组查询语句</strong><br>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender ORDER BY s_age;  </p>
+<p><strong>使用聚合函数作为查询条件</strong><br>SELECT * FROM student HAVING MAX(s_age)&gt;25;  </p>
+<p>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender HAVING MAX(s_age)&gt;25 ORDER BY s_age;  </p>
+<p><strong>多表查询</strong><br>SELECT <em> FROM emp;<br>SELECT </em> FROM dept;  </p>
+<p><strong>查询员工表,要求显示部门名称</strong><br>SELECT emp.*,dept.dname FROM emp LEFT JOIN dept ON emp.deptno=dept.deptno;   </p>
+<p><strong>以上写法简写方式</strong><br>SELECT emp.*,dept.dname FROM emp,dept WHERE emp.deptno=dept.deptno;  </p>
+<p><strong>三张表连接查询</strong><br>SELECT * from 表名1<br>left join 表名2 on 表名1.字段名=表名2.字段名<br>left join 表名3 on 表名2.字段名=表名2.字段名;  </p>
+<p><strong>内连接查询</strong><br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan FROM emp AS e1 INNER JOIN emp AS e2 ON e1.mgr=e2.empno;  </p>
+<p><strong>以上写法简写方式</strong><br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan FROM emp AS e1,emp AS e2 WHERE e1.mgr=e2.empno;  </p>
 <hr>
-<p><strong>向student表插入一条学生记录</strong><br>SELECT ** FROM student;  </p>
+<p><strong>向student表插入一条学生记录</strong><br>SELECT * FROM student;  </p>
 <p><strong>插入所有字段值</strong><br>INSERT INTO student VALUES(‘s_1020’,’ZhangWuJi’,’180’,’male’);  </p>
 <p><strong>插入指定字段:s_number,s_name</strong><br>INSERT INTO student(s_number,s_name) VALUES(‘s_1021’,’ZhouZhiRuo’);  </p>
 <p><strong>如果表字段s_gender默认不允许为空的,插入时怎么办?</strong>  </p>
@@ -368,11 +370,11 @@
 <p><strong>删除s_name值为’ZhangWuJi’</strong><br>DELETE FROM student WHERE s_name=’ZhangWuJi’;  </p>
 <hr>
 <p><strong>创建数据库为day0233</strong><br>CREATE DATABASE IF NOT EXISTS day0322;  </p>
-<p><strong><br>   创建一个用户表<br>   名称、年龄、性别、工作等
-</strong><br>CREATE TABLE myuser(<br>    username  VARCHAR(50),<br>    age       INT,<br>    sex       VARCHAR(50),<br>    job       VARCHAR(50)<br>);  </p>
+<p><strong>创建一个用户表 名称、年龄、性别、工作等</strong><br>CREATE TABLE myuser(<br>    username  VARCHAR(50),<br>    age       INT,<br>    sex       VARCHAR(50),<br>    job       VARCHAR(50)<br>);  </p>
 <p><strong>查看所有数据库</strong><br>SHOW DATABASES;  </p>
-<p><strong>查看表结构</strong><br>DESC myuser;<br><strong>查看建表语句</strong><br>SHOW CREATE TABLE myuser;  </p>
-<p><strong>删除表</strong><br>DROP TABLE myuser;  </p>
+<p><strong>查看表结构</strong><br>DESC myuser;  </p>
+<p><strong>查看建表语句</strong><br>SHOW CREATE TABLE myuser;  </p>
+<p><strong>删除表</strong><br>DROP TABLE myuser;</p>
 
       
     </div>
