@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/28/Android二维码图片生成及保存/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="Android二维码图片生成及保存">
-<meta property="og:updated_time" content="2017-03-01T07:42:04.000Z">
+<meta property="og:updated_time" content="2017-03-01T07:48:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二维码图片生成及保存(Android)">
 <meta name="twitter:description" content="Android二维码图片生成及保存">
@@ -333,7 +333,60 @@
 <p>Demo2下载:<br><a href="http://ojupj7fr2.bkt.clouddn.com/BarCodeTestActivity.rar" target="_blank" rel="external">http://ojupj7fr2.bkt.clouddn.com/BarCodeTestActivity.rar</a></p>
 <p>在app中，经常有生成识别二维码的功能，我们一般是使用zxing这个开源库来实现。</p>
 <p>使用zxing生成Bitmap的代码如下：  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">	 * 生成二维码图片</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> text</div><div class="line">	 *            二维码文本</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">createQrBitmap</span><span class="params">(String text, <span class="keyword">int</span> qrWidth, <span class="keyword">int</span> qrHeight)</span> </span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="comment">// 需要引入core包</span></div><div class="line">			<span class="keyword">if</span> (text == <span class="keyword">null</span> || <span class="string">""</span>.equals(text) || text.length() &lt; <span class="number">1</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">			&#125;</div><div class="line">			Hashtable&lt;EncodeHintType, String&gt; hints = <span class="keyword">new</span> Hashtable&lt;EncodeHintType, String&gt;();</div><div class="line">			hints.put(EncodeHintType.CHARACTER_SET, <span class="string">"utf-8"</span>);</div><div class="line">			BitMatrix bitMatrix = <span class="keyword">new</span> QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, qrWidth, qrHeight, hints);</div><div class="line"></div><div class="line">			<span class="keyword">int</span> width = bitMatrix.getWidth();</div><div class="line">			<span class="keyword">int</span> height = bitMatrix.getHeight();</div><div class="line">			<span class="keyword">int</span>[] pixels = <span class="keyword">new</span> <span class="keyword">int</span>[width * height];</div><div class="line"></div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; height; y++) &#123;</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; width; x++) &#123;</div><div class="line">					<span class="keyword">if</span> (bitMatrix.get(x, y)) &#123;</div><div class="line">						pixels[y * width + x] = <span class="number">0xff000000</span>;</div><div class="line">					&#125; <span class="keyword">else</span> &#123;</div><div class="line">						pixels[y * width + x] = <span class="number">0xffffffff</span>;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);</div><div class="line">			bitmap.setPixels(pixels, <span class="number">0</span>, width, <span class="number">0</span>, <span class="number">0</span>, width, height);</div><div class="line">			<span class="keyword">return</span> bitmap;</div><div class="line"></div><div class="line">		&#125; <span class="keyword">catch</span> (WriterException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java"><span class="comment">/**
+     * 生成二维码图片
+     * 
+     * <span class="doctag">@param</span> text
+     *            二维码文本
+     * <span class="doctag">@return</span>
+     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">createQrBitmap</span><span class="params">(String text, <span class="keyword">int</span> qrWidth, <span class="keyword">int</span> qrHeight)</span> </span>{
+        <span class="keyword">try</span> {
+            <span class="comment">// 需要引入core包</span>
+            <span class="keyword">if</span> (text == <span class="keyword">null</span> || <span class="string">""</span>.equals(text) || text.length() &lt; <span class="number">1</span>) {
+                <span class="keyword">return</span> <span class="keyword">null</span>;
+            }
+            Hashtable&lt;EncodeHintType, String&gt; hints = <span class="keyword">new</span> Hashtable&lt;EncodeHintType, String&gt;();
+            hints.put(EncodeHintType.CHARACTER_SET, <span class="string">"utf-8"</span>);
+            BitMatrix bitMatrix = <span class="keyword">new</span> QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, qrWidth, qrHeight, hints);
+
+            <span class="keyword">int</span> width = bitMatrix.getWidth();
+            <span class="keyword">int</span> height = bitMatrix.getHeight();
+            <span class="keyword">int</span>[] pixels = <span class="keyword">new</span> <span class="keyword">int</span>[width * height];
+
+            <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; height; y++) {
+                <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; width; x++) {
+                    <span class="keyword">if</span> (bitMatrix.get(x, y)) {
+                        pixels[y * width + x] = <span class="number">0xff000000</span>;
+                    } <span class="keyword">else</span> {
+                        pixels[y * width + x] = <span class="number">0xffffffff</span>;
+                    }
+                }
+            }
+
+            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            bitmap.setPixels(pixels, <span class="number">0</span>, width, <span class="number">0</span>, <span class="number">0</span>, width, height);
+            <span class="keyword">return</span> bitmap;
+
+        } <span class="keyword">catch</span> (WriterException e) {
+            e.printStackTrace();
+        }
+        <span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+</code></pre>
+<p>这样就可以生成一个二维码的图片，我们可以用一个ImageView来显示。<br>但是有很多人在保存的时候，打开发现时黑的。原因就是</p>
+<pre><code class="java"><span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; height; y++) {
+                <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; width; x++) {
+                    <span class="keyword">if</span> (bitMatrix.get(x, y)) {
+                        pixels[y * width + x] = <span class="number">0xff000000</span>;
+                    } <span class="keyword">else</span> {
+                        pixels[y * width + x] = <span class="number">0xffffffff</span>;
+                    }
+                }
+            }
+</code></pre>
+<p>这儿<code>pixels[y * width + x] = 0xffffffff;</code> 代码没有加上去，加上就好了</p>
+
       
     </div>
 
