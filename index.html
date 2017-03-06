@@ -330,138 +330,16 @@
 
       
         
-          
-            <blockquote>
-<p>转载:  <a href="http://blog.csdn.net/mengweiqi33/article/details/18094221" target="_blank" rel="external">http://blog.csdn.net/mengweiqi33/article/details/18094221</a>    </p>
+          <blockquote>
+<p>转载:  <a href="http://blog.csdn.net/mengweiqi33/article/details/18094221">http://blog.csdn.net/mengweiqi33/article/details/18094221</a>    </p>
 </blockquote>
-<p>创建动态注册广播的类:  </p>
-<pre><code class="java"><span class="keyword">package</span> et.tsingtaopad.visit.shopvisit.camera.container;
-
-<span class="keyword">import</span> android.content.BroadcastReceiver;
-<span class="keyword">import</span> android.content.Context;
-<span class="keyword">import</span> android.content.Intent;
-<span class="keyword">import</span> android.content.IntentFilter;
-<span class="keyword">import</span> android.os.PowerManager;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScreenListener</span> </span>{
-    <span class="keyword">private</span> Context mContext;
-    <span class="keyword">private</span> ScreenBroadcastReceiver mScreenReceiver;
-    <span class="keyword">private</span> ScreenStateListener mScreenStateListener;
-
-    <span class="function"><span class="keyword">public</span> <span class="title">ScreenListener</span><span class="params">(Context context)</span> </span>{
-        mContext = context;
-        mScreenReceiver = <span class="keyword">new</span> ScreenBroadcastReceiver();
-    }
-
-    <span class="comment">/**
-     * screen状态广播接收者
-     */</span>
-    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ScreenBroadcastReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>{
-        <span class="keyword">private</span> String action = <span class="keyword">null</span>;
-
-        <span class="meta">@Override</span>
-        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>{
-            action = intent.getAction();
-            <span class="keyword">if</span> (Intent.ACTION_SCREEN_ON.equals(action)) { <span class="comment">// 开屏</span>
-                mScreenStateListener.onScreenOn();
-            } <span class="keyword">else</span> <span class="keyword">if</span> (Intent.ACTION_SCREEN_OFF.equals(action)) { <span class="comment">// 锁屏</span>
-                mScreenStateListener.onScreenOff();
-            } <span class="keyword">else</span> <span class="keyword">if</span> (Intent.ACTION_USER_PRESENT.equals(action)) { <span class="comment">// 解锁</span>
-                mScreenStateListener.onUserPresent();
-            }
-        }
-    }
-
-    <span class="comment">/**
-     * 开始监听screen状态
-     * 
-     * <span class="doctag">@param</span> listener
-     */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">begin</span><span class="params">(ScreenStateListener listener)</span> </span>{
-        mScreenStateListener = listener;
-        registerListener();
-        getScreenState();
-    }
-
-    <span class="comment">/**
-     * 获取screen状态
-     */</span>
-    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getScreenState</span><span class="params">()</span> </span>{
-        PowerManager manager = (PowerManager) mContext
-                .getSystemService(Context.POWER_SERVICE);
-        <span class="keyword">if</span> (manager.isScreenOn()) {
-            <span class="keyword">if</span> (mScreenStateListener != <span class="keyword">null</span>) {
-                mScreenStateListener.onScreenOn();
-            }
-        } <span class="keyword">else</span> {
-            <span class="keyword">if</span> (mScreenStateListener != <span class="keyword">null</span>) {
-                mScreenStateListener.onScreenOff();
-            }
-        }
-    }
-
-    <span class="comment">/**
-     * 停止screen状态监听
-     */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unregisterListener</span><span class="params">()</span> </span>{
-        mContext.unregisterReceiver(mScreenReceiver);
-    }
-
-    <span class="comment">/**
-     * 启动screen状态广播接收器
-     */</span>
-    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">registerListener</span><span class="params">()</span> </span>{
-        IntentFilter filter = <span class="keyword">new</span> IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        filter.addAction(Intent.ACTION_USER_PRESENT);
-        mContext.registerReceiver(mScreenReceiver, filter);
-    }
-
-    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ScreenStateListener</span> </span>{<span class="comment">// 返回给调用者屏幕状态信息</span>
-        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOn</span><span class="params">()</span></span>;
-
-        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOff</span><span class="params">()</span></span>;
-
-        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUserPresent</span><span class="params">()</span></span>;
-    }
-}
-</code></pre>
-<p>在某个Activity中调用:  </p>
-<pre><code class="java"><span class="comment">// 开启锁屏监听</span>
-        ScreenListener l = <span class="keyword">new</span> ScreenListener(<span class="keyword">this</span>);
-        l.begin(<span class="keyword">new</span> ScreenStateListener() {
-
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUserPresent</span><span class="params">()</span> </span>{
-                <span class="comment">//Log.e("onUserPresent", "onUserPresent");</span>
-            }
-
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOn</span><span class="params">()</span> </span>{
-                <span class="comment">//Log.e("onScreenOn", "onScreenOn");</span>
-            }
-
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOff</span><span class="params">()</span> </span>{
-                <span class="comment">//Log.e("onScreenOff", "onScreenOff");</span>
-                TakeCameraAty.<span class="keyword">this</span>.finish();
-            }
-        });
-</code></pre>
-<p>当Activity销毁时:  </p>
-<pre><code class="java"><span class="meta">@Override</span>
-    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
-        <span class="keyword">super</span>.onDestroy();
-
-        <span class="comment">// 销毁锁屏监听</span>
-        <span class="keyword">if</span>(l!=<span class="keyword">null</span>){
-            l.unregisterListener();
-        }
-    }
-</code></pre>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/06/监听屏幕锁屏-用户解锁/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

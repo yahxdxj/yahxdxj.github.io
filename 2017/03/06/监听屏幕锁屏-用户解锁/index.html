@@ -84,34 +84,16 @@
 
 
 
-<meta name="description" content="转载:  http://blog.csdn.net/mengweiqi33/article/details/18094221    
-
-创建动态注册广播的类:  
-package et.tsingtaopad.visit.shopvisit.camera.container;
-
-import android.content.BroadcastReceiver;
-import android.co">
+<meta name="description" content="转载:  http://blog.csdn.net/mengweiqi33/article/details/18094221">
 <meta property="og:type" content="article">
 <meta property="og:title" content="监听屏幕锁屏,用户解锁">
 <meta property="og:url" content="http://yoursite.com/2017/03/06/监听屏幕锁屏-用户解锁/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="转载:  http://blog.csdn.net/mengweiqi33/article/details/18094221    
-
-创建动态注册广播的类:  
-package et.tsingtaopad.visit.shopvisit.camera.container;
-
-import android.content.BroadcastReceiver;
-import android.co">
-<meta property="og:updated_time" content="2017-03-06T08:16:07.000Z">
+<meta property="og:description" content="转载:  http://blog.csdn.net/mengweiqi33/article/details/18094221">
+<meta property="og:updated_time" content="2017-03-06T08:19:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监听屏幕锁屏,用户解锁">
-<meta name="twitter:description" content="转载:  http://blog.csdn.net/mengweiqi33/article/details/18094221    
-
-创建动态注册广播的类:  
-package et.tsingtaopad.visit.shopvisit.camera.container;
-
-import android.content.BroadcastReceiver;
-import android.co">
+<meta name="twitter:description" content="转载:  http://blog.csdn.net/mengweiqi33/article/details/18094221">
 
 
 
@@ -346,6 +328,7 @@ import android.co">
         <blockquote>
 <p>转载:  <a href="http://blog.csdn.net/mengweiqi33/article/details/18094221" target="_blank" rel="external">http://blog.csdn.net/mengweiqi33/article/details/18094221</a>    </p>
 </blockquote>
+<a id="more"></a>
 <p>创建动态注册广播的类:  </p>
 <pre><code class="java"><span class="keyword">package</span> et.tsingtaopad.visit.shopvisit.camera.container;
 
@@ -441,36 +424,36 @@ import android.co">
 </code></pre>
 <p>在某个Activity中调用:  </p>
 <pre><code class="java"><span class="comment">// 开启锁屏监听</span>
-        ScreenListener l = <span class="keyword">new</span> ScreenListener(<span class="keyword">this</span>);
-        l.begin(<span class="keyword">new</span> ScreenStateListener() {
+ScreenListener l = <span class="keyword">new</span> ScreenListener(<span class="keyword">this</span>);
+l.begin(<span class="keyword">new</span> ScreenStateListener() {
 
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUserPresent</span><span class="params">()</span> </span>{
-                <span class="comment">//Log.e("onUserPresent", "onUserPresent");</span>
-            }
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUserPresent</span><span class="params">()</span> </span>{
+        <span class="comment">//Log.e("onUserPresent", "onUserPresent");</span>
+    }
 
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOn</span><span class="params">()</span> </span>{
-                <span class="comment">//Log.e("onScreenOn", "onScreenOn");</span>
-            }
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOn</span><span class="params">()</span> </span>{
+        <span class="comment">//Log.e("onScreenOn", "onScreenOn");</span>
+    }
 
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOff</span><span class="params">()</span> </span>{
-                <span class="comment">//Log.e("onScreenOff", "onScreenOff");</span>
-                TakeCameraAty.<span class="keyword">this</span>.finish();
-            }
-        });
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScreenOff</span><span class="params">()</span> </span>{
+        <span class="comment">//Log.e("onScreenOff", "onScreenOff");</span>
+        TakeCameraAty.<span class="keyword">this</span>.finish();
+    }
+});
 </code></pre>
 <p>当Activity销毁时:  </p>
 <pre><code class="java"><span class="meta">@Override</span>
-    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
-        <span class="keyword">super</span>.onDestroy();
+<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
+    <span class="keyword">super</span>.onDestroy();
 
-        <span class="comment">// 销毁锁屏监听</span>
-        <span class="keyword">if</span>(l!=<span class="keyword">null</span>){
-            l.unregisterListener();
-        }
+    <span class="comment">// 销毁锁屏监听</span>
+    <span class="keyword">if</span>(l!=<span class="keyword">null</span>){
+        l.unregisterListener();
     }
+}
 </code></pre>
 
       
