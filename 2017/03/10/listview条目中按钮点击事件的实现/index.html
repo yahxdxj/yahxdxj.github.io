@@ -94,7 +94,7 @@
 <meta property="og:description" content="Android中listview条目中按钮点击事件的实现  
 
 转载: http://blog.csdn.net/waniu123/article/details/49532451">
-<meta property="og:updated_time" content="2017-03-10T03:47:48.000Z">
+<meta property="og:updated_time" content="2017-03-10T05:08:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="listview条目中按钮点击事件的实现">
 <meta name="twitter:description" content="Android中listview条目中按钮点击事件的实现  
@@ -335,6 +335,214 @@
 <p>Android中listview条目中按钮点击事件的实现  </p>
 </blockquote>
 <p>转载: <a href="http://blog.csdn.net/waniu123/article/details/49532451" target="_blank" rel="external">http://blog.csdn.net/waniu123/article/details/49532451</a>  </p>
+<a id="more"></a>  
+<p>大家都知道Android中listview是一个常用的控件，也是一个比较复杂的控件，一般实现listview的条目点击事件就是给listview实现setOnItemClickListener的方法就行，但是当我们遇到listview中的有按钮的时候想实现按钮的点击事件这样做是不行的，比如QQ空间的说说评论和点赞其实就是相当于两个按钮。  </p>
+<p>一般实现这两个按钮的点击事件归结为一种思想—接口回调。具体实现的话有两种方法，一中是通过实现接口方法，一中是通过实现抽象方法。当然接口和抽象类在java中其实差不多的东西，虽然两者有很大不同，但是他们有着一样的功能。  </p>
+<p>两种方法都有实现，其中还应当注意一般每个控件都有一个setTag()的方法，这个方法在这中问题上起着至关重要的作用。一般可以用来记录按钮的位置之类的.  </p>
+<p>抽象类的实现：  </p>
+<pre><code class="java"><span class="keyword">package</span> com.example.listviewbuttonclick.adapter;  
+
+<span class="keyword">import</span> android.view.View;  
+<span class="keyword">import</span> android.view.View.OnClickListener;  
+
+<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">IClick</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span> </span>{  
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{  
+        listViewItemClick((Integer) v.getTag(), v);  
+    }  
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">listViewItemClick</span><span class="params">(<span class="keyword">int</span> position, View v)</span></span>;  
+
+}
+</code></pre>
+<p>适配器    </p>
+<pre><code class="java"><span class="keyword">package</span> com.example.listviewbuttonclick.adapter;  
+
+<span class="keyword">import</span> java.util.List;  
+
+<span class="keyword">import</span> com.example.listviewbuttonclick.R;  
+
+<span class="keyword">import</span> android.content.Context;  
+<span class="keyword">import</span> android.util.Log;  
+<span class="keyword">import</span> android.view.LayoutInflater;  
+<span class="keyword">import</span> android.view.View;  
+<span class="keyword">import</span> android.view.View.OnClickListener;  
+<span class="keyword">import</span> android.view.ViewGroup;  
+<span class="keyword">import</span> android.widget.BaseAdapter;  
+<span class="keyword">import</span> android.widget.Button;  
+<span class="keyword">import</span> android.widget.TextView;  
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContentAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>{  
+
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"ContentAdapter"</span>;  
+    <span class="keyword">private</span> List&lt;String&gt; mContentList;  
+    <span class="keyword">private</span> LayoutInflater mInflater;  
+    <span class="keyword">private</span> IClick mListener;  
+
+    <span class="function"><span class="keyword">public</span> <span class="title">ContentAdapter</span><span class="params">(Context context, List&lt;String&gt; contentList,  
+            IClick listener)</span> </span>{  
+        mContentList = contentList;  
+        mInflater = LayoutInflater.from(context);  
+        mListener = listener;  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>{  
+        Log.i(TAG, <span class="string">"getCount"</span>);  
+        <span class="keyword">return</span> mContentList.size();  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{  
+        Log.i(TAG, <span class="string">"getItem"</span>);  
+        <span class="keyword">return</span> mContentList.get(position);  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{  
+        Log.i(TAG, <span class="string">"getItemId"</span>);  
+        <span class="keyword">return</span> position;  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>{  
+        Log.i(TAG, <span class="string">"getView"</span>);  
+        ViewHolder holder = <span class="keyword">null</span>;  
+        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) {  
+            convertView = mInflater.inflate(R.layout.list_item, <span class="keyword">null</span>);  
+            holder = <span class="keyword">new</span> ViewHolder();  
+            holder.textView = (TextView) convertView  
+                    .findViewById(R.id.textView1);  
+            holder.button = (Button) convertView.findViewById(R.id.button1);  
+            convertView.setTag(holder);  
+        } <span class="keyword">else</span> {  
+            holder = (ViewHolder) convertView.getTag();  
+        }  
+        holder.textView.setText(mContentList.get(position));  
+        holder.button.setOnClickListener(mListener);  
+        holder.button.setTag(position);  
+        <span class="keyword">return</span> convertView;  
+    }  
+
+    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>{  
+        <span class="keyword">public</span> TextView textView;  
+        <span class="keyword">public</span> Button button;  
+    }  
+
+}
+</code></pre>
+<p>接口实现  </p>
+<pre><code class="java"><span class="keyword">package</span> com.example.listviewbuttonclick.adapter.inter;  
+
+<span class="keyword">import</span> android.view.View;  
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InterClick</span> </span>{  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">commentClick</span><span class="params">(View v)</span></span>;  
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shareClick</span><span class="params">(View v)</span></span>;  
+
+}
+</code></pre>
+<p>适配器  </p>
+<pre><code class="java"><span class="keyword">package</span> com.example.listviewbuttonclick.adapter;  
+
+<span class="keyword">import</span> java.util.List;  
+
+<span class="keyword">import</span> com.example.listviewbuttonclick.R;  
+<span class="keyword">import</span> com.example.listviewbuttonclick.adapter.inter.InterClick;  
+
+<span class="keyword">import</span> android.content.Context;  
+<span class="keyword">import</span> android.util.Log;  
+<span class="keyword">import</span> android.view.LayoutInflater;  
+<span class="keyword">import</span> android.view.View;  
+<span class="keyword">import</span> android.view.View.OnClickListener;  
+<span class="keyword">import</span> android.view.ViewGroup;  
+<span class="keyword">import</span> android.widget.BaseAdapter;  
+<span class="keyword">import</span> android.widget.Button;  
+<span class="keyword">import</span> android.widget.TextView;  
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContentAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span> </span>{  
+
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"ContentAdapter"</span>;  
+    <span class="keyword">private</span> List&lt;String&gt; mContentList;  
+    <span class="keyword">private</span> LayoutInflater mInflater;  
+    <span class="keyword">private</span> InterClick mCallback;  
+
+    <span class="function"><span class="keyword">public</span> <span class="title">ContentAdapter</span><span class="params">(Context context, List&lt;String&gt; contentList,  
+            InterClick callback)</span> </span>{  
+        mContentList = contentList;  
+        mInflater = LayoutInflater.from(context);  
+        mCallback = callback;  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>{  
+        Log.i(TAG, <span class="string">"getCount"</span>);  
+        <span class="keyword">return</span> mContentList.size();  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{  
+        Log.i(TAG, <span class="string">"getItem"</span>);  
+        <span class="keyword">return</span> mContentList.get(position);  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{  
+        Log.i(TAG, <span class="string">"getItemId"</span>);  
+        <span class="keyword">return</span> position;  
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>{  
+        Log.i(TAG, <span class="string">"getView"</span>);  
+        ViewHolder holder = <span class="keyword">null</span>;  
+        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) {  
+            convertView = mInflater.inflate(R.layout.list_item, <span class="keyword">null</span>);  
+            holder = <span class="keyword">new</span> ViewHolder();  
+            holder.textView = (TextView) convertView  
+                    .findViewById(R.id.textView1);  
+            holder.button1 = (Button) convertView.findViewById(R.id.button1);  
+            holder.button2 = (Button) convertView.findViewById(R.id.button2);  
+
+            convertView.setTag(holder);  
+        } <span class="keyword">else</span> {  
+            holder = (ViewHolder) convertView.getTag();  
+        }  
+        holder.textView.setText(mContentList.get(position));  
+        holder.button1.setOnClickListener(<span class="keyword">this</span>);  
+        holder.button2.setOnClickListener(<span class="keyword">this</span>);  
+
+        <span class="comment">// 设置位置，获取点击的条目按钮  </span>
+        holder.button1.setTag(position);  
+        holder.button2.setTag(position);  
+        <span class="keyword">return</span> convertView;  
+    }  
+
+    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>{  
+        <span class="keyword">public</span> TextView textView;  
+        <span class="keyword">public</span> Button button1;  
+        <span class="keyword">public</span> Button button2;  
+
+    }  
+
+    <span class="comment">// 响应按钮点击事件,调用子定义接口，并传入View  </span>
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{  
+        <span class="keyword">switch</span> (v.getId()) {  
+        <span class="keyword">case</span> R.id.button1:  
+            mCallback.commentClick(v);  
+            <span class="keyword">break</span>;  
+        <span class="keyword">case</span> R.id.button2:  
+            mCallback.shareClick(v);  
+            <span class="keyword">break</span>;  
+        <span class="keyword">default</span>:  
+            <span class="keyword">break</span>;  
+        }  
+    }  
+}
+</code></pre>
+<p>这两种分别是不同的方法实现的按钮点击事件，具体实现都在源码中<br>源码下载: <a href="http://ojupj7fr2.bkt.clouddn.com/listviewButtonClick.rar" target="_blank" rel="external">http://ojupj7fr2.bkt.clouddn.com/listviewButtonClick.rar</a>  </p>
 
       
     </div>
