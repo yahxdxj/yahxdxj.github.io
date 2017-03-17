@@ -96,7 +96,7 @@
 启动新的Activity; 
 在Activity之间传递数据 
 返回数据给上一个Activity">
-<meta property="og:updated_time" content="2017-03-17T07:24:52.000Z">
+<meta property="og:updated_time" content="2017-03-17T07:34:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity--启动新的Activity, 并传递数据">
 <meta name="twitter:description" content="目录
@@ -434,7 +434,7 @@ button4.setOnClickListener(<span class="keyword">new</span> View.OnClickListener
 <p>注意:<br>设置参数时setType()会清除setData()，而setData()会清除setType(), 两者不能共存，所以通过<code>setDataAndType(Uri.parse(&quot;youyiyi3:xiaoming&quot;), &quot;text/name&quot;)</code>; 一并将两者全部设置了.<br>intent-filter节点及其子节点都可以同时定义多个，隐式启动时只需与任意一个匹配即可  </p>
 <p>下面是对隐式 Intent 启动 Activity的解释:<br>我们通过将一系列更为抽象的 action 和 category 等信息封装到 Intent 中,然后交由系统去分析这个 Intent ,并帮我们找出合适的 Activity 去启动的方式,称为隐式 Intent 启动.  </p>
 <p>从上面代码可以看到,我们使用了 Intent的另一种构造函数,<br>通过直接将 action 的字符串传了进来,表明我们想要启动能够响应 com.yassblog.activitytest.ACTION_START 的 Activity. 那前面不是说要 action 和 category 同时匹配上才能响应吗? 这里怎么没看到有指定 category 呢? 这是因为 android.intent.category.DEFAULT  是一种默认的 category,在调用 startActivity() 方法时已经自动将这个 category 封装到 Intent 中了,所以这个Intent 既有 action 也有 category .  当我们在FirstActivity 的界面点击按钮,就成功启动 SecondActivity 了.  </p>
-<p>每个Intent中只能指定一个 action ,但是却能指定多个 category.比如下面的例子,<br>1 先在清单文件中添加category  </p>
+<p>每个Intent中只能封装一个 action ,但是却能封装多个 category.比如下面的例子,<br>1 先在清单文件中添加category  </p>
 <pre><code class="java">&lt;activity android:name=".SecondActivity"&gt;
             &lt;intent-filter&gt;
                 &lt;action android:name="com.yassblog.activitytest.ACTION_START"/&gt;
