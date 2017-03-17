@@ -87,14 +87,14 @@
 <meta name="description" content="导语
  初探Activity,将一些易忘的点记录下来 开发工具: Android Studio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初探Activity">
+<meta property="og:title" content="启动新Activity 并传递数据">
 <meta property="og:url" content="http://yoursite.com/2017/01/22/初探Activity/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="导语
  初探Activity,将一些易忘的点记录下来 开发工具: Android Studio">
-<meta property="og:updated_time" content="2017-03-17T03:43:21.000Z">
+<meta property="og:updated_time" content="2017-03-17T03:53:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初探Activity">
+<meta name="twitter:title" content="启动新Activity 并传递数据">
 <meta name="twitter:description" content="导语
  初探Activity,将一些易忘的点记录下来 开发工具: Android Studio">
 
@@ -130,7 +130,7 @@
 
 
 
-  <title> 初探Activity | 个人博客 </title>
+  <title> 启动新Activity 并传递数据 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +267,7 @@
             
             
               
-                初探Activity
+                启动新Activity 并传递数据
               
             
           </h1>
@@ -335,10 +335,9 @@
 <p>本节共有<strong>7</strong>点内容:  </p>
 <ol>
 <li><a href="#yi">Activity的使用</a>;  </li>
-<li><a href="#er">使用Intent在Activity之间穿梭</a>;  <ul>
+<li><a href="#er">如何启动新的Activity</a>; </li>
+<li><a href="#2.4.1">如何在Activity之间传递数据</a> </li>
 <li><a href="#2.4.2">返回数据给上一个Activity</a>  </li>
-</ul>
-</li>
 <li><a href="#san">Activity的生命周期</a>;  </li>
 <li><a href="#si">Activity的启动模式</a>;  </li>
 <li><a href="#wu">Activity的最佳实践</a>;  </li>
@@ -402,7 +401,7 @@
             }
         });
 </code></pre>
-<h4 id="二-如何在Activity之间传递数据"><a href="#二-如何在Activity之间传递数据" class="headerlink" title="二 如何在Activity之间传递数据"></a><a name="er"></a>二 如何在Activity之间传递数据</h4><blockquote>
+<h4 id="二-如何启动新的Activity"><a href="#二-如何启动新的Activity" class="headerlink" title="二 如何启动新的Activity"></a><a name="er"></a>二 如何启动新的Activity</h4><blockquote>
 <p>Intent 是 Activity程序中各组件之间进行交互的一种重要方式,它不仅可以指明当前组件想要执行的动作,还可以在不同组件之间传递数据. Intent 一般可被用于启动 Activity, 启动服务以及发送广播等场景.  </p>
 <p>Intent 大致可分为两种: <strong>显式 Intent</strong> 和 <strong>隐式 Intent</strong>  </p>
 </blockquote>
@@ -429,7 +428,8 @@
 </ul>
 </li>
 </ul>
-<pre><code class="java">&lt;activity android:name=".SecondActivity"&gt;
+<p>下面代码中:在清单文件中注册两个Activity,并都配置<code>&lt;intent-filter&gt;</code></p>
+<pre><code class="java">&lt;activity android:name="com.yassblog.SecondActivity"&gt;
             &lt;intent-filter&gt;
                 &lt;action android:name="com.yassblog.activitytest.ACTION_START"/&gt;
                 &lt;category android:name="android.intent.category.DEFAULT"/&gt;
@@ -532,7 +532,7 @@
             }
         });
 </code></pre>
-<h5 id="2-4-Activity之间传递数据"><a href="#2-4-Activity之间传递数据" class="headerlink" title="2.4 Activity之间传递数据"></a>2.4 Activity之间传递数据</h5><h6 id="2-4-1-向下一个Activity传递数据"><a href="#2-4-1-向下一个Activity传递数据" class="headerlink" title="2.4.1 向下一个Activity传递数据"></a>2.4.1 向下一个Activity传递数据</h6><p>有两种方式:  </p>
+<h3 id="2-4-如何在Activity之间传递数据"><a href="#2-4-如何在Activity之间传递数据" class="headerlink" title="2.4 如何在Activity之间传递数据"></a><a name="2.4.1"></a>2.4 如何在Activity之间传递数据</h3><h6 id="2-4-1-向下一个Activity传递数据"><a href="#2-4-1-向下一个Activity传递数据" class="headerlink" title="2.4.1 向下一个Activity传递数据"></a>2.4.1 向下一个Activity传递数据</h6><p>有两种方式:  </p>
 <ol>
 <li><p>在FirstActivity中用Intent封装数据,在SecondActivity中解析Intent封装的数据.<br>FirstActivity页面  </p>
 <pre><code class="java">button8.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
@@ -744,7 +744,7 @@ onActivityResult()带3个参数,第一个参数requestCode,即我们在启动新
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/01/22/初探Activity/"
-           data-title="初探Activity" data-url="http://yoursite.com/2017/01/22/初探Activity/">
+           data-title="启动新Activity 并传递数据" data-url="http://yoursite.com/2017/01/22/初探Activity/">
       </div>
     
   </div>
@@ -837,7 +837,7 @@ onActivityResult()带3个参数,第一个参数requestCode,即我们在启动新
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Activity的简单使用"><span class="nav-number">2.</span> <span class="nav-text">二 Activity的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-在Activity中使用Toast吐司"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 在Activity中使用Toast吐司</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-在Activity中使用Menu菜单"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  在Activity中使用Menu菜单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-销毁一个Activity"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  销毁一个Activity</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-如何在Activity之间传递数据"><span class="nav-number">3.</span> <span class="nav-text">二 如何在Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-显式-Intent-启动-Activity"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 显式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-隐式-Intent-启动-Activity"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 隐式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-更多隐式-Intent-的用法-细碎东西太多-待补充"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 更多隐式 Intent 的用法(细碎东西太多,待补充)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-1-打开网页"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.3.1 打开网页</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-2-打开拨号界面"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.3.2 打开拨号界面</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-Activity之间传递数据"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-1-向下一个Activity传递数据"><span class="nav-number">3.4.1.</span> <span class="nav-text">2.4.1 向下一个Activity传递数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-2-返回数据给上一个Activity"><span class="nav-number">3.4.2.</span> <span class="nav-text">2.4.2 返回数据给上一个Activity</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-Activity的生命周期"><span class="nav-number">4.</span> <span class="nav-text">三 Activity的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-返回栈"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 返回栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-Activity-的4种状态"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 Activity 的4种状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-Activity-的生存期"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 Activity 的生存期</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Activity的启动模式"><span class="nav-number">5.</span> <span class="nav-text">四 Activity的启动模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-Activity的最佳实践"><span class="nav-number">6.</span> <span class="nav-text">五 Activity的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-其他"><span class="nav-number">7.</span> <span class="nav-text">六 其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Activity的简单使用"><span class="nav-number">2.</span> <span class="nav-text">二 Activity的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-在Activity中使用Toast吐司"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 在Activity中使用Toast吐司</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-在Activity中使用Menu菜单"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  在Activity中使用Menu菜单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-销毁一个Activity"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  销毁一个Activity</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-如何启动新的Activity"><span class="nav-number">3.</span> <span class="nav-text">二 如何启动新的Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-显式-Intent-启动-Activity"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 显式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-隐式-Intent-启动-Activity"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 隐式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-更多隐式-Intent-的用法-细碎东西太多-待补充"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 更多隐式 Intent 的用法(细碎东西太多,待补充)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-1-打开网页"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.3.1 打开网页</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-2-打开拨号界面"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.3.2 打开拨号界面</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-如何在Activity之间传递数据"><span class="nav-number"></span> <span class="nav-text">2.4 如何在Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-1-向下一个Activity传递数据"><span class="nav-number">0.0.1.</span> <span class="nav-text">2.4.1 向下一个Activity传递数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-2-返回数据给上一个Activity"><span class="nav-number">0.0.2.</span> <span class="nav-text">2.4.2 返回数据给上一个Activity</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-Activity的生命周期"><span class="nav-number">1.</span> <span class="nav-text">三 Activity的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-返回栈"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 返回栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-Activity-的4种状态"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 Activity 的4种状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-Activity-的生存期"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 Activity 的生存期</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Activity的启动模式"><span class="nav-number">2.</span> <span class="nav-text">四 Activity的启动模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-Activity的最佳实践"><span class="nav-number">3.</span> <span class="nav-text">五 Activity的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-其他"><span class="nav-number">4.</span> <span class="nav-text">六 其他</span></a></li></ol></div>
             
 
           </div>
