@@ -96,7 +96,7 @@
 启动新的Activity; 
 在Activity之间传递数据 
 返回数据给上一个Activity">
-<meta property="og:updated_time" content="2017-03-17T07:22:30.000Z">
+<meta property="og:updated_time" content="2017-03-17T07:24:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity--启动新的Activity, 并传递数据">
 <meta name="twitter:description" content="目录
@@ -559,7 +559,7 @@ button9.setOnClickListener(<span class="keyword">new</span> View.OnClickListener
 button10.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
          <span class="meta">@Override</span>
          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
-             <span class="comment">// 使用Intent封装数据</span>
+             <span class="comment">// startActivityForResult</span>
              Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>,SecondActivity.class);
              startActivityForResult(intent,<span class="number">1</span>);
          }
