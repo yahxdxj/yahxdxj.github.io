@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SQL基础," />
+  <meta name="keywords" content="Activity," />
 
 
 
@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="简单的SQL语句">
+<meta name="description" content="目录
+Activity的生命周期;  
+Activity的启动模式;  
+Activity的最佳实践;  
+其它;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单的SQL语句">
-<meta property="og:url" content="http://yoursite.com/2017/02/27/简单的SQL语句/index.html">
+<meta property="og:title" content="Activity的生命周期及启动模式">
+<meta property="og:url" content="http://yoursite.com/2017/03/17/Activity的生命周期及启动模式/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="简单的SQL语句">
-<meta property="og:updated_time" content="2017-02-27T05:37:42.000Z">
+<meta property="og:description" content="目录
+Activity的生命周期;  
+Activity的启动模式;  
+Activity的最佳实践;  
+其它;">
+<meta property="og:updated_time" content="2017-03-17T06:23:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单的SQL语句">
-<meta name="twitter:description" content="简单的SQL语句">
+<meta name="twitter:title" content="Activity的生命周期及启动模式">
+<meta name="twitter:description" content="目录
+Activity的生命周期;  
+Activity的启动模式;  
+Activity的最佳实践;  
+其它;">
 
 
 
@@ -121,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/27/简单的SQL语句/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/17/Activity的生命周期及启动模式/"/>
 
 
 
 
 
-  <title> 简单的SQL语句 | 个人博客 </title>
+  <title> Activity的生命周期及启动模式 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +252,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/简单的SQL语句/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/17/Activity的生命周期及启动模式/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +276,7 @@
             
             
               
-                简单的SQL语句
+                Activity的生命周期及启动模式
               
             
           </h1>
@@ -279,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T12:45:29+08:00">
-                2017-02-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T14:20:19+08:00">
+                2017-03-17
               </time>
             
 
@@ -298,8 +310,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/27/简单的SQL语句/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/简单的SQL语句/" itemprop="commentCount"></span>
+                <a href="/2017/03/17/Activity的生命周期及启动模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/17/Activity的生命周期及启动模式/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -325,57 +337,33 @@
       
 
       
-        <blockquote>
-<p>简单的SQL语句  </p>
-</blockquote>
+        <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ol>
+<li><a href="#san">Activity的生命周期</a>;  </li>
+<li><a href="#si">Activity的启动模式</a>;  </li>
+<li><a href="#wu">Activity的最佳实践</a>;  </li>
+<li><a href="#liu">其它</a>; </li>
+</ol>
 <a id="more"></a>
-<p><strong>基本查询所有字段语句</strong><br>SELECT * FROM student;<br>SELECT s_number,s_name,s_age,s_gender FROM student;  </p>
-<p><strong>指定查询numer和name字段的记录</strong><br>SELECT s_number,s_name FROM student;</p>
-<p><strong>查询student表的s_age&gt;=25的所有记录</strong><br>SELECT * FROM student WHERE s_age&gt;=25;  </p>
-<p><strong>BETWEEN AND: s_age大于等于25并且小于等于75的记录</strong><br>SELECT <em> FROM student WHERE s_age BETWEEN 25 AND 75;<br>SELECT </em> FROM student WHERE s_age&gt;=25 AND s_age&lt;=75;  </p>
-<p><strong>IS NULL</strong><br>SELECT * FROM student WHERE s_age IS NULL;  </p>
-<p><strong>查询s_age的值不为NULL的记录</strong><br>SELECT * FROM student WHERE s_age IS NOT NULL;  </p>
-<p><strong>s_age的值为25、35、45的记录(一句SQL)</strong><br>SELECT * FROM student WHERE s_age IN(25,35,45);  </p>
-<p><strong>实际应用是混合使用</strong><br>SELECT * FROM student WHERE s_age&gt;25 AND   (s_gender=’male’ OR s_number IN());  </p>
-<p><strong>查询s_name的值是以’z’开始的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘z%’;   </p>
-<p><strong>查询s_name的值是以’n’结束的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘%n’;  </p>
-<p><strong>查询s_name的值是包含’a’的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘%a%’;  </p>
-<p><strong>查询s_name的值是以’z’开始的7个字符的记录</strong><br>SELECT * FROM student WHERE s_name LIKE ‘z<strong>__</strong>‘;  </p>
-<p><strong>当查询字段值具有重复值,需要去重</strong><br>SELECT DISTINCT s_gender FROM student;  </p>
-<p>SELECT DISTINCT s_gender,s_name FROM student;  </p>
-<p>SELECT losal+hisal AS he FROM salarygrade;  </p>
-<p><strong>排序查询</strong><br>SELECT * FROM student ORDER BY s_age DESC;  </p>
-<p><strong>查询s_age的值大于25的记录,并且按照s_age由小到大排序</strong><br>SELECT * FROM student WHERE s_age&gt;25 ORDER BY s_age;  </p>
-<p><strong>查询losal列的所有值之和</strong><br>SELECT SUM(losal) FROM salarygrade;  </p>
-<p><strong>查询salarygrade表的所有记录总数</strong><br>SELECT COUNT(*) FROM salarygrade;  </p>
-<p><strong>查询losal的最大值</strong><br>SELECT MAX(losal) FROM salarygrade;  </p>
-<p>SELECT MIN(losal) FROM salarygrade;  </p>
-<p>SELECT AVG(losal) FROM salarygrade;  </p>
-<p><strong>下面的写法逻辑错误</strong><br>SELECT SUM(losal),hisal FROM salarygrade;  </p>
-<p><strong>分组查询语句</strong><br>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender ORDER BY s_age;  </p>
-<p><strong>使用聚合函数作为查询条件</strong><br>SELECT * FROM student HAVING MAX(s_age)&gt;25;  </p>
-<p>SELECT * FROM student WHERE s_age&gt;25 GROUP BY s_gender HAVING MAX(s_age)&gt;25 ORDER BY s_age;  </p>
-<p><strong>多表查询</strong><br>SELECT <em> FROM emp;<br>SELECT </em> FROM dept;  </p>
-<p><strong>查询员工表,要求显示部门名称</strong><br>SELECT emp.*,dept.dname FROM emp LEFT JOIN dept ON emp.deptno=dept.deptno;   </p>
-<p><strong>以上写法简写方式</strong><br>SELECT emp.*,dept.dname FROM emp,dept WHERE emp.deptno=dept.deptno;  </p>
-<p><strong>三张表连接查询</strong><br>SELECT * from 表名1<br>left join 表名2 on 表名1.字段名=表名2.字段名<br>left join 表名3 on 表名2.字段名=表名2.字段名;  </p>
-<p><strong>内连接查询</strong><br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan FROM emp AS e1 INNER JOIN emp AS e2 ON e1.mgr=e2.empno;  </p>
-<p><strong>以上写法简写方式</strong><br>SELECT e1.ename AS yuangong,e2.ename AS zhuguan FROM emp AS e1,emp AS e2 WHERE e1.mgr=e2.empno;  </p>
-<hr>
-<p><strong>向student表插入一条学生记录</strong><br>SELECT * FROM student;  </p>
-<p><strong>插入所有字段值</strong><br>INSERT INTO student VALUES(‘s_1020’,’ZhangWuJi’,’180’,’male’);  </p>
-<p><strong>插入指定字段:s_number,s_name</strong><br>INSERT INTO student(s_number,s_name) VALUES(‘s_1021’,’ZhouZhiRuo’);  </p>
-<p><strong>如果表字段s_gender默认不允许为空的,插入时怎么办?</strong>  </p>
-<p><strong>修改s_name值为’ZhangWuJi’的年龄为800</strong><br>UPDATE student SET s_age=800;  </p>
-<p><strong>删除s_name值为’ZhangWuJi’</strong><br>DELETE FROM student WHERE s_name=’ZhangWuJi’;  </p>
-<hr>
-<p><strong>创建数据库为day0233</strong><br>CREATE DATABASE IF NOT EXISTS day0322;  </p>
-<p><strong>创建一个用户表 名称、年龄、性别、工作等</strong><br>CREATE TABLE myuser(<br>    username  VARCHAR(50),<br>    age       INT,<br>    sex       VARCHAR(50),<br>    job       VARCHAR(50)<br>);  </p>
-<p><strong>查看所有数据库</strong><br>SHOW DATABASES;  </p>
-<p><strong>查看表结构</strong><br>DESC myuser;  </p>
-<p><strong>查看建表语句</strong><br>SHOW CREATE TABLE myuser;  </p>
-<p><strong>删除表</strong><br>DROP TABLE myuser;</p>
-
+<h4 id="三-Activity的生命周期"><a href="#三-Activity的生命周期" class="headerlink" title="三 Activity的生命周期"></a><a name="san"></a>三 Activity的生命周期</h4><h5 id="3-1-返回栈"><a href="#3-1-返回栈" class="headerlink" title="3.1 返回栈"></a>3.1 返回栈</h5><p>Android 中的 Activity 是可以层叠的。我们每启动一个新 Activity，就会覆盖在原 Activity之上，然后点击 Back 键会销毁最上面的 Activity，下面的一个 Activity 就会重新显示出来。  </p>
+<p>其实 Android 是使用任务（Task）来管理活动的，一个任务就相当于一个集合(相当于一组存放在栈里的Activity的集合)，这个栈也被称作返回栈（Back Stack）。栈是一种后进先出的数据结构，在默认情况下，每当我们启动了一个新的Activity，它会在返回栈中入栈，并处于栈顶的位置。而每当我们按下Back键或调用finish()方法去销毁一个 Activity 时，处于栈顶的Activity会出栈， 这时前一个入栈的 Activity 就会重新处于栈顶的位置。系统总是会显示处于栈顶的 Activity 给用户。<br>图2.3.1</p>
+<h5 id="3-2-Activity-的4种状态"><a href="#3-2-Activity-的4种状态" class="headerlink" title="3.2 Activity 的4种状态"></a>3.2 Activity 的4种状态</h5><p>每个 Activity 在其生命周期中最多可能会有四种状态。<br><strong>运行状态</strong>: 当一个 Activity 位于返回栈的栈顶时，这时Activity就处于运行状态。系统最不愿意回收的就是处于运行状态的Activity，因为这会带来非常差的用户体验。<br><strong>暂停状态</strong>: 当一个 Activity 不再处于栈顶位置，但仍然可见时，这时Activity就进入了暂停状态。处于暂停状态的Activity仍然是完全存活着的，系统也不愿意去回收这种活动（因为它还是可见的，回收可见的东西都会在用户体验方面有不好的影响），只有在内存极低的情况下，系统才会去考虑回收这种Activity。<br><strong>停止状态</strong>: 当一个 Activity 不再处于栈顶位置，并且完全不可见的时候，就进入了停止状态。系统仍然会为这种Activity保存相应的状态和成员变量，但是这并不是完全可靠的，当其他地方需要内存时，处于停止状态的Activity有可能会被系统回收。<br><strong>销毁状态</strong>: 当一个 Activity 从返回栈中移除后就变成了销毁状态。系统会最倾向于回收处于这种状态的Activity，从而保证手机的内存充足。   </p>
+<h5 id="3-3-Activity-的生存期"><a href="#3-3-Activity-的生存期" class="headerlink" title="3.3 Activity 的生存期"></a>3.3 Activity 的生存期</h5><p>Activity 类中定义了七个回调方法，覆盖了活动生命周期的每一个环节，下面我来一一介绍下这七个方法。 </p>
+<ol>
+<li>onCreate()<br>这个方法你已经看到过很多次了，每个Activity中我们都重写了这个方法，它会在Activity第一次被创建的时候调用。你应该在这个方法中完成Activity的初始化操作，比如说加载布局、绑定事件等。</li>
+<li>onStart()<br>这个方法在Activity由不可见变为可见的时候调用。</li>
+<li>onResume()<br>这个方法在Activity准备好和用户进行交互的时候调用。此时的Activity一定位于返回栈的栈顶，并且处于运行状态。</li>
+<li>onPause()<br>这个方法在系统准备去启动或者恢复另一个Activity的时候调用。 我们通常会在这个方法中将一些消耗 CPU 的资源释放掉，以及保存一些关键数据，但这个方法的执行速度一定要快，不然会影响到新的栈顶Activity的使用。</li>
+<li>onStop()<br>这个方法在Activity完全不可见的时候调用。它和 onPause()方法的主要区别在于，如果启动的新Activity是一个对话框式的Activity，那么 onPause()方法会得到执行，而 onStop()方法并不会执行。</li>
+<li>onDestroy()<br>这个方法在活动被销毁之前调用，之后活动的状态将变为销毁状态。</li>
+<li>onRestart()<br>这个方法在活动由停止状态变为运行状态之前调用，也就是活动被重新启动了  </li>
+</ol>
+<p>以上七个方法中除了 onRestart()方法， 其他都是两两相对的，从而又可以将活动分为三种生存期。 </p>
+<ol>
+<li>完整生存期<br>活动在 onCreate()方法和 onDestroy()方法之间所经历的，就是完整生存期。一般情况下，一个活动会在 onCreate()方法中完成各种初始化操作，而在 onDestroy()方法中完成释放内存的操作。</li>
+<li>可见生存期<br>活动在 onStart()方法和 onStop()方法之间所经历的，就是可见生存期。在可见生存期内，活动对于用户总是可见的，即便有可能无法和用户进行交互。我们可以通过这两个方法，合理地管理那些对用户可见的资源。比如在 onStart()方法中对资源进行加载，而在 onStop()方法中对资源进行释放，从而保证处于停止状态的活动不会占用过多内存。</li>
+<li>前台生存期<br>活动在 onResume()方法和 onPause()方法之间所经历的，就是前台生存期。在前台生存期内，活动总是处于运行状态的，此时的活动是可以和用户进行相互的，我们平时看到和接触最多的也这个状态下的活动。<br>图2.3.2  </li>
+</ol>
+<h4 id="四-Activity的启动模式"><a href="#四-Activity的启动模式" class="headerlink" title="四 Activity的启动模式"></a><a name="si"></a>四 Activity的启动模式</h4><h4 id="五-Activity的最佳实践"><a href="#五-Activity的最佳实践" class="headerlink" title="五 Activity的最佳实践"></a><a name="wu"></a>五 Activity的最佳实践</h4><h4 id="六-其他"><a href="#六-其他" class="headerlink" title="六 其他"></a><a name="wu"></a>六 其他</h4>
       
     </div>
 
@@ -398,7 +386,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SQL基础/" rel="tag"># SQL基础</a>
+            <a href="/tags/Activity/" rel="tag"># Activity</a>
           
         </div>
       
@@ -407,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/27/eclipse打包APK时String-xml报错的问题/" rel="next" title="eclipse打包APK时String.xml报错的问题">
-                <i class="fa fa-chevron-left"></i> eclipse打包APK时String.xml报错的问题
+              <a href="/2017/03/10/手机卫士笔记/" rel="next" title="手机卫士笔记">
+                <i class="fa fa-chevron-left"></i> 手机卫士笔记
               </a>
             
           </div>
@@ -416,10 +404,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/27/Mac中MyEclipseip启动Tomcat时8080端口被占用/" rel="prev" title="Mac中MyEclipse启动Tomcat时8080端口被占用">
-                Mac中MyEclipse启动Tomcat时8080端口被占用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,8 +429,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/27/简单的SQL语句/"
-           data-title="简单的SQL语句" data-url="http://yoursite.com/2017/02/27/简单的SQL语句/">
+      <div class="ds-thread" data-thread-key="2017/03/17/Activity的生命周期及启动模式/"
+           data-title="Activity的生命周期及启动模式" data-url="http://yoursite.com/2017/03/17/Activity的生命周期及启动模式/">
       </div>
     
   </div>
@@ -470,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -520,6 +513,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-Activity的生命周期"><span class="nav-number">2.</span> <span class="nav-text">三 Activity的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-返回栈"><span class="nav-number">2.1.</span> <span class="nav-text">3.1 返回栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-Activity-的4种状态"><span class="nav-number">2.2.</span> <span class="nav-text">3.2 Activity 的4种状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-Activity-的生存期"><span class="nav-number">2.3.</span> <span class="nav-text">3.3 Activity 的生存期</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Activity的启动模式"><span class="nav-number">3.</span> <span class="nav-text">四 Activity的启动模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-Activity的最佳实践"><span class="nav-number">4.</span> <span class="nav-text">五 Activity的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-其他"><span class="nav-number">5.</span> <span class="nav-text">六 其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
