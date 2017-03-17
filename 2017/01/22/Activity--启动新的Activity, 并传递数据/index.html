@@ -96,7 +96,7 @@
 启动新的Activity; 
 在Activity之间传递数据 
 返回数据给上一个Activity">
-<meta property="og:updated_time" content="2017-03-17T06:57:41.000Z">
+<meta property="og:updated_time" content="2017-03-17T07:22:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity--启动新的Activity, 并传递数据">
 <meta name="twitter:description" content="目录
@@ -604,6 +604,7 @@ button10.setOnClickListener(<span class="keyword">new</span> View.OnClickListene
 onActivityResult()带3个参数,第一个参数requestCode,即我们在启动新Activity时传入的请求码,第二个参数resultCode,即我们在返回数据时传入的处理结果,第三个参数data,即携带者返回数据的Intent.  </li>
 </ol>
 <p>由于在一个Activity中可能调用startActivityForResult()方法去启动很多不同的新Activity,每一个Activity返回的数据都会回调到onActivityResult()方法,因此我们首先通过检查requestCode的值来判断数据来源,再通过resultCode的值来判断处理结果是否成功.最后从data中取值Toast出来,这样就完成向上一个Activity返回数据的工作.</p>
+<p>源码下载: <a href="http://ojupj7fr2.bkt.clouddn.com/ActivityTest.rar" target="_blank" rel="external">http://ojupj7fr2.bkt.clouddn.com/ActivityTest.rar</a>  </p>
 
       
     </div>
