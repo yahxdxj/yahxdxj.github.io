@@ -96,7 +96,7 @@
 启动新的Activity; 
 在Activity之间传递数据 
 返回数据给上一个Activity">
-<meta property="og:updated_time" content="2017-03-17T06:32:05.000Z">
+<meta property="og:updated_time" content="2017-03-17T06:41:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="启动新的Activity 并传递数据">
 <meta name="twitter:description" content="目录
@@ -345,7 +345,8 @@
 <p>Intent 是 Activity程序中各组件之间进行交互的一种重要方式,它不仅可以指明当前组件想要执行的动作,还可以在不同组件之间传递数据. Intent 一般可被用于启动 Activity, 启动服务以及发送广播等场景.  </p>
 <p>Intent 大致可分为两种: <strong>显式 Intent</strong> 和 <strong>隐式 Intent</strong>  </p>
 </blockquote>
-<h5 id="1-1-显式-Intent-启动-Activity"><a href="#1-1-显式-Intent-启动-Activity" class="headerlink" title="1.1 显式 Intent 启动 Activity"></a>1.1 显式 Intent 启动 Activity</h5><pre><code class="java">button3.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<h5 id="1-1-显式-Intent-启动-Activity"><a href="#1-1-显式-Intent-启动-Activity" class="headerlink" title="1.1 显式 Intent 启动 Activity"></a>1.1 显式 Intent 启动 Activity</h5><pre><code class="java">Button button3 = (Button) findViewById(R.id.button3);
+button3.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
             <span class="meta">@Override</span>
             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
                 <span class="comment">// 跳转到第二个Activity</span>
@@ -398,7 +399,8 @@
         &lt;/activity&gt;
 </code></pre>
 <p>接着,修改按钮点击事件,隐式启动新的Activity  </p>
-<pre><code class="java">button4.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<pre><code class="java">Button button4 = (Button) findViewById(R.id.button4);
+button4.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
             <span class="meta">@Override</span>
             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
                 <span class="comment">// 隐式跳转到第二个Activity</span>
@@ -442,7 +444,8 @@
         &lt;/activity&gt;
 </code></pre>
 <p>2 再在Intent中添加一个category,并启动Activity  </p>
-<pre><code class="java">button5.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<pre><code class="java">Button button5 = (Button) findViewById(R.id.button5);
+button5.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
             <span class="meta">@Override</span>
             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
                 <span class="comment">// 添加category,隐式跳转Activity</span>
@@ -452,7 +455,8 @@
             }
 });
 </code></pre>
-<h5 id="1-3-更多隐式-Intent-的用法-细碎东西太多-待补充"><a href="#1-3-更多隐式-Intent-的用法-细碎东西太多-待补充" class="headerlink" title="1.3 更多隐式 Intent 的用法(细碎东西太多,待补充)"></a>1.3 更多隐式 Intent 的用法(细碎东西太多,待补充)</h5><h6 id="2-3-1-打开网页"><a href="#2-3-1-打开网页" class="headerlink" title="2.3.1 打开网页"></a>2.3.1 打开网页</h6><pre><code class="java">button6.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<h5 id="1-3-更多隐式-Intent-的用法-细碎东西太多-待补充"><a href="#1-3-更多隐式-Intent-的用法-细碎东西太多-待补充" class="headerlink" title="1.3 更多隐式 Intent 的用法(细碎东西太多,待补充)"></a>1.3 更多隐式 Intent 的用法(细碎东西太多,待补充)</h5><h6 id="2-3-1-打开网页"><a href="#2-3-1-打开网页" class="headerlink" title="2.3.1 打开网页"></a>2.3.1 打开网页</h6><pre><code class="java">Button button6 = (Button) findViewById(R.id.button6);
+button6.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
             <span class="meta">@Override</span>
             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
                 <span class="comment">// 打开网页</span>
@@ -462,7 +466,8 @@
             }
         });
 </code></pre>
-<h6 id="2-3-2-打开拨号界面"><a href="#2-3-2-打开拨号界面" class="headerlink" title="2.3.2 打开拨号界面"></a>2.3.2 打开拨号界面</h6><pre><code class="java">button7.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<h6 id="2-3-2-打开拨号界面"><a href="#2-3-2-打开拨号界面" class="headerlink" title="2.3.2 打开拨号界面"></a>2.3.2 打开拨号界面</h6><pre><code class="java">Button button7 = (Button) findViewById(R.id.button7);
+button7.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
             <span class="meta">@Override</span>
             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
                 <span class="comment">// 打开拨号界面</span>
@@ -476,7 +481,8 @@
 <h3 id="二-在Activity之间传递数据"><a href="#二-在Activity之间传递数据" class="headerlink" title="二 在Activity之间传递数据"></a><a name="2.4.1"></a>二 在Activity之间传递数据</h3><h4 id="2-4-1-向下一个Activity传递数据"><a href="#2-4-1-向下一个Activity传递数据" class="headerlink" title="2.4.1 向下一个Activity传递数据"></a>2.4.1 向下一个Activity传递数据</h4><p>有两种方式:  </p>
 <ol>
 <li><p>在FirstActivity中用Intent封装数据,在SecondActivity中解析Intent封装的数据.<br>FirstActivity页面  </p>
-<pre><code class="java">button8.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<pre><code class="java">Button button8 = (Button) findViewById(R.id.button8);
+button8.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
          <span class="meta">@Override</span>
          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
              <span class="comment">// 使用Intent封装数据</span>
@@ -503,7 +509,8 @@
 </code></pre>
 </li>
 <li><p>使用bundle先封装好数据,再使用Intent传递数据.<br>FirstActivity页面  </p>
-<pre><code class="java">button9.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<pre><code class="java">Button button9 = (Button) findViewById(R.id.button9);
+button9.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
          <span class="meta">@Override</span>
          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
              <span class="comment">// 使用Bundle封装数据,再把bundle封装至intent中</span>
@@ -548,7 +555,8 @@
 <h3 id="三-返回数据给上一个Activity"><a href="#三-返回数据给上一个Activity" class="headerlink" title="三 返回数据给上一个Activity"></a><a name="2.4.2"></a>三 返回数据给上一个Activity</h3><p>Activity中还有一个 startActivityForResult() 方法也是用于启动新Activity的,<br>这个方法期望在新Activity销毁时能够返回一个结果给上一个Activity,但这正是我们需要的.  </p>
 <ol>
 <li><p>在FirstActivity中用startActivityForResult启动新Activity  </p>
-<pre><code class="java">button10.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+<pre><code class="java">Button button10 = (Button) findViewById(R.id.button10);
+button10.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
          <span class="meta">@Override</span>
          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
              <span class="comment">// 使用Intent封装数据</span>
