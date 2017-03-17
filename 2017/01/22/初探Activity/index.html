@@ -87,14 +87,14 @@
 <meta name="description" content="导语
  初探Activity,将一些易忘的点记录下来 开发工具: Android Studio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="启动新Activity 并传递数据">
+<meta property="og:title" content="启动新的Activity 并传递数据">
 <meta property="og:url" content="http://yoursite.com/2017/01/22/初探Activity/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="导语
  初探Activity,将一些易忘的点记录下来 开发工具: Android Studio">
-<meta property="og:updated_time" content="2017-03-17T03:53:14.000Z">
+<meta property="og:updated_time" content="2017-03-17T03:56:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="启动新Activity 并传递数据">
+<meta name="twitter:title" content="启动新的Activity 并传递数据">
 <meta name="twitter:description" content="导语
  初探Activity,将一些易忘的点记录下来 开发工具: Android Studio">
 
@@ -130,7 +130,7 @@
 
 
 
-  <title> 启动新Activity 并传递数据 | 个人博客 </title>
+  <title> 启动新的Activity 并传递数据 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +267,7 @@
             
             
               
-                启动新Activity 并传递数据
+                启动新的Activity 并传递数据
               
             
           </h1>
@@ -334,8 +334,8 @@
 <a id="more"></a>  
 <p>本节共有<strong>7</strong>点内容:  </p>
 <ol>
-<li><a href="#yi">Activity的使用</a>;  </li>
 <li><a href="#er">如何启动新的Activity</a>; </li>
+<li><a href="#yi">Activity的使用</a>; </li>
 <li><a href="#2.4.1">如何在Activity之间传递数据</a> </li>
 <li><a href="#2.4.2">返回数据给上一个Activity</a>  </li>
 <li><a href="#san">Activity的生命周期</a>;  </li>
@@ -343,64 +343,6 @@
 <li><a href="#wu">Activity的最佳实践</a>;  </li>
 <li><a href="#liu">其它</a>;  </li>
 </ol>
-<h4 id="二-Activity的简单使用"><a href="#二-Activity的简单使用" class="headerlink" title="二 Activity的简单使用"></a><a name="yi"></a>二 Activity的简单使用</h4><h5 id="2-1-在Activity中使用Toast吐司"><a href="#2-1-在Activity中使用Toast吐司" class="headerlink" title="2.1 在Activity中使用Toast吐司"></a>2.1 在Activity中使用Toast吐司</h5><pre><code class="java"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
-       <span class="keyword">super</span>.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_first);
-       Button button = (Button) findViewById(R.id.button);
-       button1.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
-           <span class="meta">@Override</span>
-           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
-               Toast.makeText(FirstActivity.<span class="keyword">this</span>, <span class="string">"测试Toast的使用"</span>, Toast.LENGTH_SHORT).show();
-           }
-       });
-   }
-</code></pre>
-<h5 id="2-2-在Activity中使用Menu菜单"><a href="#2-2-在Activity中使用Menu菜单" class="headerlink" title="2.2  在Activity中使用Menu菜单"></a>2.2  在Activity中使用Menu菜单</h5><ul>
-<li>2.2.1 在res目录下新建menu文件夹  <pre><code>创建新目录 (右键res目录 -&gt; New -&gt; Directory )
-</code></pre></li>
-<li>2.2.2 在menu目录下新建名为main的xml文件  <pre><code>创建菜单文件 (右键menu目录 -&gt; New -&gt; Menu resource file)
-</code></pre></li>
-<li>2.2.3 在main文件中添加新 item  <pre><code>&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
-  &lt;item
-      android:id=&quot;@+id/add_item&quot;
-      android:title=&quot;Add&quot;/&gt;
-  &lt;item
-      android:id=&quot;@+id/remove_item&quot;
-      android:title=&quot;Remove&quot;/&gt;
-&lt;/menu&gt;
-</code></pre></li>
-<li><p>2.2.4 在 Activity 中重写 onCreateOptionsMenu 和 onOptionsItemSelected 俩方法  </p>
-<pre><code class="java"><span class="meta">@Override</span>
-<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>{
-    getMenuInflater().inflate(R.menu.main,menu);
-    <span class="keyword">return</span> <span class="keyword">true</span>;
-}
-
-<span class="meta">@Override</span>
-<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>{
-    <span class="keyword">switch</span> (item.getItemId()){
-        <span class="keyword">case</span> R.id.add_item:
-            Toast.makeText(FirstActivity.<span class="keyword">this</span>, <span class="string">"点击了Add"</span>, Toast.LENGTH_SHORT).show();
-            <span class="keyword">break</span>;
-        <span class="keyword">case</span> R.id.remove_item:
-            Toast.makeText(FirstActivity.<span class="keyword">this</span>, <span class="string">"点击了Remove"</span>, Toast.LENGTH_SHORT).show();
-            <span class="keyword">break</span>;
-        <span class="keyword">default</span>:
-    }
-    <span class="keyword">return</span> <span class="keyword">true</span>;
-}
-</code></pre>
-</li>
-<li>2.2.5 运行程序,会在标题栏右上角出现菜单按钮,可以使用</li>
-</ul>
-<h5 id="2-3-销毁一个Activity"><a href="#2-3-销毁一个Activity" class="headerlink" title="2.3  销毁一个Activity"></a>2.3  销毁一个Activity</h5><pre><code class="java">button2.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
-                <span class="comment">// 销毁当前Activity</span>
-                finish();
-            }
-        });
-</code></pre>
 <h4 id="二-如何启动新的Activity"><a href="#二-如何启动新的Activity" class="headerlink" title="二 如何启动新的Activity"></a><a name="er"></a>二 如何启动新的Activity</h4><blockquote>
 <p>Intent 是 Activity程序中各组件之间进行交互的一种重要方式,它不仅可以指明当前组件想要执行的动作,还可以在不同组件之间传递数据. Intent 一般可被用于启动 Activity, 启动服务以及发送广播等场景.  </p>
 <p>Intent 大致可分为两种: <strong>显式 Intent</strong> 和 <strong>隐式 Intent</strong>  </p>
@@ -529,6 +471,64 @@
                 Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse(<span class="string">"tel:10086"</span>));
                 startActivity(intent);
+            }
+        });
+</code></pre>
+<h4 id="二-Activity的简单使用"><a href="#二-Activity的简单使用" class="headerlink" title="二 Activity的简单使用"></a><a name="yi"></a>二 Activity的简单使用</h4><h5 id="2-1-在Activity中使用Toast吐司"><a href="#2-1-在Activity中使用Toast吐司" class="headerlink" title="2.1 在Activity中使用Toast吐司"></a>2.1 在Activity中使用Toast吐司</h5><pre><code class="java"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+       <span class="keyword">super</span>.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_first);
+       Button button = (Button) findViewById(R.id.button);
+       button1.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+           <span class="meta">@Override</span>
+           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
+               Toast.makeText(FirstActivity.<span class="keyword">this</span>, <span class="string">"测试Toast的使用"</span>, Toast.LENGTH_SHORT).show();
+           }
+       });
+   }
+</code></pre>
+<h5 id="2-2-在Activity中使用Menu菜单"><a href="#2-2-在Activity中使用Menu菜单" class="headerlink" title="2.2  在Activity中使用Menu菜单"></a>2.2  在Activity中使用Menu菜单</h5><ul>
+<li>2.2.1 在res目录下新建menu文件夹  <pre><code>创建新目录 (右键res目录 -&gt; New -&gt; Directory )
+</code></pre></li>
+<li>2.2.2 在menu目录下新建名为main的xml文件  <pre><code>创建菜单文件 (右键menu目录 -&gt; New -&gt; Menu resource file)
+</code></pre></li>
+<li>2.2.3 在main文件中添加新 item  <pre><code>&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+  &lt;item
+      android:id=&quot;@+id/add_item&quot;
+      android:title=&quot;Add&quot;/&gt;
+  &lt;item
+      android:id=&quot;@+id/remove_item&quot;
+      android:title=&quot;Remove&quot;/&gt;
+&lt;/menu&gt;
+</code></pre></li>
+<li><p>2.2.4 在 Activity 中重写 onCreateOptionsMenu 和 onOptionsItemSelected 俩方法  </p>
+<pre><code class="java"><span class="meta">@Override</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>{
+    getMenuInflater().inflate(R.menu.main,menu);
+    <span class="keyword">return</span> <span class="keyword">true</span>;
+}
+
+<span class="meta">@Override</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>{
+    <span class="keyword">switch</span> (item.getItemId()){
+        <span class="keyword">case</span> R.id.add_item:
+            Toast.makeText(FirstActivity.<span class="keyword">this</span>, <span class="string">"点击了Add"</span>, Toast.LENGTH_SHORT).show();
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> R.id.remove_item:
+            Toast.makeText(FirstActivity.<span class="keyword">this</span>, <span class="string">"点击了Remove"</span>, Toast.LENGTH_SHORT).show();
+            <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+    }
+    <span class="keyword">return</span> <span class="keyword">true</span>;
+}
+</code></pre>
+</li>
+<li>2.2.5 运行程序,会在标题栏右上角出现菜单按钮,可以使用</li>
+</ul>
+<h5 id="2-3-销毁一个Activity"><a href="#2-3-销毁一个Activity" class="headerlink" title="2.3  销毁一个Activity"></a>2.3  销毁一个Activity</h5><pre><code class="java">button2.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>{
+                <span class="comment">// 销毁当前Activity</span>
+                finish();
             }
         });
 </code></pre>
@@ -744,7 +744,7 @@ onActivityResult()带3个参数,第一个参数requestCode,即我们在启动新
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/01/22/初探Activity/"
-           data-title="启动新Activity 并传递数据" data-url="http://yoursite.com/2017/01/22/初探Activity/">
+           data-title="启动新的Activity 并传递数据" data-url="http://yoursite.com/2017/01/22/初探Activity/">
       </div>
     
   </div>
@@ -837,7 +837,7 @@ onActivityResult()带3个参数,第一个参数requestCode,即我们在启动新
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Activity的简单使用"><span class="nav-number">2.</span> <span class="nav-text">二 Activity的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-在Activity中使用Toast吐司"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 在Activity中使用Toast吐司</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-在Activity中使用Menu菜单"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  在Activity中使用Menu菜单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-销毁一个Activity"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  销毁一个Activity</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-如何启动新的Activity"><span class="nav-number">3.</span> <span class="nav-text">二 如何启动新的Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-显式-Intent-启动-Activity"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 显式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-隐式-Intent-启动-Activity"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 隐式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-更多隐式-Intent-的用法-细碎东西太多-待补充"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 更多隐式 Intent 的用法(细碎东西太多,待补充)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-1-打开网页"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.3.1 打开网页</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-2-打开拨号界面"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.3.2 打开拨号界面</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-如何在Activity之间传递数据"><span class="nav-number"></span> <span class="nav-text">2.4 如何在Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-1-向下一个Activity传递数据"><span class="nav-number">0.0.1.</span> <span class="nav-text">2.4.1 向下一个Activity传递数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-2-返回数据给上一个Activity"><span class="nav-number">0.0.2.</span> <span class="nav-text">2.4.2 返回数据给上一个Activity</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-Activity的生命周期"><span class="nav-number">1.</span> <span class="nav-text">三 Activity的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-返回栈"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 返回栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-Activity-的4种状态"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 Activity 的4种状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-Activity-的生存期"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 Activity 的生存期</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Activity的启动模式"><span class="nav-number">2.</span> <span class="nav-text">四 Activity的启动模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-Activity的最佳实践"><span class="nav-number">3.</span> <span class="nav-text">五 Activity的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-其他"><span class="nav-number">4.</span> <span class="nav-text">六 其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-如何启动新的Activity"><span class="nav-number">2.</span> <span class="nav-text">二 如何启动新的Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-显式-Intent-启动-Activity"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 显式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-隐式-Intent-启动-Activity"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 隐式 Intent 启动 Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-更多隐式-Intent-的用法-细碎东西太多-待补充"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 更多隐式 Intent 的用法(细碎东西太多,待补充)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-1-打开网页"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 打开网页</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-2-打开拨号界面"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 打开拨号界面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Activity的简单使用"><span class="nav-number">3.</span> <span class="nav-text">二 Activity的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-在Activity中使用Toast吐司"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 在Activity中使用Toast吐司</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-在Activity中使用Menu菜单"><span class="nav-number">3.2.</span> <span class="nav-text">2.2  在Activity中使用Menu菜单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-销毁一个Activity"><span class="nav-number">3.3.</span> <span class="nav-text">2.3  销毁一个Activity</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-如何在Activity之间传递数据"><span class="nav-number"></span> <span class="nav-text">2.4 如何在Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-1-向下一个Activity传递数据"><span class="nav-number">0.0.1.</span> <span class="nav-text">2.4.1 向下一个Activity传递数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-2-返回数据给上一个Activity"><span class="nav-number">0.0.2.</span> <span class="nav-text">2.4.2 返回数据给上一个Activity</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-Activity的生命周期"><span class="nav-number">1.</span> <span class="nav-text">三 Activity的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-返回栈"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 返回栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-Activity-的4种状态"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 Activity 的4种状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-Activity-的生存期"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 Activity 的生存期</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Activity的启动模式"><span class="nav-number">2.</span> <span class="nav-text">四 Activity的启动模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-Activity的最佳实践"><span class="nav-number">3.</span> <span class="nav-text">五 Activity的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-其他"><span class="nav-number">4.</span> <span class="nav-text">六 其他</span></a></li></ol></div>
             
 
           </div>
