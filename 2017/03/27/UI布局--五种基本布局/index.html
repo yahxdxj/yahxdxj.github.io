@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MyEclipse," />
+  <meta name="keywords" content="UI控件," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="导入并运行项目">
+<meta name="description" content="常见布局">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下MyEclipseip导入项目并运行">
-<meta property="og:url" content="http://yoursite.com/2017/02/27/Mac下MyEclipseip导入项目并运行/index.html">
+<meta property="og:title" content="五种基本布局">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/UI布局--五种基本布局/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="导入并运行项目">
-<meta property="og:updated_time" content="2017-03-06T08:30:19.000Z">
+<meta property="og:description" content="常见布局">
+<meta property="og:updated_time" content="2017-03-27T05:52:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下MyEclipseip导入项目并运行">
-<meta name="twitter:description" content="导入并运行项目">
+<meta name="twitter:title" content="五种基本布局">
+<meta name="twitter:description" content="常见布局">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/27/Mac下MyEclipseip导入项目并运行/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/UI布局--五种基本布局/"/>
 
 
 
 
 
-  <title> Mac下MyEclipseip导入项目并运行 | 个人博客 </title>
+  <title> 五种基本布局 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/Mac下MyEclipseip导入项目并运行/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/UI布局--五种基本布局/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                Mac下MyEclipseip导入项目并运行
+                五种基本布局
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T15:36:47+08:00">
-                2017-02-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T13:44:37+08:00">
+                2017-03-27
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/27/Mac下MyEclipseip导入项目并运行/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/Mac下MyEclipseip导入项目并运行/" itemprop="commentCount"></span>
+                <a href="/2017/03/27/UI布局--五种基本布局/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/UI布局--五种基本布局/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,16 +326,73 @@
 
       
         <blockquote>
-<p>导入并运行项目  </p>
+<p>常见布局</p>
 </blockquote>
 <a id="more"></a>
-<p>步骤:  </p>
-<p>导入项目(处理报错)</p>
-<p>–&gt; server窗口 </p>
-<p>–&gt; 本地Tomcat 中 add Deployment </p>
-<p>–&gt; 编译项目(右击后选第2个)</p>
-<p>–&gt; 运行Tomcat(处理报错)</p>
+<p>###Android常见布局   </p>
+<ul>
+<li>LinearLayout  </li>
+<li>RelativeLayout  </li>
+<li>FrameLayout  </li>
+<li>AbsoluteLayout  </li>
+<li>TableLayout   </li>
+</ul>
+<h3 id="LinearLayout-线性布局"><a href="#LinearLayout-线性布局" class="headerlink" title="LinearLayout    线性布局"></a>LinearLayout    线性布局</h3><pre><code>- 控件一个接一个排列
+    - 属性参数
+    - android:orientation=&quot;vertical&quot;垂直排列
+    - android:layout_width=&quot;match_parent&quot; 填充父窗体
+    - android:layout_height=&quot;wrap_content&quot;包裹内容
+* orientation 属性是**指定线性布局的排列方向**: 
+    - horizontal 水平
+    - vertical 垂直
+* gravity属性是**指定当前控件内容显示位置**: 
+    - left 左边
+    - right 右边
+    - top 上边
+    - bottom 底边
+* layout_gravity属性是**指定当前控件在父元素的位置**: 
+    - left 左边
+    - right 右边
+    - top 上边
+    - bottom 底边
+* layout_weightSum(权重)属性是**把线性布局中剩余空间分成N份**.
+* layout_weight (权重)属性是**指定当前控件在父元素(线性布局)中占N份**.
+* visibility属性是**控制布局是否显示**: 
+    - visible 显示
+    - invisible 不显示但占空间
+    - gone 隐藏  
+</code></pre><h3 id="RelativeLayout-相对布局"><a href="#RelativeLayout-相对布局" class="headerlink" title="RelativeLayout    相对布局"></a>RelativeLayout    相对布局</h3><pre><code>- 控件之间以相对位置排列
+- android:layout_toRightOf        在指定控件的右边
+- android:layout_toLeftOf        在指定控件的左边
+- android:layout_above        在指定控件的上边
+- android:layout_below        在指定控件的下边
+- android:layout_alignBaseline        跟指定控件水平对齐
+- android:layout_alignLeft        跟指定控件左对齐
+- android:layout_alignRight        跟指定控件右对齐
+- android:layout_alignTop        跟指定控件顶部对齐
+- android:layout_alignBottom        跟指定控件底部对齐
+- android:layout_alignParentLeft    是否跟父布局左对齐
+- android:layout_alignParentTop    是否跟父布局顶部对齐
+- android:layout_alignParentRight    是否跟父布局右对齐
+- android:layout_alignParentBottom    是否跟父布局底部对齐
+- android:layout_centerVertical    在父布局中垂直居中
+- android:layout_centerHorizontal    在父布局中水平居中
+- android:layout_centerInParent    在父布局中居中
+- android:layout_marginRight 距离指定父控件的外边距
+</code></pre><h3 id="FrameLayout-帧布局"><a href="#FrameLayout-帧布局" class="headerlink" title="FrameLayout    帧布局"></a>FrameLayout    帧布局</h3><pre><code>- 一层盖一层
+- 帧布局每次添加的控件都显示在最上面，最后显示在界面上的是最后添加的一个控件
+</code></pre><h3 id="AbsoluteLayout-绝对布局"><a href="#AbsoluteLayout-绝对布局" class="headerlink" title="AbsoluteLayout    绝对布局"></a>AbsoluteLayout    绝对布局</h3><pre><code>- 通过x, y指定绝对位置. 
+- android:layout_x    指定控件在父布局的x轴坐标
+- android:layout_y    指定控件在父布局的y轴坐标
+</code></pre><h3 id="TableLayout-表格布局"><a href="#TableLayout-表格布局" class="headerlink" title="TableLayout        表格布局"></a>TableLayout        表格布局</h3><pre><code>- 类似Html表格
+- android:shrinkColumns        收缩列
+- android:stretchColumns        拉伸列,=1表示第二列拉伸
+- android:collapseColumns        隐藏列
+- android:layout_column        指定列(作用在列的身上)
+- android:layout_span            合并列(作用在列的身上)
 
+- TableRow单元行里的单元格的宽度小于默认的宽度时就不起作用,其默认是fill_parent，高度可以自定义大小  
+</code></pre>
       
     </div>
 
@@ -358,7 +415,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MyEclipse/" rel="tag"># MyEclipse</a>
+            <a href="/tags/UI控件/" rel="tag"># UI控件</a>
           
         </div>
       
@@ -367,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/27/Java-Web项目在Mac系统上启动时提示nodename-nor-servname-provided的解决办法/" rel="next" title=" Java Web项目在Mac系统上启动时提示nodename nor servname provided的解决办法">
-                <i class="fa fa-chevron-left"></i>  Java Web项目在Mac系统上启动时提示nodename nor servname provided的解决办法
+              <a href="/2017/03/27/UI布局--简单界面控件/" rel="next" title="简单界面控件">
+                <i class="fa fa-chevron-left"></i> 简单界面控件
               </a>
             
           </div>
@@ -377,8 +434,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/27/关闭小米MIUI8-2智能助理/" rel="prev" title="关闭小米MIUI8.2智能助理">
-                关闭小米MIUI8.2智能助理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/27/Activity--数据传递/" rel="prev" title="Activity-数据传递">
+                Activity-数据传递 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -405,8 +462,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/27/Mac下MyEclipseip导入项目并运行/"
-           data-title="Mac下MyEclipseip导入项目并运行" data-url="http://yoursite.com/2017/02/27/Mac下MyEclipseip导入项目并运行/">
+      <div class="ds-thread" data-thread-key="2017/03/27/UI布局--五种基本布局/"
+           data-title="五种基本布局" data-url="http://yoursite.com/2017/03/27/UI布局--五种基本布局/">
       </div>
     
   </div>
@@ -430,8 +487,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -480,6 +546,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#LinearLayout-线性布局"><span class="nav-number">1.</span> <span class="nav-text">LinearLayout    线性布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RelativeLayout-相对布局"><span class="nav-number">2.</span> <span class="nav-text">RelativeLayout    相对布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FrameLayout-帧布局"><span class="nav-number">3.</span> <span class="nav-text">FrameLayout    帧布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AbsoluteLayout-绝对布局"><span class="nav-number">4.</span> <span class="nav-text">AbsoluteLayout    绝对布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TableLayout-表格布局"><span class="nav-number">5.</span> <span class="nav-text">TableLayout        表格布局</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
