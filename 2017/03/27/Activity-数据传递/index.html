@@ -94,7 +94,7 @@
 <meta property="og:description" content="目录
 在Activity之间传递数据 
 返回数据给上一个Activity">
-<meta property="og:updated_time" content="2017-03-27T06:17:46.000Z">
+<meta property="og:updated_time" content="2017-03-27T06:18:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity-数据传递">
 <meta name="twitter:description" content="目录
@@ -337,7 +337,7 @@
 </ol>
 <a id="more"></a> 
 <hr>
-<h3 id="一-在Activity之间传递数据"><a href="#一-在Activity之间传递数据" class="headerlink" title="一 在Activity之间传递数据"></a><a name="2.4.1"></a>一 在Activity之间传递数据</h3><h4 id="1-1-向下一个Activity传递数据"><a href="#1-1-向下一个Activity传递数据" class="headerlink" title="1.1 向下一个Activity传递数据"></a>1.1 向下一个Activity传递数据</h4><p>有两种方式:  </p>
+<h3 id="在Activity之间传递数据"><a href="#在Activity之间传递数据" class="headerlink" title=" 在Activity之间传递数据"></a><a name="2.4.1"></a> 在Activity之间传递数据</h3><h4 id="1-1-向下一个Activity传递数据"><a href="#1-1-向下一个Activity传递数据" class="headerlink" title="1.1 向下一个Activity传递数据"></a>1.1 向下一个Activity传递数据</h4><p>有两种方式:  </p>
 <p>方式1<br>在FirstActivity中用Intent封装数据,在SecondActivity中解析Intent封装的数据.<br>代码: FirstActivity页面  </p>
 <pre><code class="java">Button button8 = (Button) findViewById(R.id.button8);
 button8.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){
@@ -407,7 +407,7 @@ button9.setOnClickListener(<span class="keyword">new</span> View.OnClickListener
 }
 </code></pre>
 <hr>
-<h4 id="2-2-返回数据给上一个Activity"><a href="#2-2-返回数据给上一个Activity" class="headerlink" title="2.2 返回数据给上一个Activity"></a><a name="2.4.2"></a>2.2 返回数据给上一个Activity</h4><p>Activity中还有一个 startActivityForResult() 方法也是用于启动新Activity的,<br>这个方法期望在新Activity销毁时能够返回一个结果给上一个Activity,但这正是我们需要的.  </p>
+<h4 id="1-2-返回数据给上一个Activity"><a href="#1-2-返回数据给上一个Activity" class="headerlink" title="1.2 返回数据给上一个Activity"></a><a name="2.4.2"></a>1.2 返回数据给上一个Activity</h4><p>Activity中还有一个 startActivityForResult() 方法也是用于启动新Activity的,<br>这个方法期望在新Activity销毁时能够返回一个结果给上一个Activity,但这正是我们需要的.  </p>
 <ol>
 <li><p>在FirstActivity中用startActivityForResult启动新Activity  </p>
 <pre><code class="java">Button button10 = (Button) findViewById(R.id.button10);
@@ -620,7 +620,7 @@ onActivityResult()带3个参数,第一个参数requestCode,即我们在启动新
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-在Activity之间传递数据"><span class="nav-number"></span> <span class="nav-text">一 在Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-向下一个Activity传递数据"><span class="nav-number">1.</span> <span class="nav-text">1.1 向下一个Activity传递数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-返回数据给上一个Activity"><span class="nav-number">2.</span> <span class="nav-text">2.2 返回数据给上一个Activity</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Activity之间传递数据"><span class="nav-number"></span> <span class="nav-text"> 在Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-向下一个Activity传递数据"><span class="nav-number">1.</span> <span class="nav-text">1.1 向下一个Activity传递数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-返回数据给上一个Activity"><span class="nav-number">2.</span> <span class="nav-text">1.2 返回数据给上一个Activity</span></a></li></ol></div>
             
 
           </div>
