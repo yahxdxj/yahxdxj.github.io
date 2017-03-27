@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="搭建博客," />
+  <meta name="keywords" content="UI控件," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="转载原博客地址：手把手教你用Hexo+Github 搭建属于自己的博客">
+<meta name="description" content="ListView 的简单用法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Win上搭建Hexo+Github博客">
-<meta property="og:url" content="http://yoursite.com/2017/02/03/Win上搭建Hexo+Github博客/index.html">
+<meta property="og:title" content="ListView 的简单用法">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="转载原博客地址：手把手教你用Hexo+Github 搭建属于自己的博客">
-<meta property="og:updated_time" content="2017-02-13T01:36:19.000Z">
+<meta property="og:description" content="ListView 的简单用法">
+<meta property="og:updated_time" content="2017-03-27T07:42:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Win上搭建Hexo+Github博客">
-<meta name="twitter:description" content="转载原博客地址：手把手教你用Hexo+Github 搭建属于自己的博客">
+<meta name="twitter:title" content="ListView 的简单用法">
+<meta name="twitter:description" content="ListView 的简单用法">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/03/Win上搭建Hexo+Github博客/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/"/>
 
 
 
 
 
-  <title> Win上搭建Hexo+Github博客 | 个人博客 </title>
+  <title> ListView 的简单用法 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/03/Win上搭建Hexo+Github博客/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                Win上搭建Hexo+Github博客
+                ListView 的简单用法
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-03T08:39:34+08:00">
-                2017-02-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T15:38:08+08:00">
+                2017-03-27
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/03/Win上搭建Hexo+Github博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/03/Win上搭建Hexo+Github博客/" itemprop="commentCount"></span>
+                <a href="/2017/03/27/UI布局--ListView的简单用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/UI布局--ListView的简单用法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -325,7 +325,43 @@
       
 
       
-        <p>转载原博客地址：<a href="http://blog.csdn.net/gdutxiaoxu/article/details/53576018" target="_blank" rel="external">手把手教你用Hexo+Github 搭建属于自己的博客</a>  </p>
+        <blockquote>
+<p>ListView 的简单用法  </p>
+</blockquote>
+<a id="more"></a>  
+<h4 id="1-修改-activity-main-xml-中的代码"><a href="#1-修改-activity-main-xml-中的代码" class="headerlink" title="1 修改 activity_main.xml 中的代码"></a>1 修改 activity_main.xml 中的代码</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+
+    &lt;ListView
+        android:id=&quot;@+id/list_view&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; &gt;
+    &lt;/ListView&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre><h4 id="2-修改-MainActivity-中的代码"><a href="#2-修改-MainActivity-中的代码" class="headerlink" title="2 修改 MainActivity 中的代码"></a>2 修改 MainActivity 中的代码</h4><pre><code class="java"><span class="keyword">package</span> com.yassblog;
+
+<span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.widget.ArrayAdapter;
+<span class="keyword">import</span> android.widget.ListView;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+    <span class="keyword">private</span> String[] data = { <span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Watermelon"</span>, <span class="string">"Pear"</span>, 
+            <span class="string">"Grape"</span>, <span class="string">"Pineapple"</span>, <span class="string">"Strawberry"</span>, <span class="string">"Cherry"</span>, <span class="string">"Mango"</span> };
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ArrayAdapter&lt;String&gt; adapter = <span class="keyword">new</span> ArrayAdapter&lt;String&gt;(MainActivity.<span class="keyword">this</span>, 
+                android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(adapter);
+    }
+}
+</code></pre>
 
       
     </div>
@@ -349,7 +385,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/搭建博客/" rel="tag"># 搭建博客</a>
+            <a href="/tags/UI控件/" rel="tag"># UI控件</a>
           
         </div>
       
@@ -358,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/22/Activity--启动新的Activity/" rel="next" title="Activity--启动新的Activity">
-                <i class="fa fa-chevron-left"></i> Activity--启动新的Activity
+              <a href="/2017/03/27/UI布局--拼凑自定义控件/" rel="next" title="拼凑自定义控件">
+                <i class="fa fa-chevron-left"></i> 拼凑自定义控件
               </a>
             
           </div>
@@ -367,10 +403,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/13/Android基础--布局文件/" rel="prev" title="Android基础--布局文件">
-                Android基础--布局文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -396,8 +428,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/03/Win上搭建Hexo+Github博客/"
-           data-title="Win上搭建Hexo+Github博客" data-url="http://yoursite.com/2017/02/03/Win上搭建Hexo+Github博客/">
+      <div class="ds-thread" data-thread-key="2017/03/27/UI布局--ListView的简单用法/"
+           data-title="ListView 的简单用法" data-url="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/">
       </div>
     
   </div>
@@ -421,8 +453,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -471,6 +512,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-activity-main-xml-中的代码"><span class="nav-number">1.</span> <span class="nav-text">1 修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改-MainActivity-中的代码"><span class="nav-number">2.</span> <span class="nav-text">2 修改 MainActivity 中的代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
