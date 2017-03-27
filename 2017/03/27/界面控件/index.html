@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="控件">
 <meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/kjui.1.png">
-<meta property="og:updated_time" content="2017-03-27T03:12:00.000Z">
+<meta property="og:updated_time" content="2017-03-27T03:15:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="界面控件">
 <meta name="twitter:description" content="控件">
@@ -331,121 +331,28 @@
 <p>控件</p>
 </blockquote>
 <a id="more"></a>  
-<h3 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h3><pre><code class="java">&lt;EditText  
-    android:id=<span class="string">"@+id/edit_text"</span>  
-    android:layout_width=<span class="string">"match_parent"</span>  
-    android:layout_height=<span class="string">"wrap_content"</span>  
-    android:hint=<span class="string">"Type something here"</span>  
-    android:maxLines=<span class="string">"2"</span>  
-/&gt;
-</code></pre>
-<p>使用 android:hint 属性来指定了一段提示性的文本,运行程序,然后当我们输入任何内容时，这段文本就会自动消失。  </p>
-<p>通过 android:maxLines 指定了 EditText 的最大行数为两行，这样当输入的内容超过<br>两行时，文本就会向上滚动，而 EditText 则不会再继续拉伸  </p>
-<p>另外: 如何在进入一个页面时,让EditText不自动获取焦点<br>解决之道：在EditText的父级控件中找一个，设置成    </p>
-<pre><code class="java">android:focusable=<span class="string">"true"</span>    
-android:focusableInTouchMode=<span class="string">"true"</span>
-</code></pre>
-<p>这样，就把EditText默认的行为截断了！   </p>
-<h3 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h3><pre><code class="java">ImageView imageView = (ImageView) findViewById(R.id.image_view);  
-imageView.setImageResource(R.drawable.jelly_bean);
-</code></pre>
-<p>我们可以在程序中通过代码动态地更改 ImageView 中的图片。 这里我准备了另外一张<br>图片，jelly_bean.png，将它复制到 res/drawable-hdpi 目录下，然后修改 MainActivity 的代码   </p>
-<h3 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h3><h3 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h3><pre><code class="java">
-<span class="keyword">import</span> android.app.Activity;
-<span class="keyword">import</span> android.app.AlertDialog;
-<span class="keyword">import</span> android.app.AlertDialog.Builder;
-<span class="keyword">import</span> android.content.DialogInterface;
-<span class="keyword">import</span> android.content.DialogInterface.OnClickListener;
-<span class="keyword">import</span> android.os.Bundle;
-<span class="keyword">import</span> android.view.View;
-<span class="keyword">import</span> android.widget.Button;
-<span class="keyword">import</span> android.widget.Toast;
+<h3 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div></pre></td><td class="code"><pre><div class="line">&lt;EditText  </div><div class="line">	android:id="@+id/edit_text"  </div><div class="line">	android:layout_width="match_parent"  </div><div class="line">	android:layout_height="wrap_content"  </div><div class="line">	android:hint="Type something here"  </div><div class="line">	android:maxLines="2"  </div><div class="line">/&gt;  </div><div class="line">```  </div><div class="line"></div><div class="line">使用 android:hint 属性来指定了一段提示性的文本,运行程序,然后当我们输入任何内容时，这段文本就会自动消失。  </div><div class="line"></div><div class="line">通过 android:maxLines 指定了 EditText 的最大行数为两行，这样当输入的内容超过</div><div class="line">两行时，文本就会向上滚动，而 EditText 则不会再继续拉伸  </div><div class="line"></div><div class="line">另外: 如何在进入一个页面时,让EditText不自动获取焦点   </div><div class="line">解决之道：在EditText的父级控件中找一个，设置成    </div><div class="line"></div><div class="line">```java  </div><div class="line">   android:focusable="true"    </div><div class="line">   android:focusableInTouchMode="true"  </div><div class="line">```   </div><div class="line"></div><div class="line">这样，就把EditText默认的行为截断了！   </div><div class="line"></div><div class="line">### ImageView  </div><div class="line"></div><div class="line">```java  </div><div class="line">ImageView imageView = (ImageView) findViewById(R.id.image_view);  </div><div class="line">imageView.setImageResource(R.drawable.jelly_bean);  </div><div class="line">```  </div><div class="line"></div><div class="line">我们可以在程序中通过代码动态地更改 ImageView 中的图片。 这里我准备了另外一张</div><div class="line">图片，jelly_bean.png，将它复制到 res/drawable-hdpi 目录下，然后修改 MainActivity 的代码   </div><div class="line"></div><div class="line">### ProgressBar  </div><div class="line"></div><div class="line">### AlertDialog  </div><div class="line"></div><div class="line">```java  </div><div class="line"></div><div class="line">import android.app.Activity;</div><div class="line">import android.app.AlertDialog;</div><div class="line">import android.app.AlertDialog.Builder;</div><div class="line">import android.content.DialogInterface;</div><div class="line">import android.content.DialogInterface.OnClickListener;</div><div class="line">import android.os.Bundle;</div><div class="line">import android.view.View;</div><div class="line">import android.widget.Button;</div><div class="line">import android.widget.Toast;</div><div class="line"></div><div class="line">public class MainActivity extends Activity implements View.OnClickListener &#123;</div><div class="line"></div><div class="line">	private AlertDialog dialog;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">		super.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		Button button = (Button) findViewById(R.id.button1);</div><div class="line">		Button button2 = (Button) findViewById(R.id.button2);</div><div class="line">		Button button3 = (Button) findViewById(R.id.button3);</div><div class="line">		button.setOnClickListener(this);</div><div class="line">		button2.setOnClickListener(this);</div><div class="line">		button3.setOnClickListener(this);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void onClick(View view) &#123;</div><div class="line">		switch (view.getId()) &#123;</div><div class="line">		// 普通弹窗</div><div class="line">		case R.id.button1:</div><div class="line">			showNotifyDialog();</div><div class="line">			break;</div><div class="line">		// 过渡界面</div><div class="line">		case R.id.button2:</div><div class="line">			showProgressDialog();</div><div class="line">			break;</div><div class="line">		// 过渡界面消失</div><div class="line">		case R.id.button3:</div><div class="line">			finishiDialog();</div><div class="line">			break;</div><div class="line">		default:</div><div class="line">			break;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 普通弹窗</div><div class="line">	public void showNotifyDialog() &#123;</div><div class="line">		// 通知对话框</div><div class="line">		Builder builder = new AlertDialog.Builder(this);</div><div class="line">		// 设置图标</div><div class="line">		builder.setIcon(android.R.drawable.ic_dialog_alert);</div><div class="line">		// 设置标题</div><div class="line">		builder.setTitle("提醒:");</div><div class="line">		// 设置提醒内容</div><div class="line">		builder.setMessage("当前是移动网络数据, 建议在wifi下观看, 是否继续(土豪随意)");</div><div class="line">		// 确认按钮</div><div class="line">		builder.setPositiveButton("确认", new OnClickListener() &#123;</div><div class="line">			@Override</div><div class="line">			public void onClick(DialogInterface dialog, int which) &#123;</div><div class="line">				Toast.makeText(MainActivity.this, "确认", 0).show();</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		// 取消按钮</div><div class="line">		builder.setNegativeButton("取消", new OnClickListener() &#123;</div><div class="line">			@Override</div><div class="line">			public void onClick(DialogInterface dialog, int which) &#123;</div><div class="line">				Toast.makeText(MainActivity.this, "取消", 0).show();</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		// 是否可以通过返回键 关闭</div><div class="line">		builder.setCancelable(false);</div><div class="line">		// 直接show();</div><div class="line">		builder.show();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 过渡界面</div><div class="line">	private void showProgressDialog() &#123;</div><div class="line">		// 弹出进度框</div><div class="line">		dialog = new AlertDialog.Builder(this).setCancelable(false).create();</div><div class="line">		dialog.setView(getLayoutInflater().inflate(R.layout.login_progress, null), 0, 0, 0, 0);</div><div class="line">		dialog.setCancelable(true); // 是否可以通过返回键 关闭</div><div class="line">		dialog.show();</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 过渡界面消失</div><div class="line">	private void finishiDialog() &#123;</div><div class="line">		if (dialog != null) &#123;</div><div class="line">			dialog.dismiss();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;  </div><div class="line"></div><div class="line">```  </div><div class="line">布局文件  </div><div class="line"></div><div class="line">```java  </div><div class="line">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">    xmlns:tools="http://schemas.android.com/tools"</div><div class="line">    android:layout_width="match_parent"</div><div class="line">    android:layout_height="match_parent"</div><div class="line">    android:paddingBottom="@dimen/activity_vertical_margin"</div><div class="line">    android:paddingLeft="@dimen/activity_horizontal_margin"</div><div class="line">    android:paddingRight="@dimen/activity_horizontal_margin"</div><div class="line">    android:paddingTop="@dimen/activity_vertical_margin"</div><div class="line">    tools:context="com.yahxdxj.demo.MainActivity" &gt;</div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:id="@+id/textView1"</div><div class="line">        android:layout_width="wrap_content"</div><div class="line">        android:layout_height="wrap_content"</div><div class="line">        android:text="@string/hello_world" /&gt;</div><div class="line"></div><div class="line">    &lt;Button</div><div class="line">        android:id="@+id/button1"</div><div class="line">        android:layout_width="wrap_content"</div><div class="line">        android:layout_height="wrap_content"</div><div class="line">        android:layout_below="@+id/textView1"</div><div class="line">        android:layout_marginTop="25dp"</div><div class="line">        android:text="Button1" /&gt;</div><div class="line"></div><div class="line">    &lt;Button</div><div class="line">        android:id="@+id/button2"</div><div class="line">        android:layout_width="wrap_content"</div><div class="line">        android:layout_height="wrap_content"</div><div class="line">        android:layout_below="@+id/button1"</div><div class="line">        android:layout_marginTop="25dp"</div><div class="line">        android:text="Button2" /&gt;</div><div class="line"></div><div class="line">    &lt;Button</div><div class="line">        android:id="@+id/button3"</div><div class="line">        android:layout_width="wrap_content"</div><div class="line">        android:layout_height="wrap_content"</div><div class="line">        android:layout_below="@+id/button2"</div><div class="line">        android:layout_marginTop="25dp"</div><div class="line">        android:text="Button3" /&gt;</div><div class="line"></div><div class="line">&lt;/RelativeLayout&gt;</div></pre></td></tr></table></figure>
+<pre><code class="java">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="20dp" &gt;
 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>{
+    &lt;ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /&gt;
 
-    <span class="keyword">private</span> AlertDialog dialog;
+    &lt;TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="同步中..."
+        android:textColor="#000000"
+        android:textSize="20sp" /&gt;
 
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
-        <span class="keyword">super</span>.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Button button = (Button) findViewById(R.id.button1);
-        Button button2 = (Button) findViewById(R.id.button2);
-        Button button3 = (Button) findViewById(R.id.button3);
-        button.setOnClickListener(<span class="keyword">this</span>);
-        button2.setOnClickListener(<span class="keyword">this</span>);
-        button3.setOnClickListener(<span class="keyword">this</span>);
-
-    }
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>{
-        <span class="keyword">switch</span> (view.getId()) {
-        <span class="comment">// 普通弹窗</span>
-        <span class="keyword">case</span> R.id.button1:
-            showNotifyDialog();
-            <span class="keyword">break</span>;
-        <span class="comment">// 过渡界面</span>
-        <span class="keyword">case</span> R.id.button2:
-            showProgressDialog();
-            <span class="keyword">break</span>;
-        <span class="comment">// 过渡界面消失</span>
-        <span class="keyword">case</span> R.id.button3:
-            finishiDialog();
-            <span class="keyword">break</span>;
-        <span class="keyword">default</span>:
-            <span class="keyword">break</span>;
-        }
-    }
-
-    <span class="comment">// 普通弹窗</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showNotifyDialog</span><span class="params">()</span> </span>{
-        <span class="comment">// 通知对话框</span>
-        Builder builder = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>);
-        <span class="comment">// 设置图标</span>
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
-        <span class="comment">// 设置标题</span>
-        builder.setTitle(<span class="string">"提醒:"</span>);
-        <span class="comment">// 设置提醒内容</span>
-        builder.setMessage(<span class="string">"当前是移动网络数据, 建议在wifi下观看, 是否继续(土豪随意)"</span>);
-        <span class="comment">// 确认按钮</span>
-        builder.setPositiveButton(<span class="string">"确认"</span>, <span class="keyword">new</span> OnClickListener() {
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>{
-                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"确认"</span>, <span class="number">0</span>).show();
-            }
-        });
-        <span class="comment">// 取消按钮</span>
-        builder.setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> OnClickListener() {
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>{
-                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"取消"</span>, <span class="number">0</span>).show();
-            }
-        });
-        <span class="comment">// 是否可以通过返回键 关闭</span>
-        builder.setCancelable(<span class="keyword">false</span>);
-        <span class="comment">// 直接show();</span>
-        builder.show();
-    }
-
-    <span class="comment">// 过渡界面</span>
-    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showProgressDialog</span><span class="params">()</span> </span>{
-        <span class="comment">// 弹出进度框</span>
-        dialog = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>).setCancelable(<span class="keyword">false</span>).create();
-        dialog.setView(getLayoutInflater().inflate(R.layout.login_progress, <span class="keyword">null</span>), <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);
-        dialog.setCancelable(<span class="keyword">true</span>); <span class="comment">// 是否可以通过返回键 关闭</span>
-        dialog.show();
-
-    }
-
-    <span class="comment">// 过渡界面消失</span>
-    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">finishiDialog</span><span class="params">()</span> </span>{
-        <span class="keyword">if</span> (dialog != <span class="keyword">null</span>) {
-            dialog.dismiss();
-        }
-    }
-}
+&lt;/LinearLayout&gt;
 </code></pre>
 <p><img src="http://ojupj7fr2.bkt.clouddn.com/kjui.1.png" alt="tanchuang">  </p>
 
@@ -608,7 +515,7 @@ imageView.setImageResource(R.drawable.jelly_bean);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EditText"><span class="nav-number">1.</span> <span class="nav-text">EditText</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImageView"><span class="nav-number">2.</span> <span class="nav-text">ImageView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ProgressBar"><span class="nav-number">3.</span> <span class="nav-text">ProgressBar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AlertDialog"><span class="nav-number">4.</span> <span class="nav-text">AlertDialog</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EditText"><span class="nav-number">1.</span> <span class="nav-text">EditText</span></a></li></ol></div>
             
 
           </div>
