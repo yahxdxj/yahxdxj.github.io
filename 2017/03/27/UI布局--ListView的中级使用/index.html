@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Activity," />
+  <meta name="keywords" content="UI控件," />
 
 
 
@@ -84,31 +84,16 @@
 
 
 
-<meta name="description" content="目录
-Activity的生命周期;  
-Activity的启动模式;  
-Activity的最佳实践;  
-其它;">
+<meta name="description" content="ListView的中级使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Activity--生命周期及启动模式">
-<meta property="og:url" content="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/index.html">
+<meta property="og:title" content="ListView的中级使用">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/UI布局--ListView的中级使用/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="目录
-Activity的生命周期;  
-Activity的启动模式;  
-Activity的最佳实践;  
-其它;">
-<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/2.3.1.png">
-<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/2.3.2.png">
-<meta property="og:updated_time" content="2017-03-17T06:59:23.000Z">
+<meta property="og:description" content="ListView的中级使用">
+<meta property="og:updated_time" content="2017-03-27T08:06:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Activity--生命周期及启动模式">
-<meta name="twitter:description" content="目录
-Activity的生命周期;  
-Activity的启动模式;  
-Activity的最佳实践;  
-其它;">
-<meta name="twitter:image" content="http://ojupj7fr2.bkt.clouddn.com/2.3.1.png">
+<meta name="twitter:title" content="ListView的中级使用">
+<meta name="twitter:description" content="ListView的中级使用">
 
 
 
@@ -136,13 +121,13 @@ Activity的最佳实践;
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/UI布局--ListView的中级使用/"/>
 
 
 
 
 
-  <title> Activity--生命周期及启动模式 | 个人博客 </title>
+  <title> ListView的中级使用 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +240,7 @@ Activity的最佳实践;
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/UI布局--ListView的中级使用/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -279,7 +264,7 @@ Activity的最佳实践;
             
             
               
-                Activity--生命周期及启动模式
+                ListView的中级使用
               
             
           </h1>
@@ -294,8 +279,8 @@ Activity的最佳实践;
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T14:20:19+08:00">
-                2017-03-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T15:43:58+08:00">
+                2017-03-27
               </time>
             
 
@@ -313,8 +298,8 @@ Activity的最佳实践;
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/17/Activity--生命周期及启动模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/17/Activity--生命周期及启动模式/" itemprop="commentCount"></span>
+                <a href="/2017/03/27/UI布局--ListView的中级使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/UI布局--ListView的中级使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,34 +325,87 @@ Activity的最佳实践;
       
 
       
-        <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ol>
-<li><a href="#san">Activity的生命周期</a>;  </li>
-<li><a href="#si">Activity的启动模式</a>;  </li>
-<li><a href="#wu">Activity的最佳实践</a>;  </li>
-<li><a href="#liu">其它</a>; </li>
-</ol>
+        <blockquote>
+<p>ListView的中级使用  </p>
+</blockquote>
 <a id="more"></a>
-<h4 id="一-Activity的生命周期"><a href="#一-Activity的生命周期" class="headerlink" title="一 Activity的生命周期"></a><a name="san"></a>一 Activity的生命周期</h4><h5 id="1-1-返回栈"><a href="#1-1-返回栈" class="headerlink" title="1.1 返回栈"></a>1.1 返回栈</h5><p>Android 中的 Activity 是可以层叠的。我们每启动一个新 Activity，就会覆盖在原 Activity之上，然后点击 Back 键会销毁最上面的 Activity，下面的一个 Activity 就会重新显示出来。  </p>
-<p>其实 Android 是使用任务（Task）来管理活动的，一个任务就相当于一个集合(相当于一组存放在栈里的Activity的集合)，这个栈也被称作返回栈（Back Stack）。栈是一种后进先出的数据结构，在默认情况下，每当我们启动了一个新的Activity，它会在返回栈中入栈，并处于栈顶的位置。而每当我们按下Back键或调用finish()方法去销毁一个 Activity 时，处于栈顶的Activity会出栈， 这时前一个入栈的 Activity 就会重新处于栈顶的位置。系统总是会显示处于栈顶的 Activity 给用户。  </p>
-<p><img src="http://ojupj7fr2.bkt.clouddn.com/2.3.1.png" alt="图2.3.1"></p>
-<h5 id="1-2-Activity-的4种状态"><a href="#1-2-Activity-的4种状态" class="headerlink" title="1.2 Activity 的4种状态"></a>1.2 Activity 的4种状态</h5><p>每个 Activity 在其生命周期中最多可能会有四种状态。<br><strong>运行状态</strong>: 当一个 Activity 位于返回栈的栈顶时，这时Activity就处于运行状态。系统最不愿意回收的就是处于运行状态的Activity，因为这会带来非常差的用户体验。<br><strong>暂停状态</strong>: 当一个 Activity 不再处于栈顶位置，但仍然可见时，这时Activity就进入了暂停状态。处于暂停状态的Activity仍然是完全存活着的，系统也不愿意去回收这种活动（因为它还是可见的，回收可见的东西都会在用户体验方面有不好的影响），只有在内存极低的情况下，系统才会去考虑回收这种Activity。<br><strong>停止状态</strong>: 当一个 Activity 不再处于栈顶位置，并且完全不可见的时候，就进入了停止状态。系统仍然会为这种Activity保存相应的状态和成员变量，但是这并不是完全可靠的，当其他地方需要内存时，处于停止状态的Activity有可能会被系统回收。<br><strong>销毁状态</strong>: 当一个 Activity 从返回栈中移除后就变成了销毁状态。系统会最倾向于回收处于这种状态的Activity，从而保证手机的内存充足。   </p>
-<h5 id="1-3-Activity-的生存期"><a href="#1-3-Activity-的生存期" class="headerlink" title="1.3 Activity 的生存期"></a>1.3 Activity 的生存期</h5><p>Activity 类中定义了七个回调方法，覆盖了活动生命周期的每一个环节，下面我来一一介绍下这七个方法。 </p>
-<ol>
-<li>onCreate()<br>这个方法你已经看到过很多次了，每个Activity中我们都重写了这个方法，它会在Activity第一次被创建的时候调用。你应该在这个方法中完成Activity的初始化操作，比如说加载布局、绑定事件等。</li>
-<li>onStart()<br>这个方法在Activity由不可见变为可见的时候调用。</li>
-<li>onResume()<br>这个方法在Activity准备好和用户进行交互的时候调用。此时的Activity一定位于返回栈的栈顶，并且处于运行状态。</li>
-<li>onPause()<br>这个方法在系统准备去启动或者恢复另一个Activity的时候调用。 我们通常会在这个方法中将一些消耗 CPU 的资源释放掉，以及保存一些关键数据，但这个方法的执行速度一定要快，不然会影响到新的栈顶Activity的使用。</li>
-<li>onStop()<br>这个方法在Activity完全不可见的时候调用。它和 onPause()方法的主要区别在于，如果启动的新Activity是一个对话框式的Activity，那么 onPause()方法会得到执行，而 onStop()方法并不会执行。</li>
-<li>onDestroy()<br>这个方法在活动被销毁之前调用，之后活动的状态将变为销毁状态。</li>
-<li>onRestart()<br>这个方法在活动由停止状态变为运行状态之前调用，也就是活动被重新启动了  </li>
-</ol>
-<p>以上七个方法中除了 onRestart()方法， 其他都是两两相对的，从而又可以将活动分为三种生存期。 </p>
-<ol>
-<li>完整生存期<br>活动在 onCreate()方法和 onDestroy()方法之间所经历的，就是完整生存期。一般情况下，一个活动会在 onCreate()方法中完成各种初始化操作，而在 onDestroy()方法中完成释放内存的操作。</li>
-<li>可见生存期<br>活动在 onStart()方法和 onStop()方法之间所经历的，就是可见生存期。在可见生存期内，活动对于用户总是可见的，即便有可能无法和用户进行交互。我们可以通过这两个方法，合理地管理那些对用户可见的资源。比如在 onStart()方法中对资源进行加载，而在 onStop()方法中对资源进行释放，从而保证处于停止状态的活动不会占用过多内存。</li>
-<li>前台生存期<br>活动在 onResume()方法和 onPause()方法之间所经历的，就是前台生存期。在前台生存期内，活动总是处于运行状态的，此时的活动是可以和用户进行相互的，我们平时看到和接触最多的也这个状态下的活动。<br><img src="http://ojupj7fr2.bkt.clouddn.com/2.3.2.png" alt="图2.3.2">   </li>
-</ol>
-<h5 id="1-4-Activity-生命周期的代码演示"><a href="#1-4-Activity-生命周期的代码演示" class="headerlink" title="1.4 Activity 生命周期的代码演示"></a>1.4 Activity 生命周期的代码演示</h5><h4 id="四-Activity的启动模式"><a href="#四-Activity的启动模式" class="headerlink" title="四 Activity的启动模式"></a><a name="si"></a>四 Activity的启动模式</h4><h4 id="五-Activity的最佳实践"><a href="#五-Activity的最佳实践" class="headerlink" title="五 Activity的最佳实践"></a><a name="wu"></a>五 Activity的最佳实践</h4><h4 id="六-其他"><a href="#六-其他" class="headerlink" title="六 其他"></a><a name="wu"></a>六 其他</h4>
+<h4 id="1-设置适配器"><a href="#1-设置适配器" class="headerlink" title="1 设置适配器"></a>1 设置适配器</h4><pre><code class="java"><span class="comment">/**
+     * Adapter
+     */</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">DoctorAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>{ 
+
+        <span class="meta">@Override</span>
+        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>{
+            <span class="keyword">return</span> appraisalInfoLst.size();
+        }
+
+        <span class="meta">@Override</span>
+        <span class="function"><span class="keyword">public</span> AppraisalInfo <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{
+            <span class="keyword">return</span> appraisalInfoLst.get(position);
+        }
+
+        <span class="meta">@Override</span>
+        <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{
+            <span class="keyword">return</span> position;
+        }
+
+        <span class="meta">@Override</span>
+        <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>{
+
+            DoctorHolder holder = <span class="keyword">null</span>;
+            <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) {
+                convertView = View.inflate(MainActivity.<span class="keyword">this</span>, R.layout.item_oneallhistory_list, <span class="keyword">null</span>);
+                holder = <span class="keyword">new</span> DoctorHolder();
+                holder.date = (TextView) convertView.findViewById(R.id.item_oneallhistory_tv_date);
+                holder.point = (TextView) convertView.findViewById(R.id.item_oneallhistory_tv_point);
+                holder.zhengzhuang = (TextView) convertView.findViewById(R.id.item_oneallhistory_tv_zhengzhuang);
+                holder.treat = (TextView) convertView.findViewById(R.id.item_oneallhistory_tv_treat);
+                holder.recorde = (Button) convertView.findViewById(R.id.item_oneallhistory_tv_recorde);
+                convertView.setTag(holder);
+            } <span class="keyword">else</span> {
+                holder = (DoctorHolder) convertView.getTag();
+            }
+
+            <span class="keyword">final</span> String appraisalkey = appraisalInfoLst.get(position).getAppraisalkey();
+            <span class="keyword">final</span> String totalpoints = appraisalInfoLst.get(position).getTotalpoints();
+            <span class="keyword">final</span> String symptom = appraisalInfoLst.get(position).getSymptom();
+            <span class="keyword">final</span> String treat = appraisalInfoLst.get(position).getTreat();
+            <span class="keyword">final</span> String createdate = appraisalInfoLst.get(position).getCreatedate();
+
+            String date = createdate.substring(<span class="number">0</span>, <span class="number">4</span>) + <span class="string">"-"</span> + createdate.substring(<span class="number">4</span>, <span class="number">6</span>) + <span class="string">"-"</span> + createdate.substring(<span class="number">6</span>, <span class="number">8</span>);
+
+            holder.date.setText(date + <span class="string">"  评分: "</span> + totalpoints);
+            holder.zhengzhuang.setText(symptom);
+            holder.treat.setText(<span class="string">"建议: "</span> + treat);
+            holder.recorde.setOnClickListener(<span class="keyword">new</span> OnClickListener() {
+
+                <span class="meta">@Override</span>
+                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+                    Bundle bundle = <span class="keyword">new</span> Bundle();
+                    bundle.putString(<span class="string">"appraisalkey"</span>, appraisalkey);
+                    bundle.putString(<span class="string">"createdate"</span>, createdate);
+                    bundle.putString(<span class="string">"totalpoints"</span>, totalpoints);
+                    bundle.putString(<span class="string">"symptom"</span>, symptom);
+                    bundle.putString(<span class="string">"treat"</span>, treat);
+                    openActivity(HistoryResultAty.class, bundle);
+                }
+            });
+            <span class="keyword">return</span> convertView;
+        }
+    }
+
+    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DoctorHolder</span> </span>{
+        TextView date;
+        TextView point;
+        TextView zhengzhuang;
+        TextView treat;
+        Button recorde;
+    }
+</code></pre>
+<h4 id="2-调用适配器"><a href="#2-调用适配器" class="headerlink" title="2 调用适配器"></a>2 调用适配器</h4><pre><code class="java">ListView listView = (ListView) findViewById(R.id.list_view);
+listView.setAdapter(<span class="keyword">new</span> DoctorAdapter());
+</code></pre>
+
       
     </div>
 
@@ -390,7 +428,7 @@ Activity的最佳实践;
       
         <div class="post-tags">
           
-            <a href="/tags/Activity/" rel="tag"># Activity</a>
+            <a href="/tags/UI控件/" rel="tag"># UI控件</a>
           
         </div>
       
@@ -399,8 +437,8 @@ Activity的最佳实践;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/10/手机卫士笔记/" rel="next" title="手机卫士笔记">
-                <i class="fa fa-chevron-left"></i> 手机卫士笔记
+              <a href="/2017/03/27/UI布局--ListView的简单用法/" rel="next" title="ListView 的简单用法">
+                <i class="fa fa-chevron-left"></i> ListView 的简单用法
               </a>
             
           </div>
@@ -408,10 +446,6 @@ Activity的最佳实践;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/21/读取txt文件的内容/" rel="prev" title="读取txt文件的内容1">
-                读取txt文件的内容1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -437,8 +471,8 @@ Activity的最佳实践;
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/17/Activity--生命周期及启动模式/"
-           data-title="Activity--生命周期及启动模式" data-url="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/">
+      <div class="ds-thread" data-thread-key="2017/03/27/UI布局--ListView的中级使用/"
+           data-title="ListView的中级使用" data-url="http://yoursite.com/2017/03/27/UI布局--ListView的中级使用/">
       </div>
     
   </div>
@@ -531,7 +565,7 @@ Activity的最佳实践;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-Activity的生命周期"><span class="nav-number">2.</span> <span class="nav-text">一 Activity的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-返回栈"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 返回栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-Activity-的4种状态"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 Activity 的4种状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-Activity-的生存期"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 Activity 的生存期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-Activity-生命周期的代码演示"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 Activity 生命周期的代码演示</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Activity的启动模式"><span class="nav-number">3.</span> <span class="nav-text">四 Activity的启动模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-Activity的最佳实践"><span class="nav-number">4.</span> <span class="nav-text">五 Activity的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-其他"><span class="nav-number">5.</span> <span class="nav-text">六 其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-设置适配器"><span class="nav-number">1.</span> <span class="nav-text">1 设置适配器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-调用适配器"><span class="nav-number">2.</span> <span class="nav-text">2 调用适配器</span></a></li></ol></div>
             
 
           </div>
