@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Activity," />
+  <meta name="keywords" content="UI控件," />
 
 
 
@@ -84,31 +84,18 @@
 
 
 
-<meta name="description" content="目录
-Activity的生命周期;  
-Activity的启动模式;  
-Activity的最佳实践;  
-其它;">
+<meta name="description" content="控件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Activity--生命周期及启动模式">
-<meta property="og:url" content="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/index.html">
+<meta property="og:title" content="界面控件">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/界面控件/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="目录
-Activity的生命周期;  
-Activity的启动模式;  
-Activity的最佳实践;  
-其它;">
-<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/2.3.1.png">
-<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/2.3.2.png">
-<meta property="og:updated_time" content="2017-03-17T06:59:23.000Z">
+<meta property="og:description" content="控件">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/kjui.1.png">
+<meta property="og:updated_time" content="2017-03-27T03:08:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Activity--生命周期及启动模式">
-<meta name="twitter:description" content="目录
-Activity的生命周期;  
-Activity的启动模式;  
-Activity的最佳实践;  
-其它;">
-<meta name="twitter:image" content="http://ojupj7fr2.bkt.clouddn.com/2.3.1.png">
+<meta name="twitter:title" content="界面控件">
+<meta name="twitter:description" content="控件">
+<meta name="twitter:image" content="http://ojupj7fr2.bkt.clouddn.com/kjui.1.png">
 
 
 
@@ -136,13 +123,13 @@ Activity的最佳实践;
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/界面控件/"/>
 
 
 
 
 
-  <title> Activity--生命周期及启动模式 | 个人博客 </title>
+  <title> 界面控件 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +242,7 @@ Activity的最佳实践;
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/界面控件/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -279,7 +266,7 @@ Activity的最佳实践;
             
             
               
-                Activity--生命周期及启动模式
+                界面控件
               
             
           </h1>
@@ -294,8 +281,8 @@ Activity的最佳实践;
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-17T14:20:19+08:00">
-                2017-03-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T09:53:06+08:00">
+                2017-03-27
               </time>
             
 
@@ -313,8 +300,8 @@ Activity的最佳实践;
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/17/Activity--生命周期及启动模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/17/Activity--生命周期及启动模式/" itemprop="commentCount"></span>
+                <a href="/2017/03/27/界面控件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/界面控件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,34 +327,130 @@ Activity的最佳实践;
       
 
       
-        <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ol>
-<li><a href="#san">Activity的生命周期</a>;  </li>
-<li><a href="#si">Activity的启动模式</a>;  </li>
-<li><a href="#wu">Activity的最佳实践</a>;  </li>
-<li><a href="#liu">其它</a>; </li>
-</ol>
-<a id="more"></a>
-<h4 id="一-Activity的生命周期"><a href="#一-Activity的生命周期" class="headerlink" title="一 Activity的生命周期"></a><a name="san"></a>一 Activity的生命周期</h4><h5 id="1-1-返回栈"><a href="#1-1-返回栈" class="headerlink" title="1.1 返回栈"></a>1.1 返回栈</h5><p>Android 中的 Activity 是可以层叠的。我们每启动一个新 Activity，就会覆盖在原 Activity之上，然后点击 Back 键会销毁最上面的 Activity，下面的一个 Activity 就会重新显示出来。  </p>
-<p>其实 Android 是使用任务（Task）来管理活动的，一个任务就相当于一个集合(相当于一组存放在栈里的Activity的集合)，这个栈也被称作返回栈（Back Stack）。栈是一种后进先出的数据结构，在默认情况下，每当我们启动了一个新的Activity，它会在返回栈中入栈，并处于栈顶的位置。而每当我们按下Back键或调用finish()方法去销毁一个 Activity 时，处于栈顶的Activity会出栈， 这时前一个入栈的 Activity 就会重新处于栈顶的位置。系统总是会显示处于栈顶的 Activity 给用户。  </p>
-<p><img src="http://ojupj7fr2.bkt.clouddn.com/2.3.1.png" alt="图2.3.1"></p>
-<h5 id="1-2-Activity-的4种状态"><a href="#1-2-Activity-的4种状态" class="headerlink" title="1.2 Activity 的4种状态"></a>1.2 Activity 的4种状态</h5><p>每个 Activity 在其生命周期中最多可能会有四种状态。<br><strong>运行状态</strong>: 当一个 Activity 位于返回栈的栈顶时，这时Activity就处于运行状态。系统最不愿意回收的就是处于运行状态的Activity，因为这会带来非常差的用户体验。<br><strong>暂停状态</strong>: 当一个 Activity 不再处于栈顶位置，但仍然可见时，这时Activity就进入了暂停状态。处于暂停状态的Activity仍然是完全存活着的，系统也不愿意去回收这种活动（因为它还是可见的，回收可见的东西都会在用户体验方面有不好的影响），只有在内存极低的情况下，系统才会去考虑回收这种Activity。<br><strong>停止状态</strong>: 当一个 Activity 不再处于栈顶位置，并且完全不可见的时候，就进入了停止状态。系统仍然会为这种Activity保存相应的状态和成员变量，但是这并不是完全可靠的，当其他地方需要内存时，处于停止状态的Activity有可能会被系统回收。<br><strong>销毁状态</strong>: 当一个 Activity 从返回栈中移除后就变成了销毁状态。系统会最倾向于回收处于这种状态的Activity，从而保证手机的内存充足。   </p>
-<h5 id="1-3-Activity-的生存期"><a href="#1-3-Activity-的生存期" class="headerlink" title="1.3 Activity 的生存期"></a>1.3 Activity 的生存期</h5><p>Activity 类中定义了七个回调方法，覆盖了活动生命周期的每一个环节，下面我来一一介绍下这七个方法。 </p>
-<ol>
-<li>onCreate()<br>这个方法你已经看到过很多次了，每个Activity中我们都重写了这个方法，它会在Activity第一次被创建的时候调用。你应该在这个方法中完成Activity的初始化操作，比如说加载布局、绑定事件等。</li>
-<li>onStart()<br>这个方法在Activity由不可见变为可见的时候调用。</li>
-<li>onResume()<br>这个方法在Activity准备好和用户进行交互的时候调用。此时的Activity一定位于返回栈的栈顶，并且处于运行状态。</li>
-<li>onPause()<br>这个方法在系统准备去启动或者恢复另一个Activity的时候调用。 我们通常会在这个方法中将一些消耗 CPU 的资源释放掉，以及保存一些关键数据，但这个方法的执行速度一定要快，不然会影响到新的栈顶Activity的使用。</li>
-<li>onStop()<br>这个方法在Activity完全不可见的时候调用。它和 onPause()方法的主要区别在于，如果启动的新Activity是一个对话框式的Activity，那么 onPause()方法会得到执行，而 onStop()方法并不会执行。</li>
-<li>onDestroy()<br>这个方法在活动被销毁之前调用，之后活动的状态将变为销毁状态。</li>
-<li>onRestart()<br>这个方法在活动由停止状态变为运行状态之前调用，也就是活动被重新启动了  </li>
-</ol>
-<p>以上七个方法中除了 onRestart()方法， 其他都是两两相对的，从而又可以将活动分为三种生存期。 </p>
-<ol>
-<li>完整生存期<br>活动在 onCreate()方法和 onDestroy()方法之间所经历的，就是完整生存期。一般情况下，一个活动会在 onCreate()方法中完成各种初始化操作，而在 onDestroy()方法中完成释放内存的操作。</li>
-<li>可见生存期<br>活动在 onStart()方法和 onStop()方法之间所经历的，就是可见生存期。在可见生存期内，活动对于用户总是可见的，即便有可能无法和用户进行交互。我们可以通过这两个方法，合理地管理那些对用户可见的资源。比如在 onStart()方法中对资源进行加载，而在 onStop()方法中对资源进行释放，从而保证处于停止状态的活动不会占用过多内存。</li>
-<li>前台生存期<br>活动在 onResume()方法和 onPause()方法之间所经历的，就是前台生存期。在前台生存期内，活动总是处于运行状态的，此时的活动是可以和用户进行相互的，我们平时看到和接触最多的也这个状态下的活动。<br><img src="http://ojupj7fr2.bkt.clouddn.com/2.3.2.png" alt="图2.3.2">   </li>
-</ol>
-<h5 id="1-4-Activity-生命周期的代码演示"><a href="#1-4-Activity-生命周期的代码演示" class="headerlink" title="1.4 Activity 生命周期的代码演示"></a>1.4 Activity 生命周期的代码演示</h5><h4 id="四-Activity的启动模式"><a href="#四-Activity的启动模式" class="headerlink" title="四 Activity的启动模式"></a><a name="si"></a>四 Activity的启动模式</h4><h4 id="五-Activity的最佳实践"><a href="#五-Activity的最佳实践" class="headerlink" title="五 Activity的最佳实践"></a><a name="wu"></a>五 Activity的最佳实践</h4><h4 id="六-其他"><a href="#六-其他" class="headerlink" title="六 其他"></a><a name="wu"></a>六 其他</h4>
+        <blockquote>
+<p>控件</p>
+</blockquote>
+<a id="more"></a>  
+<h3 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h3><pre><code class="java">&lt;EditText  
+    android:id=<span class="string">"@+id/edit_text"</span>  
+    android:layout_width=<span class="string">"match_parent"</span>  
+    android:layout_height=<span class="string">"wrap_content"</span>  
+    android:hint=<span class="string">"Type something here"</span>  
+    android:maxLines=<span class="string">"2"</span>  
+/&gt;
+</code></pre>
+<p>使用 android:hint 属性来指定了一段提示性的文本,运行程序,然后当我们输入任何内容时，这段文本就会自动消失。  </p>
+<p>通过 android:maxLines 指定了 EditText 的最大行数为两行，这样当输入的内容超过<br>两行时，文本就会向上滚动，而 EditText 则不会再继续拉伸  </p>
+<p>另外: 如何在进入一个页面时,让EditText不自动获取焦点<br>解决之道：在EditText的父级控件中找一个，设置成    </p>
+<pre><code class="java">android:focusable=<span class="string">"true"</span>    
+android:focusableInTouchMode=<span class="string">"true"</span>
+</code></pre>
+<p>这样，就把EditText默认的行为截断了！   </p>
+<h3 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h3><pre><code class="java">ImageView imageView = (ImageView) findViewById(R.id.image_view);  
+imageView.setImageResource(R.drawable.jelly_bean);
+</code></pre>
+<p>我们可以在程序中通过代码动态地更改 ImageView 中的图片。 这里我准备了另外一张<br>图片，jelly_bean.png，将它复制到 res/drawable-hdpi 目录下，然后修改 MainActivity 的代码   </p>
+<h3 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h3><h3 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h3><pre><code class="java">
+<span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.app.AlertDialog;
+<span class="keyword">import</span> android.app.AlertDialog.Builder;
+<span class="keyword">import</span> android.content.DialogInterface;
+<span class="keyword">import</span> android.content.DialogInterface.OnClickListener;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.widget.Button;
+<span class="keyword">import</span> android.widget.Toast;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>{
+
+    <span class="keyword">private</span> AlertDialog dialog;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button button = (Button) findViewById(R.id.button1);
+        Button button2 = (Button) findViewById(R.id.button2);
+        Button button3 = (Button) findViewById(R.id.button3);
+        button.setOnClickListener(<span class="keyword">this</span>);
+        button2.setOnClickListener(<span class="keyword">this</span>);
+        button3.setOnClickListener(<span class="keyword">this</span>);
+
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>{
+        <span class="keyword">switch</span> (view.getId()) {
+        <span class="comment">// 普通弹窗</span>
+        <span class="keyword">case</span> R.id.button1:
+            showNotifyDialog();
+            <span class="keyword">break</span>;
+        <span class="comment">// 过渡界面</span>
+        <span class="keyword">case</span> R.id.button2:
+            showProgressDialog();
+            <span class="keyword">break</span>;
+        <span class="comment">// 过渡界面消失</span>
+        <span class="keyword">case</span> R.id.button3:
+            finishiDialog();
+            <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+            <span class="keyword">break</span>;
+        }
+    }
+
+    <span class="comment">// 普通弹窗</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showNotifyDialog</span><span class="params">()</span> </span>{
+        <span class="comment">// 通知对话框</span>
+        Builder builder = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>);
+        <span class="comment">// 设置图标</span>
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        <span class="comment">// 设置标题</span>
+        builder.setTitle(<span class="string">"提醒:"</span>);
+        <span class="comment">// 设置提醒内容</span>
+        builder.setMessage(<span class="string">"当前是移动网络数据, 建议在wifi下观看, 是否继续(土豪随意)"</span>);
+        <span class="comment">// 确认按钮</span>
+        builder.setPositiveButton(<span class="string">"确认"</span>, <span class="keyword">new</span> OnClickListener() {
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>{
+                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"确认"</span>, <span class="number">0</span>).show();
+            }
+        });
+        <span class="comment">// 取消按钮</span>
+        builder.setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> OnClickListener() {
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>{
+                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"取消"</span>, <span class="number">0</span>).show();
+            }
+        });
+        <span class="comment">// 是否可以通过返回键 关闭</span>
+        builder.setCancelable(<span class="keyword">false</span>);
+        <span class="comment">// 直接show();</span>
+        builder.show();
+    }
+
+    <span class="comment">// 过渡界面</span>
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showProgressDialog</span><span class="params">()</span> </span>{
+        <span class="comment">// 弹出进度框</span>
+        dialog = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>).setCancelable(<span class="keyword">false</span>).create();
+        dialog.setView(getLayoutInflater().inflate(R.layout.login_progress, <span class="keyword">null</span>), <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);
+        dialog.setCancelable(<span class="keyword">true</span>); <span class="comment">// 是否可以通过返回键 关闭</span>
+        dialog.show();
+
+    }
+
+    <span class="comment">// 过渡界面消失</span>
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">finishiDialog</span><span class="params">()</span> </span>{
+        <span class="keyword">if</span> (dialog != <span class="keyword">null</span>) {
+            dialog.dismiss();
+        }
+    }
+}
+</code></pre>
+<p><img src="http://ojupj7fr2.bkt.clouddn.com/kjui.1.png" alt="tanchuang"></p>
+<pre><code class="java">
+</code></pre>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3>
       
     </div>
 
@@ -390,7 +473,7 @@ Activity的最佳实践;
       
         <div class="post-tags">
           
-            <a href="/tags/Activity/" rel="tag"># Activity</a>
+            <a href="/tags/UI控件/" rel="tag"># UI控件</a>
           
         </div>
       
@@ -399,8 +482,8 @@ Activity的最佳实践;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/10/手机卫士笔记/" rel="next" title="手机卫士笔记">
-                <i class="fa fa-chevron-left"></i> 手机卫士笔记
+              <a href="/2017/03/24/去掉-ADT创建Android-项目生成的appcompat-v7/" rel="next" title="去掉 ADT创建Android 项目生成的appcompat_v7">
+                <i class="fa fa-chevron-left"></i> 去掉 ADT创建Android 项目生成的appcompat_v7
               </a>
             
           </div>
@@ -408,10 +491,6 @@ Activity的最佳实践;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/21/读取txt文件的内容/" rel="prev" title="读取txt文件的内容1">
-                读取txt文件的内容1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -437,8 +516,8 @@ Activity的最佳实践;
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/17/Activity--生命周期及启动模式/"
-           data-title="Activity--生命周期及启动模式" data-url="http://yoursite.com/2017/03/17/Activity--生命周期及启动模式/">
+      <div class="ds-thread" data-thread-key="2017/03/27/界面控件/"
+           data-title="界面控件" data-url="http://yoursite.com/2017/03/27/界面控件/">
       </div>
     
   </div>
@@ -531,7 +610,7 @@ Activity的最佳实践;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-Activity的生命周期"><span class="nav-number">2.</span> <span class="nav-text">一 Activity的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-返回栈"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 返回栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-Activity-的4种状态"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 Activity 的4种状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-Activity-的生存期"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 Activity 的生存期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-Activity-生命周期的代码演示"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 Activity 生命周期的代码演示</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Activity的启动模式"><span class="nav-number">3.</span> <span class="nav-text">四 Activity的启动模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-Activity的最佳实践"><span class="nav-number">4.</span> <span class="nav-text">五 Activity的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-其他"><span class="nav-number">5.</span> <span class="nav-text">六 其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EditText"><span class="nav-number">1.</span> <span class="nav-text">EditText</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImageView"><span class="nav-number">2.</span> <span class="nav-text">ImageView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ProgressBar"><span class="nav-number">3.</span> <span class="nav-text">ProgressBar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AlertDialog"><span class="nav-number">4.</span> <span class="nav-text">AlertDialog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text"> </span></a></li></ol></div>
             
 
           </div>
