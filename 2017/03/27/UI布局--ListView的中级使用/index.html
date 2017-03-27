@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/27/UI布局--ListView的中级使用/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="ListView的中级使用">
-<meta property="og:updated_time" content="2017-03-27T08:43:12.000Z">
+<meta property="og:updated_time" content="2017-03-27T09:01:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ListView的中级使用">
 <meta name="twitter:description" content="ListView的中级使用">
@@ -358,7 +358,7 @@
             holder = <span class="keyword">new</span> DoctorHolder();
             holder.date = (TextView) convertView.findViewById(R.id.item_one_tv_date);
             holder.point = (TextView) convertView.findViewById(R.id.item_one_tv_point);
-            holder.symptom = (TextView) convertView.findViewById(R.id.item_one_tv_ symptom);
+            holder.symptom = (TextView) convertView.findViewById(R.id.item_one_tv_symptom);
             holder.treat = (TextView) convertView.findViewById(R.id.item_one_tv_treat);
             holder.recorde = (Button) convertView.findViewById(R.id.item_one_tv_recorde);
             convertView.setTag(holder);
@@ -402,8 +402,90 @@
     Button recorde;
 }
 </code></pre>
-<p>布局文件  </p>
-<h4 id="2-调用适配器"><a href="#2-调用适配器" class="headerlink" title="2 调用适配器"></a>2 调用适配器</h4><pre><code class="java">ListView listView = (ListView) findViewById(R.id.list_view);
+<p>布局文件   </p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:background=&quot;@null&quot; &gt;
+
+    &lt;!-- 时间 得分 --&gt;
+    &lt;TextView
+        android:id=&quot;@+id/item_one_tv_date&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_marginLeft=&quot;60dp&quot;
+        android:layout_marginRight=&quot;60dp&quot;
+        android:background=&quot;@drawable/bg_oneallhistory_item_date&quot;
+        android:paddingLeft=&quot;30dp&quot;
+        android:layout_marginTop=&quot;30dp&quot;
+        android:paddingTop=&quot;7dp&quot;
+        android:textColor=&quot;#FFFFFF&quot;
+        android:text=&quot;时间 得分&quot;
+        android:textSize=&quot;22sp&quot; /&gt;
+
+    &lt;LinearLayout
+        android:id=&quot;@+id/item_one_ll&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_below=&quot;@id/item_one_tv_date&quot;
+        android:layout_marginLeft=&quot;60dp&quot;
+        android:layout_marginRight=&quot;60dp&quot;
+        android:layout_marginTop=&quot;10dp&quot;
+        android:background=&quot;@drawable/bg_oneallhistory_item_kuang&quot;
+        android:orientation=&quot;vertical&quot;
+        android:paddingTop=&quot;12dp&quot;
+        android:paddingBottom=&quot;12dp&quot;
+        &gt;
+
+        &lt;!-- 结果 --&gt;
+        &lt;TextView
+            android:id=&quot;@+id/item_one_tv_point&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:gravity=&quot;center_vertical&quot;
+            android:paddingLeft=&quot;50dp&quot;
+            android:paddingRight=&quot;50dp&quot;
+            android:text=&quot;结果&quot;
+            android:textColor=&quot;#222222&quot;
+            android:textSize=&quot;24sp&quot; /&gt;
+
+        &lt;!-- 症状 --&gt;
+        &lt;TextView
+            android:id=&quot;@+id/item_one_tv_symptom&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:gravity=&quot;center_vertical&quot;
+            android:paddingLeft=&quot;50dp&quot;
+            android:paddingRight=&quot;50dp&quot;
+            android:text=&quot;症状&quot;
+            android:textColor=&quot;#222222&quot;
+            android:textSize=&quot;24sp&quot; /&gt;
+
+        &lt;!-- 治疗 --&gt;
+        &lt;TextView
+            android:id=&quot;@+id/item_one_tv_treat&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:gravity=&quot;center_vertical&quot;
+            android:paddingLeft=&quot;50dp&quot;
+            android:paddingRight=&quot;50dp&quot;
+            android:text=&quot;治疗&quot;
+            android:textColor=&quot;#222222&quot;
+            android:textSize=&quot;24sp&quot; /&gt;
+    &lt;/LinearLayout&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/item_one_tv_recorde&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignBottom=&quot;@id/item_one_ll&quot;
+        android:layout_alignRight=&quot;@id/item_one_ll&quot; 
+        android:layout_marginBottom=&quot;-20dp&quot;
+        android:background=&quot;@drawable/bt_oneall_xiangqing&quot; /&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre><h4 id="2-调用适配器"><a href="#2-调用适配器" class="headerlink" title="2 调用适配器"></a>2 调用适配器</h4><pre><code class="java">ListView listView = (ListView) findViewById(R.id.list_view);
 listView.setAdapter(<span class="keyword">new</span> DoctorAdapter());
 </code></pre>
 
