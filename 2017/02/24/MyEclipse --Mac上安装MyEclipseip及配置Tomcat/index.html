@@ -1,0 +1,690 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MyEclipse," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+ Mac上安装MyEclipseip及配置Tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac上安装MyEclipseip及配置Tomcat">
+<meta property="og:url" content="http://yoursite.com/2017/02/24/MyEclipse --Mac上安装MyEclipseip及配置Tomcat/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+ Mac上安装MyEclipseip及配置Tomcat">
+<meta property="og:updated_time" content="2017-03-06T08:30:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac上安装MyEclipseip及配置Tomcat">
+<meta name="twitter:description" content="导语
+ Mac上安装MyEclipseip及配置Tomcat">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/24/MyEclipse --Mac上安装MyEclipseip及配置Tomcat/"/>
+
+
+
+
+
+  <title> Mac上安装MyEclipseip及配置Tomcat | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/24/MyEclipse --Mac上安装MyEclipseip及配置Tomcat/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Mac上安装MyEclipseip及配置Tomcat
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-24T13:36:19+08:00">
+                2017-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/24/MyEclipse --Mac上安装MyEclipseip及配置Tomcat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/24/MyEclipse --Mac上安装MyEclipseip及配置Tomcat/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> Mac上安装MyEclipseip及配置Tomcat</p>
+</blockquote>
+<a id="more"></a>  
+<h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1 下载"></a>1 下载</h3><p>Mac版MyEclipseip: <a href="https://pan.baidu.com/s/1jIulqAy" target="_blank" rel="external">https://pan.baidu.com/s/1jIulqAy</a><br>Mac版Tomcat: <a href="http://tomcat.apache.org/download-70.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-70.cgi</a>  在Core下的 zip (pgp, md5, sha1)</p>
+<h3 id="2-安装MyEclipseip"><a href="#2-安装MyEclipseip" class="headerlink" title="2 安装MyEclipseip"></a>2 安装MyEclipseip</h3><p>按照步骤依次安装,并激活</p>
+<h3 id="3-配置Tomcat"><a href="#3-配置Tomcat" class="headerlink" title="3 配置Tomcat"></a>3 配置Tomcat</h3><p>1 下载完成后解压，并且重命名为Tomcat<br>2 放到/Library中(Library如何找到自行百度) 至此就算安装成功了<br>3 终端进入/Library/Tomcat/bin目录中(cd Library/Tomcat/bin)<br>4 终端开启权限 命令:sudo chmod 755 *.sh<br>5 打开服务器 sudo sh startup.sh<br>6 浏览器网址 <a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a> 若出现小猫网页表示成功了<br>7 关闭服务器 sudo sh shutdown.sh  </p>
+<h3 id="4-MyEclipse关联Tomcat"><a href="#4-MyEclipse关联Tomcat" class="headerlink" title="4 MyEclipse关联Tomcat"></a>4 MyEclipse关联Tomcat</h3><p>1 首先我安装的2014版的pro版本<br>2 在MyEclipse中点击<strong>MyEclipse</strong>-&gt;<strong>preference</strong>-&gt;<strong>myeclipse</strong>-&gt;<strong>servers</strong>-&gt;<strong>tomcat</strong>-&gt;<strong>configure tomcat7.x</strong> , 然后点击<strong>Enable</strong>,选择你的tomcat安装目录.(/Library/Tomcat),<strong>apply</strong>,<strong>ok</strong>.<br>3 在MyEclipse中点击<strong>MyEclipse</strong>-&gt;<strong>Window</strong>-&gt;<strong>Show View</strong>-&gt;<strong>servers</strong> 然后在界面的下面选中我们刚刚配置的<strong>Tomcat 7.x</strong>右击, <strong>Run Server</strong>即可起动Tomcat</p>
+<hr>
+<p>上面就是Mac上安装MyEclipseip 配置Tomcat的全部内容  </p>
+<p>以下是资料参考及随手笔记:  </p>
+<p>导入MyEclipseip项目</p>
+<p>1 导入<br>2 build 第3列 删除所有jar<br>3 第3列 第一个重新导入所有jar 在项目中有所有jar包 解决!<br>4 更换jdk add lib-&gt;第二个 1.8 解决x  </p>
+<p>mac 搭建tomcat</p>
+<p><a href="http://blog.csdn.net/huyisu/article/details/38372663" target="_blank" rel="external">http://blog.csdn.net/huyisu/article/details/38372663</a></p>
+<p><a href="http://www.cnblogs.com/xingxingLove/p/5304390.html" target="_blank" rel="external">http://www.cnblogs.com/xingxingLove/p/5304390.html</a></p>
+<p>cd Library/apache-tomcat-7.0.75/bin</p>
+<p>cd work/apache-tomcat-7.0.75/bin</p>
+<p>cd work/Blog/yassblog.com</p>
+<p>cd Library/Tomcat/bin</p>
+<p>sudo chmod 755 work/apache-tomcat-7.0.75/bin/*.sh</p>
+<p>sudo chmod 755 *.sh</p>
+<p>打开服务器 sudo sh startup.sh</p>
+<p>关闭服务器 sudo sh shutdown.sh</p>
+<p>浏览器网址 <a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a></p>
+<p>JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home;</p>
+<p>memory_pressure -l critical</p>
+<p>1f19000000014a41867</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyEclipse/" rel="tag"># MyEclipse</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/15/构建基类--BaseActivity/" rel="next" title="构建基类--BaseActivity">
+                <i class="fa fa-chevron-left"></i> 构建基类--BaseActivity
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/25/生活--将网易云音乐歌单转成QQ音乐歌单/" rel="prev" title="将网易云音乐歌单转成QQ音乐歌单">
+                将网易云音乐歌单转成QQ音乐歌单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/24/MyEclipse --Mac上安装MyEclipseip及配置Tomcat/"
+           data-title="Mac上安装MyEclipseip及配置Tomcat" data-url="http://yoursite.com/2017/02/24/MyEclipse --Mac上安装MyEclipseip及配置Tomcat/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-下载"><span class="nav-number"></span> <span class="nav-text">1 下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装MyEclipseip"><span class="nav-number"></span> <span class="nav-text">2 安装MyEclipseip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置Tomcat"><span class="nav-number"></span> <span class="nav-text">3 配置Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-MyEclipse关联Tomcat"><span class="nav-number"></span> <span class="nav-text">4 MyEclipse关联Tomcat</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yassblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

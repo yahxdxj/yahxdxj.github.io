@@ -1,0 +1,1197 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+ 内容提供者ContentProvider介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android基础--内容提供者ContentProvider">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/基础--内容提供者ContentProvider/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+ 内容提供者ContentProvider介绍">
+<meta property="og:updated_time" content="2017-02-25T03:27:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android基础--内容提供者ContentProvider">
+<meta name="twitter:description" content="导语
+ 内容提供者ContentProvider介绍">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/基础--内容提供者ContentProvider/"/>
+
+
+
+
+
+  <title> Android基础--内容提供者ContentProvider | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/13/基础--内容提供者ContentProvider/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android基础--内容提供者ContentProvider
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T09:46:09+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/13/基础--内容提供者ContentProvider/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/基础--内容提供者ContentProvider/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> 内容提供者ContentProvider介绍  </p>
+</blockquote>
+<a id="more"></a> 
+<h1 id="一、内容提供者ContentProvider"><a href="#一、内容提供者ContentProvider" class="headerlink" title="一、内容提供者ContentProvider"></a>一、内容提供者ContentProvider</h1><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h3><ul>
+<li>应用的数据库是不允许其他应用访问的，数据库文件 一般是私有的。 -rw-rw- — 别的应用程序是没办法访问私有的数据库。</li>
+<li>数据库文件私有的目的： 保证应用程序数据的安全。每个应用程序都是独立的，不可以操作另外一个应用程序数据库的数据。</li>
+<li>有一些特殊的需求，需要把自己私有的数据库暴露给别的应用程序让别的应用程序访问。</li>
+<li><p>内容提供者就是做这个事情的。</p>
+<ul>
+<li>内容提供者的作用就是让别的应用访问到你的私有数据<br>###1.2 自定义内容提供者</li>
+</ul>
+</li>
+<li><p>步骤1.自定义java类，继承ContentProvider类，重写增删改查方法，在方法中写增删改查数据库的代码(重写增删改查方法分为两小步，1获取操作数据库的db对象，2利用db对象去重写增删改查方法),举例增方法<br>public class PeopleProvider extends ContentProvider {</p>
+<pre><code>    private MyOpenHelper oh;//数据库创建的帮助类
+    private SQLiteDatabase db;//定义数据库实例对象，这两行代码实际完成一个功能，就是获取操作数据库的db对象
+
+    //用于区分同一数据库下，不同表的操作
+    UriMatcher um = new UriMatcher(UriMatcher.NO_MATCH);
+    {
+        //arg0：主机名，必须与内容提供者主机名一致
+        //arg1:路径，随便写，但一般与表名相同，路径中可以携带数据
+        um.addURI(&quot;com.itheima.people&quot;, &quot;person&quot;, 1);//content://com.itheima.people/person
+        um.addURI(&quot;com.itheima.people&quot;, &quot;handsome&quot;, 2);//content://com.itheima.people/handsome
+        um.addURI(&quot;com.itheima.people&quot;, null, 3);//content://com.itheima.people
+        um.addURI(&quot;com.itheima.people&quot;, &quot;person/#&quot;, 4);//content://com.itheima.people/person/2
+    }
+    //内容提供者创建时此方法执行（写死了此内容提供者的数据库）
+    @Override
+    public boolean onCreate() {
+        //获取操作数据库的db对象
+        oh = new MyOpenHelper(getContext());
+        db = oh.getWritableDatabase();
+        return false;
+    }
+
+    //根据Uri的不同，操作不同的表
+    //此方法是由其他应用调用的，所以插入什么数据由其他应用决定
+    @Override
+    public Uri insert(Uri uri, ContentValues values) {
+        if(um.match(uri) == 1){//判断操作数据库中的那张表
+            long id = db.insert(&quot;person&quot;, null, values);
+        }
+        else if(um.match(uri) == 2){//判断操作数据库中的那张表
+            long id = db.insert(&quot;handsome&quot;, null, values);
+        }
+        else{
+            throw new IllegalArgumentException(&quot;别tm瞎传uri&quot;);
+        }
+        return uri;
+    }
+}
+</code></pre></li>
+<li><p>步骤2.在清单文件中定义内容提供者的标签，配置包括：内容提供者provider。配置完整类路径name，主机名authorities。注意必须要有authorities属性，这是内容提供者的主机名，功能类似地址，</p>
+<pre><code>&lt;provider android:name=&quot;com.itheima.contentprovider.PersonProvider&quot;
+    android:authorities=&quot;com.itheima.people&quot;
+    android:exported=&quot;true&quot;
+ &gt;&lt;/provider&gt;
+</code></pre></li>
+</ul>
+<p>###1.3如何在其它应用使用内容提供者查询数据</p>
+<ul>
+<li>创建一个其他应用，访问自定义的内容提供者，实现对数据库的插入操作</li>
+</ul>
+<p>public void click(View v){<br>            //得到内容分解器对象（获取内容提供者的解析器）<br>            ContentResolver cr = getContentResolver();<br>            //封装要插入的数据<br>            ContentValues cv = new ContentValues();<br>            cv.put(“name”, “小方”);<br>            cv.put(“phone”, 138856);<br>            cv.put(“money”, 3000);<br>            //通过内容提供者的解析器，实现对数据库的插入操作<br>            //arg0:用来匹配内容提供者主机名的Uri<br>            //arg1:要插入的数据<br>            //(每个应用的内容提供者内部已经通过Uri对自己应用数据库进行UriMatcher操作，只需要其它应用通过解析器匹配具体内容提供者的主机名就能调用方法完成对数据库的操作)，url:内容提供者的主机名，要加前缀content://<br>            cr.insert(Uri.parse(“content://com.itheima.person”), cv);<br>        }</p>
+<p>–示例–</p>
+<p>public class MainActivity extends Activity {</p>
+<pre><code>    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    //通过内容提供者，在其应用数据库插入数据
+    public void insert(View v){
+        //通过内容提供者的解析器，向01数据库插入数据
+        ContentResolver cr = getContentResolver() ;
+        ContentValues values = new ContentValues();
+        values.put(&quot;name&quot;, &quot;巫师2&quot;);
+        //values.put(&quot;money&quot;, &quot;12306&quot;);//handsome表没有money字段值，写上报错
+        cr.insert(Uri.parse(&quot;content://com.itheima.people/handsome&quot;), values);
+
+        values.clear();
+        values.put(&quot;name&quot;, &quot;小黑2&quot;);
+        values.put(&quot;money&quot;, &quot;1000000&quot;);
+        cr.insert(Uri.parse(&quot;content://com.itheima.people/person&quot;), values);
+    }
+
+    //通过内容提供者，在其应用数据库删除数据
+    public void delete(View v){
+        //通过内容提供者的解析器，向01数据库删除数据
+        ContentResolver cr = getContentResolver() ;
+
+        int i = cr.delete(Uri.parse(&quot;content://com.itheima.people/person&quot;), &quot;name=?&quot;, new String[]{&quot;猴子&quot;});
+        System.out.println(i);
+
+    }
+    //通过内容提供者，在其应用数据库更新数据
+    public void update(View v){
+        //通过内容提供者的解析器，向01数据库更新数据
+        ContentResolver cr = getContentResolver() ;
+        ContentValues values = new  ContentValues();
+        values.put(&quot;name&quot;, &quot;混沌骑士&quot;);
+
+        int i =cr.update(Uri.parse(&quot;content://com.itheima.people/person&quot;), values, &quot;name=?&quot;, new String[]{&quot;恩赐&quot;});
+        System.out.println(i);
+    }
+    //通过内容提供者，在其应用数据库查询数据
+    public void query(View v){
+        //通过内容提供者的解析器，向01数据库查询数据
+        ContentResolver cr = getContentResolver() ;
+        Cursor cursor = cr.query(Uri.parse(&quot;content://com.itheima.people/person&quot;), null, null, null, null);
+
+        while(cursor.moveToNext()){
+            String id = cursor.getString(0);//一条记录的id字段值
+            String name = cursor.getString(1);//一条记录的名字字段值
+            String money = cursor.getString(cursor.getColumnIndex(&quot;money&quot;));//一条记录的money字段值
+            System.out.println(id+&quot;;&quot;+name+&quot;;&quot;+money);
+        }
+    }
+
+    //通过内容提供者，在其应用数据库根据id查询单条记录
+    public void queryid(View v){
+        //通过内容提供者的解析器，向01数据库查询数据
+        ContentResolver cr = getContentResolver() ;
+
+        Cursor cursor = cr.query(Uri.parse(&quot;content://com.itheima.people/person&quot;), null, &quot;_id=?&quot;, new String[]{&quot;3&quot;}, null);
+        while(cursor.moveToNext()){
+            String id = cursor.getString(0);//一条记录的id字段值
+            String name = cursor.getString(1);//一条记录的名字字段值
+            String money = cursor.getString(cursor.getColumnIndex(&quot;money&quot;));//一条记录的money字段值
+            System.out.println(id+&quot;;&quot;+name+&quot;;&quot;+money);
+        }
+    }
+}
+</code></pre><p>###1.4 UriMatcher</p>
+<ul>
+<li>UriMatcher作用：用于判断一条uri跟指定的多条uri中的哪条匹配（用于匹配数据库中的不同数据表，对匹配到的表进行操作）<br>#####实现UriMatcher步骤</li>
+<li>1.在内容提供者类中，创建UriMatcher对象，添加匹配规则</li>
+</ul>
+<p>//指定多条uri<br>        um.addURI(“com.itheima.person”, “person”, PERSON_CODE);<br>        um.addURI(“com.itheima.person”, “company”, COMPANY_CODE);<br>        //#号可以代表任意数字<br>        um.addURI(“com.itheima.person”, “person/#”, QUERY_ONE_PERSON_CODE);</p>
+<p>–示例–</p>
+<pre><code>UriMatcher um = new UriMatcher(UriMatcher.NO_MATCH);
+{
+    //arg0：主机名，必须与内容提供者主机名一致
+    //arg1:路径，随便写，但一般与表名相同，路径中可以携带数据
+    //arg2:若匹配怎返回该值
+    um.addURI(&quot;com.itheima.people&quot;, &quot;person&quot;, 1);//content://com.itheima.people/person
+    um.addURI(&quot;com.itheima.people&quot;, &quot;handsome&quot;, 2);//content://com.itheima.people/handsome
+    um.addURI(&quot;com.itheima.people&quot;, null, 3);//content://com.itheima.people
+    um.addURI(&quot;com.itheima.people&quot;, &quot;person/#&quot;, 4);//content://com.itheima.people/person/2
+}
+</code></pre><ul>
+<li>2.在内容提供者类中，根据传入的uri,通过Uri匹配器可以实现操作不同的表</li>
+</ul>
+<p>@Override<br>        public Uri insert(Uri uri, ContentValues values) {<br>            if(um.match(uri) == PERSON_CODE){<br>                db.insert(“person”, null, values);<br>            }<br>            else if(um.match(uri) == COMPANY_CODE){<br>                db.insert(“company”, null, values);<br>            }<br>            else{<br>                throw new IllegalArgumentException();<br>            }<br>            return uri;<br>        }</p>
+<p>–示例–</p>
+<pre><code>//接UriMatcher，根据传入的uri判断将对那张表进行操作，此插入方法是由其他应用调用的，所以插入什么数据由其他应用决定，
+@Override
+public Uri insert(Uri uri, ContentValues values) {
+    if(um.match(uri) == 1){
+        long id = db.insert(&quot;person&quot;, null, values);
+    }
+    else if(um.match(uri) == 2){
+        long id = db.insert(&quot;handsome&quot;, null, values);
+    }
+    else{
+        throw new IllegalArgumentException(&quot;别tm瞎传uri&quot;);
+    }
+    return uri;
+}
+</code></pre><ul>
+<li>3.另外：路径中可以携带数据，如果路径中带有数字，把数字提取出来的api</li>
+</ul>
+<p>  int id = (int) ContentUris.parseId(uri);</p>
+<p>–示例–</p>
+<p>  @Override<br>        public Cursor query(Uri uri, String[] projection, String selection,<br>                String[] selectionArgs, String sortOrder) {<br>            Cursor cursor = null;<br>            if(um.match(uri) == 1){<br>                cursor = db.query(“person”, projection, selection, selectionArgs, null, null, sortOrder, null);<br>            }<br>            else if(um.match(uri) == 2){<br>                cursor = db.query(“handsome”, projection, selection, selectionArgs, null, null, sortOrder, null);<br>            }<br>            else if(um.match(uri) == 4){<br>                //把路径中携带的数字取出来<br>                long id = ContentUris.parseId(uri);<br>                cursor = db.query(“person”, projection, “_id = ?”, new String[]{id + “”}, null, null, sortOrder, null);<br>            }<br>            return cursor;<br>        }</p>
+<hr>
+<p>###1.5读取系统短信数据库</p>
+<ul>
+<li><p>只需要关注sms表    </p>
+<ul>
+<li><p>通过阅读源码 短信的内容提供者</p>
+<pre><code>android:authorities=&quot;sms&quot;`
+</code></pre></li>
+<li><p>content://sms/ 这个就是短信内容提供者的路径 </p>
+</li>
+</ul>
+</li>
+<li>只需要关注4个字段<ul>
+<li>body：短信内容</li>
+<li>address:短信的发件人或收件人号码（跟你聊天那哥们的号码）</li>
+<li>date：短信时间</li>
+<li>type：1为收到，2为发送</li>
+</ul>
+</li>
+<li>读取系统短信，首先查询源码获得短信数据库内容提供者的主机名和路径，然后</li>
+</ul>
+<p>   //获取内容提供者的解析器<br>        ContentResolver cr = getContentResolver();<br>        //查询获取每个记录有指定字段值的所有记录<br>        Cursor c = cr.query(Uri.parse(“content://sms”), new String[]{“body”, “date”, “address”, “type”}, null, null, null);<br>        //遍历每条记录<br>        while(c.moveToNext()){<br>            //获取每条记录的指定字段值<br>            String body = c.getString(0);<br>            String date = c.getString(1);<br>            String address = c.getString(2);<br>            String type = c.getString(3);<br>            System.out.println(body+”;” + date + “;” + address + “;” + type);<br>        }</p>
+<ul>
+<li><p>读取系统短信、备份短信需要权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.READ_SMS&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
+</code></pre></li>
+</ul>
+<p>–Activity界面读取短信到控制台，短信备份到xml文件示例</p>
+<pre><code>//创建存放短信对象的集合
+List&lt;Sms&gt; smsList = new ArrayList&lt;Sms&gt;();
+
+//读取系统短信，封装到短信对象
+public void click1(View v){
+    //通过内容提供者获取系统短信，封装到短信对象中
+    ContentResolver cr = getContentResolver();
+    Cursor cursor = cr.query(Uri.parse(&quot;content://sms&quot;), new String[]{&quot;body&quot;, &quot;date&quot;, &quot;type&quot;, &quot;address&quot;}, null, null, null);
+    while(cursor.moveToNext()){
+        String body = cursor.getString(0);
+        long date = cursor.getLong(1);
+        int type = cursor.getInt(2);
+        String address = cursor.getString(3);
+        Sms sms = new Sms(body, type, date, address);
+        smsList.add(sms);
+    }
+}
+//短信备份到xml文件（要先执行click1）
+public void click2(View v){
+    XmlSerializer xs = Xml.newSerializer();
+    File file = new File(&quot;sdcard/sms.xml&quot;);
+    FileOutputStream fos;
+    try {
+        fos = new FileOutputStream(file);
+        xs.setOutput(fos, &quot;utf-8&quot;);
+
+        xs.startDocument(&quot;utf-8&quot;, true);
+
+        xs.startTag(null, &quot;smss&quot;);
+        for (Sms sms : smsList) {
+            xs.startTag(null, &quot;sms&quot;);
+
+            xs.startTag(null, &quot;body&quot;);
+            xs.text(sms.getBody());
+            xs.endTag(null, &quot;body&quot;);
+
+            xs.startTag(null, &quot;date&quot;);
+            xs.text(sms.getDate() + &quot;&quot;);
+            xs.endTag(null, &quot;date&quot;);
+
+            xs.startTag(null, &quot;type&quot;);
+            xs.text(sms.getType() + &quot;&quot;);
+            xs.endTag(null, &quot;type&quot;);
+
+            xs.startTag(null, &quot;address&quot;);
+            xs.text(sms.getAddresss());
+            xs.endTag(null, &quot;address&quot;);
+
+            xs.endTag(null, &quot;sms&quot;);
+        }
+        xs.endTag(null, &quot;smss&quot;);
+
+        xs.endDocument();
+    } catch (Exception e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+}
+</code></pre><p>####1.5.1插入系统短信</p>
+<pre><code>ContentResolver cr = getContentResolver();
+ContentValues cv = new ContentValues();
+cv.put(&quot;body&quot;, &quot;您尾号为XXXX的招行储蓄卡收到转账1,000,000人民币&quot;);
+cv.put(&quot;address&quot;, 95555);
+//1为收到短信，2为发出短信
+cv.put(&quot;type&quot;, 1);
+cv.put(&quot;date&quot;, System.currentTimeMillis());
+cr.insert(Uri.parse(&quot;content://sms&quot;), cv);
+</code></pre><ul>
+<li><p>插入查询系统短信需要注册权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.READ_SMS&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.WRITE_SMS&quot;/&gt;
+</code></pre></li>
+</ul>
+<p>–插入系统短信示例–</p>
+<pre><code>public void click(View v){
+    Thread t = new Thread(){
+        @Override
+        public void run() {
+            try {
+                //7.5秒后插入短信
+                sleep(7500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //通过内容提供者把短信插入短信数据库中
+            ContentResolver cr = getContentResolver();
+            ContentValues values = new ContentValues();
+            values.put(&quot;address&quot;, &quot;95555&quot;);
+            values.put(&quot;body&quot;, &quot;您尾号为XXXX招行储蓄卡收到转账1,000,000元人民币&quot;);
+            values.put(&quot;date&quot;, System.currentTimeMillis());
+            values.put(&quot;type&quot;, 1);
+            cr.insert(Uri.parse(&quot;content://sms&quot;), values);
+        }
+    };
+    t.start();
+}
+</code></pre><hr>
+<p>###1.6 联系人的内容提供者</p>
+<p>####1.6.1 联系人数据库最重要三张表</p>
+<ul>
+<li>raw_contacts 表  <strong>保存联系人的id</strong></li>
+<li>data         表  <strong>保存联系人的数据</strong></li>
+<li>mimetypes    表  <strong>保存数据的类型</strong></li>
+</ul>
+<ul>
+<li>raw_contacts表：<ul>
+<li>contact_id：联系人id</li>
+</ul>
+</li>
+<li>data表：联系人的具体信息，一个信息占一行<ul>
+<li>data1：信息的具体内容</li>
+<li>raw_contact_id：联系人id，描述信息属于哪个联系人</li>
+<li>mimetype_id：描述信息是属于什么类型</li>
+</ul>
+</li>
+<li>mimetypes表：通过mimetype_id到该表查看具体类型</li>
+</ul>
+<p>####1.6.2 如何查询联系人的数据库</p>
+<ol>
+<li>查询raw_contacts 把 联系人的 id获取出来</li>
+<li>根据id 查询data表 把这个联系人的数据取出来</li>
+<li>根据mimetypes表定义的数据类型 知道这个数据是电话 邮箱 姓名。</li>
+</ol>
+<p>####1.6.3 联系人删除的时候重要结论<br>删除联系人并不是把联系人的数据全部清空，<br>只是把联系人的contact_id给设置为null。<br>联系人真正的数据并没有被清除还是保留在数据库里的。</p>
+<p>设计的目的： 为了方便云同步。</p>
+<p>####1.6.3 读取联系人</p>
+<ul>
+<li><p>先查询raw_contacts表拿到联系人id</p>
+<pre><code>Cursor cursor = cr.query(Uri.parse(&quot;content://com.android.contacts/raw_contacts&quot;), new String[]{&quot;contact_id&quot;}, null, null, null);
+</code></pre></li>
+<li><p>然后拿着联系人id去data表查询属于该联系人的信息</p>
+<pre><code>Cursor c = cr.query(Uri.parse(&quot;content://com.android.contacts/data&quot;), new String[]{&quot;data1&quot;, &quot;mimetype&quot;}, &quot;raw_contact_id = ?&quot;, new String[]{contact_id}, null);
+</code></pre></li>
+<li><p>得到data1字段的值，就是联系人的信息，通过mimetype判断是什么类型的信息</p>
+<pre><code>while(c.moveToNext()){
+    String data1 = c.getString(0);
+    String mimetype = c.getString(1);
+    if(&quot;vnd.android.cursor.item/email_v2&quot;.equals(mimetype)){
+        contact.setEmail(data1);
+    }
+    else if(&quot;vnd.android.cursor.item/name&quot;.equals(mimetype)){
+        contact.setName(data1);
+    }
+    else if(&quot;vnd.android.cursor.item/phone_v2&quot;.equals(mimetype)){
+        contact.setPhone(data1);
+    }
+}
+</code></pre></li>
+<li><p>添加权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.READ_CONTACTS&quot;/&gt;
+</code></pre><p>–读取联系人示例</p>
+<pre><code>public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void click(View v){
+        //获取内容提供者的解析器
+        ContentResolver cr = getContentResolver();
+        //查询raw_contacts表，获取contact_id字段的记录(所有记录)
+        Cursor cursor = cr.query(Uri.parse(&quot;content://com.android.contacts/raw_contacts&quot;), new String[]{&quot;contact_id&quot;}, null, null, null);
+        //遍历每条记录
+        while(cursor.moveToNext()){
+            //得到每条记录中字段为contact_id的值(另外：在查询数据库表时，查询了多个字段，那么角标依次向后排，可获取一条记录中其他字段值)
+            String contact_id = cursor.getString(0);
+            //根据获取到的contact_id作为查询data表的条件，获取指定字段值的所有记录
+            Cursor cursorData = cr.query(Uri.parse(&quot;content://com.android.contacts/data&quot;), new String[]{&quot;data1&quot;, &quot;mimetype&quot;}, 
+                    &quot;raw_contact_id = ?&quot;, new String[]{contact_id}, null);
+
+            //创建联系人对象，有name，phone，email 3个成员变量
+            Contact contact = new Contact();
+
+            //遍历从data表获取的所有符合条件的记录，从cursor中取出该联系人的信息
+            while(cursorData.moveToNext()){
+                //获取同一raw_contact_id下的每条记录字段data1和mimetype的值
+                String data1 = cursorData.getString(0);
+                String mimetype = cursorData.getString(1);
+
+                //根据mimetype值不同，将同在一条记录中的data1的字段值封装到联系人对象中。
+                if(&quot;vnd.android.cursor.item/name&quot;.equals(mimetype)){
+                    contact.setName(data1);
+                }
+                else if(&quot;vnd.android.cursor.item/phone_v2&quot;.equals(mimetype)){
+                    contact.setPhone(data1);
+                }
+                else if(&quot;vnd.android.cursor.item/email_v2&quot;.equals(mimetype)){
+                    contact.setEmail(data1);
+                }
+            }
+            System.out.println(contact.toString());
+        }
+    }
+}
+</code></pre><p>####1.6.4 插入联系人</p>
+</li>
+<li>先查询raw_contacts表，确定新的联系人的id应该是多少</li>
+<li><p>把确定的联系人id插入raw_contacts表</p>
+<pre><code>cv.put(&quot;contact_id&quot;, _id);
+cr.insert(Uri.parse(&quot;content://com.android.contacts/raw_contacts&quot;), cv);
+</code></pre></li>
+<li><p>在data表插入数据</p>
+<ul>
+<li><p>插3个字段：data1、mimetype、raw_contact_id，对于同一个联系人raw_contact_id是不变的，data1和mimetype是对应改变的，多条记录才能完成对一个联系人的插入</p>
+<pre><code>cv = new ContentValues();
+cv.put(&quot;data1&quot;, &quot;赵六&quot;);
+cv.put(&quot;mimetype&quot;, &quot;vnd.android.cursor.item/name&quot;);
+cv.put(&quot;raw_contact_id&quot;, _id);
+cr.insert(Uri.parse(&quot;content://com.android.contacts/data&quot;), cv);
+
+cv = new ContentValues();
+cv.put(&quot;data1&quot;, &quot;1596874&quot;);
+cv.put(&quot;mimetype&quot;, &quot;vnd.android.cursor.item/phone_v2&quot;);
+cv.put(&quot;raw_contact_id&quot;, _id);
+cr.insert(Uri.parse(&quot;content://com.android.contacts/data&quot;), cv);
+</code></pre></li>
+</ul>
+</li>
+<li><p>添加权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_CONTACTS&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_CONTACTS&quot;/&gt;
+</code></pre></li>
+</ul>
+<p>–插入联系人示例—-</p>
+<pre><code>public void click(View v){
+    //获取内容提供者的解析器
+    ContentResolver cr = getContentResolver();
+    //先查询出raw_contacts表中最新一条数据的主键,然后主键+1,就是新的联系人id
+    Cursor cursor = cr.query(Uri.parse(&quot;content://com.android.contacts/raw_contacts&quot;), new String[]{&quot;_id&quot;}, null, null, null);
+    //设置主键初始为1
+    int contact_id = 1;
+    //指针移动至最后一行，若成功返回true
+    if(cursor.moveToLast()){
+        //获取每条记录中的_id
+        int _id = cursor.getInt(0);
+        //给conttcact_id重新赋值
+        contact_id = ++_id;
+    }
+
+    //往raw_contacts表中插入联系人id
+    ContentValues values = new ContentValues();
+    values.put(&quot;contact_id&quot;, contact_id);
+    cr.insert(Uri.parse(&quot;content://com.android.contacts/raw_contacts&quot;), values);
+
+    //往data表中插入联系人信息
+    values.clear();
+    values.put(&quot;data1&quot;, &quot;包九日的儿子&quot;);
+    values.put(&quot;mimetype&quot;, &quot;vnd.android.cursor.item/name&quot;);
+    values.put(&quot;raw_contact_id&quot;, contact_id);
+    cr.insert(Uri.parse(&quot;content://com.android.contacts/data&quot;), values);
+
+    values.clear();
+    values.put(&quot;data1&quot;, &quot;13888888&quot;);
+    values.put(&quot;mimetype&quot;, &quot;vnd.android.cursor.item/phone_v2&quot;);
+    values.put(&quot;raw_contact_id&quot;, contact_id);
+    cr.insert(Uri.parse(&quot;content://com.android.contacts/data&quot;), values);
+}
+</code></pre><hr>
+<p>#二、内容观察者ContentObserver</p>
+<p>###(应用:比如数据库发生变化,发出通知,被注册的内容观察者接收并进行处理)</p>
+<p>####2.1 概念</p>
+<ul>
+<li>用来接收内容提供者发出的通知<br>####2.2 内容观察者具体实现</li>
+<li>当数据库数据改变时，内容提供者会发出通知，在内容提供者的uri上注册一个内容观察者，就可以收到数据改变的通知</li>
+<li>1.定义观察者类</li>
+<li><p>2.注册内容观察者（使用内容提供者解析器注册内容观察者）</p>
+<pre><code>//Activity一运行就执行此方法
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    //2.注册内容观察者
+    ContentResolver cr = getContentResolver();
+    //arg0:指定接收哪个内容提供者发出的通知(在内容提供者的uri上注册一个内容观察者)
+    //arg1:根据boolean值判断匹配精度，一般写true
+    //true:表示只要是以content://sms开头的uri上的数据改变,就能收到通知
+    //false：表示必须精确匹配content://sms这个uri才能收到通知，例如content://sms/inbox就收不到了
+    //arg2: 传入一个观察者对象   
+    cr.registerContentObserver(Uri.parse(&quot;content://sms&quot;), true, new MyObserver(new Handler()));
+}
+
+//1.定义观察者类
+class MyObserver extends ContentObserver{
+
+    public MyObserver(Handler handler) {
+        super(handler);
+    }
+
+    //收到通知时此方法调用
+    @Override
+    public void onChange(boolean selfChange) {
+        super.onChange(selfChange);
+        System.out.println(&quot;短信数据库改变了&quot;);
+    }
+}
+</code></pre><p>####2.3在内容提供者中发通知的代码</p>
+<pre><code>ContentResolver cr = getContext().getContentResolver();
+//发出通知，所有注册在这个uri上的内容观察者都可以收到通知
+//当数据库数据改变时,发送通知
+//arg0:所有注册在这个uri上的内容观察者都能收到此通知
+cr.notifyChange(uri, null);
+</code></pre></li>
+</ul>
+<p>–在内容提供者中发通知的代码示例–</p>
+<pre><code>//重写内容提供者的增删改方法，并发出通知
+//此方法是由其他应用调用的，所以插入什么数据由其他应用决定
+@Override
+public Uri insert(Uri uri, ContentValues values) {
+    if(um.match(uri) == 1){
+        long id = db.insert(&quot;person&quot;, null, values);
+
+        //当数据库数据改变时,发送通知
+        //arg0:所有注册在这个uri上的内容观察者都能收到此通知
+        getContext().getContentResolver().notifyChange(uri, null);
+    }
+    else if(um.match(uri) == 2){
+        long id = db.insert(&quot;handsome&quot;, null, values);
+
+        //当数据库数据改变时,发送通知
+        //arg0:所有注册在这个uri上的内容观察者都能收到此通知
+        getContext().getContentResolver().notifyChange(uri, null);
+    }
+    else{
+        throw new IllegalArgumentException(&quot;别tm瞎传uri&quot;);
+    }
+    return uri;
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android基础/" rel="tag"># Android基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/13/基础--多媒体编程/" rel="next" title="Android基础--多媒体编程">
+                <i class="fa fa-chevron-left"></i> Android基础--多媒体编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/13/基础--Fragment 动画/" rel="prev" title="Android基础--Fragment+动画">
+                Android基础--Fragment+动画 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/13/基础--内容提供者ContentProvider/"
+           data-title="Android基础--内容提供者ContentProvider" data-url="http://yoursite.com/2017/02/13/基础--内容提供者ContentProvider/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、内容提供者ContentProvider"><span class="nav-number"></span> <span class="nav-text">一、内容提供者ContentProvider</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-概念"><span class="nav-number"></span> <span class="nav-text">1.1 概念</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yassblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

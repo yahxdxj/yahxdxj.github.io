@@ -1,0 +1,1585 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导语
+ 多线程断点续传下载 介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android基础--多线程断点续传下载">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/基础--多线程断点续传下载/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="导语
+ 多线程断点续传下载 介绍">
+<meta property="og:updated_time" content="2017-02-25T03:25:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android基础--多线程断点续传下载">
+<meta name="twitter:description" content="导语
+ 多线程断点续传下载 介绍">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/基础--多线程断点续传下载/"/>
+
+
+
+
+
+  <title> Android基础--多线程断点续传下载 | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/13/基础--多线程断点续传下载/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android基础--多线程断点续传下载
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T09:44:28+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/13/基础--多线程断点续传下载/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/13/基础--多线程断点续传下载/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p> 多线程断点续传下载 介绍  </p>
+</blockquote>
+<a id="more"></a> 
+<h1 id="一、HttpClient"><a href="#一、HttpClient" class="headerlink" title="一、HttpClient"></a>一、HttpClient</h1><h3 id="1-1-发送get请求"><a href="#1-1-发送get请求" class="headerlink" title="1.1 发送get请求"></a>1.1 发送get请求</h3><ul>
+<li><p>创建一个客户端对象</p>
+<p>  HttpClient client = new DefaultHttpClient();</p>
+</li>
+<li><p>创建一个get请求对象</p>
+<p>  HttpGet hg = new HttpGet(path);</p>
+</li>
+<li><p>发送get请求，建立连接，返回响应头对象</p>
+<p>  HttpResponse hr = hc.execute(hg);</p>
+</li>
+<li><p>获取状态行对象，获取状态码，如果为200则说明请求成功</p>
+<pre><code>if(hr.getStatusLine().getStatusCode() == 200){
+    //拿到服务器返回的输入流
+    InputStream is = hr.getEntity().getContent();
+    String text = Utils.getTextFromStream(is);
+}
+</code></pre></li>
+<li><p>HttpClient框架GET提交用户名密码示例</p>
+<pre><code>//点击事件：HttpClient框架GET提交用户名密码
+public void click1(View v){
+    //获取用户输入的用户名密码
+    String name = et_name.getText().toString();
+    String pass = et_pass.getText().toString();
+
+//设置提交网址,需要拼接字符串         URLEncoder.encode(name) 此代码将中文进行URL编码，转成二进制(因为地址栏中，纯中文提交参数，接收后会显示乱码,注意接收参数时使用iso-8859-1解码)
+
+    final String address = &quot;http://192.168.15.35:8080/Android_login/userLogin?name=&quot;+URLEncoder.encode(name)+&quot;&amp;pwd=&quot;+pass;
+
+    //子线程中，使用HttpClient框架GET方式提交数据
+    Thread t = new Thread(){
+        @Override
+        public void run() {
+            //1.创建httpclient对象
+            HttpClient client = new DefaultHttpClient();
+            //2.创建get请求对象
+            HttpGet get = new HttpGet(address);
+            try {
+
+                //3.使用客户端发送get请求，拿到服务器返回的信息
+                HttpResponse response = client.execute(get);
+                //获取响应状态行
+                StatusLine sl =response.getStatusLine();
+                //获取响应状态码，进行判断
+                if (sl.getStatusCode()==200) {
+                    //获取响应头输入流实例HttpEntity
+                    HttpEntity entity = response.getEntity();
+                    //获取流里的数据(字符串)
+                    InputStream is = entity.getContent();
+                    //将流里的数据转换成字符串
+                    String text = Tools.getTextFromStream(is);
+                    //4发送消息到消息队列，携带流数据，主界面刷新UI
+                    Message message = handler.obtainMessage();
+                    message.obj=text;
+                    message.what=0;
+                    handler.sendMessage(message);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+    t.start();
+}
+</code></pre></li>
+</ul>
+<p>###1.2 发送post请求</p>
+<pre><code>//创建一个客户端对象
+HttpClient client = new DefaultHttpClient();
+//创建一个post请求对象
+HttpPost hp = new HttpPost(path);
+</code></pre><ul>
+<li><p>往post对象里放入要提交给服务器的数据</p>
+<pre><code>//要提交的数据以键值对的形式存在BasicNameValuePair对象中
+List&lt;NameValuePair&gt; parameters = new ArrayList&lt;NameValuePair&gt;();
+BasicNameValuePair bnvp = new BasicNameValuePair(&quot;name&quot;, name);
+BasicNameValuePair bnvp2 = new BasicNameValuePair(&quot;pass&quot;, pass);
+parameters.add(bnvp);
+parameters.add(bnvp2);
+//创建实体对象，指定进行URL编码的码表
+UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameters, &quot;utf-8&quot;);
+//为post请求设置实体
+hp.setEntity(entity);
+</code></pre></li>
+<li><p>HttpClient框架POST提交用户名密码示例</p>
+<pre><code>//点击事件：HttpClient框架POST提交用户名密码
+public void click2(View v){
+    //获取用户输入的用户名密码
+    final String name = et_name.getText().toString();
+    final String pass = et_pass.getText().toString();
+
+    //设置提交网址,不需要拼接字符串
+    final String address = &quot;http://192.168.15.35:8080/Android_login/userLogin&quot;;
+
+    //子线程中，使用HttpClient框架POST方式提交数据
+    Thread t = new Thread(){
+        @Override
+        public void run() {
+            //1.创建httpclient对象
+            HttpClient client = new DefaultHttpClient();
+            //2.创建post请求对象
+            HttpPost post = new HttpPost(address);
+
+            //把要提交的数据封装至post对象中
+            //把要提交的数据存放至list中
+            List&lt;NameValuePair&gt;  parameters = new ArrayList&lt;NameValuePair&gt;();
+            NameValuePair nvp1 = new BasicNameValuePair(&quot;name&quot;, name);
+            NameValuePair nvp2 = new BasicNameValuePair(&quot;pwd&quot;, pass);
+            parameters.add(nvp1);
+            parameters.add(nvp2);
+            try {
+                //创建实体对象，指定进行URL编码的码表
+                HttpEntity entity = new UrlEncodedFormEntity(parameters,&quot;UTF-8&quot;);
+                //把数据设置到请求头的流中 //为post请求设置实体
+                post.setEntity(entity);
+                //3.使用客户端发送post请求，拿到服务器返回的信息
+                HttpResponse response = client.execute(post);
+                //获取响应状态行
+                StatusLine sl = response.getStatusLine();
+                //获取响应状态码，进行判断
+                if (sl.getStatusCode()==200) {
+
+                    //获取响应头输入流实例HttpEntity
+                    HttpEntity entity1 = response.getEntity();
+                    //获取流里的数据(字符串)
+                    InputStream is = entity1.getContent();
+                    //将流里的数据转换成字符串
+                    String text = Tools.getTextFromStream(is);
+                    //4发送消息到消息队列，携带流数据，主界面刷新UI
+                    Message message = handler.obtainMessage();
+                    message.obj=text;
+                    message.what=0;
+                    handler.sendMessage(message);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+    t.start();
+}
+</code></pre><p>#二、异步HttpClient框架<br>###2.1 发送get请求</p>
+<pre><code>//创建异步的httpclient对象
+AsyncHttpClient ahc = new AsyncHttpClient();
+//发送get请求
+ahc.get(path, new MyHandler());
+</code></pre></li>
+<li><p>注意AsyncHttpResponseHandler两个方法的调用时机</p>
+<p>   class MyHandler extends AsyncHttpResponseHandler{</p>
+<pre><code>    //http请求成功，返回码为200，系统回调此方法
+    @Override
+    public void onSuccess(int statusCode, Header[] headers,
+            //responseBody的内容就是服务器返回的数据
+            byte[] responseBody) {
+        Toast.makeText(MainActivity.this, new String(responseBody), 0).show();
+
+    }
+
+    //http请求失败，返回码不为200，系统回调此方法
+    @Override
+    public void onFailure(int statusCode, Header[] headers,
+            byte[] responseBody, Throwable error) {
+        Toast.makeText(MainActivity.this, &quot;返回码不为200&quot;, 0).show();
+
+    }
+}
+</code></pre></li>
+</ul>
+<ul>
+<li>异步HttpClient框架发送get请求示例</li>
+</ul>
+<pre><code>public class MainActivity extends Activity {
+
+     //查找控件
+     EditText et_name ;
+     EditText et_pass ;
+
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         //显示当前页面布局文件
+         setContentView(R.layout.activity_main);
+         //初始化控件
+         et_name = (EditText) findViewById(R.id.et_name);
+         et_pass = (EditText) findViewById(R.id.et_pass);
+     }
+
+     //点击事件：异步HttpClient框架get提交
+     public void click1(View v){
+         //获取用户输入的用户名密码
+         String name = et_name.getText().toString();
+         String pass = et_pass.getText().toString();
+
+         //定义表单提交地址
+         String address = &quot;http://192.168.15.35:8080/Android_login/userLogin&quot;;
+         //创建异步HttpClient对象
+         AsyncHttpClient client = new AsyncHttpClient();
+         //封装请求参数，封装到框架提供的对象RequestParams
+         RequestParams rp = new RequestParams();
+         rp.add(&quot;name&quot;, name);//第一个&quot;name&quot; 表单中用户名name属性值，第二个name是获取到的用户输入的用户名
+         rp.add(&quot;pwd&quot;, pass);//pwd是表单中密码的name属性值，pass是获取到的用户输入的密码
+         //发送get请求(3个参数，1：地址;2:封装请求参数的对象;3:响应处理对象)
+         client.get(address,rp,new MyResponseHandler());
+
+     }
+     //我的响应处理器类
+     class MyResponseHandler extends AsyncHttpResponseHandler{
+
+         //请求成功时此方法调用，响应码是200开头
+         @Override
+         public void onSuccess(int statusCode, Header[] headers,
+                 byte[] responseBody) {//第三个参数：就是返回的输入流，框架将他转换成字节数组了
+             String text = new String(responseBody);
+             Toast.makeText(MainActivity.this, text, 0).show();
+
+         }
+
+         //请求失败时此方法调用
+         @Override
+         public void onFailure(int statusCode, Header[] headers,
+                 byte[] responseBody, Throwable error) {//第三个参数：就是返回的输入流，框架将他转换成字节数组了
+             String text = new String(responseBody);
+             Toast.makeText(MainActivity.this, text, 0).show();
+         }
+     }
+ }
+</code></pre><p>###2.2 发送post请求</p>
+<ul>
+<li><p>使用RequestParams对象封装要携带的数据</p>
+<pre><code>//创建异步httpclient对象
+AsyncHttpClient ahc = new AsyncHttpClient();
+//创建RequestParams封装要携带的数据
+RequestParams rp = new RequestParams();
+rp.add(&quot;name&quot;, name);
+rp.add(&quot;pass&quot;, pass);
+//发送post请求
+ahc.post(path, rp, new MyHandler());
+</code></pre></li>
+</ul>
+<ul>
+<li>异步HttpClient框架发送post请求</li>
+</ul>
+<pre><code>public class MainActivity extends Activity {
+
+     //查找控件
+     EditText et_name ;
+     EditText et_pass ;
+
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         //显示当前页面布局文件
+         setContentView(R.layout.activity_main);
+         //初始化控件
+         et_name = (EditText) findViewById(R.id.et_name);
+         et_pass = (EditText) findViewById(R.id.et_pass);
+     }
+     //点击事件：异步HttpClient框架post提交
+     public void click2(View v){
+         //获取用户输入的用户名密码
+         String name = et_name.getText().toString();
+         String pass = et_pass.getText().toString();
+
+         //定义表单提交地址
+         String address = &quot;http://192.168.15.35:8080/Android_login/userLogin&quot;;
+         //创建异步HttpClient对象
+         AsyncHttpClient client = new AsyncHttpClient();
+         //封装请求参数，封装到框架提供的对象RequestParams
+         RequestParams rp = new RequestParams();
+         rp.add(&quot;name&quot;, name);//第一个&quot;name&quot; 表单中用户名name属性值，第二个name是获取到的用户输入的用户名
+         rp.add(&quot;pwd&quot;, pass);//pwd是表单中密码的name属性值，pass是获取到的用户输入的密码
+         //发送get请求(3个参数，1：地址;2:封装请求参数的对象;3:响应处理对象)
+         client.post(address,rp,new MyResponseHandler());
+     }
+
+     //自定义我的响应处理器类
+     class MyResponseHandler extends AsyncHttpResponseHandler{
+
+         //请求成功时此方法调用，响应码是200开头
+         @Override
+         public void onSuccess(int statusCode, Header[] headers,
+                 byte[] responseBody) {//第三个参数：就是返回的输入流，框架将他转换成字节数组了
+             String text = new String(responseBody);
+             Toast.makeText(MainActivity.this, text, 0).show();
+
+         }
+
+         //请求失败时此方法调用
+         @Override
+         public void onFailure(int statusCode, Header[] headers,
+                 byte[] responseBody, Throwable error) {//第三个参数：就是返回的输入流，框架将他转换成字节数组了
+             String text = new String(responseBody);
+             Toast.makeText(MainActivity.this, text, 0).show();
+
+         }
+
+     }
+ }
+</code></pre><hr>
+<p>#三、多线程下载</p>
+<blockquote>
+<p>原理：服务器CPU分配给每条线程的时间片相同，服务器带宽平均分配给每条线程，所以客户端开启的线程越多，就能抢占到更多的服务器资源</p>
+</blockquote>
+<ul>
+<li>单线程下载：客户端请求服务器，请求成功拿到输入流，流里就是要下载的电影，客户端只需从流的第0个字节，读取到最后一个字节，并把所有读取的字节写入文件输出流，下载就完成</li>
+</ul>
+<p>###3.1 确定每条线程下载多少数据</p>
+<ul>
+<li><p>发送http请求至下载地址</p>
+<pre><code>String path = &quot;http://192.168.1.102:8080/editplus.exe&quot;;        
+URL url = new URL(path);
+HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+conn.setReadTimeout(5000);
+conn.setConnectTimeout(5000);
+conn.setRequestMethod(&quot;GET&quot;);                    
+</code></pre></li>
+<li>获取文件总长度，然后创建长度一致的临时文件</li>
+<li><p>硬盘缓冲区：数据读写时，先进入缓冲区，等攒到缓冲区数据满了，再一次性写入硬盘</p>
+<pre><code>if(conn.getResponseCode() == 200){
+    //获得服务器流中数据的长度
+    int length = conn.getContentLength();
+    //创建一个临时文件存储下载的数据
+    RandomAccessFile raf = new RandomAccessFile(getFileName(path), &quot;rwd&quot;);
+    //设置临时文件的大小
+    raf.setLength(length);
+    raf.close();
+</code></pre></li>
+<li><p>确定线程下载多少数据</p>
+<pre><code>//计算每个线程下载多少数据
+int blockSize = length / THREAD_COUNT;
+</code></pre><p>###3.2 计算每条线程下载数据的开始位置和结束位置</p>
+<pre><code>for(int id = 1; id &lt;= 3; id++){
+    //计算每个线程下载数据的开始位置和结束位置
+    int startIndex = (id - 1) * blockSize;
+    int endIndex = id * blockSize - 1;
+    if(id == THREAD_COUNT){
+        endIndex = length;
+    }
+
+    //开启线程，按照计算出来的开始结束位置开始下载数据
+    new DownLoadThread(startIndex, endIndex, id).start();
+}
+</code></pre><p>###3.3 再次发送请求至下载地址，请求开始位置至结束位置的数据</p>
+<pre><code>String path = &quot;http://192.168.1.102:8080/editplus.exe&quot;;
+
+URL url = new URL(path);
+HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+conn.setReadTimeout(5000);
+conn.setConnectTimeout(5000);
+conn.setRequestMethod(&quot;GET&quot;);
+
+//向服务器请求部分数据
+conn.setRequestProperty(&quot;Range&quot;, &quot;bytes=&quot; + startIndex + &quot;-&quot; + endIndex);
+conn.connect();
+</code></pre></li>
+<li><p>下载请求到的数据，存放至临时文件中</p>
+<pre><code>if(conn.getResponseCode() == 206){
+    InputStream is = conn.getInputStream();
+    RandomAccessFile raf = new RandomAccessFile(getFileName(path), &quot;rwd&quot;);
+    //指定从哪个位置开始存放数据
+    raf.seek(startIndex);
+    byte[] b = new byte[1024];
+    int len;
+    while((len = is.read(b)) != -1){
+        raf.write(b, 0, len);
+    }
+    raf.close();
+}
+</code></pre><p>###多线程断点续传java版示例：</p>
+<p>  public class Demo {</p>
+<pre><code>//定义要下载资源的网址(下载一个软件的地址)
+static String address = &quot;http://192.168.15.35:8080/PowerWord.100.exe&quot;;
+//定义开启的线程的个数
+static int threadCount = 3;
+//定义已完成下载的子线程个数
+static int finishedThreadCount = 0;
+
+public static void main(String[] args) {
+    try {
+        //get发送请求
+        //1 封装URL
+        URL url = new URL(address);
+        //2 获取连接对象
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        //3 设置参数
+        conn.setRequestMethod(&quot;GET&quot;);
+        conn.setConnectTimeout(8000);
+        conn.setReadTimeout(8000);
+        //4 发送请求(可不写)
+
+        //5 获取响应码，进行判断
+        if (conn.getResponseCode()==200) {
+
+            //拿到要下载的文件的总长度
+            int length = conn.getContentLength();
+            //(封装临时文件)在本地自动生成一个临时文件(若存在，则不用生成)(另外封装RandomAccessFile文件对象相当于自动获取此文件的输出流)
+            //第二个参数de作用是:可以立即将读取的数据写入临时文件
+            //路径是：工作空间/工程目录/
+            RandomAccessFile raf = new RandomAccessFile(_getFileName(address), &quot;rwd&quot;); 
+
+            //设置临时文件与下载文件大小一致
+            raf.setLength(length);
+            //关闭临时文件(就相当于关闭临时文件的输出流)
+            raf.close();
+
+            //计算每条线程要下载的长度
+            int size = length/threadCount;
+            //计算每条线程的开始位置与结束位置
+            for (int i = 0; i &lt; threadCount; i++) {
+                int startIndex = i * size;//开始位置
+                int endIndex = (i+1)*size-1;//结束位置
+                if (i==threadCount-1) {
+                    endIndex=length-1;
+                }
+                //开启每一条线程
+                new DownloadThread(startIndex,endIndex,i).start();
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+//通过网址，获取文件名
+static String _getFileName(String path){
+    int index = path.lastIndexOf(&quot;/&quot;);
+    return path.substring(index + 1);
+}
+</code></pre><p>  }</p>
+<p>  //自定义多线程:用于下载数据<br>  class DownloadThread extends Thread{</p>
+<pre><code>//定义成员变量，某线程开始下载处的角标，结束下载处的角标，线程的id
+int startIndex;
+int endIndex;
+int threadId;
+//构造函数
+public DownloadThread(int startIndex, int endIndex, int threadId) {
+    super();
+    this.startIndex = startIndex;
+    this.endIndex = endIndex;
+    this.threadId = threadId;
+}
+
+@Override
+public void run() {
+    //开启子线程下载目标文件
+    try {
+        //将每个线程记录下载进度的临时文件进行封装
+        File file = new File(threadId+&quot;.txt&quot;);
+        //定义每个线程下载的进度lastTotal(初始化为0)
+        int lastTotal=0;
+        //判断每个线程记录下载进度的临时文件是否存在
+        if (file.exists()) {
+            //获取输入流
+            InputStream is = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            //读取流数据，获取每个线程上一次的下载进度
+            lastTotal = Integer.parseInt(br.readLine());
+            //改变下载的开始位置，已经下载过的数据，就不要再去请求了
+            startIndex += lastTotal;
+            //关闭流
+            is.close();
+        }
+
+        System.out.println(&quot;线程&quot; + threadId + &quot;的最终下载区间为：&quot; + startIndex + &quot;~&quot; + endIndex);
+
+        //GET请求下载数据 封装URl 获取连接对象 设置参数
+        URL url = new URL(Demo.address);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod(&quot;GET&quot;);
+        conn.setConnectTimeout(8000);
+        conn.setReadTimeout(8000);
+        //定义请求下载的数据的范围
+        conn.setRequestProperty(&quot;Range&quot;,&quot;bytes=&quot;+startIndex+&quot;-&quot;+endIndex);
+
+        //获取响应状态码，进行判断
+        if (conn.getResponseCode()==206) {
+
+            //获取服务器返回的流，流里的数据只有startIndex到endIndex区间的数据，并不会包含目标文件所有数据
+            InputStream is = conn.getInputStream();
+            //定义一个字节数组，用来存储每次从流里读取的数据
+            byte[] b = new byte[1024];
+            //定义一个int变量，用来接收每次从流里读取数据的长度
+            int len;
+            //定义每个线程各自的总下载进度（初始化为lastTotal）
+            int total = lastTotal;
+            //(封装临时文件)每个子线程都有自己要下载的数据，在本地自动生成一个临时文件(若存在，则不用生成)(另外封装RandomAccessFile文件对象相当于自动获取此文件的输出流)
+            RandomAccessFile raf = new RandomAccessFile(Demo._getFileName(Demo.address),&quot;rwd&quot;);
+            //改变往raf中写入数据的开始位置
+            raf.seek(startIndex);
+
+            //开始往临时文件写数据
+            //while循环写入
+            while ((len=is.read(b))!=-1) {
+
+                //记录每条线程各自写入的总进度
+                total+=len;
+
+                System.out.println(&quot;线程&quot; + threadId + &quot;已下载的字节数为:&quot; + total);
+
+                //写入
+                raf.write(b,0,len);
+
+                //为了完成断点续传，while每次循环,都要将下载的进度，写入一个文本临时文件中
+                //(封装此记录每条线程总进度的临时文件，)(另外封装RandomAccessFile文件对象相当于自动获取此文件的输出流)
+                RandomAccessFile rafProgress = new RandomAccessFile(file, &quot;rwd&quot;);
+                //写入线程进度
+                rafProgress.write((total+&quot;&quot;).getBytes());
+                //关闭临时文件(相当于关闭流)
+                rafProgress.close();
+            }
+            System.out.println(&quot;线程&quot; + threadId + &quot;下载完毕---------------------&quot;);
+
+            //此子线程的下载数据完成了，关闭此子线程临时文件(相当于关闭流)
+            raf.close();
+            //已完成下载的子线程个数+1
+            Demo.finishedThreadCount++;
+            //三个线程全部下载完毕，才去删除文本临时文件
+            synchronized (Demo.address) {
+                if (Demo.finishedThreadCount==3) {
+                    for (int i = 0; i &lt; Demo.threadCount; i++) {
+                        File f = new File(i+&quot;.txt&quot;);
+                        if (f.exists()) {
+                            f.delete();
+                        }
+                    }
+                    Demo.finishedThreadCount=0;
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<hr>
+<p>#四、 带断点续传的多线程下载</p>
+<blockquote>
+<p>从上次下载结束的位置开始，继续下载</p>
+</blockquote>
+<ul>
+<li>记录下载的当前进度，把该进度实时写入一个临时文件</li>
+<li>下一次下载时，读取这个临时文件中的下载进度，也就是上一次下载的进度，从这个进度开始下载</li>
+<li><p>定义一个int变量记录每条线程下载的数据总长度，然后加上该线程的下载开始位置，得到的结果就是下次下载时，该线程的开始位置，把得到的结果存入缓存文件</p>
+<pre><code>//用来记录当前线程总的下载长度
+int total = 0;
+while((len = is.read(b)) != -1){
+    raf.write(b, 0, len);
+    total += len;
+    //每次下载都把新的下载位置写入缓存文本文件
+    RandomAccessFile raf2 = new RandomAccessFile(threadId + &quot;.txt&quot;, &quot;rwd&quot;);
+    raf2.write((startIndex + total + &quot;&quot;).getBytes());
+    raf2.close();
+}
+</code></pre></li>
+<li><p>下次下载开始时，先读取缓存文件中的值，得到的值就是该线程新的开始位置</p>
+<pre><code>FileInputStream fis = new FileInputStream(file);
+BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+String text = br.readLine();
+int newStartIndex = Integer.parseInt(text);
+//把读到的值作为新的开始位置
+startIndex = newStartIndex;
+fis.close();
+</code></pre></li>
+<li><p>三条线程都下载完毕之后，删除缓存文件</p>
+<pre><code>RUNNING_THREAD--;
+if(RUNNING_THREAD == 0){
+    for(int i = 0; i &lt;= 3; i++){
+        File f = new File(i + &quot;.txt&quot;);
+        f.delete();
+    }
+}
+</code></pre></li>
+</ul>
+<hr>
+<p>#手机版的断点续传多线程下载器</p>
+<ul>
+<li>把刚才的代码直接粘贴过来就能用，记得在访问文件时的路径要改成Android的目录，添加访问网络和外部存储的路径</li>
+</ul>
+<p>###手机版的断点续传多线程下载器示例</p>
+<p> public class MainActivity extends Activity {<br>        //定义要下载资源的网址<br>        String address = “<a href="http://192.168.1.105:8080/feiqiu.exe" target="_blank" rel="external">http://192.168.1.105:8080/feiqiu.exe</a>“;<br>        //定义开启的线程的个数<br>        int threadCount = 3;<br>        //定义已完成下载的子线程个数<br>        int finishedThreadCount = 0;<br>        //定义下载文件的总进度<br>        int currentPbProgress;</p>
+<pre><code>    //查找控件
+    private ProgressBar pb;
+    private TextView tv;
+    Handler handler = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            //更新文字显示下载进度
+            tv.setText((long)pb.getProgress()*100/pb.getMax()+&quot;%&quot;);
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //初始化控件
+        pb = (ProgressBar) findViewById(R.id.pb);
+        tv = (TextView) findViewById(R.id.tv);
+    }
+
+    public void click(View v){
+
+        //开启多线程，下载软件
+        Thread t = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    //get发送请求
+                    //1 封装URL
+                    URL url = new URL(address);
+                    //2 获取连接对象
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    //3 设置参数
+                    conn.setRequestMethod(&quot;GET&quot;);
+                    conn.setConnectTimeout(8000);
+                    conn.setReadTimeout(8000);
+                    //4 发送请求(可不写)
+
+                    //5 获取响应码，进行判断
+                    if (conn.getResponseCode()==200) {
+
+                        //拿到要下载的文件的总长度
+                        int length = conn.getContentLength();
+                        //(封装临时文件)在本地自动生成一个临时文件(若存在，则不用生成)(另外封装RandomAccessFile文件对象相当于自动获取此文件的输出流)（文件1）
+                        //第二个参数de作用是:可以立即将读取的数据写入临时文件
+                        //路径是：sd卡
+                        File file = new File(Environment.getExternalStorageDirectory(),_getFileName(address));
+                        RandomAccessFile raf = new RandomAccessFile(file, &quot;rwd&quot;); 
+
+                        //设置临时文件与下载文件大小一致
+                        raf.setLength(length);
+                        //关闭临时文件(就相当于关闭临时文件的输出流)
+                        raf.close();
+
+                        //设置进度条的总进度为目标文件总长
+                        pb.setMax(length);
+
+                        //计算每条线程要下载的长度
+                        int size = length/threadCount;
+                        //计算每条线程的开始位置与结束位置
+                        for (int i = 0; i &lt; threadCount; i++) {
+                            int startIndex = i * size;//开始位置
+                            int endIndex = (i+1)*size-1;//结束位置
+                            if (i==threadCount-1) {
+                                endIndex=length-1;
+                            }
+                            //开启每一条线程
+                            new DownloadThread(startIndex,endIndex,i).start();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };t.start();
+
+    }
+
+    //通过网址，获取文件名
+    String _getFileName(String path){
+        int index = path.lastIndexOf(&quot;/&quot;);
+        return path.substring(index + 1);
+    }
+
+    //自定义线程:用于下载数据
+    class DownloadThread extends Thread{
+        //定义成员变量，某线程开始下载处的角标，结束下载处的角标，线程的id
+        int startIndex;
+        int endIndex;
+        int threadId;
+        //构造函数
+        public DownloadThread(int startIndex, int endIndex, int threadId) {
+            super();
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+            this.threadId = threadId;
+        }
+
+        @Override
+        public void run() {
+            //开启子线程下载目标文件
+            try {
+                //将每个线程记录下载进度的临时文件进行封装（文件2）
+                File fileProgess = new File(Environment.getExternalStorageDirectory(),threadId+&quot;.txt&quot;);
+                //定义每个线程下载的进度lastTotal(初始化为0)
+                int lastTotal=0;
+                //判断每个线程记录下载进度的临时文件是否存在
+                if (fileProgess.exists()) {
+                    //获取输入流
+                    InputStream is = new FileInputStream(fileProgess);
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                    //读取流数据，获取每个线程上一次的下载进度
+                    lastTotal = Integer.parseInt(br.readLine());
+                    //改变下载的开始位置，已经下载过的数据，就不要再去请求了
+                    startIndex += lastTotal;
+                    //关闭流
+                    is.close();
+
+                    //把上一次下载的总进度写入进度条
+                    currentPbProgress += lastTotal;
+                    pb.setProgress(currentPbProgress);
+                    handler.sendEmptyMessage(0);
+                }
+
+                System.out.println(&quot;线程&quot; + threadId + &quot;的最终下载区间为：&quot; + startIndex + &quot;~&quot; + endIndex);
+
+                //GET请求下载数据 封装URl 获取连接对象 设置参数
+                URL url = new URL(address);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod(&quot;GET&quot;);
+                conn.setConnectTimeout(8000);
+                conn.setReadTimeout(8000);
+                //定义请求下载的数据的范围
+                conn.setRequestProperty(&quot;Range&quot;,&quot;bytes=&quot;+startIndex+&quot;-&quot;+endIndex);
+
+                //获取响应状态码，进行判断
+                if (conn.getResponseCode()==206) {
+
+                    //获取服务器返回的流，流里的数据只有startIndex到endIndex区间的数据，并不会包含目标文件所有数据
+                    InputStream is = conn.getInputStream();
+                    //定义一个字节数组，用来存储每次从流里读取的数据
+                    byte[] b = new byte[1024];
+                    //定义一个int变量，用来接收每次从流里读取数据的长度
+                    int len;
+                    //定义每个线程各自的总下载进度（初始化为lastTotal）
+                    int total = lastTotal;
+                    //(封装临时文件)每个子线程都有自己要下载的数据，在本地自动生成一个临时文件(若存在，则不用生成)(另外封装RandomAccessFile文件对象相当于自动获取此文件的输出流)（文件3）
+
+                    File file = new File(Environment.getExternalStorageDirectory(),_getFileName(address));
+                    RandomAccessFile raf = new RandomAccessFile(file, &quot;rwd&quot;); 
+                    //改变往raf中写入数据的开始位置
+                    raf.seek(startIndex);
+
+                    //开始往临时文件写数据
+                    //while循环写入
+                    while ((len=is.read(b))!=-1) {
+
+                        //记录每条线程各自写入的总进度
+                        total+=len;
+
+                        System.out.println(&quot;线程&quot; + threadId + &quot;已下载的字节数为:&quot; + total);
+
+                        //写入
+                        raf.write(b,0,len);
+
+                        //为了完成断点续传，while每次循环,都要将下载的进度，写入一个文本临时文件中
+                        //(封装此记录每条线程总进度的临时文件，)(另外封装RandomAccessFile文件对象相当于自动获取此文件的输出流)（文件4）
+                        RandomAccessFile rafProgress = new RandomAccessFile(fileProgess, &quot;rwd&quot;);
+                        //写入线程进度
+                        rafProgress.write((total+&quot;&quot;).getBytes());
+                        //关闭临时文件(相当于关闭流)
+                        rafProgress.close();
+
+                        currentPbProgress += len;
+                        //所有线程每次下载len个长度的字节，都会写到进度条的总进度中
+                        pb.setProgress(currentPbProgress);
+                        handler.sendEmptyMessage(0);
+                    }
+                    System.out.println(&quot;线程&quot; + threadId + &quot;下载完毕---------------------&quot;);
+
+                    //此子线程的下载数据完成了，关闭此子线程临时文件(相当于关闭流)
+                    raf.close();
+                    //已完成下载的子线程个数+1
+                    finishedThreadCount++;
+                    //三个线程全部下载完毕，才去删除文本临时文件
+                    synchronized (address) {
+                        if (finishedThreadCount==3) {
+                            for (int i = 0; i &lt; threadCount; i++) {
+                                //（文件5）
+                                File f = new File(Environment.getExternalStorageDirectory(), i+&quot;.txt&quot;);
+                                if (f.exists()) {
+                                    f.delete();
+                                }
+                            }
+                            finishedThreadCount=0;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+</code></pre><p>###用进度条显示下载进度</p>
+<ul>
+<li><p>拿到下载文件总长度时，设置进度条的最大值</p>
+<pre><code>//设置进度条的最大值
+pb.setMax(length);
+</code></pre></li>
+<li><p>进度条需要显示三条线程的整体下载进度，所以三条线程每下载一次，就要把新下载的长度加入进度条</p>
+<ul>
+<li><p>定义一个int全局变量，记录三条线程的总下载长度</p>
+<pre><code>int progress;
+</code></pre></li>
+<li><p>刷新进度条</p>
+<pre><code>while((len = is.read(b)) != -1){
+    raf.write(b, 0, len);
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>//把当前线程本次下载的长度加到进度条里
+progress += len;
+pb.setProgress(progress);
+</code></pre><ul>
+<li><p>每次断点下载时，从新的开始位置开始下载，进度条也要从新的位置开始显示，在读取缓存文件获取新的下载开始位置时，也要处理进度条进度</p>
+<pre><code>FileInputStream fis = new FileInputStream(file);
+BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+String text = br.readLine();
+int newStartIndex = Integer.parseInt(text);
+
+//新开始位置减去原本的开始位置，得到已经下载的数据长度
+int alreadyDownload = newStartIndex - startIndex;
+//把已经下载的长度设置入进度条
+progress += alreadyDownload;
+</code></pre><p>###添加文本框显示百分比进度</p>
+<pre><code>tv.setText(progress * 100 / pb.getMax() + &quot;%&quot;);
+</code></pre></li>
+</ul>
+<hr>
+<p>#HttpUtils框架的使用</p>
+<blockquote>
+<p>HttpUtils本身就支持多线程断点续传，使用起来非常的方便</p>
+</blockquote>
+<ul>
+<li><p>创建HttpUtils对象</p>
+<pre><code>HttpUtils http = new HttpUtils();
+</code></pre></li>
+<li><p>下载文件</p>
+<pre><code>http.download(url, //下载请求的网址
+        target, //下载的数据保存路径和文件名
+        true, //是否开启断点续传
+        true, //如果服务器响应头中包含了文件名，那么下载完毕后自动重命名
+        new RequestCallBack&lt;File&gt;() {//侦听下载状态
+
+    //下载成功此方法调用
+    @Override
+    public void onSuccess(ResponseInfo&lt;File&gt; arg0) {
+        tv.setText(&quot;下载成功&quot; + arg0.result.getPath());
+    }
+
+    //下载失败此方法调用，比如文件已经下载、没有网络权限、文件访问不到，方法传入一个字符串参数告知失败原因
+    @Override
+    public void onFailure(HttpException arg0, String arg1) {
+        tv.setText(&quot;下载失败&quot; + arg1);
+    }
+
+    //在下载过程中不断的调用，用于刷新进度条
+    @Override
+    public void onLoading(long total, long current, boolean isUploading) {
+        super.onLoading(total, current, isUploading);
+        //设置进度条总长度
+        pb.setMax((int) total);
+        //设置进度条当前进度
+        pb.setProgress((int) current);
+        tv_progress.setText(current * 100 / total + &quot;%&quot;);
+    }
+});
+</code></pre></li>
+</ul>
+<p>###关联源码 在Android private libraries下的jar，不能通过点击按钮直接关联</p>
+<ul>
+<li>1.在libs下创建一个FIle，名字为jar包名.jar.propertise(如：xUtils-2.6.14.jar.properties)</li>
+<li>2.在.properties中写入 src=源码路径(如 src=D:\android\android58\02Android\\Androidsrc\xUtils-master\xUtils-master\library\src)不允许中文</li>
+<li>3.重启eclipse</li>
+</ul>
+<p>###HttpUtils框架的使用示例</p>
+<pre><code>public class MainActivity extends Activity {
+
+    //定义要下载资源的网址
+    String address = &quot;http://192.168.1.105:8080/feiqiu.exe&quot;;
+
+    //查找控件
+    private ProgressBar pb;
+    private TextView tv_progress;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //初始化控件
+                pb = (ProgressBar) findViewById(R.id.pb);
+                tv_progress = (TextView) findViewById(R.id.tv_progress);
+    }
+
+    //点击事件 使用xUtils框架完成下载
+    public void click(View v){
+        //创建xUtils框架对象
+        HttpUtils utils = new HttpUtils();
+        //调用方法实现下载 参数1-4： 1网址  2指定路径和文件名 开启断点续传 3如果响应头中有文件名，就使用响应头的文件名 4响应回调对象
+        utils.download(address, &quot;/sdcard/feiqiu.exe&quot;, true, true, new RequestCallBack&lt;File&gt;() {
+
+            //下载完成后调用
+            @Override
+            public void onSuccess(ResponseInfo&lt;File&gt; responseInfo) {
+                //吐司 /sdcard/feiqiu.exe
+                Toast.makeText(MainActivity.this, responseInfo.result.getPath(), 0).show();
+            }
+
+            //下载失败时调用
+            @Override
+            public void onFailure(HttpException error, String msg) {
+                TextView tv_error = (TextView) findViewById(R.id.tv_error);
+                tv_error.setText(msg);
+            }
+
+            //下载过程中不断调用
+            @Override
+            public void onLoading(long total, long current, boolean isUploading) {
+                super.onLoading(total, current, isUploading);
+
+                pb.setMax((int) total);
+                pb.setProgress((int) current);
+                tv_progress.setText(current*100/total+&quot;%&quot;);
+            }
+        });
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android基础/" rel="tag"># Android基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/13/基础--网络编程/" rel="next" title="Android基础--网络编程">
+                <i class="fa fa-chevron-left"></i> Android基础--网络编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/13/基础--Activity&页面跳转&数据传递/" rel="prev" title="Android基础--Activity&页面跳转&数据传递">
+                Android基础--Activity&页面跳转&数据传递 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/13/基础--多线程断点续传下载/"
+           data-title="Android基础--多线程断点续传下载" data-url="http://yoursite.com/2017/02/13/基础--多线程断点续传下载/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、HttpClient"><span class="nav-number"></span> <span class="nav-text">一、HttpClient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-发送get请求"><span class="nav-number"></span> <span class="nav-text">1.1 发送get请求</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yassblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
