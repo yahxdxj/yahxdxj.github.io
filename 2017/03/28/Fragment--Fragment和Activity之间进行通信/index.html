@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/28/Fragment--Fragment和Activity之间进行通信/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="Fragment和Activity之间进行通信">
-<meta property="og:updated_time" content="2017-03-28T05:04:52.000Z">
+<meta property="og:updated_time" content="2017-03-28T05:06:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fragment和Activity之间进行通信">
 <meta name="twitter:description" content="Fragment和Activity之间进行通信">
@@ -333,7 +333,8 @@
 <p>你可以看出，Fragment和Activity都是各自存在于一个独立的类当中的，它们之间并没有那么明显的方式来直接进行通信。  </p>
 <p>如果想要在Activity中调用Fragment里的方法，或者在Fragment中调用Activity里的方法，应该如何实现呢？   </p>
 <p>为了方便Fragment和Activity之间进行通信， FragmentManager 提供了一个类似于 findViewById()的方法，专门用于从布局文件中获取Fragment的实例，<br>代码如下所示：  </p>
-<pre><code class="java">RightFragment rightFragment = (RightFragment) getFragmentManager().findFragmentById(R.id.right_fragment);
+<pre><code class="java">RightFragment rightFragment = 
+            (RightFragment)getFragmentManager().findFragmentById(R.id.right_fragment);
 </code></pre>
 <p>调用 FragmentManager 的 findFragmentById()方法，可以在Activity中得到相应Fragment的实例，然后就能轻松地调用Fragment里的方法了。   </p>
 <p>掌握了如何在Activity中调用Fragment里的方法，那在Fragment中又该怎样调用Activity里的方法呢？<br>其实这就更简单了，在每个Fragment中都可以通过调用 getActivity()方法来得到和当前Fragment相关联的Activity实例，<br>代码如下所示：  </p>
