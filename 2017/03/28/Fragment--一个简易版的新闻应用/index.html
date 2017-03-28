@@ -1,0 +1,979 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Fragment," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一个简易版的新闻应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简易版的新闻应用">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/Fragment--一个简易版的新闻应用/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="一个简易版的新闻应用">
+<meta property="og:updated_time" content="2017-03-28T09:19:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个简易版的新闻应用">
+<meta name="twitter:description" content="一个简易版的新闻应用">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/Fragment--一个简易版的新闻应用/"/>
+
+
+
+
+
+  <title> 一个简易版的新闻应用 | 个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Fragment--一个简易版的新闻应用/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一个简易版的新闻应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T16:52:32+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/28/Fragment--一个简易版的新闻应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/28/Fragment--一个简易版的新闻应用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>一个简易版的新闻应用  </p>
+</blockquote>
+<a id="more"></a>  
+<h4 id="第一步我们要先准备好一个新闻的实体类，新建类-News"><a href="#第一步我们要先准备好一个新闻的实体类，新建类-News" class="headerlink" title="第一步我们要先准备好一个新闻的实体类，新建类 News ."></a>第一步我们要先准备好一个新闻的实体类，新建类 News .</h4><pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">News</span> </span>{
+    <span class="keyword">private</span> String title;<span class="comment">// 新闻标题</span>
+    <span class="keyword">private</span> String content;<span class="comment">// 新闻内容</span>
+
+    <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> title;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTitle</span><span class="params">(String title)</span> </span>{
+        <span class="keyword">this</span>.title = title;
+    }
+
+    <span class="function"><span class="keyword">public</span> String <span class="title">getContent</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> content;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContent</span><span class="params">(String content)</span> </span>{
+        <span class="keyword">this</span>.content = content;
+    }
+}
+</code></pre>
+<h4 id="新建一个-news-item-xml-布局，用于作为新闻列表中子项的布局"><a href="#新建一个-news-item-xml-布局，用于作为新闻列表中子项的布局" class="headerlink" title="新建一个 news_item.xml 布局，用于作为新闻列表中子项的布局"></a>新建一个 news_item.xml 布局，用于作为新闻列表中子项的布局</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot; &gt;
+
+    &lt;!-- 新闻标题 --&gt;
+    &lt;TextView
+        android:id=&quot;@+id/news_title&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:ellipsize=&quot;end&quot;
+        android:paddingBottom=&quot;15dp&quot;
+        android:paddingLeft=&quot;10dp&quot;
+        android:paddingRight=&quot;10dp&quot;
+        android:paddingTop=&quot;15dp&quot;
+        android:singleLine=&quot;true&quot;
+        android:textSize=&quot;18sp&quot; /&gt;
+
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="创建新闻列表的适配器，让这个适配器继承自-ArrayAdapter，并将泛型指定为-News-类。-新建类-NewsAdapter"><a href="#创建新闻列表的适配器，让这个适配器继承自-ArrayAdapter，并将泛型指定为-News-类。-新建类-NewsAdapter" class="headerlink" title="创建新闻列表的适配器，让这个适配器继承自 ArrayAdapter，并将泛型指定为 News 类。 新建类 NewsAdapter."></a>创建新闻列表的适配器，让这个适配器继承自 ArrayAdapter，并将泛型指定为 News 类。 新建类 NewsAdapter.</h4><pre><code class="java"><span class="keyword">import</span> java.util.List;
+<span class="keyword">import</span> android.content.Context;
+<span class="keyword">import</span> android.view.LayoutInflater;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.view.ViewGroup;
+<span class="keyword">import</span> android.widget.ArrayAdapter;
+<span class="keyword">import</span> android.widget.TextView;
+
+<span class="keyword">import</span> com.yassblog.R;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsAdapter</span> <span class="keyword">extends</span> <span class="title">ArrayAdapter</span>&lt;<span class="title">News</span>&gt; </span>{
+    <span class="keyword">private</span> <span class="keyword">int</span> resourceId;
+
+    <span class="function"><span class="keyword">public</span> <span class="title">NewsAdapter</span><span class="params">(Context context, <span class="keyword">int</span> textViewResourceId, List&lt;News&gt; objects)</span> </span>{
+        <span class="keyword">super</span>(context, textViewResourceId, objects);
+        resourceId = textViewResourceId;
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>{
+        News news = getItem(position);
+        View view;
+        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) {
+            view = LayoutInflater.from(getContext()).inflate(resourceId, <span class="keyword">null</span>);
+        } <span class="keyword">else</span> {
+            view = convertView;
+        }
+        TextView newsTitleText = (TextView) view.findViewById(R.id.news_title);
+        newsTitleText.setText(news.getTitle());
+        <span class="keyword">return</span> view;
+    }
+}
+</code></pre>
+<h4 id="新建新闻内容布局文件-news-content-frag-xml"><a href="#新建新闻内容布局文件-news-content-frag-xml" class="headerlink" title="新建新闻内容布局文件 news_content_frag.xml"></a>新建新闻内容布局文件 news_content_frag.xml</h4><pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+
+    &lt;LinearLayout
+        android:id=&quot;@+id/visibility_layout&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:orientation=&quot;vertical&quot;
+        android:visibility=&quot;invisible&quot; &gt;
+
+        &lt;!-- 新闻标题 --&gt;
+        &lt;TextView
+            android:id=&quot;@+id/news_title&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:gravity=&quot;center&quot;
+            android:padding=&quot;10dp&quot;
+            android:textSize=&quot;20sp&quot; /&gt;
+
+        &lt;View
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;1dp&quot; /&gt;
+
+        &lt;!-- 新闻内容 --&gt;
+        &lt;TextView
+            android:id=&quot;@+id/news_content&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;0dp&quot;
+            android:layout_weight=&quot;1&quot;
+            android:padding=&quot;15dp&quot;
+            android:textSize=&quot;18sp&quot; /&gt;
+    &lt;/LinearLayout&gt;
+
+    &lt;View
+        android:layout_width=&quot;1dp&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_alignParentLeft=&quot;true&quot; /&gt;
+
+&lt;/RelativeLayout&gt;  
+</code></pre><h4 id="新建一个-NewsContentFragment-类，继承自-Fragment"><a href="#新建一个-NewsContentFragment-类，继承自-Fragment" class="headerlink" title="新建一个 NewsContentFragment 类，继承自 Fragment ."></a>新建一个 NewsContentFragment 类，继承自 Fragment .</h4><pre><code class="java"><span class="keyword">import</span> android.app.Fragment;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.view.LayoutInflater;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.view.ViewGroup;
+<span class="keyword">import</span> android.widget.TextView;
+
+<span class="keyword">import</span> com.yassblog.R;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsContentFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{
+    <span class="keyword">private</span> View view;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>{
+        view = inflater.inflate(R.layout.news_content_frag, container, <span class="keyword">false</span>);
+        <span class="keyword">return</span> view;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">refresh</span><span class="params">(String newsTitle, String newsContent)</span> </span>{
+        View visibilityLayout = view.findViewById(R.id.visibility_layout);
+        visibilityLayout.setVisibility(View.VISIBLE);
+        TextView newsTitleText = (TextView) view.findViewById(R.id.news_title);
+        TextView newsContentText = (TextView) view.findViewById(R.id.news_content);
+        newsTitleText.setText(newsTitle); <span class="comment">// 刷新新闻的标题</span>
+        newsContentText.setText(newsContent); <span class="comment">// 刷新新闻的内容</span>
+    }
+}
+</code></pre>
+<h4 id="创建一个在活动中使用的新闻内容布局，新建-news-content-xml"><a href="#创建一个在活动中使用的新闻内容布局，新建-news-content-xml" class="headerlink" title="创建一个在活动中使用的新闻内容布局，新建 news_content.xml ."></a>创建一个在活动中使用的新闻内容布局，新建 news_content.xml .</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot; &gt;
+
+    &lt;fragment
+        android:id=&quot;@+id/news_content_fragment&quot;
+        android:name=&quot;com.yassblog.news.NewsContentFragment&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; /&gt;
+
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="新建-NewsContentActivity，作为显示新闻内容的活动"><a href="#新建-NewsContentActivity，作为显示新闻内容的活动" class="headerlink" title="新建 NewsContentActivity，作为显示新闻内容的活动"></a>新建 NewsContentActivity，作为显示新闻内容的活动</h4><pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.content.Context;
+<span class="keyword">import</span> android.content.Intent;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.view.Window;
+
+<span class="keyword">import</span> com.yassblog.R;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsContentActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">actionStart</span><span class="params">(Context context, String newsTitle, String newsContent)</span> </span>{
+        Intent intent = <span class="keyword">new</span> Intent(context, NewsContentActivity.class);
+        intent.putExtra(<span class="string">"news_title"</span>, newsTitle);
+        intent.putExtra(<span class="string">"news_content"</span>, newsContent);
+        context.startActivity(intent);
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.news_content);
+        String newsTitle = getIntent().getStringExtra(<span class="string">"news_title"</span>);
+        <span class="comment">// 获取传入的新闻标题</span>
+        String newsContent = getIntent().getStringExtra(<span class="string">"news_content"</span>);
+        <span class="comment">// 获取传入的新闻内容</span>
+        NewsContentFragment newsContentFragment = (NewsContentFragment) getFragmentManager()
+                .findFragmentById(R.id.news_content_fragment);
+        newsContentFragment.refresh(newsTitle, newsContent);
+        <span class="comment">// 刷新NewsContentFragment界面</span>
+    }
+}
+</code></pre>
+<h4 id="创建一个用于显示新闻列表的布局，新建-news-title-frag-xml"><a href="#创建一个用于显示新闻列表的布局，新建-news-title-frag-xml" class="headerlink" title="创建一个用于显示新闻列表的布局，新建 news_title_frag.xml ."></a>创建一个用于显示新闻列表的布局，新建 news_title_frag.xml .</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot; &gt;
+
+    &lt;ListView
+        android:id=&quot;@+id/news_title_list_view&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; &gt;
+    &lt;/ListView&gt;
+
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="创建一个碎片来加载这个-ListView-布局。新建一个-NewsTitleFragment-类，继承自-Fragment"><a href="#创建一个碎片来加载这个-ListView-布局。新建一个-NewsTitleFragment-类，继承自-Fragment" class="headerlink" title="创建一个碎片来加载这个 ListView 布局。新建一个 NewsTitleFragment 类，继承自 Fragment ."></a>创建一个碎片来加载这个 ListView 布局。新建一个 NewsTitleFragment 类，继承自 Fragment .</h4><pre><code class="java"><span class="keyword">import</span> java.util.ArrayList;
+<span class="keyword">import</span> java.util.List;
+
+<span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.app.Fragment;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.view.LayoutInflater;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.view.ViewGroup;
+<span class="keyword">import</span> android.widget.AdapterView;
+<span class="keyword">import</span> android.widget.AdapterView.OnItemClickListener;
+<span class="keyword">import</span> android.widget.ListView;
+
+<span class="keyword">import</span> com.yassblog.R;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsTitleFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> <span class="keyword">implements</span> <span class="title">OnItemClickListener</span> </span>{
+    <span class="keyword">private</span> ListView newsTitleListView;
+    <span class="keyword">private</span> List&lt;News&gt; newsList;
+    <span class="keyword">private</span> NewsAdapter adapter;
+    <span class="keyword">private</span> <span class="keyword">boolean</span> isTwoPane;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttach</span><span class="params">(Activity activity)</span> </span>{
+        <span class="keyword">super</span>.onAttach(activity);
+        newsList = getNews(); <span class="comment">// 初始化新闻数据</span>
+        adapter = <span class="keyword">new</span> NewsAdapter(activity, R.layout.news_item, newsList);
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>{
+        View view = inflater.inflate(R.layout.news_title_frag, container, <span class="keyword">false</span>);
+        newsTitleListView = (ListView) view.findViewById(R.id.news_title_list_view);
+        newsTitleListView.setAdapter(adapter);
+        newsTitleListView.setOnItemClickListener(<span class="keyword">this</span>);
+        <span class="keyword">return</span> view;
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityCreated</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onActivityCreated(savedInstanceState);
+        <span class="keyword">if</span> (getActivity().findViewById(R.id.news_content_layout) != <span class="keyword">null</span>) {
+            isTwoPane = <span class="keyword">true</span>; <span class="comment">// 可以找到news_content_layout布局时，为双页模式</span>
+        } <span class="keyword">else</span> {
+            isTwoPane = <span class="keyword">false</span>; <span class="comment">// 找不到news_content_layout布局时，为单页模式</span>
+        }
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>{
+        News news = newsList.get(position);
+        <span class="keyword">if</span> (isTwoPane) {
+            <span class="comment">// 如果是双页模式，则刷新NewsContentFragment中的内容</span>
+            NewsContentFragment newsContentFragment = (NewsContentFragment) getFragmentManager().findFragmentById(R.id.news_content_fragment);
+            newsContentFragment.refresh(news.getTitle(), news.getContent());
+        } <span class="keyword">else</span> {
+            <span class="comment">// 如果是单页模式，则直接启动NewsContentActivity</span>
+            NewsContentActivity.actionStart(getActivity(), news.getTitle(), news.getContent());
+        }
+    }
+
+    <span class="function"><span class="keyword">private</span> List&lt;News&gt; <span class="title">getNews</span><span class="params">()</span> </span>{
+        List&lt;News&gt; newsList = <span class="keyword">new</span> ArrayList&lt;News&gt;();
+        News news1 = <span class="keyword">new</span> News();
+        news1.setTitle(<span class="string">"Succeed in College as a Learning Disabled Student"</span>);
+        news1.setContent(<span class="string">"College freshmen will soon learn to live with a roommate, adjust to a new social scene and survive less-than-stellar dining hall food. Students with learning disabilities will face these transitions while also grappling with a few more hurdles."</span>);
+        newsList.add(news1);
+        News news2 = <span class="keyword">new</span> News();
+        news2.setTitle(<span class="string">"Google Android exec poached by China's Xiaomi"</span>);
+        news2.setContent(<span class="string">"China's Xiaomi has poached a key Google executive involved in the tech giant's Android phones, in a move seen as a coup for the rapidly growing Chinese smartphone maker."</span>);
+        newsList.add(news2);
+        <span class="keyword">return</span> newsList;
+    }
+}
+</code></pre>
+<h4 id="修改-activity-main-xml-中的代码"><a href="#修改-activity-main-xml-中的代码" class="headerlink" title="修改 activity_main.xml 中的代码"></a>修改 activity_main.xml 中的代码</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+
+    &lt;fragment
+        android:id=&quot;@+id/news_title_fragment&quot;
+        android:name=&quot;com.yassblog.news.NewsTitleFragment&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; /&gt;
+
+&lt;/LinearLayout&gt;   
+</code></pre><h4 id="然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-activity-main-xml-文件"><a href="#然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-activity-main-xml-文件" class="headerlink" title="然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 activity_main.xml 文件."></a>然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 activity_main.xml 文件.</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+
+    &lt;fragment
+        android:id=&quot;@+id/news_title_fragment&quot;
+        android:name=&quot;com.yassblog.news.NewsTitleFragment&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_weight=&quot;1&quot; /&gt;
+
+    &lt;FrameLayout
+        android:id=&quot;@+id/news_content_layout&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_weight=&quot;3&quot; &gt;
+
+        &lt;fragment
+            android:id=&quot;@+id/news_content_fragment&quot;
+            android:name=&quot;com.yassblog.news.NewsContentFragment&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;match_parent&quot; /&gt;
+    &lt;/FrameLayout&gt;
+
+&lt;/LinearLayout&gt;    
+</code></pre><h4 id="最后再将-MainActivity-稍作修改，把标题栏去除掉"><a href="#最后再将-MainActivity-稍作修改，把标题栏去除掉" class="headerlink" title="最后再将 MainActivity 稍作修改，把标题栏去除掉"></a>最后再将 MainActivity 稍作修改，把标题栏去除掉</h4><pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.view.Window;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main);
+    }
+}
+</code></pre>
+<h4 id="运行一下吧-同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果"><a href="#运行一下吧-同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果" class="headerlink" title="运行一下吧, 同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果."></a>运行一下吧, 同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果.</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Fragment/" rel="tag"># Fragment</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/UI布局--Layout布局使用最小宽度限定符/" rel="next" title="Layout布局使用最小宽度限定符">
+                <i class="fa fa-chevron-left"></i> Layout布局使用最小宽度限定符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/28/Fragment--一个简易版的新闻应用/"
+           data-title="一个简易版的新闻应用" data-url="http://yoursite.com/2017/03/28/Fragment--一个简易版的新闻应用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
+               alt="yass" />
+          <p class="site-author-name" itemprop="name">yass</p>
+          <p class="site-description motion-element" itemprop="description">人艰不拆</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步我们要先准备好一个新闻的实体类，新建类-News"><span class="nav-number">1.</span> <span class="nav-text">第一步我们要先准备好一个新闻的实体类，新建类 News .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个-news-item-xml-布局，用于作为新闻列表中子项的布局"><span class="nav-number">2.</span> <span class="nav-text">新建一个 news_item.xml 布局，用于作为新闻列表中子项的布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建新闻列表的适配器，让这个适配器继承自-ArrayAdapter，并将泛型指定为-News-类。-新建类-NewsAdapter"><span class="nav-number">3.</span> <span class="nav-text">创建新闻列表的适配器，让这个适配器继承自 ArrayAdapter，并将泛型指定为 News 类。 新建类 NewsAdapter.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建新闻内容布局文件-news-content-frag-xml"><span class="nav-number">4.</span> <span class="nav-text">新建新闻内容布局文件 news_content_frag.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个-NewsContentFragment-类，继承自-Fragment"><span class="nav-number">5.</span> <span class="nav-text">新建一个 NewsContentFragment 类，继承自 Fragment .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个在活动中使用的新闻内容布局，新建-news-content-xml"><span class="nav-number">6.</span> <span class="nav-text">创建一个在活动中使用的新闻内容布局，新建 news_content.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建-NewsContentActivity，作为显示新闻内容的活动"><span class="nav-number">7.</span> <span class="nav-text">新建 NewsContentActivity，作为显示新闻内容的活动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个用于显示新闻列表的布局，新建-news-title-frag-xml"><span class="nav-number">8.</span> <span class="nav-text">创建一个用于显示新闻列表的布局，新建 news_title_frag.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个碎片来加载这个-ListView-布局。新建一个-NewsTitleFragment-类，继承自-Fragment"><span class="nav-number">9.</span> <span class="nav-text">创建一个碎片来加载这个 ListView 布局。新建一个 NewsTitleFragment 类，继承自 Fragment .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-activity-main-xml-中的代码"><span class="nav-number">10.</span> <span class="nav-text">修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-activity-main-xml-文件"><span class="nav-number">11.</span> <span class="nav-text">然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 activity_main.xml 文件.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后再将-MainActivity-稍作修改，把标题栏去除掉"><span class="nav-number">12.</span> <span class="nav-text">最后再将 MainActivity 稍作修改，把标题栏去除掉</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行一下吧-同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果"><span class="nav-number">13.</span> <span class="nav-text">运行一下吧, 同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yass</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yassblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
