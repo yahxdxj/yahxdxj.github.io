@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="UI控件," />
+  <meta name="keywords" content="Fragment," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="ListView 的简单用法">
+<meta name="description" content="Fragment的简单用法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ListView 的简单用法">
-<meta property="og:url" content="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/index.html">
+<meta property="og:title" content="Fragment的简单用法">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/Fragment--Fragment的简单用法/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="ListView 的简单用法">
-<meta property="og:updated_time" content="2017-03-27T07:42:54.000Z">
+<meta property="og:description" content="Fragment的简单用法">
+<meta property="og:updated_time" content="2017-03-28T02:27:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ListView 的简单用法">
-<meta name="twitter:description" content="ListView 的简单用法">
+<meta name="twitter:title" content="Fragment的简单用法">
+<meta name="twitter:description" content="Fragment的简单用法">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/Fragment--Fragment的简单用法/"/>
 
 
 
 
 
-  <title> ListView 的简单用法 | 个人博客 </title>
+  <title> Fragment的简单用法 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Fragment--Fragment的简单用法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                ListView 的简单用法
+                Fragment的简单用法
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T15:38:08+08:00">
-                2017-03-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T09:59:28+08:00">
+                2017-03-28
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/27/UI布局--ListView的简单用法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/UI布局--ListView的简单用法/" itemprop="commentCount"></span>
+                <a href="/2017/03/28/Fragment--Fragment的简单用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/28/Fragment--Fragment的简单用法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,42 +326,89 @@
 
       
         <blockquote>
-<p>ListView 的简单用法  </p>
+<p>Fragment的简单用法  </p>
 </blockquote>
 <a id="more"></a>  
-<h4 id="1-修改-activity-main-xml-中的代码"><a href="#1-修改-activity-main-xml-中的代码" class="headerlink" title="1 修改 activity_main.xml 中的代码"></a>1 修改 activity_main.xml 中的代码</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+<h3 id="实现-在一个Activity中添加两个Fragment，并让这两个Fragment平分Activity页面"><a href="#实现-在一个Activity中添加两个Fragment，并让这两个Fragment平分Activity页面" class="headerlink" title="实现: 在一个Activity中添加两个Fragment，并让这两个Fragment平分Activity页面."></a>实现: 在一个Activity中添加两个Fragment，并让这两个Fragment平分Activity页面.</h3><h4 id="1-新建一个左侧Fragment布局-left-fragment-xml"><a href="#1-新建一个左侧Fragment布局-left-fragment-xml" class="headerlink" title="1 新建一个左侧Fragment布局 left_fragment.xml."></a>1 新建一个左侧Fragment布局 left_fragment.xml.</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
     android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; &gt;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot; &gt;
 
-    &lt;ListView
-        android:id=&quot;@+id/list_view&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot; &gt;
-    &lt;/ListView&gt;
+    &lt;Button
+        android:id=&quot;@+id/button&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_gravity=&quot;center_horizontal&quot;
+        android:text=&quot;Button&quot; /&gt;
 
-&lt;/LinearLayout&gt;
-</code></pre><h4 id="2-修改-MainActivity-中的代码"><a href="#2-修改-MainActivity-中的代码" class="headerlink" title="2 修改 MainActivity 中的代码"></a>2 修改 MainActivity 中的代码</h4><pre><code class="java"><span class="keyword">package</span> com.yassblog;
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="2-然后新建右侧Fragment布局-right-fragment-xml"><a href="#2-然后新建右侧Fragment布局-right-fragment-xml" class="headerlink" title="2 然后新建右侧Fragment布局 right_fragment.xml."></a>2 然后新建右侧Fragment布局 right_fragment.xml.</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;#00ff00&quot;
+    android:orientation=&quot;vertical&quot; &gt;
 
-<span class="keyword">import</span> android.app.Activity;
+    &lt;TextView
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_gravity=&quot;center_horizontal&quot;
+        android:text=&quot;This is right fragment&quot;
+        android:textSize=&quot;20sp&quot; /&gt;
+
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="3-新建一个-LeftFragment-类，继承自-Fragment"><a href="#3-新建一个-LeftFragment-类，继承自-Fragment" class="headerlink" title="3 新建一个 LeftFragment 类，继承自 Fragment"></a>3 新建一个 LeftFragment 类，继承自 Fragment</h4><pre><code class="java"><span class="keyword">import</span> android.app.Fragment;
 <span class="keyword">import</span> android.os.Bundle;
-<span class="keyword">import</span> android.widget.ArrayAdapter;
-<span class="keyword">import</span> android.widget.ListView;
+<span class="keyword">import</span> android.view.LayoutInflater;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.view.ViewGroup;
 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
-    <span class="keyword">private</span> String[] data = { <span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Watermelon"</span>, <span class="string">"Pear"</span>, 
-            <span class="string">"Grape"</span>, <span class="string">"Pineapple"</span>, <span class="string">"Strawberry"</span>, <span class="string">"Cherry"</span>, <span class="string">"Mango"</span> };
-
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeftFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{
     <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
-        <span class="keyword">super</span>.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ArrayAdapter&lt;String&gt; adapter = <span class="keyword">new</span> ArrayAdapter&lt;String&gt;(MainActivity.<span class="keyword">this</span>, 
-                android.R.layout.simple_list_item_1, data);
-        ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(adapter);
+    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, 
+            ViewGroup container, Bundle savedInstanceState)</span> </span>{
+        View view = inflater.inflate(R.layout.left_fragment, container, <span class="keyword">false</span>);
+        <span class="keyword">return</span> view;
     }
 }
 </code></pre>
+<h4 id="4-用同样的方法再新建一个-RightFragment"><a href="#4-用同样的方法再新建一个-RightFragment" class="headerlink" title="4 用同样的方法再新建一个 RightFragment"></a>4 用同样的方法再新建一个 RightFragment</h4><pre><code class="java"><span class="keyword">import</span> android.app.Fragment;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.view.LayoutInflater;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.view.ViewGroup;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RightFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>{
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, 
+            ViewGroup container, Bundle savedInstanceState)</span> </span>{
+        View view = inflater.inflate(R.layout.right_fragment, container, <span class="keyword">false</span>);
+        <span class="keyword">return</span> view;
+    }
+}
+</code></pre>
+<h4 id="5-修改activity-main-xml"><a href="#5-修改activity-main-xml" class="headerlink" title="5 修改activity_main.xml"></a>5 修改activity_main.xml</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+
+    &lt;fragment
+        android:id=&quot;@+id/left_fragment&quot;
+        android:name=&quot;com.yassblog.LeftFragment&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_weight=&quot;1&quot; /&gt;
+
+    &lt;fragment
+        android:id=&quot;@+id/right_fragment&quot;
+        android:name=&quot;com.yassblog.RightFragment&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_weight=&quot;1&quot; /&gt;
+
+&lt;/LinearLayout&gt;   
+</code></pre><h4 id="6-启动项目-就会看到MainActivity被分成两个Fragment了"><a href="#6-启动项目-就会看到MainActivity被分成两个Fragment了" class="headerlink" title="6 启动项目,就会看到MainActivity被分成两个Fragment了"></a>6 启动项目,就会看到MainActivity被分成两个Fragment了</h4><h4 id="7-注意事项"><a href="#7-注意事项" class="headerlink" title="7 注意事项"></a>7 注意事项</h4><ol>
+<li>activity_main.xml中的<code>&lt;fragment&gt;</code>标签,需要通过 android:name 属性来显式指明要添加的Fragment类名，注意一定要将类的包名也加上.  </li>
+<li>新建 LeftFragment 类时,导Fragment包时会有两个选择, android.app.Fragment是面向 Android 4.0 以上系统的, 另一个包下的 Fragment 主要是用于兼容低版本的 Android 系统.  </li>
+</ol>
 
       
     </div>
@@ -385,7 +432,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/UI控件/" rel="tag"># UI控件</a>
+            <a href="/tags/Fragment/" rel="tag"># Fragment</a>
           
         </div>
       
@@ -394,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/27/UI布局--拼凑自定义控件/" rel="next" title="拼凑自定义控件">
-                <i class="fa fa-chevron-left"></i> 拼凑自定义控件
+              <a href="/2017/03/27/UI布局--ListView的中级使用/" rel="next" title="ListView的中级使用">
+                <i class="fa fa-chevron-left"></i> ListView的中级使用
               </a>
             
           </div>
@@ -403,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/27/UI布局--ListView的中级使用/" rel="prev" title="ListView的中级使用">
-                ListView的中级使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,8 +475,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/27/UI布局--ListView的简单用法/"
-           data-title="ListView 的简单用法" data-url="http://yoursite.com/2017/03/27/UI布局--ListView的简单用法/">
+      <div class="ds-thread" data-thread-key="2017/03/28/Fragment--Fragment的简单用法/"
+           data-title="Fragment的简单用法" data-url="http://yoursite.com/2017/03/28/Fragment--Fragment的简单用法/">
       </div>
     
   </div>
@@ -526,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-activity-main-xml-中的代码"><span class="nav-number">1.</span> <span class="nav-text">1 修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改-MainActivity-中的代码"><span class="nav-number">2.</span> <span class="nav-text">2 修改 MainActivity 中的代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-在一个Activity中添加两个Fragment，并让这两个Fragment平分Activity页面"><span class="nav-number">1.</span> <span class="nav-text">实现: 在一个Activity中添加两个Fragment，并让这两个Fragment平分Activity页面.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个左侧Fragment布局-left-fragment-xml"><span class="nav-number">1.1.</span> <span class="nav-text">1 新建一个左侧Fragment布局 left_fragment.xml.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-然后新建右侧Fragment布局-right-fragment-xml"><span class="nav-number">1.2.</span> <span class="nav-text">2 然后新建右侧Fragment布局 right_fragment.xml.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-新建一个-LeftFragment-类，继承自-Fragment"><span class="nav-number">1.3.</span> <span class="nav-text">3 新建一个 LeftFragment 类，继承自 Fragment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-用同样的方法再新建一个-RightFragment"><span class="nav-number">1.4.</span> <span class="nav-text">4 用同样的方法再新建一个 RightFragment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-修改activity-main-xml"><span class="nav-number">1.5.</span> <span class="nav-text">5 修改activity_main.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-启动项目-就会看到MainActivity被分成两个Fragment了"><span class="nav-number">1.6.</span> <span class="nav-text">6 启动项目,就会看到MainActivity被分成两个Fragment了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-注意事项"><span class="nav-number">1.7.</span> <span class="nav-text">7 注意事项</span></a></li></ol></li></ol></div>
             
 
           </div>
