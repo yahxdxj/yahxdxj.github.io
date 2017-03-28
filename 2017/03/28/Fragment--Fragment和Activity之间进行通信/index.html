@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Fragment," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="人艰不拆">
-<meta property="og:type" content="website">
-<meta property="og:title" content="个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/构建基类/index.html">
+<meta name="description" content="Fragment和Activity之间进行通信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fragment和Activity之间进行通信">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/Fragment--Fragment和Activity之间进行通信/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="人艰不拆">
+<meta property="og:description" content="Fragment和Activity之间进行通信">
+<meta property="og:updated_time" content="2017-03-28T03:39:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="个人博客">
-<meta name="twitter:description" content="人艰不拆">
+<meta name="twitter:title" content="Fragment和Activity之间进行通信">
+<meta name="twitter:description" content="Fragment和Activity之间进行通信">
 
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/构建基类/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/Fragment--Fragment和Activity之间进行通信/"/>
 
 
 
 
 
-  <title> 标签: 构建基类 | 个人博客 </title>
+  <title> Fragment和Activity之间进行通信 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,7 +148,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -229,46 +230,175 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        构建基类
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Fragment--Fragment和Activity之间进行通信/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="yass">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
+    </span>
+  </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Fragment和Activity之间进行通信
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T11:28:45+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/28/Fragment--Fragment和Activity之间进行通信/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/28/Fragment--Fragment和Activity之间进行通信/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <blockquote>
+<p>Fragment和Activity之间进行通信  </p>
+</blockquote>
+<a id="more"></a>  
+<p>虽然Fragment都是嵌入在Activity中显示的，可是实际上它们的关系并没有那么亲密。  </p>
+<p>你可以看出，Fragment和Activity都是各自存在于一个独立的类当中的，它们之间并没有那么明显的方式来直接进行通信。  </p>
+<p>如果想要在Activity中调用Fragment里的方法，或者在Fragment中调用Activity里的方法，应该如何实现呢？   </p>
+<p>为了方便Fragment和Activity之间进行通信， FragmentManager 提供了一个类似于 findViewById()的方法，专门用于从布局文件中获取Fragment的实例，<br>代码如下所示：  </p>
+<pre><code class="java">RightFragment rightFragment = (RightFragment) getFragmentManager().findFragmentById(R.id.right_fragment);
+</code></pre>
+<p>调用 FragmentManager 的 findFragmentById()方法，可以在Activity中得到相应Fragment的实例，然后就能轻松地调用Fragment里的方法了。   </p>
+<p>掌握了如何在Activity中调用Fragment里的方法，那在Fragment中又该怎样调用Activity里的方法呢？<br>其实这就更简单了，在每个Fragment中都可以通过调用 getActivity()方法来得到和当前Fragment相关联的Activity实例，<br>代码如下所示：  </p>
+<pre><code class="java">MainActivity activity = (MainActivity) getActivity();
+</code></pre>
+<p>有了Activity实例之后，在Fragment中调用Activity里的方法就变得轻而易举了。<br>另外当Fragment中需要使用 Context 对象时， 也可以使用 getActivity()方法， 因为获取到的Activity本身就是一个 Context 对象了。</p>
+<p>这时不知道你心中会不会产生一个疑问，既然Fragment和Activity之间的通信问题已经解决了，那么Fragment和Fragment之间可不可以进行通信呢？   </p>
+<p>说实在的，这个问题并没有看上去的复杂，它的基本思路非常简单，首先在一个Fragment中可以得到与它相关联的Activity，然后再通过这个Activity去获取另外一个Fragment的实例，这样也就实现了不同Fragment之间的通信功能，因此这里我们的答案是肯定的。</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/02/15/构建基类--BaseActivity/" itemprop="url">
-              
-                <span itemprop="name">构建基类--BaseActivity</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-15T10:21:00+08:00"
-              content="2017-02-15" >
-          02-15
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Fragment/" rel="tag"># Fragment</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/Fragment--在Fragment中模拟返回栈/" rel="next" title="在Fragment中模拟返回栈">
+                <i class="fa fa-chevron-left"></i> 在Fragment中模拟返回栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -276,6 +406,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/28/Fragment--Fragment和Activity之间进行通信/"
+           data-title="Fragment和Activity之间进行通信" data-url="http://yoursite.com/2017/03/28/Fragment--Fragment和Activity之间进行通信/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -444,6 +582,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
