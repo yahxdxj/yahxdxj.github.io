@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/28/Fragment--一个简易版的新闻应用/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="一个简易版的新闻应用">
-<meta property="og:updated_time" content="2017-03-28T09:29:03.000Z">
+<meta property="og:updated_time" content="2017-03-28T09:33:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个简易版的新闻应用">
 <meta name="twitter:description" content="一个简易版的新闻应用">
@@ -603,7 +603,7 @@
     }
 }
 </code></pre>
-<h4 id="修改-activity-main-xml-中的代码"><a href="#修改-activity-main-xml-中的代码" class="headerlink" title="修改 activity_main.xml 中的代码"></a>修改 activity_main.xml 中的代码</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+<h4 id="新建-news-activity-main-xml-中的代码"><a href="#新建-news-activity-main-xml-中的代码" class="headerlink" title="新建 news_activity_main.xml 中的代码"></a>新建 news_activity_main.xml 中的代码</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
     android:layout_width=&quot;match_parent&quot;
     android:layout_height=&quot;match_parent&quot; &gt;
 
@@ -614,7 +614,7 @@
         android:layout_height=&quot;match_parent&quot; /&gt;
 
 &lt;/LinearLayout&gt;   
-</code></pre><h4 id="然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-activity-main-xml-文件"><a href="#然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-activity-main-xml-文件" class="headerlink" title="然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 activity_main.xml 文件."></a>然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 activity_main.xml 文件.</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+</code></pre><h4 id="然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-news-activity-main-xml-文件"><a href="#然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-news-activity-main-xml-文件" class="headerlink" title="然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 news_activity_main.xml 文件."></a>然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 news_activity_main.xml 文件.</h4><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
     android:layout_width=&quot;match_parent&quot;
     android:layout_height=&quot;match_parent&quot; &gt;
 
@@ -648,7 +648,7 @@
     <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
         <span class="keyword">super</span>.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.news_activity_main);
     }
 }
 </code></pre>
@@ -812,7 +812,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步我们要先准备好一个新闻的实体类，新建类-News"><span class="nav-number">1.</span> <span class="nav-text">第一步我们要先准备好一个新闻的实体类，新建类 News .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个-news-item-xml-布局，用于作为新闻列表中子项的布局"><span class="nav-number">2.</span> <span class="nav-text">新建一个 news_item.xml 布局，用于作为新闻列表中子项的布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建新闻列表的适配器，让这个适配器继承自-ArrayAdapter，并将泛型指定为-News-类。-新建类-NewsAdapter"><span class="nav-number">3.</span> <span class="nav-text">创建新闻列表的适配器，让这个适配器继承自 ArrayAdapter，并将泛型指定为 News 类。 新建类 NewsAdapter.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建新闻内容布局文件-news-content-frag-xml"><span class="nav-number">4.</span> <span class="nav-text">新建新闻内容布局文件 news_content_frag.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个-NewsContentFragment-类，继承自-Fragment"><span class="nav-number">5.</span> <span class="nav-text">新建一个 NewsContentFragment 类，继承自 Fragment .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个在活动中使用的新闻内容布局，新建-news-content-xml"><span class="nav-number">6.</span> <span class="nav-text">创建一个在活动中使用的新闻内容布局，新建 news_content.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建-NewsContentActivity，作为显示新闻内容的活动"><span class="nav-number">7.</span> <span class="nav-text">新建 NewsContentActivity，作为显示新闻内容的活动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个用于显示新闻列表的布局，新建-news-title-frag-xml"><span class="nav-number">8.</span> <span class="nav-text">创建一个用于显示新闻列表的布局，新建 news_title_frag.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个碎片来加载这个-ListView-布局。新建一个-NewsTitleFragment-类，继承自-Fragment"><span class="nav-number">9.</span> <span class="nav-text">创建一个碎片来加载这个 ListView 布局。新建一个 NewsTitleFragment 类，继承自 Fragment .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-activity-main-xml-中的代码"><span class="nav-number">10.</span> <span class="nav-text">修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-activity-main-xml-文件"><span class="nav-number">11.</span> <span class="nav-text">然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 activity_main.xml 文件.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后再将-MainActivity-稍作修改，把标题栏去除掉"><span class="nav-number">12.</span> <span class="nav-text">最后再将 MainActivity 稍作修改，把标题栏去除掉</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行一下吧-同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果"><span class="nav-number">13.</span> <span class="nav-text">运行一下吧, 同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步我们要先准备好一个新闻的实体类，新建类-News"><span class="nav-number">1.</span> <span class="nav-text">第一步我们要先准备好一个新闻的实体类，新建类 News .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个-news-item-xml-布局，用于作为新闻列表中子项的布局"><span class="nav-number">2.</span> <span class="nav-text">新建一个 news_item.xml 布局，用于作为新闻列表中子项的布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建新闻列表的适配器，让这个适配器继承自-ArrayAdapter，并将泛型指定为-News-类。-新建类-NewsAdapter"><span class="nav-number">3.</span> <span class="nav-text">创建新闻列表的适配器，让这个适配器继承自 ArrayAdapter，并将泛型指定为 News 类。 新建类 NewsAdapter.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建新闻内容布局文件-news-content-frag-xml"><span class="nav-number">4.</span> <span class="nav-text">新建新闻内容布局文件 news_content_frag.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个-NewsContentFragment-类，继承自-Fragment"><span class="nav-number">5.</span> <span class="nav-text">新建一个 NewsContentFragment 类，继承自 Fragment .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个在活动中使用的新闻内容布局，新建-news-content-xml"><span class="nav-number">6.</span> <span class="nav-text">创建一个在活动中使用的新闻内容布局，新建 news_content.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建-NewsContentActivity，作为显示新闻内容的活动"><span class="nav-number">7.</span> <span class="nav-text">新建 NewsContentActivity，作为显示新闻内容的活动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个用于显示新闻列表的布局，新建-news-title-frag-xml"><span class="nav-number">8.</span> <span class="nav-text">创建一个用于显示新闻列表的布局，新建 news_title_frag.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个碎片来加载这个-ListView-布局。新建一个-NewsTitleFragment-类，继承自-Fragment"><span class="nav-number">9.</span> <span class="nav-text">创建一个碎片来加载这个 ListView 布局。新建一个 NewsTitleFragment 类，继承自 Fragment .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建-news-activity-main-xml-中的代码"><span class="nav-number">10.</span> <span class="nav-text">新建 news_activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后新建-layout-sw600dp-文件夹，在这个文件夹下再新建一个-news-activity-main-xml-文件"><span class="nav-number">11.</span> <span class="nav-text">然后新建 layout-sw600dp 文件夹，在这个文件夹下再新建一个 news_activity_main.xml 文件.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后再将-MainActivity-稍作修改，把标题栏去除掉"><span class="nav-number">12.</span> <span class="nav-text">最后再将 MainActivity 稍作修改，把标题栏去除掉</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行一下吧-同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果"><span class="nav-number">13.</span> <span class="nav-text">运行一下吧, 同样的一份代码，在手机和平板上运行却分别是两种完全不同的效果.</span></a></li></ol></div>
             
 
           </div>
