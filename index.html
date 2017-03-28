@@ -330,40 +330,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>Layout布局使用最小宽度限定符  </p>
 </blockquote>
-<p>在 res 目录下新建 layout-sw600dp 文件夹，然后在这个文件夹下新建 activity_main.xml布局，<br>代码如下所示：  </p>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; &gt;
-
-    &lt;fragment
-        android:id=&quot;@+id/left_fragment&quot;
-        android:name=&quot;com.yassblog.LeftFragment&quot;
-        android:layout_width=&quot;0dp&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:layout_weight=&quot;1&quot; /&gt;
-
-    &lt;FrameLayout
-        android:id=&quot;@+id/right_layout&quot;
-        android:layout_width=&quot;0dp&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:layout_weight=&quot;1&quot; &gt;
-
-        &lt;fragment
-            android:id=&quot;@+id/right_fragment&quot;
-            android:name=&quot;com.yassblog.RightFragment&quot;
-            android:layout_width=&quot;match_parent&quot;
-            android:layout_height=&quot;match_parent&quot; /&gt;
-    &lt;/FrameLayout&gt;
-
-&lt;/LinearLayout&gt;   
-</code></pre><p>这就意味着，当程序运行在屏幕宽度大于 600dp 的设备上时，会加载 layout-sw600dp/activity_main 布局，当程序运行在屏幕宽度小于 600dp 的设备上时，则仍然加载默认的 layout/activity_main 布局。  </p>
-<p>需要注意一点，最小宽度限定符是在 Android 3.2 版本引入的，由于这里我们最低兼容的系统版本是 4.0，所以可以放心地使用它   </p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/28/UI布局--Layout布局使用最小宽度限定符/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
