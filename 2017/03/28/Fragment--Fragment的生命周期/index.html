@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="博客搭建," />
+  <meta name="keywords" content="Fragment," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="转载原博客地址：手把手教你用Hexo+Github 搭建属于自己的博客">
+<meta name="description" content="Fragment的生命周期">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Win上搭建Hexo+Github博客">
-<meta property="og:url" content="http://yoursite.com/2017/02/03/博客搭建--Win上搭建Hexo+Github博客/index.html">
+<meta property="og:title" content="Fragment的生命周期">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/Fragment--Fragment的生命周期/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="转载原博客地址：手把手教你用Hexo+Github 搭建属于自己的博客">
-<meta property="og:updated_time" content="2017-03-27T09:24:03.000Z">
+<meta property="og:description" content="Fragment的生命周期">
+<meta property="og:image" content="http://ojupj7fr2.bkt.clouddn.com/1354170699_6619.png">
+<meta property="og:updated_time" content="2017-03-28T05:52:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Win上搭建Hexo+Github博客">
-<meta name="twitter:description" content="转载原博客地址：手把手教你用Hexo+Github 搭建属于自己的博客">
+<meta name="twitter:title" content="Fragment的生命周期">
+<meta name="twitter:description" content="Fragment的生命周期">
+<meta name="twitter:image" content="http://ojupj7fr2.bkt.clouddn.com/1354170699_6619.png">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/03/博客搭建--Win上搭建Hexo+Github博客/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/Fragment--Fragment的生命周期/"/>
 
 
 
 
 
-  <title> Win上搭建Hexo+Github博客 | 个人博客 </title>
+  <title> Fragment的生命周期 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +242,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/03/博客搭建--Win上搭建Hexo+Github博客/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Fragment--Fragment的生命周期/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +266,7 @@
             
             
               
-                Win上搭建Hexo+Github博客
+                Fragment的生命周期
               
             
           </h1>
@@ -279,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-03T08:39:34+08:00">
-                2017-02-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T13:28:03+08:00">
+                2017-03-28
               </time>
             
 
@@ -298,8 +300,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/03/博客搭建--Win上搭建Hexo+Github博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/03/博客搭建--Win上搭建Hexo+Github博客/" itemprop="commentCount"></span>
+                <a href="/2017/03/28/Fragment--Fragment的生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/28/Fragment--Fragment的生命周期/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -325,7 +327,35 @@
       
 
       
-        <p>转载原博客地址：<a href="http://blog.csdn.net/gdutxiaoxu/article/details/53576018" target="_blank" rel="external">手把手教你用Hexo+Github 搭建属于自己的博客</a>  </p>
+        <blockquote>
+<p>Fragment的生命周期  </p>
+</blockquote>
+<a id="more"></a>  
+<p>和Activity一样，Fragment也有自己的生命周期，并且它和Activity的生命周期实在是太像了.   </p>
+<p>每个Fragment在其生命周期内也可能会经历 <strong>运行状态</strong>、<strong>暂停状态</strong>、<strong>停止状态</strong>和<strong>销毁状态</strong>这四种状态, 只不过在一些细小的地方会有部分区别。  </p>
+<ol>
+<li>运行状态<br>当一个碎片是可见的，并且它所关联的活动正处于运行状态时，该碎片也处于运行<br>状态  </li>
+<li>暂停状态<br>当一个活动进入暂停状态时（由于另一个未占满屏幕的活动被添加到了栈顶） ，与<br>它相关联的可见碎片就会进入到暂停状态  </li>
+<li>停止状态<br>当一个活动进入停止状态时，与它相关联的碎片就会进入到停止状态。或者通过调<br>用 FragmentTransaction 的 remove()、replace()方法将碎片从活动中移除，但有在事务提交之前调用 addToBackStack()方法，这时的碎片也会进入到停止状态。总的来说，进入<br>停止状态的碎片对用户来说是完全不可见的，有可能会被系统回收。  </li>
+<li>销毁状态<br>碎片总是依附于活动而存在的，因此当活动被销毁时，与它相关联的碎片就会进入<br>到销毁状态。或者通过调用 FragmentTransaction 的 remove()、replace()方法将碎片从活动中移除，但在事务提交之前并没有调用 addToBackStack()方法，这时的碎片也会进入到销毁状态。   </li>
+</ol>
+<hr>
+<p>Fragment 类中也提供了一系列的回调方法，以覆盖碎片生命周期的每个环节。其中，活动中有的回调方法，碎片中几乎都有，不过碎片还提供了一些附加的回调方法，那我们就重点来看下这几个回调。  </p>
+<ol>
+<li>onAttach()<br>当碎片和活动建立关联的时候调用。  </li>
+<li>onCreateView()<br>为碎片创建视图（加载布局）时调用。  </li>
+<li>onActivityCreated()<br>确保与碎片相关联的活动一定已经创建完毕的时候调用。  </li>
+<li>onDestroyView()<br>当与碎片关联的视图被移除的时候调用。  </li>
+<li>onDetach()<br>当碎片和活动解除关联的时候调用。  </li>
+</ol>
+<p><img src="http://ojupj7fr2.bkt.clouddn.com/1354170699_6619.png" alt="Fragment生命周期"></p>
+<hr>
+<p>演示Fragment生命周期:  以RightFragment为例  </p>
+<h4 id="RightFragment第一次打开"><a href="#RightFragment第一次打开" class="headerlink" title="RightFragment第一次打开:"></a>RightFragment第一次打开:</h4><p>当 RightFragment 第一次被加载到屏幕上时，会依次执行<br>onAttach();<br>onCreate();<br>onCreateView();<br>onActivityCreate();<br>onStart();<br>onResume();  </p>
+<h4 id="然后点击-LeftFragment-中的按钮"><a href="#然后点击-LeftFragment-中的按钮" class="headerlink" title="然后点击 LeftFragment 中的按钮:"></a>然后点击 LeftFragment 中的按钮:</h4><p>此时的 RightFragment 进入了停止状态，因此<br>onPause()、<br>onStop()和<br>onDestroyView()方法会得到执行。<br>当然如果在替换的时候没有调用 addToBackStack()方法，此时的 RightFragment 就会进入销毁状态，onDestroy()和onDetach()方法就会得到执行。  </p>
+<h4 id="接着按下-Back-键，RightFragment-会重新回到屏幕"><a href="#接着按下-Back-键，RightFragment-会重新回到屏幕" class="headerlink" title="接着按下 Back 键，RightFragment 会重新回到屏幕"></a>接着按下 Back 键，RightFragment 会重新回到屏幕</h4><p>由 于 RightFragment 重 新 回 到 了 运 行 状 态 ， 因 此<br>onActivityCreated() 、 onStart() 和 onResume()方法会得到执行。  </p>
+<p>注意此时 onCreate()和 onCreateView()方法并不会执行，因为我们借助了 addToBackStack()方法使得 RightFragment 和它的视图并没有销毁。  </p>
+<h4 id="再次按下-Back-键退出程序"><a href="#再次按下-Back-键退出程序" class="headerlink" title="再次按下 Back 键退出程序"></a>再次按下 Back 键退出程序</h4><p>依次会执行<br>onPause()、onStop()、onDestroyView()、onDestroy()和 onDetach()方法，<br>最终将活动和碎片一起销毁。</p>
 
       
     </div>
@@ -349,7 +379,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/博客搭建/" rel="tag"># 博客搭建</a>
+            <a href="/tags/Fragment/" rel="tag"># Fragment</a>
           
         </div>
       
@@ -358,8 +388,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/22/Activity--启动新的Activity/" rel="next" title="Activity--启动新的Activity">
-                <i class="fa fa-chevron-left"></i> Activity--启动新的Activity
+              <a href="/2017/03/28/Fragment--Fragment和Activity之间进行通信/" rel="next" title="Fragment和Activity之间进行通信">
+                <i class="fa fa-chevron-left"></i> Fragment和Activity之间进行通信
               </a>
             
           </div>
@@ -367,10 +397,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/13/基础--布局文件/" rel="prev" title="Android基础--布局文件">
-                Android基础--布局文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -396,8 +422,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/03/博客搭建--Win上搭建Hexo+Github博客/"
-           data-title="Win上搭建Hexo+Github博客" data-url="http://yoursite.com/2017/02/03/博客搭建--Win上搭建Hexo+Github博客/">
+      <div class="ds-thread" data-thread-key="2017/03/28/Fragment--Fragment的生命周期/"
+           data-title="Fragment的生命周期" data-url="http://yoursite.com/2017/03/28/Fragment--Fragment的生命周期/">
       </div>
     
   </div>
@@ -421,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -471,6 +506,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#RightFragment第一次打开"><span class="nav-number">1.</span> <span class="nav-text">RightFragment第一次打开:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后点击-LeftFragment-中的按钮"><span class="nav-number">2.</span> <span class="nav-text">然后点击 LeftFragment 中的按钮:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接着按下-Back-键，RightFragment-会重新回到屏幕"><span class="nav-number">3.</span> <span class="nav-text">接着按下 Back 键，RightFragment 会重新回到屏幕</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次按下-Back-键退出程序"><span class="nav-number">4.</span> <span class="nav-text">再次按下 Back 键退出程序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
