@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/广播机制--发送自定义广播/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="发送自定义广播">
-<meta property="og:updated_time" content="2017-03-29T08:06:18.000Z">
+<meta property="og:updated_time" content="2017-03-29T08:56:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发送自定义广播">
 <meta name="twitter:description" content="发送自定义广播">
@@ -330,7 +330,8 @@
 </blockquote>
 <a id="more"></a>  
 <h4 id="发送标准广播"><a href="#发送标准广播" class="headerlink" title="发送标准广播"></a>发送标准广播</h4><p>在发送广播之前，我们还是需要先定义一个广播接收器来准备接收此广播才行，不然发<br>出去也是白发.  </p>
-<p>1 新建一个 MyBroadcastReceiver继承自 BroadcastReceiver.   </p>
+<p>1 新建一个应用项目BroadcastTest1   </p>
+<p>2 新建一个 MyBroadcastReceiver继承自 BroadcastReceiver.   </p>
 <pre><code class="java"><span class="keyword">import</span> android.content.BroadcastReceiver;
 <span class="keyword">import</span> android.content.Context;
 <span class="keyword">import</span> android.content.Intent;
@@ -346,14 +347,14 @@
     }
 }
 </code></pre>
-<p>2 在 AndroidManifest.xml 中对这个广播接收器进行注册  </p>
+<p>3 在 AndroidManifest.xml 中对这个广播接收器进行注册  </p>
 <pre><code>&lt;receiver android:name=&quot;com.yassblog.bootreceiver.MyBroadcastReceiver&quot; &gt;
     &lt;intent-filter&gt;
         &lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot; /&gt;
     &lt;/intent-filter&gt;
 &lt;/receiver&gt;  
 </code></pre><p>可以看到，这里让 MyBroadcastReceiver 接收一条值为com.example.broadcasttest.MY_BROADCAST的广播，因此待会儿在发送广播的时候，我们就需要发出这样的一条广播.    </p>
-<p>3 修改 MainActivity 中的代码, 并修改布局文件.  </p>
+<p>4 修改 MainActivity 中的代码, 并修改布局文件.  </p>
 <pre><code class="java"><span class="keyword">import</span> android.app.Activity;
 <span class="keyword">import</span> android.content.Intent;
 <span class="keyword">import</span> android.os.Bundle;
@@ -393,7 +394,7 @@
         android:text=&quot;发送广播&quot; /&gt;
 
 &lt;/LinearLayout&gt;  
-</code></pre><p>4 重新运行程序，并点击一下按钮, 查看效果.  </p>
+</code></pre><p>5 重新运行程序，并点击一下按钮, 查看效果.  </p>
 <p>另外，由于广播是使用 Intent 进行传递的，因此你还可以在 Intent 中携带一些数据传递给广播接收器。  </p>
 <h4 id="发送有序广播"><a href="#发送有序广播" class="headerlink" title="发送有序广播"></a>发送有序广播</h4><p>广播是一种可以跨进程的通信方式，因此在我们应用程序内发出的广播，其他的应用程序应该也是可以收到的。  </p>
 <p>为了验证这一点，我们需要再新建一个应用项目BroadcastTest2 。 </p>
@@ -420,8 +421,8 @@
     &lt;/intent-filter&gt;
 &lt;/receiver&gt;  
 </code></pre><p>可以看到，AnotherBroadcastReceiver 同样接收的是 com.example.broadcasttest.MY_BROADCAST 这条广播.  </p>
-<p>3 将两个项目运行到手机上,点击按钮,会发现收到两次吐司提示.  </p>
-<h4 id="不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。"><a href="#不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。" class="headerlink" title="不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。"></a>不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。</h4><p>1 修改第一个项目的MainActivity代码.  </p>
+<p>3 将两个项目运行到手机上,点击项目1中的按钮,会发现收到两次吐司提示. 说明项目1发出的广播不但自己收到了, 项目2也同样收到了.   </p>
+<h4 id="不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。"><a href="#不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。" class="headerlink" title="不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。"></a>不过到目前为止，程序里发出的都还是标准广播，现在我们来尝试一下发送有序广播。</h4><p>1 修改项目1的 MainActivity 代码.  </p>
 <pre><code class="java"><span class="keyword">import</span> android.app.Activity;
 <span class="keyword">import</span> android.content.Intent;
 <span class="keyword">import</span> android.os.Bundle;
@@ -452,7 +453,7 @@
 <p>可以看到，发送有序广播只需要改动一行代码，即将 sendBroadcast()方法改成sendOrderedBroadcast()方法。sendOrderedBroadcast()方法接收两个参数，第一个参数仍然是Intent，第二个参数是一个与权限相关的字符串，这里传入 null 就行了。现在重新运行程序，并点击按钮，你会发现，两个应用程序仍然都可以接收到这条广播 .  </p>
 <p>看上去好像和标准广播没什么区别嘛，不过别忘了，这个时候的广播接收器是有先后顺序的，而且前面的广播接收器还可以将广播截断，以阻止其继续传播。  </p>
 <p>那么该如何设定广播接收器的先后顺序呢？当然是在注册的时候进行设定的了.    </p>
-<p>修改AndroidManifest.xml 中的代码  </p>
+<p>2 修改项目1的 AndroidManifest.xml 中的代码  </p>
 <pre><code>&lt;receiver android:name=&quot;com.yassblog.bootreceiver.MyBroadcastReceiver&quot; &gt;
     &lt;intent-filter android:priority=&quot;100&quot; &gt;
         &lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot; /&gt;
@@ -460,7 +461,7 @@
 &lt;/receiver&gt;    
 </code></pre><p>可以看到，我们通过 android:priority 属性给广播接收器设置了优先级，优先级比较高的广播接收器就可以先收到广播。这里将 MyBroadcastReceiver 的优先级设成了 100，以保证它一定会在 AnotherBroadcastReceiver 之前收到广播。  </p>
 <p>既然已经获得了接收广播的优先权，那么 MyBroadcastReceiver 就可以选择是否允许广播继续传递了。  </p>
-<p>修改 MyBroadcastReceiver 中的代码  </p>
+<p>3 修改项目1的 MyBroadcastReceiver 中的代码  </p>
 <pre><code class="java"><span class="keyword">import</span> android.content.BroadcastReceiver;
 <span class="keyword">import</span> android.content.Context;
 <span class="keyword">import</span> android.content.Intent;
