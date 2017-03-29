@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--文件存储/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="文件存储">
-<meta property="og:updated_time" content="2017-03-29T09:19:26.000Z">
+<meta property="og:updated_time" content="2017-03-29T10:00:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件存储">
 <meta name="twitter:description" content="文件存储">
@@ -329,6 +329,83 @@
 <p>文件存储  </p>
 </blockquote>
 <a id="more"></a>  
+<p>如何在 Android 项目中使用文件存储的技术  </p>
+<h4 id="1-创建一个-FilePersistenceTest-项目"><a href="#1-创建一个-FilePersistenceTest-项目" class="headerlink" title="1 创建一个 FilePersistenceTest 项目"></a>1 创建一个 FilePersistenceTest 项目</h4><h4 id="2-修改MainActivity-中的代码-并修改布局activity-main-xml"><a href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml" class="headerlink" title="2 修改MainActivity 中的代码, 并修改布局activity_main.xml ."></a>2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</h4><pre><code class="java"><span class="keyword">import</span> java.io.BufferedWriter;
+<span class="keyword">import</span> java.io.FileOutputStream;
+<span class="keyword">import</span> java.io.IOException;
+<span class="keyword">import</span> java.io.OutputStreamWriter;
+
+<span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.content.Context;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.widget.EditText;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+
+    <span class="keyword">private</span> EditText edit;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edit = (EditText) findViewById(R.id.edit);
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
+        <span class="keyword">super</span>.onDestroy();
+        String inputText = edit.getText().toString();
+        saveTxt(<span class="string">"data"</span>, inputText);
+    }
+
+    <span class="comment">/**
+     * 保存数据到文件 默认存储到/data/data/&lt;packagename&gt;/files/目录下
+     * 
+     * <span class="doctag">@param</span> <span class="doctag">@param</span> requestData 要保存的字符串
+     * <span class="doctag">@param</span> <span class="doctag">@param</span> filename 文件名称
+     * <span class="doctag">@return</span> void
+     * <span class="doctag">@throws</span>
+     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveTxt</span><span class="params">(String requestData, String filename)</span> </span>{
+        FileOutputStream out = <span class="keyword">null</span>;
+        BufferedWriter writer = <span class="keyword">null</span>;
+        <span class="keyword">try</span> {
+            <span class="comment">// MODE_PRIVATE 是默认的操作模式，表示当指定同样文件名的时候，所写入的内容将会覆盖原文件中的内容</span>
+            <span class="comment">// MODE_APPEND 则表示如果该文件已存在就往文件里面追加内容，不存在就创建新文件。</span>
+            out = openFileOutput(filename, Context.MODE_PRIVATE);
+            writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(out));
+            writer.write(requestData);
+        } <span class="keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        } <span class="keyword">finally</span> {
+            <span class="keyword">try</span> {
+                <span class="keyword">if</span> (writer != <span class="keyword">null</span>) {
+
+                    writer.close();
+                }
+            } <span class="keyword">catch</span> (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+</code></pre>
+<p>布局文件 activity_main.xml .    </p>
+<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+
+    &lt;EditText
+        android:id=&quot;@+id/edit&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:hint=&quot;Type something here&quot; /&gt;
+
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="运行程序了，输入内容，再按下-Back-键-退出"><a href="#运行程序了，输入内容，再按下-Back-键-退出" class="headerlink" title="运行程序了，输入内容，再按下 Back 键, 退出."></a>运行程序了，输入内容，再按下 Back 键, 退出.</h4><p>可以看到， 首先我们在 onCreate()方法中获取了 EditText 的实例， 然后重写了 onDestroy()方法，这样就可以保证在活动销毁之前一定会调用这个方法。在 onDestroy()方法中我们获取了 EditText 中输入的内容，并调用 saveTxt()方法把输入的内容存储到文件中，文件命名为 data.  </p>
+<p>然后按下 Back 键关闭程序，这时我们输入的内容就已经保存到文件中了。那么如何才能证实数据确实已经保存成功了呢？我们可以借助 DDMS 的 File Explorer 来查看一下。 切换到 DDMS 视 图 ， 并 点 击 File Explorer 切 换 卡 ， 在 这 里 进 入 到 /data/data/com.example.filepersistencetest/files/目录下，可以看到生成了一个 data 文件  </p>
+<p>将这个文件导出到电脑上。使用记事本打开这个文件，里面的内容就是你输入的数据.  </p>
 
       
     </div>
@@ -424,8 +501,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -474,6 +560,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建一个-FilePersistenceTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 创建一个 FilePersistenceTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行程序了，输入内容，再按下-Back-键-退出"><span class="nav-number">3.</span> <span class="nav-text">运行程序了，输入内容，再按下 Back 键, 退出.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
