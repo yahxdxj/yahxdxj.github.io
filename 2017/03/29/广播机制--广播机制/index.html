@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/广播机制--广播机制/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="广播机制">
-<meta property="og:updated_time" content="2017-03-29T06:14:16.000Z">
+<meta property="og:updated_time" content="2017-03-29T07:14:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="广播机制">
 <meta name="twitter:description" content="广播机制">
@@ -331,7 +331,7 @@
 <a id="more"></a>  
 <h4 id="标准广播-有序广播"><a href="#标准广播-有序广播" class="headerlink" title="标准广播,有序广播"></a>标准广播,有序广播</h4><p><strong>标准广播</strong>（Normal broadcasts）是一种完全异步执行的广播，在广播发出之后，所有的广播接收器几乎都会在同一时刻接收到这条广播消息，因此它们之间没有任何先后顺序可言。这种广播的效率会比较高，但同时也意味着它是无法被截断的.  </p>
 <p><strong>有序广播</strong>（Ordered broadcasts）则是一种同步执行的广播，在广播发出之后，同一时刻只会有一个广播接收器能够收到这条广播消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。所以此时的广播接收器是有先后顺序的，优先级高的广播接收器就可以先收到广播消息，并且前面的广播接收器还可以截断正在传递的广播，这样后面的广播接收器就无法收到广播消息了  </p>
-<h4 id="动态注册广播-监听网络变化"><a href="#动态注册广播-监听网络变化" class="headerlink" title="动态注册广播: 监听网络变化"></a>动态注册广播: 监听网络变化</h4><p>新建项目,修改 MainActivity 中的代码  </p>
+<h4 id="动态注册广播-监听网络变化"><a href="#动态注册广播-监听网络变化" class="headerlink" title="动态注册广播: 监听网络变化"></a>动态注册广播: 监听网络变化</h4><p>1 新建项目,修改 MainActivity 中的代码  </p>
 <pre><code class="java"><span class="keyword">import</span> android.app.Activity;
 <span class="keyword">import</span> android.content.BroadcastReceiver;
 <span class="keyword">import</span> android.content.Context;
@@ -381,7 +381,8 @@
         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>{
 
             <span class="comment">// 获取一个系统服务类， 专门用于管理网络连接的。</span>
-            ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectionManager = 
+                    (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             <span class="comment">// 判断出当前是否有网络</span>
             NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
             <span class="keyword">if</span> (networkInfo != <span class="keyword">null</span> &amp;&amp; networkInfo.isAvailable()) {
@@ -393,8 +394,8 @@
     }
 }
 </code></pre>
-<p>在AndroidManifest.xml 文件中,配置网络权限<br><code>&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</code>  </p>
-<p>运行程序,按home键返回桌面,断开网络,查看效果</p>
+<p>1 在AndroidManifest.xml 文件中,配置网络权限<br><code>&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</code>  </p>
+<p>3 运行程序,按home键返回桌面,断开网络,查看效果</p>
 <h4 id="静态注册广播-实现开机启动"><a href="#静态注册广播-实现开机启动" class="headerlink" title="静态注册广播: 实现开机启动"></a>静态注册广播: 实现开机启动</h4><p>动态注册的广播接收器可以自由地控制注册与注销，在灵活性方面有很大的优势，但是它也存在着一个缺点，即必须要在程序启动之后才能接收到广播，因为注册的逻辑是写在onCreate()方法中的。那么有没有什么办法可以让程序在未启动的情况下就能接收到广播呢？这就需要使用静态注册的方式了.  </p>
 <p>1 新建一个 BootCompleteReceiver 继承自BroadcastReceiver  </p>
 <pre><code class="java"><span class="keyword">import</span> android.content.BroadcastReceiver;
@@ -408,7 +409,7 @@
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BootCompleteReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>{
     <span class="meta">@Override</span>
     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>{
-        Toast.makeText(context, <span class="string">"手机启动广播"</span>, <span class="number">0</span>).show();
+        Toast.makeText(context, <span class="string">"手机启动的广播"</span>, <span class="number">0</span>).show();
     }
 }
 </code></pre>
@@ -421,7 +422,7 @@
         &lt;action android:name=&quot;android.intent.action.BOOT_COMPLETED&quot; /&gt;
     &lt;/intent-filter&gt;
 &lt;/receiver&gt;   
-</code></pre><p>4 重启手机</p>
+</code></pre><p>4 运行程序后,重启手机,查看效果</p>
 
       
     </div>
@@ -463,6 +464,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/29/广播机制--发送自定义广播/" rel="prev" title="发送自定义广播">
+                发送自定义广播 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -536,7 +541,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
