@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--文件存储/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="文件存储">
-<meta property="og:updated_time" content="2017-03-29T10:00:36.000Z">
+<meta property="og:updated_time" content="2017-03-30T01:33:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件存储">
 <meta name="twitter:description" content="文件存储">
@@ -371,7 +371,7 @@
         FileOutputStream out = <span class="keyword">null</span>;
         BufferedWriter writer = <span class="keyword">null</span>;
         <span class="keyword">try</span> {
-            <span class="comment">// MODE_PRIVATE 是默认的操作模式，表示当指定同样文件名的时候，所写入的内容将会覆盖原文件中的内容</span>
+            <span class="comment">// MODE_PRIVATE 默认的操作模式,表示当指定同样文件名的时候,所写入的内容将会覆盖原文件中的内容</span>
             <span class="comment">// MODE_APPEND 则表示如果该文件已存在就往文件里面追加内容，不存在就创建新文件。</span>
             out = openFileOutput(filename, Context.MODE_PRIVATE);
             writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(out));
