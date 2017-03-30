@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--SQLite数据库存储/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="SQLite数据库存储">
-<meta property="og:updated_time" content="2017-03-30T05:28:33.000Z">
+<meta property="og:updated_time" content="2017-03-30T06:11:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLite数据库存储">
 <meta name="twitter:description" content="SQLite数据库存储">
@@ -330,6 +330,63 @@
 </blockquote>
 <a id="more"></a>  
 <p>项目中,我用的是ormlite框架, 等后期我把操作步骤搬上来.   </p>
+<p>1 导入jar    </p>
+<p>ormlite-android-4.43.jar<br>ormlite-core-4.43.jar  </p>
+<p>2 创建实体类  </p>
+<p>3 创建Dao  </p>
+<p>4 创建DaoImpl  </p>
+<p>5 创建DatabaseHelper  </p>
+<p>6 修改MainActivity代码,做测试  </p>
+<pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.widget.EditText;
+<span class="keyword">import</span> android.widget.Toast;
+
+<span class="keyword">import</span> com.yassblog.db.table.DoctorInfo;
+<span class="keyword">import</span> com.yassblog.db.table.PatientInfo;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+
+    <span class="keyword">private</span> EditText edit;
+    <span class="keyword">private</span> MainService mainService;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edit = (EditText) findViewById(R.id.edit);
+
+        mainService = <span class="keyword">new</span> MainService(getApplicationContext(), <span class="keyword">null</span>);
+
+        <span class="comment">// 读取数据</span>
+        PatientInfo patientInfo = mainService.searchPatient2(<span class="string">"abcd"</span>);
+        <span class="keyword">if</span> (patientInfo != <span class="keyword">null</span>) {
+            edit.setText(patientInfo.getPatientmobile());
+            edit.setSelection(patientInfo.getPatientmobile().length());
+            Toast.makeText(<span class="keyword">this</span>, <span class="string">"读取成功"</span>, <span class="number">0</span>).show();
+        }
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
+        <span class="keyword">super</span>.onDestroy();
+
+        <span class="comment">// 保存数据</span>
+        DoctorInfo doctorinfo = <span class="keyword">new</span> DoctorInfo();
+        doctorinfo.setDoctorkey(<span class="string">"123"</span>);
+        doctorinfo.setDoctorid(<span class="string">"1234"</span>);
+        mainService.saveDoctorInfo(doctorinfo);
+
+        PatientInfo patientInfo = <span class="keyword">new</span> PatientInfo();
+        patientInfo.setPatientkey(<span class="string">"abc"</span>);
+        patientInfo.setPatientmobile(<span class="string">"abcd"</span>);
+        mainService.savePatientInfo(patientInfo);
+
+    }
+}
+</code></pre>
+<p>代码下载: <a href="http://ojupj7fr2.bkt.clouddn.com/zqzb.rar" target="_blank" rel="external">http://ojupj7fr2.bkt.clouddn.com/zqzb.rar</a>  </p>
 
       
     </div>
@@ -371,6 +428,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/30/多媒体--使用通知/" rel="prev" title="使用通知">
+                使用通知 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -435,7 +496,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -446,7 +507,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

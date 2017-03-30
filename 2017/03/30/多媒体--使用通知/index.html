@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="广播机制," />
+  <meta name="keywords" content="多媒体," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="使用本地广播">
+<meta name="description" content="使用通知">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用本地广播">
-<meta property="og:url" content="http://yoursite.com/2017/03/29/广播机制--使用本地广播/index.html">
+<meta property="og:title" content="使用通知">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/多媒体--使用通知/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="使用本地广播">
-<meta property="og:updated_time" content="2017-03-29T08:46:31.000Z">
+<meta property="og:description" content="使用通知">
+<meta property="og:updated_time" content="2017-03-30T08:12:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用本地广播">
-<meta name="twitter:description" content="使用本地广播">
+<meta name="twitter:title" content="使用通知">
+<meta name="twitter:description" content="使用通知">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/29/广播机制--使用本地广播/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/30/多媒体--使用通知/"/>
 
 
 
 
 
-  <title> 使用本地广播 | 个人博客 </title>
+  <title> 使用通知 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/广播机制--使用本地广播/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/多媒体--使用通知/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                使用本地广播
+                使用通知
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-29T16:37:11+08:00">
-                2017-03-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T15:54:46+08:00">
+                2017-03-30
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/29/广播机制--使用本地广播/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/29/广播机制--使用本地广播/" itemprop="commentCount"></span>
+                <a href="/2017/03/30/多媒体--使用通知/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/30/多媒体--使用通知/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,90 +326,75 @@
 
       
         <blockquote>
-<p> 使用本地广播  </p>
+<p>使用通知  </p>
 </blockquote>
 <a id="more"></a>  
-<p>前面我们发送和接收的广播全部都是属于系统全局广播，即发出的广播可以被其他任何的任何应用程序接收到，并且我们也可以接收来自于其他任何应用程序的广播。   </p>
-<p>这样就很容易会引起安全性的问题，比如说我们发送的一些携带关键性数据的广播有可能被其他的应用程序截获，或者其他的程序不停地向我们的广播接收器里发送各种垃圾广播。  </p>
-<p>为了能够简单地解决广播的安全性问题，Android 引入了一套本地广播机制，使用这个机制发出的广播只能够在应用程序的内部进行传递，并且广播接收器也只能接收来自本应用程序发出的广播，这样所有的安全性问题就都不存在了。  </p>
-<p>本地广播的用法并不复杂，主要就是使用了一个 LocalBroadcastManager 来对广播进行管理，并提供了发送广播和注册广播接收器的方法。  </p>
-<p>下面我们就通过具体的实例来尝试一下本地广播的用法</p>
-<p>新建项目,修改 MainActivity 中的代码,并修改布局文件  </p>
-<pre><code class="java"><span class="keyword">import</span> android.app.Activity;
-<span class="keyword">import</span> android.content.BroadcastReceiver;
-<span class="keyword">import</span> android.content.Context;
-<span class="keyword">import</span> android.content.Intent;
-<span class="keyword">import</span> android.content.IntentFilter;
+<p>下面我们就来学习一下创建通知的详细步骤.  </p>
+<p>首先需要一个 NotificationManager 来对通知进行管理，可以调用 Context 的 getSystemService()方法获取到.  </p>
+<p><code>NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);</code>  </p>
+<p>接下来需要创建一个 Notification 对象.  </p>
+<p>Notification 的有参构造函数接收三个参数，<br>第一个参数用于指定通知的图标，比如项目的 res/drawable 目录下有一张 icon.png 图片，那么这里就可以传入 R.drawable.icon。<br>第二个参数用于指定通知的 ticker 内容，当通知刚被创建的时候，它会在系统的状态栏一闪而过，属于一种瞬时的提示信息。<br>第三个参数用于指定通知被创建的时间，以毫秒为单位，当下拉系统状态栏时，这里指定的时间会显示在相应的通知上。<br>因此，创建一个 Notification 对象就可以写成：  </p>
+<p><code>Notification notification = new Notification(R.drawable.icon, &quot;This is ticker text&quot;, System.currentTimeMillis());</code>  </p>
+<p>创建好了 Notification 对象后，我们还需要对通知的布局进行设定，这里只需要调用 Notification 的 setLatestEventInfo()方法就可以给通知设置一个标准的布局。  </p>
+<p>这个方法接收四个参数，<br>第一个参数是 Context，这个没什么好解释的。<br>第二个参数用于指定通知的标题内容，下拉系统状态栏就可以看到这部分内容。<br>第三个参数用于指定通知的正文内容，同样下拉系统状态栏就可以看到这部分内容。<br>第四个参数我们暂时还用不到，可以先传入 null。<br>因此，对通知的布局进行设定就可以写成：  </p>
+<p><code>notification.setLatestEventInfo(context, &quot;This is content title&quot;, &quot;This iscontent text&quot;, null);</code>  </p>
+<p>以上工作都完成之后， 只需要调用 NotificationManager 的 notify()方法就可以让通知显示出来了。<br>notify()方法接收两个参数，<br>第一个参数是 id，要保证为每个通知所指定的 id 都是不同的。<br>第二个参数则是 Notification 对象，这里直接将我们刚刚创建好的 Notification 对象传入即可。<br>因此，显示一个通知就可以写成  </p>
+<p><code>manager.notify(1, notification);</code>  </p>
+<p>到这里就已经把创建通知的每一个步骤都分析完了.  </p>
+<hr>
+<p>下面就让我们通过一个具体的例子来看一看通知到底是长什么样的。  </p>
+<h4 id="1-新建一个-NotificationTest-项目"><a href="#1-新建一个-NotificationTest-项目" class="headerlink" title="1 新建一个 NotificationTest 项目"></a>1 新建一个 NotificationTest 项目</h4><h4 id="2-修改MainActivity-中的代码-并修改-activity-main-xml-中的代码"><a href="#2-修改MainActivity-中的代码-并修改-activity-main-xml-中的代码" class="headerlink" title="2 修改MainActivity 中的代码, 并修改 activity_main.xml 中的代码"></a>2 修改MainActivity 中的代码, 并修改 activity_main.xml 中的代码</h4><pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.app.Notification;
+<span class="keyword">import</span> android.app.NotificationManager;
 <span class="keyword">import</span> android.os.Bundle;
-<span class="keyword">import</span> android.support.v4.content.LocalBroadcastManager;
 <span class="keyword">import</span> android.view.View;
 <span class="keyword">import</span> android.view.View.OnClickListener;
 <span class="keyword">import</span> android.widget.Button;
-<span class="keyword">import</span> android.widget.Toast;
 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
-    <span class="keyword">private</span> IntentFilter intentFilter;
-    <span class="keyword">private</span> LocalReceiver localReceiver;
-    <span class="keyword">private</span> LocalBroadcastManager localBroadcastManager;
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span> </span>{
+    <span class="keyword">private</span> Button sendNotice;
 
     <span class="meta">@Override</span>
     <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
         <span class="keyword">super</span>.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        localBroadcastManager = LocalBroadcastManager.getInstance(<span class="keyword">this</span>);
-        <span class="comment">// 注册本地广播监听器</span>
-        intentFilter = <span class="keyword">new</span> IntentFilter();
-        intentFilter.addAction(<span class="string">"com.example.broadcasttest.LOCAL_BROADCAST"</span>);
-        localReceiver = <span class="keyword">new</span> LocalReceiver();
-        localBroadcastManager.registerReceiver(localReceiver, intentFilter);
-
-        <span class="comment">// 获取实例</span>
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(<span class="keyword">new</span> OnClickListener() {
-            <span class="meta">@Override</span>
-            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
-                Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.example.broadcasttest.LOCAL_BROADCAST"</span>);
-                localBroadcastManager.sendBroadcast(intent); <span class="comment">// 发送本地广播</span>
-            }
-        });
+        sendNotice = (Button) findViewById(R.id.send_notice);
+        sendNotice.setOnClickListener(<span class="keyword">this</span>);
     }
 
     <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
-        <span class="keyword">super</span>.onDestroy();
-        localBroadcastManager.unregisterReceiver(localReceiver);
-    }
-
-    <span class="class"><span class="keyword">class</span> <span class="title">LocalReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>{
-        <span class="meta">@Override</span>
-        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>{
-            Toast.makeText(context, <span class="string">"收到本地广播"</span>, Toast.LENGTH_SHORT).show();
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+        <span class="keyword">switch</span> (v.getId()) {
+        <span class="keyword">case</span> R.id.send_notice:
+            NotificationManager manager = 
+            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            Notification notification = <span class="keyword">new</span> Notification(R.drawable.ic_launcher, 
+                    <span class="string">"This is ticker text"</span>, System.currentTimeMillis());
+            notification.setLatestEventInfo(<span class="keyword">this</span>, 
+                    <span class="string">"This is content title"</span>, <span class="string">"This is content text"</span>, <span class="keyword">null</span>);
+            manager.notify(<span class="number">1</span>, notification);
+            <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+            <span class="keyword">break</span>;
         }
     }
 }
 </code></pre>
-<p>activity_main布局文件  </p>
+<p>修改 activity_main.xml   </p>
 <pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
     android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; &gt;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot; &gt;
 
     &lt;Button
-        android:id=&quot;@+id/button&quot;
+        android:id=&quot;@+id/send_notice&quot;
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;发送广播&quot; /&gt;
+        android:text=&quot;Send notice&quot; /&gt;
 
-&lt;/LinearLayout&gt;    
-</code></pre><p>其实这基本上就和我们前面所学的动态注册广播接收器以及发送广播的代码是一样。只不过现在首先是通过 LocalBroadcastManager的 getInstance() 方法得到了它的一个实例，然后在注册广播接收器的时候调用的是 LocalBroadcastManager 的 registerReceiver()方法，在发送广播的时候调用的是 LocalBroadcastManager 的 sendBroadcast() 方法，仅此而已。这里我们在按钮的点击事件里面发出了一条 com.example.broadcasttest.LOCAL_BROADCAST 广播，然后在 LocalReceiver 里去接收这条广播。重新运行程序，并点击按钮,查看效果.    </p>
-<p>可以看到，LocalReceiver 成功接收到了这条本地广播，并通过 Toast 提示了出来。如果你还有兴趣进行实验，可以尝试在 BroadcastTest2 中也去接收 com.example.broadcasttest.LOCAL_BROADCAST 这条广播，答案是显而易见的，肯定无法收到，因为这条广播只会在BroadcastTest 程序内传播。    </p>
-<p>另外还有一点需要说明，本地广播是无法通过<strong>静态注册</strong>的方式来接收的。其实这也完全可以理解，因为静态注册主要就是为了让程序在未启动的情况下也能收到广播，而发送本地广播时，我们的程序肯定是已经启动了，因此也完全不需要使用静态注册的功能。    </p>
-<p>最后我们再来盘点一下使用本地广播的几点优势吧。    </p>
-<ol>
-<li>可以明确地知道正在发送的广播不会离开我们的程序，因此不需要担心机密数据泄漏的问题。  </li>
-<li>其他的程序无法将广播发送到我们程序的内部，因此不需要担心会有安全漏洞的隐患。  </li>
-<li>发送本地广播比起发送系统全局广播将会更加高效  </li>
-</ol>
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="3-运行项目-点击-Send-notice-按钮，就会看到有一条通知在系统状态栏显示出来"><a href="#3-运行项目-点击-Send-notice-按钮，就会看到有一条通知在系统状态栏显示出来" class="headerlink" title="3 运行项目, 点击 Send notice 按钮，就会看到有一条通知在系统状态栏显示出来."></a>3 运行项目, 点击 Send notice 按钮，就会看到有一条通知在系统状态栏显示出来.</h4><hr>
 
       
     </div>
@@ -433,7 +418,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/广播机制/" rel="tag"># 广播机制</a>
+            <a href="/tags/多媒体/" rel="tag"># 多媒体</a>
           
         </div>
       
@@ -442,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/29/广播机制--发送自定义广播/" rel="next" title="发送自定义广播">
-                <i class="fa fa-chevron-left"></i> 发送自定义广播
+              <a href="/2017/03/29/持久化存储--SQLite数据库存储/" rel="next" title="SQLite数据库存储">
+                <i class="fa fa-chevron-left"></i> SQLite数据库存储
               </a>
             
           </div>
@@ -451,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/29/持久化存储--持久化简介/" rel="prev" title="持久化简介">
-                持久化简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,8 +461,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/29/广播机制--使用本地广播/"
-           data-title="使用本地广播" data-url="http://yoursite.com/2017/03/29/广播机制--使用本地广播/">
+      <div class="ds-thread" data-thread-key="2017/03/30/多媒体--使用通知/"
+           data-title="使用通知" data-url="http://yoursite.com/2017/03/30/多媒体--使用通知/">
       </div>
     
   </div>
@@ -505,8 +486,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -555,6 +545,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个-NotificationTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 新建一个 NotificationTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改-activity-main-xml-中的代码"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-运行项目-点击-Send-notice-按钮，就会看到有一条通知在系统状态栏显示出来"><span class="nav-number">3.</span> <span class="nav-text">3 运行项目, 点击 Send notice 按钮，就会看到有一条通知在系统状态栏显示出来.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
