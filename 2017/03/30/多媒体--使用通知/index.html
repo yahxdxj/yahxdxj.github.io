@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/30/多媒体--使用通知/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="使用通知">
-<meta property="og:updated_time" content="2017-03-30T08:12:34.000Z">
+<meta property="og:updated_time" content="2017-03-30T08:36:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用通知">
 <meta name="twitter:description" content="使用通知">
@@ -395,6 +395,120 @@
 
 &lt;/LinearLayout&gt;  
 </code></pre><h4 id="3-运行项目-点击-Send-notice-按钮，就会看到有一条通知在系统状态栏显示出来"><a href="#3-运行项目-点击-Send-notice-按钮，就会看到有一条通知在系统状态栏显示出来" class="headerlink" title="3 运行项目, 点击 Send notice 按钮，就会看到有一条通知在系统状态栏显示出来."></a>3 运行项目, 点击 Send notice 按钮，就会看到有一条通知在系统状态栏显示出来.</h4><hr>
+<p>如果你使用过 Android 手机，此时应该会下意识地认为这条通知是可以点击的。但是当你去点击它的时候，你会发现没有任何效果。不对啊，好像每条通知点击之后都应该会有反应的呀？其实要想实现通知的点击效果，我们还需要在代码中进行相应的设置，这就涉及到了一个新的概念，PendingIntent。  </p>
+<p>PendingIntent 从名字上看起来就和 Intent 有些类似， 它们之间也确实存在着不少共同点。  </p>
+<p>比如它们都可以去指明某一个“意图” ，都可以用于启动活动、启动服务以及发送广播等。   </p>
+<p>不同的是，Intent 更加倾向于去立即执行某个动作，而 PendingIntent 更加倾向于在某个合适的时机去执行某个动作。  </p>
+<p>所以，也可以把 PendingIntent 简单地理解为延迟执行的 Intent。  </p>
+<p>PendingIntent 的用法同样很简单，它主要提供了几个静态方法用于获取 PendingIntent 的实例，</p>
+<p>可以根据需求来选择是使用 getActivity()方法、getBroadcast()方法、还是 getService() 方法。  </p>
+<p>这几个方法所接收的参数都是相同的，<br>第一个参数依旧是 Context，不用多做解释。<br>第二个参数一般用不到，通常都是传入 0 即可。<br>第三个参数是一个 Intent 对象，我们可以通过这个对象构建出 PendingIntent 的“意图” 。<br>第四个参数用于确定 PendingIntent 的行为，有FLAG_ONE_SHOT、 FLAG_NO_CREATE、 FLAG_CANCEL_CURRENT 和 FLAG_UPDATE_CURRENT 这四种值可选，每种值的含义你可以查看文档，我就不一一进行解释了。  </p>
+<p>对 PendingIntent 有 了 一 定 的 了 解 后 ， 我 们 再 回 过 头 来 看 一 下 Notification 的setLatestEventInfo()方法。  </p>
+<p>刚才我们将 setLatestEventInfo()方法的第四个参数忽略掉了，直接传入了 null，现在仔细观察一下，发现第四个参数正是一个 PendingIntent 对象。  </p>
+<p>因此，这里就可以通过 PendingIntent 构建出一个延迟执行的“意图” ，当用户点击这条通知时就会执行相应的逻辑。  </p>
+<p>现在我们来优化一下 NotificationTest 项目，给刚才的通知加上点击功能，让用户点击它的时候可以启动另一个Activity。  </p>
+<h4 id="1-首先需要准备好另一个Activity，并新建布局文件-notification-layout-xml"><a href="#1-首先需要准备好另一个Activity，并新建布局文件-notification-layout-xml" class="headerlink" title="1 首先需要准备好另一个Activity，并新建布局文件 notification_layout.xml ."></a>1 首先需要准备好另一个Activity，并新建布局文件 notification_layout.xml .</h4><pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.os.Bundle;
+
+<span class="keyword">import</span> com.yassblog.R;
+
+<span class="comment">/**
+ * 类名称：NotificationActivity&lt;/br&gt;   
+ * 类描述：通知显示&lt;/br&gt;   
+ */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotificationActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.notification_layout);
+    }
+}
+</code></pre>
+<p>布局文件 notification_layout.xml  </p>
+<pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+
+    &lt;TextView
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_centerInParent=&quot;true&quot;
+        android:text=&quot;This is notification layout&quot;
+        android:textSize=&quot;24sp&quot; /&gt;
+
+&lt;/RelativeLayout&gt;    
+</code></pre><h4 id="2-修改-AndroidManifest-xml-中的代码"><a href="#2-修改-AndroidManifest-xml-中的代码" class="headerlink" title="2 修改 AndroidManifest.xml 中的代码"></a>2 修改 AndroidManifest.xml 中的代码</h4><pre><code>&lt;activity android:name=&quot;com.yassblog.notification.NotificationActivity&quot; &gt;&lt;/activity&gt;
+</code></pre><h4 id="3-修改MainActivity代码"><a href="#3-修改MainActivity代码" class="headerlink" title="3 修改MainActivity代码"></a>3 修改MainActivity代码</h4><pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.app.Notification;
+<span class="keyword">import</span> android.app.NotificationManager;
+<span class="keyword">import</span> android.app.PendingIntent;
+<span class="keyword">import</span> android.content.Intent;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.view.View.OnClickListener;
+<span class="keyword">import</span> android.widget.Button;
+
+<span class="keyword">import</span> com.yassblog.notification.NotificationActivity;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span> </span>{
+    <span class="keyword">private</span> Button sendNotice;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        sendNotice = (Button) findViewById(R.id.send_notice);
+        sendNotice.setOnClickListener(<span class="keyword">this</span>);
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+        <span class="keyword">switch</span> (v.getId()) {
+        <span class="keyword">case</span> R.id.send_notice:
+            NotificationManager manager = 
+                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            Notification notification = <span class="keyword">new</span> Notification(R.drawable.ic_launcher, 
+                    <span class="string">"This is ticker text"</span>, System.currentTimeMillis());
+            Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, NotificationActivity.class);
+            PendingIntent pi = PendingIntent.getActivity(<span class="keyword">this</span>, <span class="number">0</span>, intent, 
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            notification.setLatestEventInfo(<span class="keyword">this</span>, <span class="string">"This is content title"</span>, 
+                    <span class="string">"This is content text"</span>, pi);
+            manager.notify(<span class="number">1</span>, notification);
+            <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+            <span class="keyword">break</span>;
+        }
+    }
+}
+</code></pre>
+<p>可以看到，这里先是使用 Intent 表达出我们想要启动 NotificationActivity 的“意图” ，然后将构建好的 Intent 对象传入到 PendingIntent 的 getActivity()方法里，以得到 PendingIntent 的实例，接着把它作为第四个参数传入到 Notification 的 setLatestEventInfo()方法中。  </p>
+<h4 id="4-现在重新运行一下程序，并点击-Send-notice-按钮，依旧会发出一条通知。"><a href="#4-现在重新运行一下程序，并点击-Send-notice-按钮，依旧会发出一条通知。" class="headerlink" title="4 现在重新运行一下程序，并点击 Send notice 按钮，依旧会发出一条通知。"></a>4 现在重新运行一下程序，并点击 Send notice 按钮，依旧会发出一条通知。</h4><p>然后下拉系统状态栏，点击一下该通知，就会看到 NotificationActivity 这个Activity的界面了    </p>
+<hr>
+<p>咦？怎么系统状态上的通知图标还没有消失呢？是这样的，如果我们没有在代码中对该通知进行取消，它就会一直显示在系统的状态栏上显示。解决的方法也很简单，调用 NotificationManager 的 cancel()方法就可以取消通知了。  </p>
+<p>修改 NotificationActivity 中的代码  </p>
+<pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.app.NotificationManager;
+<span class="keyword">import</span> android.os.Bundle;
+
+<span class="keyword">import</span> com.yassblog.R;
+
+<span class="comment">/**
+ * 类名称：NotificationActivity&lt;/br&gt; 
+ * 类描述：通知显示&lt;/br&gt;
+ */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotificationActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.notification_layout);
+        NotificationManager manager = 
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.cancel(<span class="number">1</span>);
+    }
+}
+</code></pre>
+<p>可以看到，这里我们在 cancel()方法中传入了 1，这个 1 是什么意思呢？还记得在创建通知的时候给每条通知指定的 id 吗？当时我们给这条通知设置的 id 就是 1。因此，如果你想要取消哪一条通知，就在 cancel()方法中传入该通知的 id 就行了。    </p>
 
       
     </div>
@@ -555,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个-NotificationTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 新建一个 NotificationTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改-activity-main-xml-中的代码"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-运行项目-点击-Send-notice-按钮，就会看到有一条通知在系统状态栏显示出来"><span class="nav-number">3.</span> <span class="nav-text">3 运行项目, 点击 Send notice 按钮，就会看到有一条通知在系统状态栏显示出来.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个-NotificationTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 新建一个 NotificationTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改-activity-main-xml-中的代码"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-运行项目-点击-Send-notice-按钮，就会看到有一条通知在系统状态栏显示出来"><span class="nav-number">3.</span> <span class="nav-text">3 运行项目, 点击 Send notice 按钮，就会看到有一条通知在系统状态栏显示出来.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首先需要准备好另一个Activity，并新建布局文件-notification-layout-xml"><span class="nav-number">4.</span> <span class="nav-text">1 首先需要准备好另一个Activity，并新建布局文件 notification_layout.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改-AndroidManifest-xml-中的代码"><span class="nav-number">5.</span> <span class="nav-text">2 修改 AndroidManifest.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改MainActivity代码"><span class="nav-number">6.</span> <span class="nav-text">3 修改MainActivity代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-现在重新运行一下程序，并点击-Send-notice-按钮，依旧会发出一条通知。"><span class="nav-number">7.</span> <span class="nav-text">4 现在重新运行一下程序，并点击 Send notice 按钮，依旧会发出一条通知。</span></a></li></ol></div>
             
 
           </div>
