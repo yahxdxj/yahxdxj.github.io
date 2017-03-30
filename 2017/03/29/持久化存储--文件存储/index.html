@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--文件存储/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="文件存储">
-<meta property="og:updated_time" content="2017-03-30T01:33:13.000Z">
+<meta property="og:updated_time" content="2017-03-30T01:40:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件存储">
 <meta name="twitter:description" content="文件存储">
@@ -330,7 +330,7 @@
 </blockquote>
 <a id="more"></a>  
 <p>如何在 Android 项目中使用文件存储的技术  </p>
-<h4 id="1-创建一个-FilePersistenceTest-项目"><a href="#1-创建一个-FilePersistenceTest-项目" class="headerlink" title="1 创建一个 FilePersistenceTest 项目"></a>1 创建一个 FilePersistenceTest 项目</h4><h4 id="2-修改MainActivity-中的代码-并修改布局activity-main-xml"><a href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml" class="headerlink" title="2 修改MainActivity 中的代码, 并修改布局activity_main.xml ."></a>2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</h4><pre><code class="java"><span class="keyword">import</span> java.io.BufferedWriter;
+<h4 id="1-新建一个-FilePersistenceTest-项目"><a href="#1-新建一个-FilePersistenceTest-项目" class="headerlink" title="1 新建一个 FilePersistenceTest 项目"></a>1 新建一个 FilePersistenceTest 项目</h4><h4 id="2-修改MainActivity-中的代码-并修改布局activity-main-xml"><a href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml" class="headerlink" title="2 修改MainActivity 中的代码, 并修改布局activity_main.xml ."></a>2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</h4><pre><code class="java"><span class="keyword">import</span> java.io.BufferedWriter;
 <span class="keyword">import</span> java.io.FileOutputStream;
 <span class="keyword">import</span> java.io.IOException;
 <span class="keyword">import</span> java.io.OutputStreamWriter;
@@ -356,7 +356,8 @@
     <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
         <span class="keyword">super</span>.onDestroy();
         String inputText = edit.getText().toString();
-        saveTxt(<span class="string">"data"</span>, inputText);
+        <span class="comment">// (文件内容,文件名称)</span>
+        saveTxt(inputText, <span class="string">"data"</span>);
     }
 
     <span class="comment">/**
@@ -381,7 +382,6 @@
         } <span class="keyword">finally</span> {
             <span class="keyword">try</span> {
                 <span class="keyword">if</span> (writer != <span class="keyword">null</span>) {
-
                     writer.close();
                 }
             } <span class="keyword">catch</span> (IOException e) {
@@ -403,7 +403,7 @@
         android:hint=&quot;Type something here&quot; /&gt;
 
 &lt;/LinearLayout&gt;  
-</code></pre><h4 id="运行程序了，输入内容，再按下-Back-键-退出"><a href="#运行程序了，输入内容，再按下-Back-键-退出" class="headerlink" title="运行程序了，输入内容，再按下 Back 键, 退出."></a>运行程序了，输入内容，再按下 Back 键, 退出.</h4><p>可以看到， 首先我们在 onCreate()方法中获取了 EditText 的实例， 然后重写了 onDestroy()方法，这样就可以保证在活动销毁之前一定会调用这个方法。在 onDestroy()方法中我们获取了 EditText 中输入的内容，并调用 saveTxt()方法把输入的内容存储到文件中，文件命名为 data.  </p>
+</code></pre><h4 id="运行程序了，输入内容，再按下-Back-键后-程序退出"><a href="#运行程序了，输入内容，再按下-Back-键后-程序退出" class="headerlink" title="运行程序了，输入内容，再按下 Back 键后, 程序退出."></a>运行程序了，输入内容，再按下 Back 键后, 程序退出.</h4><p>可以看到， 首先我们在 onCreate()方法中获取了 EditText 的实例， 然后重写了 onDestroy()方法，这样就可以保证在活动销毁之前一定会调用这个方法。在 onDestroy()方法中我们获取了 EditText 中输入的内容，并调用 saveTxt()方法把输入的内容存储到文件中，文件命名为 data.  </p>
 <p>然后按下 Back 键关闭程序，这时我们输入的内容就已经保存到文件中了。那么如何才能证实数据确实已经保存成功了呢？我们可以借助 DDMS 的 File Explorer 来查看一下。 切换到 DDMS 视 图 ， 并 点 击 File Explorer 切 换 卡 ， 在 这 里 进 入 到 /data/data/com.example.filepersistencetest/files/目录下，可以看到生成了一个 data 文件  </p>
 <p>将这个文件导出到电脑上。使用记事本打开这个文件，里面的内容就是你输入的数据.  </p>
 
@@ -570,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建一个-FilePersistenceTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 创建一个 FilePersistenceTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行程序了，输入内容，再按下-Back-键-退出"><span class="nav-number">3.</span> <span class="nav-text">运行程序了，输入内容，再按下 Back 键, 退出.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个-FilePersistenceTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 新建一个 FilePersistenceTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行程序了，输入内容，再按下-Back-键后-程序退出"><span class="nav-number">3.</span> <span class="nav-text">运行程序了，输入内容，再按下 Back 键后, 程序退出.</span></a></li></ol></div>
             
 
           </div>
