@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--文件存储/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="文件存储">
-<meta property="og:updated_time" content="2017-03-30T02:01:19.000Z">
+<meta property="og:updated_time" content="2017-03-30T02:53:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件存储">
 <meta name="twitter:description" content="文件存储">
@@ -523,6 +523,147 @@
 <p>这里的思路非常简单，在 onCreate()方法中调用 load()方法来读取文件中存储的文本内容，如果读到的内容不为空， 就调用 EditText 的 setText()方法将内容填充到 EditText里，并调用 setSelection 方法将输入光标移动到文本的末尾位置以便于继续输入，然后弹出一句还原成功的提示。  </p>
 <p>注意在代码中对字符串进行非空判断的时候使用了 TextUtils.isEmpty()方法，这是一个非常好用的方法，它可以一次性进行两种空值的判断。当传入的字符串等于 null 或者等于空字符串的时候，这个方法都会返回 true，从而使得我们不需要单独去判断这两种空值，再使用逻辑运算符连接起来了。  </p>
 <p>这样我们就已经把文件存储方面的知识学习完了，其实所用到的核心技术就是 Context类中提供的 openFileInput()和 openFileOutput()方法，之后就是利用 Java 的各种流来进行读写操作就可以了  </p>
+<hr>
+<p>另外:<br>上面的文件存储,是将文件保存到系统文件中,用户是看不到的,甚至一些程序员都不定知道如何查看, 那么有没有方法将数据保存到内存卡或者本地根目录中呢?  </p>
+<p>新建一个工具类  </p>
+<pre><code class="java"><span class="keyword">import</span> java.io.BufferedReader;
+<span class="keyword">import</span> java.io.BufferedWriter;
+<span class="keyword">import</span> java.io.File;
+<span class="keyword">import</span> java.io.FileInputStream;
+<span class="keyword">import</span> java.io.FileWriter;
+<span class="keyword">import</span> java.io.IOException;
+<span class="keyword">import</span> java.io.InputStreamReader;
+
+<span class="keyword">import</span> android.os.Environment;
+
+<span class="comment">/**
+ * 类名称：FileUtil&lt;/br&gt; 
+ * 类描述：文件工具类&lt;/br&gt;
+ */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileUtil</span> </span>{
+
+    <span class="comment">/**
+     * 配合测试把json数据写入文件中（因为数据太大，无法打印全部数据）
+     * 
+     * <span class="doctag">@param</span> requestData
+     * <span class="doctag">@param</span> filePath
+     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeTxt</span><span class="params">(String requestData, String filePath)</span> </span>{
+        String json = requestData + <span class="string">"\n"</span>;
+        File file = <span class="keyword">new</span> File(filePath); <span class="comment">// 要写入的文件</span>
+        BufferedWriter writer = <span class="keyword">null</span>;
+        <span class="keyword">try</span> {
+            <span class="keyword">if</span> (!file.exists()) {
+                file.createNewFile();
+            }
+            writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(file, <span class="keyword">true</span>));
+            writer.newLine();
+            writer.write(json);
+        } <span class="keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        } <span class="keyword">finally</span> {
+            <span class="keyword">if</span> (writer != <span class="keyword">null</span>)
+                <span class="keyword">try</span> {
+                    writer.close();
+                } <span class="keyword">catch</span> (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    <span class="comment">/**
+     * 将File文件读成String
+     * 
+     * <span class="doctag">@param</span> <span class="doctag">@param</span> filepath 文件路径,如:/sdcard/test.txt
+     * <span class="doctag">@return</span> String 返回类型
+     * <span class="doctag">@throws</span>
+     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">file2String</span><span class="params">(String filepath)</span> </span>{
+
+        String str = <span class="string">""</span>;
+        <span class="keyword">try</span> {
+            String encoding = <span class="string">"UTF-8"</span>;
+            File urlFile = <span class="keyword">new</span> File(filepath);
+            <span class="keyword">if</span> (urlFile.isFile() &amp;&amp; urlFile.exists()) { <span class="comment">// 判断文件是否存在</span>
+                InputStreamReader isr = 
+                    <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(urlFile), encoding);
+                BufferedReader br = <span class="keyword">new</span> BufferedReader(isr);
+                String mimeTypeLine = <span class="keyword">null</span>;
+                <span class="keyword">while</span> ((mimeTypeLine = br.readLine()) != <span class="keyword">null</span>) {
+                    str = str + mimeTypeLine;
+                }
+            } <span class="keyword">else</span> {
+                System.out.println(<span class="string">"找不到指定的文件"</span>);
+            }
+        } <span class="keyword">catch</span> (Exception e) {
+            System.out.println(<span class="string">"读取文件内容出错"</span>);
+            e.printStackTrace();
+        }
+        <span class="keyword">return</span> str;
+    }
+
+    <span class="comment">/**
+     * 获取sd卡路径
+     * 
+     * <span class="doctag">@return</span>
+     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getSDPath</span><span class="params">()</span> </span>{
+
+        File sdDir = <span class="keyword">null</span>;
+
+        <span class="comment">// 判断sd卡是否存在</span>
+        <span class="keyword">boolean</span> sdCardExist = Environment.getExternalStorageState()
+                .equals(android.os.Environment.MEDIA_MOUNTED); 
+
+        <span class="keyword">if</span> (sdCardExist) <span class="comment">// 如果SD卡存在，则获取跟目录</span>
+        {
+            sdDir = Environment.getExternalStorageDirectory();<span class="comment">// 获取跟目录</span>
+        }
+        <span class="keyword">return</span> sdDir.toString();
+    }
+}
+</code></pre>
+<p>添加权限:  </p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;/&gt;  
+</code></pre><p>在MainActivity中调用工具类方法,读写文件.   </p>
+<pre><code class="java"><span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.text.TextUtils;
+<span class="keyword">import</span> android.widget.EditText;
+<span class="keyword">import</span> android.widget.Toast;
+
+<span class="keyword">import</span> com.yassblog.utils.FileUtil;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+
+    <span class="keyword">private</span> EditText edit;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edit = (EditText) findViewById(R.id.edit);
+
+        <span class="comment">// 读取数据</span>
+        String inputText = FileUtil.file2String(FileUtil.getSDPath()+<span class="string">"/ceshi1.txt"</span>);
+        <span class="keyword">if</span> (!TextUtils.isEmpty(inputText)) {
+            edit.setText(inputText);
+            edit.setSelection(inputText.length());
+            Toast.makeText(<span class="keyword">this</span>, <span class="string">"读取成功"</span>, <span class="number">0</span>).show();
+        }
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
+        <span class="keyword">super</span>.onDestroy();
+        String inputText = edit.getText().toString();
+        <span class="comment">// 保存数据 (文件内容,文件路径)</span>
+        FileUtil.writeTxt(inputText, FileUtil.getSDPath()+<span class="string">"/ceshi1.txt"</span>);
+    }
+}
+</code></pre>
 
       
     </div>
