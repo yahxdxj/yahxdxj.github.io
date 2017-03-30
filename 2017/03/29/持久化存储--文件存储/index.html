@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--文件存储/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="文件存储">
-<meta property="og:updated_time" content="2017-03-30T01:42:51.000Z">
+<meta property="og:updated_time" content="2017-03-30T02:01:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件存储">
 <meta name="twitter:description" content="文件存储">
@@ -357,7 +357,7 @@
         <span class="keyword">super</span>.onDestroy();
         String inputText = edit.getText().toString();
         <span class="comment">// (文件内容,文件名称)</span>
-        saveTxt(inputText, <span class="string">"data"</span>);
+        saveFileTxt(inputText, <span class="string">"data"</span>);
     }
 
     <span class="comment">/**
@@ -368,7 +368,7 @@
      * <span class="doctag">@return</span> void
      * <span class="doctag">@throws</span>
      */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveTxt</span><span class="params">(String requestData, String filename)</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveFileTxt</span><span class="params">(String requestData, String filename)</span> </span>{
         FileOutputStream out = <span class="keyword">null</span>;
         BufferedWriter writer = <span class="keyword">null</span>;
         <span class="keyword">try</span> {
@@ -403,9 +403,126 @@
         android:hint=&quot;Type something here&quot; /&gt;
 
 &lt;/LinearLayout&gt;  
-</code></pre><h4 id="运行程序了，输入内容，再按下-Back-键后-程序退出"><a href="#运行程序了，输入内容，再按下-Back-键后-程序退出" class="headerlink" title="运行程序了，输入内容，再按下 Back 键后, 程序退出."></a>运行程序了，输入内容，再按下 Back 键后, 程序退出.</h4><p>可以看到， 首先我们在 onCreate()方法中获取了 EditText 的实例， 然后重写了 onDestroy()方法，这样就可以保证在活动销毁之前一定会调用这个方法。在 onDestroy()方法中我们获取了 EditText 中输入的内容，并调用 saveTxt()方法把输入的内容存储到文件中，文件命名为 data.  </p>
+</code></pre><h4 id="3-运行程序了，输入内容，再按下-Back-键后-程序退出"><a href="#3-运行程序了，输入内容，再按下-Back-键后-程序退出" class="headerlink" title="3 运行程序了，输入内容，再按下 Back 键后, 程序退出."></a>3 运行程序了，输入内容，再按下 Back 键后, 程序退出.</h4><p>解析:  </p>
+<p>Context 类中提供了一个 openFileOutput ()方法，可以用于将数据存储到指定的文件中。 openFileOutput ()方法返回的是一个 FileOutputStream 对象，得到了这个对象之后就可以使用 Java 流的方式将数据写入到文件中了。    </p>
+<p>可以看到， 首先我们在 onCreate()方法中获取了 EditText 的实例， 然后重写了 onDestroy()方法，这样就可以保证在活动销毁之前一定会调用这个方法。在 onDestroy()方法中我们获取了 EditText 中输入的内容，并调用 saveTxt()方法把输入的内容存储到文件中，文件命名为 data.  </p>
 <p>然后按下 Back 键关闭程序，这时我们输入的内容就已经保存到文件中了。那么如何才能证实数据确实已经保存成功了呢？我们可以借助 DDMS 的 File Explorer 来查看一下。 切换到 DDMS 视 图 ， 并 点 击 File Explorer 切 换 卡 ， 在 这 里 进 入 到 <code>/data/data/&lt;packagename&gt;/files/</code>目录下，可以看到生成了一个 data 文件  </p>
 <p>将这个文件导出到电脑上。使用记事本打开这个文件，里面的内容就是你输入的数据.  </p>
+<p>这样就证实了，在 EditText 中输入的内容确实已经成功保存到文件中了。  </p>
+<p>不过只是成功将数据保存下来还不够，我们还需要想办法在下次启动程序的时候让这些数据能够还原到 EditText 中，因此接下来我们就要学习一下，如何从文件中读取数据。  </p>
+<hr>
+<p>从文件中读取数据  </p>
+<h4 id="修改-MainActivity中的代码"><a href="#修改-MainActivity中的代码" class="headerlink" title="修改 MainActivity中的代码"></a>修改 MainActivity中的代码</h4><pre><code class="java"><span class="keyword">import</span> java.io.BufferedReader;
+<span class="keyword">import</span> java.io.BufferedWriter;
+<span class="keyword">import</span> java.io.FileInputStream;
+<span class="keyword">import</span> java.io.FileOutputStream;
+<span class="keyword">import</span> java.io.IOException;
+<span class="keyword">import</span> java.io.InputStreamReader;
+<span class="keyword">import</span> java.io.OutputStreamWriter;
+
+<span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.content.Context;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.text.TextUtils;
+<span class="keyword">import</span> android.widget.EditText;
+<span class="keyword">import</span> android.widget.Toast;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+
+    <span class="keyword">private</span> EditText edit;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edit = (EditText) findViewById(R.id.edit);
+
+        String inputText = readFileTxt(<span class="string">"data"</span>);
+        <span class="keyword">if</span> (!TextUtils.isEmpty(inputText)) {
+            edit.setText(inputText);
+            edit.setSelection(inputText.length());
+            Toast.makeText(<span class="keyword">this</span>, <span class="string">"读取成功"</span>, <span class="number">0</span>).show();
+        }
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
+        <span class="keyword">super</span>.onDestroy();
+        String inputText = edit.getText().toString();
+        <span class="comment">// (文件内容,文件名称)</span>
+        saveFileTxt(inputText, <span class="string">"data"</span>);
+    }
+
+    <span class="comment">/**
+     * 保存数据到文件 默认存储到/data/data/&lt;packagename&gt;/files/目录下
+     * 
+     * <span class="doctag">@param</span> <span class="doctag">@param</span> requestData 要保存的字符串
+     * <span class="doctag">@param</span> <span class="doctag">@param</span> filename 文件名称
+     * <span class="doctag">@return</span> void
+     * <span class="doctag">@throws</span>
+     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveFileTxt</span><span class="params">(String requestData, String filename)</span> </span>{
+        FileOutputStream out = <span class="keyword">null</span>;
+        BufferedWriter writer = <span class="keyword">null</span>;
+        <span class="keyword">try</span> {
+            <span class="comment">// MODE_PRIVATE 默认的操作模式,表示当指定同样文件名的时候,所写入的内容将会覆盖原文件中的内容</span>
+            <span class="comment">// MODE_APPEND 则表示如果该文件已存在就往文件里面追加内容，不存在就创建新文件。</span>
+            out = openFileOutput(filename, Context.MODE_PRIVATE);
+            writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(out));
+            writer.write(requestData);
+        } <span class="keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        } <span class="keyword">finally</span> {
+            <span class="keyword">try</span> {
+                <span class="keyword">if</span> (writer != <span class="keyword">null</span>) {
+                    writer.close();
+                }
+            } <span class="keyword">catch</span> (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    <span class="comment">/**
+     * 从文件中读取数据
+     * 
+     * <span class="doctag">@param</span> <span class="doctag">@param</span> filename 文件名称
+     * <span class="doctag">@return</span> String 返回 String
+     * <span class="doctag">@throws</span>
+     */</span>
+    <span class="function"><span class="keyword">public</span> String <span class="title">readFileTxt</span><span class="params">(String filename)</span> </span>{
+        FileInputStream in = <span class="keyword">null</span>;
+        BufferedReader reader = <span class="keyword">null</span>;
+        StringBuilder content = <span class="keyword">new</span> StringBuilder();
+        <span class="keyword">try</span> {
+            in = openFileInput(filename);
+            reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(in));
+            String line = <span class="string">""</span>;
+            <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) {
+                content.append(line);
+            }
+        } <span class="keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        } <span class="keyword">finally</span> {
+            <span class="keyword">if</span> (reader != <span class="keyword">null</span>) {
+                <span class="keyword">try</span> {
+                    reader.close();
+                } <span class="keyword">catch</span> (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        <span class="keyword">return</span> content.toString();
+    }
+}
+</code></pre>
+<h4 id="2-运行程序-查看效果"><a href="#2-运行程序-查看效果" class="headerlink" title="2 运行程序,查看效果"></a>2 运行程序,查看效果</h4><p>解析:  </p>
+<p>Context 类中还提供了一个 openFileInput()方法，用于从文件中读取数据。  </p>
+<p>首先通过 openFileInput()方法获取到了一个 FileInputStream 对象，然后借助它又构建出了一个 InputStreamReader 对象，接着再使用 InputStreamReader 构建出一个 BufferedReader 对象，这样我们就可以通过 BufferedReader 进行一行行地读取，把文件中所有的文本内容全部读取出来并存放在一个 StringBuilder 对象中，最后将读取到的内容返回就可以了。  </p>
+<p>这里的思路非常简单，在 onCreate()方法中调用 load()方法来读取文件中存储的文本内容，如果读到的内容不为空， 就调用 EditText 的 setText()方法将内容填充到 EditText里，并调用 setSelection 方法将输入光标移动到文本的末尾位置以便于继续输入，然后弹出一句还原成功的提示。  </p>
+<p>注意在代码中对字符串进行非空判断的时候使用了 TextUtils.isEmpty()方法，这是一个非常好用的方法，它可以一次性进行两种空值的判断。当传入的字符串等于 null 或者等于空字符串的时候，这个方法都会返回 true，从而使得我们不需要单独去判断这两种空值，再使用逻辑运算符连接起来了。  </p>
+<p>这样我们就已经把文件存储方面的知识学习完了，其实所用到的核心技术就是 Context类中提供的 openFileInput()和 openFileOutput()方法，之后就是利用 Java 的各种流来进行读写操作就可以了  </p>
 
       
     </div>
@@ -570,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个-FilePersistenceTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 新建一个 FilePersistenceTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行程序了，输入内容，再按下-Back-键后-程序退出"><span class="nav-number">3.</span> <span class="nav-text">运行程序了，输入内容，再按下 Back 键后, 程序退出.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个-FilePersistenceTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 新建一个 FilePersistenceTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改MainActivity-中的代码-并修改布局activity-main-xml"><span class="nav-number">2.</span> <span class="nav-text">2 修改MainActivity 中的代码, 并修改布局activity_main.xml .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-运行程序了，输入内容，再按下-Back-键后-程序退出"><span class="nav-number">3.</span> <span class="nav-text">3 运行程序了，输入内容，再按下 Back 键后, 程序退出.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-MainActivity中的代码"><span class="nav-number">4.</span> <span class="nav-text">修改 MainActivity中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-运行程序-查看效果"><span class="nav-number">5.</span> <span class="nav-text">2 运行程序,查看效果</span></a></li></ol></div>
             
 
           </div>
