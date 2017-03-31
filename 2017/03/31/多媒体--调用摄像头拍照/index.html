@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="持久化存储," />
+  <meta name="keywords" content="多媒体," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="SharedPreferences 存储">
+<meta name="description" content="调用摄像头拍照">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SharedPreferences 存储">
-<meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--SharedPreferences-存储/index.html">
+<meta property="og:title" content="调用摄像头拍照">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/多媒体--调用摄像头拍照/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="SharedPreferences 存储">
-<meta property="og:updated_time" content="2017-03-30T04:54:01.000Z">
+<meta property="og:description" content="调用摄像头拍照">
+<meta property="og:updated_time" content="2017-03-31T04:03:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SharedPreferences 存储">
-<meta name="twitter:description" content="SharedPreferences 存储">
+<meta name="twitter:title" content="调用摄像头拍照">
+<meta name="twitter:description" content="调用摄像头拍照">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/29/持久化存储--SharedPreferences-存储/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/31/多媒体--调用摄像头拍照/"/>
 
 
 
 
 
-  <title> SharedPreferences 存储 | 个人博客 </title>
+  <title> 调用摄像头拍照 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/持久化存储--SharedPreferences-存储/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/多媒体--调用摄像头拍照/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                SharedPreferences 存储
+                调用摄像头拍照
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-29T17:14:28+08:00">
-                2017-03-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T11:56:18+08:00">
+                2017-03-31
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/29/持久化存储--SharedPreferences-存储/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/29/持久化存储--SharedPreferences-存储/" itemprop="commentCount"></span>
+                <a href="/2017/03/31/多媒体--调用摄像头拍照/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/31/多媒体--调用摄像头拍照/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,90 +326,117 @@
 
       
         <blockquote>
-<p>SharedPreferences 存储  </p>
+<p>调用摄像头拍照  </p>
 </blockquote>
 <a id="more"></a>  
-<p>不同于文件的存储方式，SharedPreferences 是使用键值对的方式来存储数据的。也就是说当保存一条数据的时候，需要给这条数据提供一个对应的键，这样在读取数据的时候就可以通过这个键把相应的值取出来。而且 SharedPreferences 还支持多种不同的数据类型存储，如果存储的数据类型是整型，那么读取出来的数据也是整型的，存储的数据是一个字符串，读取出来的数据仍然是字符串。  </p>
-<p>写一个工具类  </p>
-<pre><code class="java"><span class="keyword">import</span> android.content.Context;
-<span class="keyword">import</span> android.content.SharedPreferences;
+<p>很多应用程序都可能会使用到调用摄像头拍照的功能，比如说程序里需要上传一张图片作为用户的头像，这时打开摄像头拍张照是最简单快捷的。下面就让我们通过一个例子来学习一下，如何才能在应用程序里调用手机的摄像头进行拍照。  </p>
+<h4 id="1-新建一个-ChoosePicTest-项目"><a href="#1-新建一个-ChoosePicTest-项目" class="headerlink" title="1 新建一个 ChoosePicTest 项目"></a>1 新建一个 ChoosePicTest 项目</h4><h4 id="2-修改-MainActivity-中的代码-修改-activity-main-xml-中的代码"><a href="#2-修改-MainActivity-中的代码-修改-activity-main-xml-中的代码" class="headerlink" title="2 修改 MainActivity 中的代码,修改 activity_main.xml 中的代码"></a>2 修改 MainActivity 中的代码,修改 activity_main.xml 中的代码</h4><pre><code class="java"><span class="keyword">import</span> java.io.File;
+<span class="keyword">import</span> java.io.FileNotFoundException;
+<span class="keyword">import</span> java.io.IOException;
 
-<span class="comment">/**
- * SharePrefrence的封装
- * 
- * <span class="doctag">@author</span> Kevin
- * 
- */</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrefUtils</span> </span>{
+<span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.content.Intent;
+<span class="keyword">import</span> android.graphics.Bitmap;
+<span class="keyword">import</span> android.graphics.BitmapFactory;
+<span class="keyword">import</span> android.net.Uri;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.os.Environment;
+<span class="keyword">import</span> android.provider.MediaStore;
+<span class="keyword">import</span> android.view.View;
+<span class="keyword">import</span> android.view.View.OnClickListener;
+<span class="keyword">import</span> android.widget.Button;
+<span class="keyword">import</span> android.widget.ImageView;
 
-    <span class="keyword">private</span> <span class="keyword">static</span> SharedPreferences mPrefs;
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TAKE_PHOTO = <span class="number">1</span>;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CROP_PHOTO = <span class="number">2</span>;
+    <span class="keyword">private</span> Button takePhoto;
+    <span class="keyword">private</span> ImageView picture;
+    <span class="keyword">private</span> Uri imageUri;
 
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">putBoolean</span><span class="params">(Context ctx, String key, <span class="keyword">boolean</span> value)</span> </span>{
-        <span class="keyword">if</span> (mPrefs == <span class="keyword">null</span>) {
-            mPrefs = ctx.getSharedPreferences(<span class="string">"config"</span>, Context.MODE_PRIVATE);
-        }
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        mPrefs.edit().putBoolean(key, value).commit();
+        takePhoto = (Button) findViewById(R.id.take_photo);
+        picture = (ImageView) findViewById(R.id.picture);
+
+        takePhoto.setOnClickListener(<span class="keyword">new</span> OnClickListener() {
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+                <span class="comment">// 创建File对象，用于存储拍照后的图片</span>
+                File outputImage = <span class="keyword">new</span> File(Environment
+                        .getExternalStorageDirectory(), <span class="string">"tempImage.jpg"</span>);
+                <span class="keyword">try</span> {
+                    <span class="keyword">if</span> (outputImage.exists()) {
+                        outputImage.delete();
+                    }
+                    outputImage.createNewFile();
+                } <span class="keyword">catch</span> (IOException e) {
+                    e.printStackTrace();
+                }
+                <span class="comment">// </span>
+                imageUri = Uri.fromFile(outputImage);
+                Intent intent = <span class="keyword">new</span> Intent(<span class="string">"android.media.action. IMAGE_CAPTURE"</span>);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, TAKE_PHOTO); <span class="comment">// 启动相机程序</span>
+            }
+        });
     }
 
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">getBoolean</span><span class="params">(Context ctx, String key, <span class="keyword">boolean</span> defValue)</span> </span>{
-        <span class="keyword">if</span> (mPrefs == <span class="keyword">null</span>) {
-            mPrefs = ctx.getSharedPreferences(<span class="string">"config"</span>, Context.MODE_PRIVATE);
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>{
+        <span class="keyword">switch</span> (requestCode) {
+        <span class="comment">// 拍照返回处理</span>
+        <span class="keyword">case</span> TAKE_PHOTO:
+            <span class="keyword">if</span> (resultCode == RESULT_OK) {
+                Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.android.camera.action.CROP"</span>);
+                intent.setDataAndType(imageUri, <span class="string">"image/*"</span>);
+                intent.putExtra(<span class="string">"scale"</span>, <span class="keyword">true</span>);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, CROP_PHOTO); <span class="comment">// 启动裁剪程序</span>
+            }
+            <span class="keyword">break</span>;
+        <span class="comment">// 裁剪返回处理</span>
+        <span class="keyword">case</span> CROP_PHOTO:
+            <span class="keyword">if</span> (resultCode == RESULT_OK) {
+                <span class="keyword">try</span> {
+                    Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
+                            .openInputStream(imageUri));
+                    picture.setImageBitmap(bitmap); <span class="comment">// 将裁剪后的照片显示出来</span>
+                } <span class="keyword">catch</span> (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+            <span class="keyword">break</span>;
         }
-        <span class="keyword">return</span> mPrefs.getBoolean(key, defValue);
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">putString</span><span class="params">(Context ctx, String key, String value)</span> </span>{
-        <span class="keyword">if</span> (mPrefs == <span class="keyword">null</span>) {
-            mPrefs = ctx.getSharedPreferences(<span class="string">"config"</span>, Context.MODE_PRIVATE);
-        }
-        mPrefs.edit().putString(key, value).commit();
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getString</span><span class="params">(Context ctx, String key, String defValue)</span> </span>{
-        <span class="keyword">if</span> (mPrefs == <span class="keyword">null</span>) {
-            mPrefs = ctx.getSharedPreferences(<span class="string">"config"</span>, Context.MODE_PRIVATE);
-        }
-        <span class="keyword">return</span> mPrefs.getString(key, defValue);
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">putInt</span><span class="params">(Context ctx, String key, <span class="keyword">int</span> value)</span> </span>{
-        <span class="keyword">if</span> (mPrefs == <span class="keyword">null</span>) {
-            mPrefs = ctx.getSharedPreferences(<span class="string">"config"</span>, Context.MODE_PRIVATE);
-        }
-        mPrefs.edit().putInt(key, value).commit();
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getInt</span><span class="params">(Context ctx, String key, <span class="keyword">int</span> defValue)</span> </span>{
-        <span class="keyword">if</span> (mPrefs == <span class="keyword">null</span>) {
-            mPrefs = ctx.getSharedPreferences(<span class="string">"config"</span>, Context.MODE_PRIVATE);
-        }
-        <span class="keyword">return</span> mPrefs.getInt(key, defValue);
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Context ctx, String key)</span> </span>{
-        <span class="keyword">if</span> (mPrefs == <span class="keyword">null</span>) {
-            mPrefs = ctx.getSharedPreferences(<span class="string">"config"</span>, Context.MODE_PRIVATE);
-        }
-
-        mPrefs.edit().remove(key).commit();
     }
 }
 </code></pre>
-<h4 id="将数据存储到文件中"><a href="#将数据存储到文件中" class="headerlink" title="将数据存储到文件中"></a>将数据存储到文件中</h4><p>Context 类中的 getSharedPreferences()方法  </p>
-<p>此方法接收两个参数，<br>第一个参数用于指定 SharedPreferences 文件的名称，如果指定的文件不存在则会创建一个，SharedPreferences 文件都是存放在/data/data/<packagename>/shared_prefs/目录下的。<br>第二个参数用于指定操作模式，主要有两种模式可以选择，MODE_PRIVATE 和 MODE_MULTI_PROCESS。MODE_PRIVATE 仍然是默认的操作模式，和直接传入 0 效果是相同的，表示只有当前的应用程序才可以对这个SharedPreferences文件进行读写。 MODE_MULTI_PROCESS 则一般是用于会有多个进程中对同一个 SharedPreferences 文件进行读写的情况。  </packagename></p>
-<p>得到了 SharedPreferences 对象之后， 就可以开始向 SharedPreferences 文件中存储数据了，  </p>
-<p>主要可以分为三步实现。  </p>
-<ol>
-<li>调用 SharedPreferences 对象的 edit()方法来获取一个 SharedPreferences.Editor 对象。  </li>
-<li>向 SharedPreferences.Editor 对象中添加数据，比如添加一个布尔型数据就使用 putBoolean 方法，添加一个字符串则使用 putString()方法，以此类推。  </li>
-<li>调用 commit()方法将添加的数据提交，从而完成数据存储操作。  </li>
-</ol>
-<h4 id="从-SharedPreferences-文件中读取数据更加的简单。"><a href="#从-SharedPreferences-文件中读取数据更加的简单。" class="headerlink" title="从 SharedPreferences 文件中读取数据更加的简单。"></a>从 SharedPreferences 文件中读取数据更加的简单。</h4><p>SharedPreferences 对象中提供了一系列的get方法用于对存储的数据进行读取， </p>
-<p>每种get方法都对应了SharedPreferences.Editor 中的一种 put 方法，</p>
-<p>比如:<br>读取一个布尔型数据就使用 getBoolean()方法，<br>读取一个字符串就使用 getString()方法。</p>
-<p>这些 get 方法都接收两个参数，<br>第一个参数是键，传入存储数据时使用的键就可以得到相应的值了，<br>第二个参数是默认值，即表示当传入的键找不到对应的值时，会以什么样的默认值进行返回。</p>
+<p>修改 activity_main.xml  </p>
+<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot; &gt;
 
+    &lt;Button
+        android:id=&quot;@+id/take_photo&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Take Photo&quot; /&gt;
+
+    &lt;ImageView
+        android:id=&quot;@+id/picture&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_gravity=&quot;center_horizontal&quot; /&gt;
+
+&lt;/LinearLayout&gt;  
+</code></pre><h4 id="还需要在-AndroidManifest-xml-中声明权限"><a href="#还需要在-AndroidManifest-xml-中声明权限" class="headerlink" title="还需要在 AndroidManifest.xml 中声明权限"></a>还需要在 AndroidManifest.xml 中声明权限</h4><pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+</code></pre>
       
     </div>
 
@@ -432,7 +459,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/持久化存储/" rel="tag"># 持久化存储</a>
+            <a href="/tags/多媒体/" rel="tag"># 多媒体</a>
           
         </div>
       
@@ -441,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/29/持久化存储--文件存储/" rel="next" title="文件存储">
-                <i class="fa fa-chevron-left"></i> 文件存储
+              <a href="/2017/03/30/多媒体--使用通知/" rel="next" title="使用通知">
+                <i class="fa fa-chevron-left"></i> 使用通知
               </a>
             
           </div>
@@ -450,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/29/持久化存储--SQLite数据库存储/" rel="prev" title="SQLite数据库存储">
-                SQLite数据库存储 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -479,8 +502,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/29/持久化存储--SharedPreferences-存储/"
-           data-title="SharedPreferences 存储" data-url="http://yoursite.com/2017/03/29/持久化存储--SharedPreferences-存储/">
+      <div class="ds-thread" data-thread-key="2017/03/31/多媒体--调用摄像头拍照/"
+           data-title="调用摄像头拍照" data-url="http://yoursite.com/2017/03/31/多媒体--调用摄像头拍照/">
       </div>
     
   </div>
@@ -573,7 +596,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#将数据存储到文件中"><span class="nav-number">1.</span> <span class="nav-text">将数据存储到文件中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从-SharedPreferences-文件中读取数据更加的简单。"><span class="nav-number">2.</span> <span class="nav-text">从 SharedPreferences 文件中读取数据更加的简单。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新建一个-ChoosePicTest-项目"><span class="nav-number">1.</span> <span class="nav-text">1 新建一个 ChoosePicTest 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改-MainActivity-中的代码-修改-activity-main-xml-中的代码"><span class="nav-number">2.</span> <span class="nav-text">2 修改 MainActivity 中的代码,修改 activity_main.xml 中的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#还需要在-AndroidManifest-xml-中声明权限"><span class="nav-number">3.</span> <span class="nav-text">还需要在 AndroidManifest.xml 中声明权限</span></a></li></ol></div>
             
 
           </div>
