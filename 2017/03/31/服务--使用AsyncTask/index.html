@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="工作问题," />
+  <meta name="keywords" content="服务," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="转载:http://www.cnblogs.com/zyfgs2012/p/4822011.html">
+<meta name="description" content="使用 AsyncTask">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于DatePicker设置MinDate和MaxDate的几个坑">
-<meta property="og:url" content="http://yoursite.com/2017/03/02/工作问题--关于DatePicker设置MinDate和MaxDate的几个坑/index.html">
+<meta property="og:title" content="使用 AsyncTask">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/服务--使用AsyncTask/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="转载:http://www.cnblogs.com/zyfgs2012/p/4822011.html">
-<meta property="og:updated_time" content="2017-03-27T09:33:18.000Z">
+<meta property="og:description" content="使用 AsyncTask">
+<meta property="og:updated_time" content="2017-03-31T08:28:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于DatePicker设置MinDate和MaxDate的几个坑">
-<meta name="twitter:description" content="转载:http://www.cnblogs.com/zyfgs2012/p/4822011.html">
+<meta name="twitter:title" content="使用 AsyncTask">
+<meta name="twitter:description" content="使用 AsyncTask">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/02/工作问题--关于DatePicker设置MinDate和MaxDate的几个坑/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/31/服务--使用AsyncTask/"/>
 
 
 
 
 
-  <title> 关于DatePicker设置MinDate和MaxDate的几个坑 | 个人博客 </title>
+  <title> 使用 AsyncTask | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/工作问题--关于DatePicker设置MinDate和MaxDate的几个坑/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/服务--使用AsyncTask/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                关于DatePicker设置MinDate和MaxDate的几个坑
+                使用 AsyncTask
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T16:11:33+08:00">
-                2017-03-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T16:17:16+08:00">
+                2017-03-31
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/02/工作问题--关于DatePicker设置MinDate和MaxDate的几个坑/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/02/工作问题--关于DatePicker设置MinDate和MaxDate的几个坑/" itemprop="commentCount"></span>
+                <a href="/2017/03/31/服务--使用AsyncTask/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/31/服务--使用AsyncTask/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -325,7 +325,79 @@
       
 
       
-        <p>转载:<br><a href="http://www.cnblogs.com/zyfgs2012/p/4822011.html" target="_blank" rel="external">http://www.cnblogs.com/zyfgs2012/p/4822011.html</a></p>
+        <blockquote>
+<p>使用 AsyncTask  </p>
+</blockquote>
+<a id="more"></a>  
+<pre><code class="java"><span class="keyword">import</span> android.os.AsyncTask;
+<span class="keyword">import</span> android.widget.Toast;
+
+<span class="class"><span class="keyword">class</span> <span class="title">DownloadTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">Void</span>, <span class="title">Integer</span>, <span class="title">Boolean</span>&gt; </span>{
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPreExecute</span><span class="params">()</span> </span>{
+        progressDialog.show(); <span class="comment">// 显示进度对话框</span>
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> Boolean <span class="title">doInBackground</span><span class="params">(Void... params)</span> </span>{
+        <span class="keyword">try</span> {
+            <span class="keyword">while</span> (<span class="keyword">true</span>) {
+                <span class="keyword">int</span> downloadPercent = doDownload(); <span class="comment">// 这是一个虚构的方法</span>
+                publishProgress(downloadPercent);
+                <span class="keyword">if</span> (downloadPercent &gt;= <span class="number">100</span>) {
+                    <span class="keyword">break</span>;
+                }
+            }
+        } <span class="keyword">catch</span> (Exception e) {
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+        }
+        <span class="keyword">return</span> <span class="keyword">true</span>;
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onProgressUpdate</span><span class="params">(Integer... values)</span> </span>{
+        <span class="comment">// 在这里更新下载进度</span>
+        progressDialog.setMessage(<span class="string">"Downloaded "</span> + values[<span class="number">0</span>] + <span class="string">"%"</span>);
+    }
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Boolean result)</span> </span>{
+        progressDialog.dismiss(); <span class="comment">// 关闭进度对话框</span>
+        <span class="comment">// 在这里提示下载结果</span>
+        <span class="keyword">if</span> (result) {
+            Toast.makeText(context, <span class="string">"Download succeeded"</span>, Toast.LENGTH_SHORT).show();
+        } <span class="keyword">else</span> {
+            Toast.makeText(context, <span class="string">" Download failed"</span>, Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+</code></pre>
+<p>首先来看一下 AsyncTask 的基本用法，由于 AsyncTask 是一个抽象类，所以如果我们想使用它，就必须要创建一个子类去继承它。  </p>
+<p>在继承时我们可以为 AsyncTask 类指定三个泛型参数，  </p>
+<p>这三个参数的用途如下。  </p>
+<ol>
+<li>Params<br>在执行 AsyncTask 时需要传入的参数，可用于在后台任务中使用。  </li>
+<li>Progress<br>后台任务执行时，如果需要在界面上显示当前的进度，则使用这里指定的泛型作为进度单位。   </li>
+<li>Result<br>当任务执行完毕后，如果需要对结果进行返回，则使用这里指定的泛型作为返回值类型。  </li>
+</ol>
+<p>这里我们把 AsyncTask 的第一个泛型参数指定为 Void，表示在执行 AsyncTask 的时候不需要传入参数给后台任务。<br>第二个泛型参数指定为 Integer，表示使用整型数据来作为进度显示单位。<br>第三个泛型参数指定为 Boolean，则表示使用布尔型数据来反馈执行结果    </p>
+<p>当然，我们还需要去重写 AsyncTask 中的几个方法才能完成对任务的定制。经常需要去重写的方法有以下四个。  </p>
+<ol>
+<li>onPreExecute()<br>这个方法会在后台任务开始执行之前调用，用于进行一些界面上的初始化操作，比如显示一个进度条对话框等。  </li>
+<li>doInBackground(Params…)<br>这个方法中的所有代码都会在子线程中运行，我们应该在这里去处理所有的耗时任务。任务一旦完成就可以通过 return 语句来将任务的执行结果返回，如果 AsyncTask 的第三个泛型参数指定的是 Void，就可以不返回任务执行结果。注意，在这个方法中是不可以进行 UI 操作的，如果需要更新 UI 元素，比如说反馈当前任务的执行进度，可以调用 publishProgress(Progress…)方法来完成。 </li>
+<li>onProgressUpdate(Progress…)<br>当在后台任务中调用了 publishProgress(Progress…)方法后，这个方法就会很快被调用，方法中携带的参数就是在后台任务中传递过来的。在这个方法中可以对 UI 进行操作，利用参数中的数值就可以对界面元素进行相应地更新。  </li>
+<li>onPostExecute(Result)<br>当后台任务执行完毕并通过 return 语句进行返回时，这个方法就很快会被调用。返回的数据会作为参数传递到此方法中，可以利用返回的数据来进行一些 UI 操作，比如说提醒任务执行的结果，以及关闭掉进度条对话框等。  </li>
+</ol>
+<p>在这个 DownloadTask 中，我们在 doInBackground()方法里去执行具体的下载任务。这个方法里的代码都是在子线程中运行的，因而不会影响到主线程的运行。  </p>
+<p>注意这里虚构了一个 doDownload()方法，这个方法用于计算当前的下载进度并返回，我们假设这个方法已经存在了。</p>
+<p>在得到了当前的下载进度后，下面就该考虑如何把它显示到界面上了，由于 doInBackground()方法是在子线程中运行的，在这里肯定不能进行 UI 操作，所以我们可以调用 publishProgress()方法并将当前的下载进度传进来，这样 onProgressUpdate()方法就会很快被调用，在这里就可以进行 UI 操作了。  </p>
+<p>当下载完成后，doInBackground()方法会返回一个布尔型变量，这样 onPostExecute()方法就会很快被调用，这个方法也是在主线程中运行的。</p>
+<p>然后在这里我们会根据下载的结果来弹出相应的 Toast 提示，从而完成整个 DownloadTask 任务。  </p>
+<p>简单来说，使用 AsyncTask 的诀窍就是，在 doInBackground()方法中去执行具体的耗时任务，在 onProgressUpdate()方法中进行 UI 操作，在 onPostExecute()方法中执行一些任务的收尾工作。</p>
+<p>如果想要启动这个任务，只需编写以下代码即可：  </p>
+<p><code>new DownloadTask().execute();</code>   </p>
+<p>以上就是 AsyncTask 的基本用法，怎么样，是不是感觉简单方便了许多？我们并不需要去考虑什么异步消息处理机制，也不需要专门使用一个 Handler 来发送和接收消息，只需要调用一下 publishProgress()方法就可以轻松地从子线程切换到 UI 线程了   </p>
 
       
     </div>
@@ -349,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/工作问题/" rel="tag"># 工作问题</a>
+            <a href="/tags/服务/" rel="tag"># 服务</a>
           
         </div>
       
@@ -358,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/01/工作问题--图片水印/" rel="next" title="图片水印">
-                <i class="fa fa-chevron-left"></i> 图片水印
+              <a href="/2017/03/31/服务--异步消息处理机制-子线程更新UI/" rel="next" title="异步消息处理机制-子线程更新UI">
+                <i class="fa fa-chevron-left"></i> 异步消息处理机制-子线程更新UI
               </a>
             
           </div>
@@ -367,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/06/练手--监听屏幕锁屏-用户解锁/" rel="prev" title="监听屏幕锁屏,用户解锁">
-                监听屏幕锁屏,用户解锁 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -396,8 +464,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/02/工作问题--关于DatePicker设置MinDate和MaxDate的几个坑/"
-           data-title="关于DatePicker设置MinDate和MaxDate的几个坑" data-url="http://yoursite.com/2017/03/02/工作问题--关于DatePicker设置MinDate和MaxDate的几个坑/">
+      <div class="ds-thread" data-thread-key="2017/03/31/服务--使用AsyncTask/"
+           data-title="使用 AsyncTask" data-url="http://yoursite.com/2017/03/31/服务--使用AsyncTask/">
       </div>
     
   </div>
