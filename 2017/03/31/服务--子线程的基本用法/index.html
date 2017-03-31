@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/31/服务--子线程的基本用法/index.html">
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="子线程的基本用法">
-<meta property="og:updated_time" content="2017-03-31T07:44:20.000Z">
+<meta property="og:updated_time" content="2017-03-31T07:51:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="子线程的基本用法">
 <meta name="twitter:description" content="子线程的基本用法">
@@ -340,7 +340,8 @@
 </code></pre>
 <p>如何启动这个线程呢？<br>其实也很简单，只需要 new 出 MyThread 的实例，然后调用它的 start()方法，这样 run()方法中的代码就会在子线程当中运行了，<br>如下所示：  </p>
 <pre><code>new MyThread().start();    
-</code></pre><p>方法二:  </p>
+</code></pre><hr>
+<p>方法二:  </p>
 <p>使用继承的方式耦合性有点高，更多的时候我们都会选择使用实现 Runnable 接口的方式来定义一个线程.    </p>
 <pre><code class="java"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>{
     <span class="meta">@Override</span>
@@ -353,6 +354,7 @@
 <pre><code class="java">MyThread myThread = <span class="keyword">new</span> MyThread();
 <span class="keyword">new</span> Thread(myThread).start();
 </code></pre>
+<hr>
 <p>当然，如果你不想专门再定义一个类去实现 Runnable 接口，也可以使用匿名类的方式，这种写法更为常见.<br>如下所示:  </p>
 <pre><code class="java"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
     <span class="meta">@Override</span>
@@ -402,6 +404,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/31/服务--异步消息处理机制-子线程更新UI/" rel="prev" title="异步消息处理机制-子线程更新UI">
+                异步消息处理机制-子线程更新UI <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -466,7 +472,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
