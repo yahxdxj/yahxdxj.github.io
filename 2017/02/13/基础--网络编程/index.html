@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="导语
  网络编程介绍">
-<meta property="og:updated_time" content="2017-02-25T03:23:44.000Z">
+<meta property="og:updated_time" content="2017-03-31T06:35:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android基础--网络编程">
 <meta name="twitter:description" content="导语
@@ -363,16 +363,19 @@ Bitmap bm = BitmapFactory.decodeStream(is);
 </code></pre></li>
 <li>5 添加权限</li>
 </ul>
-<p>###1.2 主线程不能被阻塞</p>
-<ul>
+<h3 id="1-2-主线程不能被阻塞"><a href="#1-2-主线程不能被阻塞" class="headerlink" title="1.2 主线程不能被阻塞"></a>1.2 主线程不能被阻塞</h3><ul>
 <li>在Android中，主线程被阻塞会导致应用不能刷新ui界面，不能响应用户操作，用户体验将非常差</li>
 <li>主线程阻塞时间过长，系统会抛出ANR异常</li>
 <li>ANR：Application Not Response；应用无响应</li>
 <li>任何耗时操作都不可以写在主线程</li>
-<li>因为网络交互属于耗时操作，如果网速很慢，代码会阻塞，所以网络交互的代码不能运行在主线程<br>###1.3只有主线程能刷新ui</li>
+<li>因为网络交互属于耗时操作，如果网速很慢，代码会阻塞，所以网络交互的代码不能运行在主线程  </li>
+</ul>
+<h3 id="1-3只有主线程能刷新ui"><a href="#1-3只有主线程能刷新ui" class="headerlink" title="1.3只有主线程能刷新ui"></a>1.3只有主线程能刷新ui</h3><ul>
 <li>刷新ui的代码只能运行在主线程，运行在子线程是没有任何效果的</li>
 <li>如果需要在子线程中刷新ui，使用消息队列机制</li>
-<li>主线程也叫ui线程<br>#####1.3.1消息队列</li>
+<li>主线程也叫ui线程  </li>
+</ul>
+<h5 id="1-3-1消息队列"><a href="#1-3-1消息队列" class="headerlink" title="1.3.1消息队列"></a>1.3.1消息队列</h5><ul>
 <li>主线程创建时，系统会同时创建消息队列对象（MessageQueue）和消息轮询器对象（Looper）</li>
 <li>轮询器的作用，就是不停的检测消息队列中是否有消息（Message）</li>
 <li>Looper一旦发现Message Queue中有消息，就会把消息取出，然后把消息扔给Handler对象，Handler会调用自己的handleMessage方法来处理这条消息</li>
@@ -409,9 +412,10 @@ handler.sendMessage(msg);
         Toast.makeText(MainActivity.this, &quot;请求失败&quot;, 0).show();
         break;
     }        
-}
-</code></pre><p>###1.4 加入缓存图片的功能</p>
-</li>
+}  
+</code></pre></li>
+</ul>
+<h3 id="1-4-加入缓存图片的功能"><a href="#1-4-加入缓存图片的功能" class="headerlink" title="1.4 加入缓存图片的功能"></a>1.4 加入缓存图片的功能</h3><ul>
 <li><p>把服务器返回的流里的数据读取出来，然后通过文件输入流写至本地文件</p>
 <pre><code>//1.拿到服务器返回的输入流
 InputStream is = conn.getInputStream();
@@ -452,8 +456,7 @@ public void click(View v) {
 }
 </code></pre></li>
 </ul>
-<p>###1.5 网络图片查看器示例</p>
-<pre><code>public class MainActivity extends Activity {
+<h3 id="1-5-网络图片查看器示例"><a href="#1-5-网络图片查看器示例" class="headerlink" title="1.5 网络图片查看器示例"></a>1.5 网络图片查看器示例</h3><pre><code>public class MainActivity extends Activity {
     // 主线程定义Handler
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -556,8 +559,7 @@ public void click(View v) {
     }
 }
 </code></pre><hr>
-<p>#1.6 获取开源代码的网站</p>
-<ul>
+<h1 id="1-6-获取开源代码的网站"><a href="#1-6-获取开源代码的网站" class="headerlink" title="1.6 获取开源代码的网站"></a>1.6 获取开源代码的网站</h1><ul>
 <li>code.google.com</li>
 <li>github.com</li>
 <li>在github搜索smart-image-view</li>
@@ -571,8 +573,7 @@ siv.setImageUrl(&quot;http://192.168.1.102:8080/dd.jpg&quot;);
 </code></pre></li>
 </ul>
 <hr>
-<p>#1.7 Html源文件查看器</p>
-<ul>
+<h1 id="1-7-Html源文件查看器"><a href="#1-7-Html源文件查看器" class="headerlink" title="1.7 Html源文件查看器"></a>1.7 Html源文件查看器</h1><ul>
 <li><p>1 发送GET请求</p>
 <pre><code>URL url = new URL(path);
 //获取连接对象
@@ -665,8 +666,7 @@ public void click(View v){
 
 }
 </code></pre><p>}</p>
-<p>###1.8 乱码的处理</p>
-<ul>
+<h3 id="1-8-乱码的处理"><a href="#1-8-乱码的处理" class="headerlink" title="1.8 乱码的处理"></a>1.8 乱码的处理</h3><ul>
 <li><p>乱码的出现是因为服务器和客户端码表不一致导致</p>
 <pre><code>//手动指定码表
 text = new String(bos.toByteArray(), &quot;gb2312&quot;);
@@ -695,9 +695,7 @@ text = new String(bos.toByteArray(), &quot;gb2312&quot;);
 </li>
 </ul>
 <hr>
-<p>#二、提交数据</p>
-<p>###2.1 GET方式提交数据</p>
-<ul>
+<h1 id="二、提交数据"><a href="#二、提交数据" class="headerlink" title="二、提交数据"></a>二、提交数据</h1><h3 id="2-1-GET方式提交数据"><a href="#2-1-GET方式提交数据" class="headerlink" title="2.1 GET方式提交数据"></a>2.1 GET方式提交数据</h3><ul>
 <li><p>get方式提交的数据是直接拼接在url的末尾</p>
 <pre><code>final String path = &quot;http://192.168.1.104/Web/servlet/CheckLogin?name=&quot; + name + &quot;&amp;pass=&quot; + pass;
 </code></pre></li>
@@ -793,8 +791,7 @@ public class Tools {
         }
     }
 }
-</code></pre><p>###2.2 POST方式提交数据</p>
-<ul>
+</code></pre><h3 id="2-2-POST方式提交数据"><a href="#2-2-POST方式提交数据" class="headerlink" title="2.2 POST方式提交数据"></a>2.2 POST方式提交数据</h3><ul>
 <li>post提交数据是用流写给服务器的</li>
 <li><p>协议头中多了两个属性</p>
 <ul>
@@ -880,8 +877,7 @@ os.write(data.getBytes());
         t.start();
     }
 }
-</code></pre><p>###案例综合：新闻客户端（解析xml,ListView）</p>
-<p>public class MainActivity extends Activity {<br>    List<news> newsList;<br>    // 主线程定义信息处理器Handler<br>    Handler handler = new Handler() {<br>        public void handleMessage(android.os.Message msg) {<br>            // 获取ListView布局文件<br>            ListView lv = (ListView) findViewById(R.id.lv);<br>            // 为ListView设置适配器<br>            lv.setAdapter(new MyAdapter());<br>        }<br>    };<br>    @Override<br>    protected void onCreate(Bundle savedInstanceState) {<br>        super.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        // 界面一打开，执行此方法<br>        getNewsInfo();<br>    }<br>    /**</news></p>
+</code></pre><h3 id="案例综合：新闻客户端（解析xml-ListView）"><a href="#案例综合：新闻客户端（解析xml-ListView）" class="headerlink" title="案例综合：新闻客户端（解析xml,ListView）"></a>案例综合：新闻客户端（解析xml,ListView）</h3><p>public class MainActivity extends Activity {<br>    List<news> newsList;<br>    // 主线程定义信息处理器Handler<br>    Handler handler = new Handler() {<br>        public void handleMessage(android.os.Message msg) {<br>            // 获取ListView布局文件<br>            ListView lv = (ListView) findViewById(R.id.lv);<br>            // 为ListView设置适配器<br>            lv.setAdapter(new MyAdapter());<br>        }<br>    };<br>    @Override<br>    protected void onCreate(Bundle savedInstanceState) {<br>        super.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        // 界面一打开，执行此方法<br>        getNewsInfo();<br>    }<br>    /**</news></p>
 <pre><code> * 自定义一个复杂的BaseAdapter
  * 
  * @author Administrator
@@ -1185,7 +1181,7 @@ private void parseNewsXml(InputStream is) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、网络图片查看器"><span class="nav-number"></span> <span class="nav-text">一、网络图片查看器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-主线程网络图片查看器"><span class="nav-number"></span> <span class="nav-text">1.1 主线程网络图片查看器</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、网络图片查看器"><span class="nav-number"></span> <span class="nav-text">一、网络图片查看器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-主线程网络图片查看器"><span class="nav-number"></span> <span class="nav-text">1.1 主线程网络图片查看器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-主线程不能被阻塞"><span class="nav-number"></span> <span class="nav-text">1.2 主线程不能被阻塞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3只有主线程能刷新ui"><span class="nav-number"></span> <span class="nav-text">1.3只有主线程能刷新ui</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1消息队列"><span class="nav-number">0.1.</span> <span class="nav-text">1.3.1消息队列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-加入缓存图片的功能"><span class="nav-number"></span> <span class="nav-text">1.4 加入缓存图片的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-网络图片查看器示例"><span class="nav-number"></span> <span class="nav-text">1.5 网络图片查看器示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-6-获取开源代码的网站"><span class="nav-number"></span> <span class="nav-text">1.6 获取开源代码的网站</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-7-Html源文件查看器"><span class="nav-number"></span> <span class="nav-text">1.7 Html源文件查看器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-乱码的处理"><span class="nav-number"></span> <span class="nav-text">1.8 乱码的处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、提交数据"><span class="nav-number"></span> <span class="nav-text">二、提交数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-GET方式提交数据"><span class="nav-number"></span> <span class="nav-text">2.1 GET方式提交数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-POST方式提交数据"><span class="nav-number"></span> <span class="nav-text">2.2 POST方式提交数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例综合：新闻客户端（解析xml-ListView）"><span class="nav-number"></span> <span class="nav-text">案例综合：新闻客户端（解析xml,ListView）</span></a></div>
             
 
           </div>
