@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="持久化存储," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,16 +84,15 @@
 
 
 
-<meta name="description" content="SQLite数据库存储">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SQLite数据库存储">
-<meta property="og:url" content="http://yoursite.com/2017/03/29/持久化存储--SQLite数据库存储/index.html">
+<meta name="description" content="人艰不拆">
+<meta property="og:type" content="website">
+<meta property="og:title" content="个人博客">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="SQLite数据库存储">
-<meta property="og:updated_time" content="2017-03-30T06:11:24.000Z">
+<meta property="og:description" content="人艰不拆">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQLite数据库存储">
-<meta name="twitter:description" content="SQLite数据库存储">
+<meta name="twitter:title" content="个人博客">
+<meta name="twitter:description" content="人艰不拆">
 
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/29/持久化存储--SQLite数据库存储/"/>
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
 
 
 
-  <title> SQLite数据库存储 | 个人博客 </title>
+  <title> 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,7 +147,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -229,9 +230,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -240,7 +241,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/持久化存储--SQLite数据库存储/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/16/MD语法--MacDown语法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +265,10 @@
             
             
               
-                SQLite数据库存储
+                
+                <a class="post-title-link" href="/2017/01/16/MD语法--MacDown语法/" itemprop="url">
+                  MacDown语法
+                </a>
               
             
           </h1>
@@ -279,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-29T17:14:45+08:00">
-                2017-03-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-16T10:08:49+08:00">
+                2017-01-16
               </time>
             
 
@@ -298,8 +302,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/29/持久化存储--SQLite数据库存储/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/29/持久化存储--SQLite数据库存储/" itemprop="commentCount"></span>
+                <a href="/2017/01/16/MD语法--MacDown语法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/16/MD语法--MacDown语法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -325,129 +329,52 @@
       
 
       
-        <blockquote>
-<p>SQLite数据库存储  </p>
+        
+          <p><a name="daoyu"></a></p>
+<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p><strong>Markdown 的理念是，能让文档更容易读写和随意改。</strong></p>
 </blockquote>
-<a id="more"></a>  
-<p>项目中,我用的是ormlite框架, 等后期我把操作步骤搬上来.   </p>
-<p>1 导入jar    </p>
-<p>ormlite-android-4.43.jar<br>ormlite-core-4.43.jar  </p>
-<p>2 创建实体类  </p>
-<p>3 创建Dao  </p>
-<p>4 创建DaoImpl  </p>
-<p>5 创建DatabaseHelper  </p>
-<p>6 修改MainActivity代码,做测试  </p>
-<pre><code class="java"><span class="keyword">import</span> android.app.Activity;
-<span class="keyword">import</span> android.os.Bundle;
-<span class="keyword">import</span> android.widget.EditText;
-<span class="keyword">import</span> android.widget.Toast;
-
-<span class="keyword">import</span> com.yassblog.db.table.DoctorInfo;
-<span class="keyword">import</span> com.yassblog.db.table.PatientInfo;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>{
-
-    <span class="keyword">private</span> EditText edit;
-    <span class="keyword">private</span> MainService mainService;
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
-        <span class="keyword">super</span>.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        edit = (EditText) findViewById(R.id.edit);
-
-        mainService = <span class="keyword">new</span> MainService(getApplicationContext(), <span class="keyword">null</span>);
-
-        <span class="comment">// 读取数据</span>
-        PatientInfo patientInfo = mainService.searchPatient2(<span class="string">"abcd"</span>);
-        <span class="keyword">if</span> (patientInfo != <span class="keyword">null</span>) {
-            edit.setText(patientInfo.getPatientmobile());
-            edit.setSelection(patientInfo.getPatientmobile().length());
-            Toast.makeText(<span class="keyword">this</span>, <span class="string">"读取成功"</span>, <span class="number">0</span>).show();
-        }
-    }
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>{
-        <span class="keyword">super</span>.onDestroy();
-
-        <span class="comment">// 保存数据</span>
-        DoctorInfo doctorinfo = <span class="keyword">new</span> DoctorInfo();
-        doctorinfo.setDoctorkey(<span class="string">"123"</span>);
-        doctorinfo.setDoctorid(<span class="string">"1234"</span>);
-        mainService.saveDoctorInfo(doctorinfo);
-
-        PatientInfo patientInfo = <span class="keyword">new</span> PatientInfo();
-        patientInfo.setPatientkey(<span class="string">"abc"</span>);
-        patientInfo.setPatientmobile(<span class="string">"abcd"</span>);
-        mainService.savePatientInfo(patientInfo);
-
-    }
-}
-</code></pre>
-<p>代码下载: <a href="http://ojupj7fr2.bkt.clouddn.com/zqzb.rar" target="_blank" rel="external">http://ojupj7fr2.bkt.clouddn.com/zqzb.rar</a>  </p>
-
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/16/MD语法--MacDown语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/持久化存储/" rel="tag"># 持久化存储</a>
-          
-        </div>
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/29/持久化存储--SharedPreferences-存储/" rel="next" title="SharedPreferences 存储">
-                <i class="fa fa-chevron-left"></i> SharedPreferences 存储
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/30/多媒体--使用通知/" rel="prev" title="使用通知">
-                使用通知 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
           
           </div>
@@ -455,14 +382,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/03/29/持久化存储--SQLite数据库存储/"
-           data-title="SQLite数据库存储" data-url="http://yoursite.com/2017/03/29/持久化存储--SQLite数据库存储/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -631,10 +550,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
 
   
 
