@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MyEclipse," />
+  <meta name="keywords" content="高级技巧," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="问题描述：Mac中MyEclipse启动Tomcat时8080端口被占用错误：">
+<meta name="description" content="定制一个自己的 Application">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac中MyEclipse启动Tomcat时8080端口被占用">
-<meta property="og:url" content="http://yoursite.com/2017/02/27/MyEclipse --Mac中MyEclipseip启动Tomcat时8080端口被占用/index.html">
+<meta property="og:title" content="定制一个自己的 Application">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/高级技巧--定制一个自己的-Application/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="问题描述：Mac中MyEclipse启动Tomcat时8080端口被占用错误：">
-<meta property="og:updated_time" content="2017-03-06T08:31:31.000Z">
+<meta property="og:description" content="定制一个自己的 Application">
+<meta property="og:updated_time" content="2017-03-31T08:51:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac中MyEclipse启动Tomcat时8080端口被占用">
-<meta name="twitter:description" content="问题描述：Mac中MyEclipse启动Tomcat时8080端口被占用错误：">
+<meta name="twitter:title" content="定制一个自己的 Application">
+<meta name="twitter:description" content="定制一个自己的 Application">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/27/MyEclipse --Mac中MyEclipseip启动Tomcat时8080端口被占用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/31/高级技巧--定制一个自己的-Application/"/>
 
 
 
 
 
-  <title> Mac中MyEclipse启动Tomcat时8080端口被占用 | 个人博客 </title>
+  <title> 定制一个自己的 Application | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/MyEclipse --Mac中MyEclipseip启动Tomcat时8080端口被占用/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/高级技巧--定制一个自己的-Application/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                Mac中MyEclipse启动Tomcat时8080端口被占用
+                定制一个自己的 Application
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T14:59:53+08:00">
-                2017-02-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T16:44:13+08:00">
+                2017-03-31
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/27/MyEclipse --Mac中MyEclipseip启动Tomcat时8080端口被占用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/MyEclipse --Mac中MyEclipseip启动Tomcat时8080端口被占用/" itemprop="commentCount"></span>
+                <a href="/2017/03/31/高级技巧--定制一个自己的-Application/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/31/高级技巧--定制一个自己的-Application/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,19 +326,34 @@
 
       
         <blockquote>
-<p>问题描述：<br>Mac中MyEclipse启动Tomcat时8080端口被占用错误：  </p>
+<p>定制一个自己的 Application    </p>
 </blockquote>
-<a id="more"></a>
-<p>Several ports (8080, 8009) required by Tomcat v7.0 Server at localhost are already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).</p>
-<p>解决办法：   </p>
-<p>打开终端，输入以下命令</p>
-<p><code>lsof -i :8080</code>   </p>
-<p>如果你被占用的端口不是8080，请修改命令中的参数。<br>该命令输出以下内容：</p>
-<p>COMMAND   PID     USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME<br>java    27132    kaige   41u  IPv6 0x9d80e4a27fc1081b      0t0  TCP *:http-alt (LISTEN)</p>
-<p>我的Mac上占用8080端口的进程ID是27132，所以我再将这个进程杀死</p>
-<p><code>kill -9 27132</code>   </p>
-<p>请根据你的进程ID来修改次命令的最后一个参数</p>
-<p>然后再次启动MyEclipse中的Tomcat，可以正常启动了！</p>
+<a id="more"></a>  
+<h4 id="新建一个-MyApplication-类继承自-Application"><a href="#新建一个-MyApplication-类继承自-Application" class="headerlink" title="新建一个 MyApplication 类继承自 Application ."></a>新建一个 MyApplication 类继承自 Application .</h4><pre><code class="java"><span class="keyword">import</span> android.app.Application;
+<span class="keyword">import</span> android.content.Context;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> Context context;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>{
+        context = getApplicationContext();
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Context <span class="title">getContext</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> context;
+    }
+}
+</code></pre>
+<p>这里我们重写了父类的 onCreate()方法，并通过调用 getApplicationContext()方法得到了一个应用程序级别的 Context，然后又提供了一个静态的 getContext()方法，在这里将刚才获取到的 Context 进行返回.  </p>
+<h4 id="在-AndroidManifest-xml-文件的标签下指定新建的-MyApplication"><a href="#在-AndroidManifest-xml-文件的标签下指定新建的-MyApplication" class="headerlink" title="在 AndroidManifest.xml 文件的标签下指定新建的 MyApplication ."></a>在 AndroidManifest.xml 文件的<application>标签下指定新建的 MyApplication .</application></h4><p>修改name属性:  </p>
+<pre><code>&lt;application
+    android:name=&quot;com.yassblog.application.MyApplication&quot;
+    …… &gt;
+    ……
+&lt;/application&gt;  
+</code></pre><p>注意这里在指定 MyApplication 的时候一定要加上完整的包名，不然系统将无法找到这个类。  </p>
+<p>这样我们就已经实现了一种全局获取 Context 的机制，之后不管你想在项目的任何地方使用 Context，只需要调用一下 MyApplication.getContext()就可以了。  </p>
 
       
     </div>
@@ -362,7 +377,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MyEclipse/" rel="tag"># MyEclipse</a>
+            <a href="/tags/高级技巧/" rel="tag"># 高级技巧</a>
           
         </div>
       
@@ -371,8 +386,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/27/SQL基础--简单的SQL语句/" rel="next" title="简单的SQL语句">
-                <i class="fa fa-chevron-left"></i> 简单的SQL语句
+              <a href="/2017/03/31/服务--使用AsyncTask/" rel="next" title="使用 AsyncTask">
+                <i class="fa fa-chevron-left"></i> 使用 AsyncTask
               </a>
             
           </div>
@@ -381,8 +396,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/27/MyEclipse --Java-Web项目在Mac系统上启动时提示nodename-nor-servname-provided的解决办法/" rel="prev" title="Java Web项目在Mac系统上启动时提示nodename nor servname provided的解决办法">
-                Java Web项目在Mac系统上启动时提示nodename nor servname provided的解决办法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/31/高级技巧--定制自己的日志工具/" rel="prev" title="定制自己的日志工具">
+                定制自己的日志工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -409,8 +424,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/27/MyEclipse --Mac中MyEclipseip启动Tomcat时8080端口被占用/"
-           data-title="Mac中MyEclipse启动Tomcat时8080端口被占用" data-url="http://yoursite.com/2017/02/27/MyEclipse --Mac中MyEclipseip启动Tomcat时8080端口被占用/">
+      <div class="ds-thread" data-thread-key="2017/03/31/高级技巧--定制一个自己的-Application/"
+           data-title="定制一个自己的 Application" data-url="http://yoursite.com/2017/03/31/高级技巧--定制一个自己的-Application/">
       </div>
     
   </div>
@@ -434,8 +449,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojupj7fr2.bkt.clouddn.com/blog_xintouxiang.png"
@@ -484,6 +508,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个-MyApplication-类继承自-Application"><span class="nav-number">1.</span> <span class="nav-text">新建一个 MyApplication 类继承自 Application .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-AndroidManifest-xml-文件的标签下指定新建的-MyApplication"><span class="nav-number">2.</span> <span class="nav-text">在 AndroidManifest.xml 文件的标签下指定新建的 MyApplication .</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
