@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Fragment," />
+  <meta name="keywords" content="应用详情," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="Fragment的向下兼容">
+<meta name="description" content="跳不同系统界面的方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fragment的向下兼容">
-<meta property="og:url" content="http://yoursite.com/2017/04/10/Fragment--Fragment的向下兼容/index.html">
+<meta property="og:title" content="跳不同系统界面的方法">
+<meta property="og:url" content="http://yoursite.com/2017/04/12/应用详情--跳不同系统界面的方法/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="Fragment的向下兼容">
-<meta property="og:updated_time" content="2017-04-10T02:29:15.000Z">
+<meta property="og:description" content="跳不同系统界面的方法">
+<meta property="og:updated_time" content="2017-04-12T08:18:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fragment的向下兼容">
-<meta name="twitter:description" content="Fragment的向下兼容">
+<meta name="twitter:title" content="跳不同系统界面的方法">
+<meta name="twitter:description" content="跳不同系统界面的方法">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/10/Fragment--Fragment的向下兼容/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/12/应用详情--跳不同系统界面的方法/"/>
 
 
 
 
 
-  <title> Fragment的向下兼容 | 个人博客 </title>
+  <title> 跳不同系统界面的方法 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/Fragment--Fragment的向下兼容/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/应用详情--跳不同系统界面的方法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                Fragment的向下兼容
+                跳不同系统界面的方法
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-10T10:25:48+08:00">
-                2017-04-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T15:37:41+08:00">
+                2017-04-12
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/10/Fragment--Fragment的向下兼容/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/Fragment--Fragment的向下兼容/" itemprop="commentCount"></span>
+                <a href="/2017/04/12/应用详情--跳不同系统界面的方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/12/应用详情--跳不同系统界面的方法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,15 +326,86 @@
 
       
         <blockquote>
-<p>Fragment的向下兼容</p>
+<p>跳不同系统界面的方法  </p>
 </blockquote>
 <a id="more"></a>  
-<ol>
-<li>Fragment中导v4包 </li>
-</ol>
-<ol>
-<li>Activity中继承FragmentActivity, 导v4包</li>
-</ol>
+<p>代码:  </p>
+<pre><code class="java"><span class="comment">// 若系统GPS模块没打开, 跳到app应用详情</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getAppDetailSettingIntent</span><span class="params">(Context context)</span> </span>{
+    Intent localIntent = <span class="keyword">new</span> Intent();
+    localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">9</span>) {
+        localIntent.setAction(<span class="string">"android.settings.APPLICATION_DETAILS_SETTINGS"</span>);
+        localIntent.setData(Uri.fromParts(<span class="string">"package"</span>, context.getPackageName(), <span class="keyword">null</span>));
+    } <span class="keyword">else</span> <span class="keyword">if</span> (Build.VERSION.SDK_INT &lt;= <span class="number">8</span>) {
+        localIntent.setAction(Intent.ACTION_VIEW);
+        localIntent.setClassName(<span class="string">"com.android.settings"</span>,<span class="string">"com.android.settings.InstalledAppDetails"</span>);
+        localIntent.putExtra(<span class="string">"com.android.settings.ApplicationPkgName"</span>, context.getPackageName());
+    }
+    context.startActivity(localIntent);
+}
+
+<span class="comment">// 方法失败 因为这事查看注册文件有没有 判断是否有android.permission.ACCESS_FINE_LOCATION权限</span>
+<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">isHavepermission</span><span class="params">()</span></span>{
+    PackageManager pm = getPackageManager();  
+    <span class="keyword">boolean</span> permission = (PackageManager.PERMISSION_GRANTED == 
+            pm.checkPermission(<span class="string">"android.permission.ACCESS_FINE_LOCATION"</span>, <span class="string">"et.tsingtaopad"</span>));  
+    <span class="keyword">if</span> (permission) {  
+        Toast.makeText(getApplicationContext(), <span class="string">"有这个权限"</span>, <span class="number">0</span>).show(); 
+    }<span class="keyword">else</span> {  
+        Toast.makeText(getApplicationContext(), <span class="string">"木有这个权限"</span>, <span class="number">0</span>).show(); 
+    } 
+}
+
+<span class="comment">// 若系统GPS模块没打开, 跳到安全界面</span>
+<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">openDingWei</span><span class="params">()</span></span>{
+    ComponentName cm = <span class="keyword">new</span> ComponentName(<span class="string">"com.android.settings"</span>,
+            <span class="string">"com.android.settings.SecuritySettings"</span>);
+    Intent intent = <span class="keyword">new</span> Intent();
+    intent.setComponent(cm);
+    intent.setAction(<span class="string">"android.intent.action.VIEW"</span>);
+    startActivity(intent);
+}
+
+<span class="comment">// 弹窗: 手动开启系统GPS定位模块</span>
+<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initGPS</span><span class="params">()</span> </span>{
+    LocationManager locationManager = (LocationManager) <span class="keyword">this</span>.getSystemService(Context.LOCATION_SERVICE);
+    <span class="comment">// 判断GPS模块是否开启，如果没有则开启</span>
+    <span class="keyword">if</span> (!locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)) {
+        Toast.makeText(ShopVisitActivity.<span class="keyword">this</span>, <span class="string">"请打开GPS"</span>,Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder dialog = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>);
+        dialog.setMessage(<span class="string">"请打开GPS"</span>);
+        dialog.setPositiveButton(<span class="string">"确定"</span>,
+                    <span class="keyword">new</span> android.content.DialogInterface.OnClickListener() {
+
+                        <span class="meta">@Override</span>
+                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface arg0, <span class="keyword">int</span> arg1)</span> </span>{
+
+                            <span class="comment">// 转到手机设置界面，用户设置GPS</span>
+                        Intent intent = <span class="keyword">new</span> Intent(
+                                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(intent, <span class="number">0</span>); <span class="comment">// 设置完成后返回到原来的界面</span>
+
+                        }
+                    });
+            dialog.setNeutralButton(<span class="string">"取消"</span>, <span class="keyword">new</span> android.content.DialogInterface.OnClickListener() {
+
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface arg0, <span class="keyword">int</span> arg1)</span> </span>{
+                arg0.dismiss();
+            }
+        } );
+        dialog.show();
+    } <span class="keyword">else</span> {
+        <span class="comment">// 弹出Toast</span>
+<span class="comment">//          Toast.makeText(TrainDetailsActivity.this, "GPS is ready",</span>
+<span class="comment">//                  Toast.LENGTH_LONG).show();</span>
+<span class="comment">//          // 弹出对话框</span>
+<span class="comment">//          new AlertDialog.Builder(this).setMessage("GPS is ready")</span>
+<span class="comment">//                  .setPositiveButton("OK", null).show();</span>
+    }
+}
+</code></pre>
 
       
     </div>
@@ -358,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Fragment/" rel="tag"># Fragment</a>
+            <a href="/tags/应用详情/" rel="tag"># 应用详情</a>
           
         </div>
       
@@ -367,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/07/问题/" rel="next" title="问题">
-                <i class="fa fa-chevron-left"></i> 问题
+              <a href="/2017/04/10/Fragment--Fragment的向下兼容/" rel="next" title="Fragment的向下兼容">
+                <i class="fa fa-chevron-left"></i> Fragment的向下兼容
               </a>
             
           </div>
@@ -376,10 +447,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/12/应用详情--跳不同系统界面的方法/" rel="prev" title="跳不同系统界面的方法">
-                跳不同系统界面的方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -405,8 +472,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/04/10/Fragment--Fragment的向下兼容/"
-           data-title="Fragment的向下兼容" data-url="http://yoursite.com/2017/04/10/Fragment--Fragment的向下兼容/">
+      <div class="ds-thread" data-thread-key="2017/04/12/应用详情--跳不同系统界面的方法/"
+           data-title="跳不同系统界面的方法" data-url="http://yoursite.com/2017/04/12/应用详情--跳不同系统界面的方法/">
       </div>
     
   </div>
