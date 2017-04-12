@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="View," />
+  <meta name="keywords" content="应用详情," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="View的基础知识">
+<meta name="description" content="跳系统界面">
 <meta property="og:type" content="article">
-<meta property="og:title" content="View的基础知识">
-<meta property="og:url" content="http://yoursite.com/2017/04/05/View--View的基础知识/index.html">
+<meta property="og:title" content="跳系统界面">
+<meta property="og:url" content="http://yoursite.com/2017/04/12/跳系统界面/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="View的基础知识">
-<meta property="og:updated_time" content="2017-04-05T06:13:46.000Z">
+<meta property="og:description" content="跳系统界面">
+<meta property="og:updated_time" content="2017-04-12T07:39:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="View的基础知识">
-<meta name="twitter:description" content="View的基础知识">
+<meta name="twitter:title" content="跳系统界面">
+<meta name="twitter:description" content="跳系统界面">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/05/View--View的基础知识/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/12/跳系统界面/"/>
 
 
 
 
 
-  <title> View的基础知识 | 个人博客 </title>
+  <title> 跳系统界面 | 个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/05/View--View的基础知识/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/跳系统界面/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="yass">
@@ -264,7 +264,7 @@
             
             
               
-                View的基础知识
+                跳系统界面
               
             
           </h1>
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-05T14:05:04+08:00">
-                2017-04-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T15:37:41+08:00">
+                2017-04-12
               </time>
             
 
@@ -298,8 +298,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/05/View--View的基础知识/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/05/View--View的基础知识/" itemprop="commentCount"></span>
+                <a href="/2017/04/12/跳系统界面/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/12/跳系统界面/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,11 +326,86 @@
 
       
         <blockquote>
-<p>View的基础知识  </p>
+<p>跳系统界面  </p>
 </blockquote>
 <a id="more"></a>  
-<p>View 的一些基础知识:<br>主要介绍的内容有：View 的位置参数、MotionEvent 和 TouchSlop 对象、VelocityTracker、GestureDetector 和 Scroller 对象.  </p>
+<p>代码:  </p>
+<pre><code>// 若系统GPS模块没打开, 跳到app应用详情
+public static void getAppDetailSettingIntent(Context context) {
+    Intent localIntent = new Intent();
+    localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    if (Build.VERSION.SDK_INT &gt;= 9) {
+        localIntent.setAction(&quot;android.settings.APPLICATION_DETAILS_SETTINGS&quot;);
+        localIntent.setData(Uri.fromParts(&quot;package&quot;, context.getPackageName(), null));
+    } else if (Build.VERSION.SDK_INT &lt;= 8) {
+        localIntent.setAction(Intent.ACTION_VIEW);
+        localIntent.setClassName(&quot;com.android.settings&quot;,&quot;com.android.settings.InstalledAppDetails&quot;);
+        localIntent.putExtra(&quot;com.android.settings.ApplicationPkgName&quot;, context.getPackageName());
+    }
+    context.startActivity(localIntent);
+}
 
+// 方法失败 因为这事查看注册文件有没有 判断是否有android.permission.ACCESS_FINE_LOCATION权限
+private void isHavepermission(){
+    PackageManager pm = getPackageManager();  
+    boolean permission = (PackageManager.PERMISSION_GRANTED == 
+            pm.checkPermission(&quot;android.permission.ACCESS_FINE_LOCATION&quot;, &quot;et.tsingtaopad&quot;));  
+    if (permission) {  
+        Toast.makeText(getApplicationContext(), &quot;有这个权限&quot;, 0).show(); 
+    }else {  
+        Toast.makeText(getApplicationContext(), &quot;木有这个权限&quot;, 0).show(); 
+    } 
+}
+
+// 若系统GPS模块没打开, 跳到安全界面
+private void openDingWei(){
+    ComponentName cm = new ComponentName(&quot;com.android.settings&quot;,
+            &quot;com.android.settings.SecuritySettings&quot;);
+    Intent intent = new Intent();
+    intent.setComponent(cm);
+    intent.setAction(&quot;android.intent.action.VIEW&quot;);
+    startActivity(intent);
+}
+
+// 弹窗: 手动开启系统GPS定位模块
+private void initGPS() {
+    LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+    // 判断GPS模块是否开启，如果没有则开启
+    if (!locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)) {
+        Toast.makeText(ShopVisitActivity.this, &quot;请打开GPS&quot;,Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(&quot;请打开GPS&quot;);
+        dialog.setPositiveButton(&quot;确定&quot;,
+                    new android.content.DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+
+                            // 转到手机设置界面，用户设置GPS
+                        Intent intent = new Intent(
+                                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(intent, 0); // 设置完成后返回到原来的界面
+
+                        }
+                    });
+            dialog.setNeutralButton(&quot;取消&quot;, new android.content.DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                arg0.dismiss();
+            }
+        } );
+        dialog.show();
+    } else {
+        // 弹出Toast
+//          Toast.makeText(TrainDetailsActivity.this, &quot;GPS is ready&quot;,
+//                  Toast.LENGTH_LONG).show();
+//          // 弹出对话框
+//          new AlertDialog.Builder(this).setMessage(&quot;GPS is ready&quot;)
+//                  .setPositiveButton(&quot;OK&quot;, null).show();
+    }
+}
+</code></pre>
       
     </div>
 
@@ -353,7 +428,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/View/" rel="tag"># View</a>
+            <a href="/tags/应用详情/" rel="tag"># 应用详情</a>
           
         </div>
       
@@ -362,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/01/Fragment--使用FragmentTabHost实现底部导航/" rel="next" title="使用FragmentTabHost实现底部导航">
-                <i class="fa fa-chevron-left"></i> 使用FragmentTabHost实现底部导航
+              <a href="/2017/04/10/Fragment--Fragment的向下兼容/" rel="next" title="Fragment的向下兼容">
+                <i class="fa fa-chevron-left"></i> Fragment的向下兼容
               </a>
             
           </div>
@@ -371,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/07/问题/" rel="prev" title="问题">
-                问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -400,8 +471,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/04/05/View--View的基础知识/"
-           data-title="View的基础知识" data-url="http://yoursite.com/2017/04/05/View--View的基础知识/">
+      <div class="ds-thread" data-thread-key="2017/04/12/跳系统界面/"
+           data-title="跳系统界面" data-url="http://yoursite.com/2017/04/12/跳系统界面/">
       </div>
     
   </div>
